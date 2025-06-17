@@ -1,16 +1,18 @@
 ![Repo header image](https://repository-images.githubusercontent.com/189204408/ea286180-8cf2-11e9-9c88-ad7a2517c8f8)
 
-# @mindsers/blog
+# @mindsersit/mindsers-it
 
-"Mindsers Blog" is a blog for nathanaelcherrier.dev. This part of the site is based on [Ghost][ghost-blog].
+"MindsersIT" is a brand website served on mindsers.it. This part of the site is based on [Ghost][ghost-blog].
 
-This repo host the ghost theme that powers mindsers.blog.
-**Be aware that some parts of the theme are hardcoded for the needs of "Mindsers Blog". This theme is NOT production ready.**
+This repo host the ghost theme that powers mindsers.it.
+**Be aware that some parts of the theme are hardcoded for the needs of "MindsersIT". This theme is NOT production ready.**
 
 All the repositories part of the MindsersIT project:
 
--   [@mindsers/website](https://github.com/mindsers/personal-website)
--   [@mindsers/blog](https://github.com/mindsers/mindsers-blog)
+-   [@mindsersit/mindsers-live](https://github.com/mindsersit/mindsers-live)
+-   [@mindsersit/mindsers-blog](https://github.com/mindsersit/mindsers-blog)
+-   [@mindsersit/mindsers-api](https://github.com/mindsersit/mindsers-api)
+-   [@mindsersit/fallback-page](https://github.com/mindsersit/fallback-page)
 
 ## Getting started
 
@@ -22,7 +24,7 @@ All the repositories part of the MindsersIT project:
 
 MIT License
 
-**Copyright (c) 2019 Nathanaël CHERRIER**
+**Copyright (c) 2025 Nathanaël CHERRIER**
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
