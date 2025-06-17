@@ -1,0 +1,15 @@
+routes:
+    /:
+        controller: channel
+        template: home
+    /studio/landing-page/:
+        template: pack-validation
+    /studio/mvp-saas/:
+        template: pack-mvp
+    /studio/saas/:
+        template: pack-saas
+
+collections:
+
+taxonomies:
+    tag: /topic/{slug}/

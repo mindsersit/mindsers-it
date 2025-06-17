@@ -1,0 +1,495 @@
+@use 'colors';
+@use 'fonts';
+@use 'global';
+@use 'testimonials';
+
+.mds-home {
+    font-family: var(--gh-font-body, fonts.$sans);
+
+    .mds-header .mds-container {
+        margin: 80px auto;
+        display: flex;
+        justify-content: space-around;
+
+        @media (max-width: 1024px) {
+            margin: 0 20px;
+        }
+
+        @media (max-width: 550px) {
+            flex-wrap: wrap;
+            flex-direction: column-reverse;
+        }
+
+        @media (max-width: 350px) {
+            margin: 0;
+        }
+
+        .presentation {
+            width: 70%;
+
+            @media (max-width: 1024px) {
+                width: 45%;
+            }
+
+            @media (max-width: 550px) {
+                width: 100%;
+                text-align: center;
+            }
+
+            .mds-title {
+                font-family: var(--gh-font-heading, fonts.$sans);
+                font-size: 3.5em;
+                font-weight: 900;
+                text-align: center;
+                margin: 40px 0 20px;
+
+                @media (max-width: 850px) {
+                    font-size: 3em;
+                }
+
+                @media (max-width: 550px) {
+                    text-align: center;
+                    font-size: 2.8em;
+                }
+
+                @media (max-width: 350px) {
+                    font-size: 2.5em;
+                }
+            }
+
+            .mds-cta {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 20px;
+
+                .rate {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1px;
+                    font-size: small;
+
+                    .stars {
+                        font-size: large;
+                    }
+                }
+            }
+        }
+    }
+
+    .mds-featured .mds-container {
+        display: flex;
+        column-gap: 5%;
+        flex-basis: 45%;
+        justify-content: space-between;
+        margin: 40px auto;
+
+        @media (max-width: 1024px) {
+            margin: 0 auto;
+        }
+
+        @media (max-width: 550px) {
+            flex-wrap: wrap;
+        }
+
+        article {
+            width: 45%;
+
+            @media (max-width: 550px) {
+                width: 100%;
+            }
+        }
+    }
+
+    .section-type {
+        text-align: center;
+        margin: 0;
+        font-family: var(--gh-font-heading, fonts.$sans);
+        font-size: 1rem;
+        line-height: 1rem;
+        text-transform: uppercase;
+    }
+
+    .section-title {
+        font-size: 2.25rem;
+        line-height: 2.25rem;
+        font-weight: 600;
+        text-align: center;
+        margin: 10px 0 30px 0;
+        font-family: var(--gh-font-heading, fonts.$sans);
+
+        .icon {
+            color: colors.$accent;
+
+            svg {
+                height: 30px;
+            }
+        }
+    }
+
+    .highlighted-band {
+        background: colors.$accent;
+        position: sticky;
+        left: 0;
+        width: 100%;
+        margin: 40px 0;
+        padding: 30px;
+        color: white;
+        text-align: center;
+        padding: 100px 0;
+
+        @media (max-width: 850px) {
+            padding: 50px 0;
+        }
+
+        a {
+            color: white;
+        }
+
+        .section-title {
+            margin: 10px 0 60px 0;
+            font-family: var(--gh-font-heading, fonts.$sans);
+        }
+
+        .button {
+            font-weight: 600;
+            border: 1px solid var(--foreground-color);
+            text-decoration: none;
+            font-size: 1em;
+            transition: all 0.4s ease-in-out;
+
+            .primary {
+                color: var(--background-color);
+                background: var(--foreground-color);
+            }
+        }
+
+        form,
+        label {
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        label {
+            margin: 10px 0;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .pricing-options {
+            display: grid;
+            grid-template-areas:  "option1 option2"
+                                  "option3 option3";
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            @media (max-width: 1024px) {
+                grid-template-areas:    "option1"
+                                        "option2"
+                                        "option3";
+            }
+
+            .pricing-option {
+                text-align: left;
+                border: 3px solid white;
+                border-radius: 10px;
+                padding: 10px 20px;
+                // max-width: 450px;
+                background-color: white;
+                color: colors.$background;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                justify-content: space-between;
+
+                h3 {
+                    font-family: var(--gh-font-heading, fonts.$sans);
+                }
+
+                hr {
+                    border: 1px solid colors.$background;
+                }
+
+                ul {
+                    display: flex;
+                    flex-direction: column;
+                    list-style: none;
+                    padding: 0;
+                    gap: 15px;
+                }
+
+                @media (max-width: 550px) {
+                    .optional-items {
+                        display: none;
+                    }
+                }
+
+                .price {
+                    font-size: 2em;
+                    font-weight: bolder;
+                    margin: 32px 0 0 0;
+                }
+
+                .price-mentions {
+                    font-size: 0.8em;
+                    margin: 0;
+                }
+
+                hr {
+                    margin: 32px 0;
+                }
+
+                .button {
+                    border-radius: 5px;
+                    text-align: center;
+                }
+
+                .more-link {
+                    color: colors.$background;
+                    font-size: 0.8rem;
+                    text-align: center;
+                }
+
+                .body {
+                    margin-bottom: 32px;
+                    text-align: center;
+                }
+
+                &.featured {
+                    grid-area: option3;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-around;
+                    align-items: center;
+
+                    @media (max-width: 550px) {
+                        flex-direction: column;
+                    }
+
+                    & .cta {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 10px;
+                        margin: 20px 0;
+
+                        & .price {
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .method-section {
+        margin: 50px 0;
+        background: colors.$accent;
+        box-sizing: border-box;
+
+        .mds-container {
+            padding: 100px 0;
+        }
+
+        @media (max-width: 1024px) {
+            margin: 0 auto;
+        }
+
+        .mds-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+
+            .card {
+                border: 5px solid gray;
+                padding: 10px;
+                border-radius: 10px;
+                min-width: 100px;
+                text-align: center;
+
+                .mds-title {
+                    font-size: larger;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+    .mds-cta-end{
+        margin: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .key-points {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 50px;
+        margin: 50px auto;
+        margin: 0;
+        padding: 0;
+
+        li {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-align: center;
+
+            svg {
+                height: 150px;
+                width: 150px;
+            }
+        }
+    }
+
+    .mds-testimonials .mds-container {
+        display: flex;
+        flex-direction: column;
+        margin: 100px auto;
+
+        .review {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 1.5em;
+
+            &::before {
+                content: "“";
+                font-size: 2em;
+                line-height: 20px;
+            }
+
+            &::after {
+                content: "”";
+            }
+        }
+
+        .footer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            img {
+                width: 50px;
+                height: 50px;
+                border-radius: 50px;
+            }
+
+            .author {
+                font-family: fonts.$sans;
+                display: flex;
+                flex-direction: column;
+
+                .title {
+                    font-size: 0.8em;
+                    color: colors.$neutral;
+                }
+            }
+        }
+    }
+
+    .mds-customers .mds-container {
+        display: flex;
+        flex-direction: column;
+        margin: 100px 0;
+        overflow: hidden;
+        width: 100%;
+        max-width: none;
+        box-sizing: border-box;
+
+        .logos {
+            display: flex;
+            justify-content: flex-start;
+            width: fit-content;
+            align-items: center;
+            gap: 40px;
+
+            animation: scroll 30s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% {transform: translateX(0);}
+            100% {transform: translatex(-51%)}
+        }
+    }
+
+    .mds-team .pics {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 75px;
+        margin: 75px auto;
+
+        @media (max-width: 550px) {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .pic {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+
+            img {
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            p {
+                text-align: center;
+                padding: 0; margin : 0 ;
+
+                &.fullname {
+                    font-weight: 600;
+                    font-size: 1.2rem;
+                    margin-top: 15px;
+                }
+            }
+        }
+    }
+
+    .faq-section {
+        margin: 50px 0;
+        background: colors.$accent;
+        box-sizing: border-box;
+        padding: 0 20px;
+
+        .mds-container {
+            padding: 100px 0;
+        }
+
+        @media (max-width: 1024px) {
+            margin: 0 auto;
+        }
+
+        .faq-items {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: stretch;
+            gap: 20px;
+            margin: 50px auto;
+
+            .faq-item {
+                background-color: colors.$background;
+                padding: 10px 20px;
+                border-radius: 10px;
+                transition: all 0.3s ease-in-out;
+            }
+        }
+    }
+}

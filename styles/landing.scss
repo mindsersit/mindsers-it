@@ -1,0 +1,87 @@
+@use 'home.scss';
+
+@use 'colors';
+
+.mds-landing-page {
+    .mds-header .mds-container {
+        justify-content: space-between;
+
+        .presentation {
+            width: unset;
+
+            @media (max-width: 1024px) {
+                width: unset;
+            }
+
+            @media (max-width: 550px) {
+                width: unset;
+            }
+
+            .mds-title {
+                margin: 0 0 40px 0;
+                text-align: left;
+            }
+
+            .section-type {
+                text-align: left;
+                margin: 40px 0 0 0;
+                color: colors.$secondary;
+            }
+        }
+    }
+
+    .mds-process .mds-container {
+        display: flex;
+        flex-direction: column;
+        margin: 100px auto;
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+
+            .step {
+                $badgeSize: 60px;
+                width: calc(50% + $badgeSize / 2);
+                counter-increment: step;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+
+                &:before {
+                    display: inline-flex;
+                    content: counter(step);
+                    border: 1px solid colors.$foreground;
+                    width: $badgeSize;
+                    height: $badgeSize;
+                    border-radius: 100%;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 2.5rem;
+                    flex: 1 0 $badgeSize;
+                }
+
+
+                &:nth-child(even) {
+                    align-self: flex-end;
+                    flex-direction: row;
+                }
+
+                &:nth-child(odd) {
+                    text-align: right;
+                    flex-direction: row-reverse;
+                }
+
+                @media (max-width: 550px) {
+                    align-items: center;
+                    width: unset;
+
+                    &:nth-child(even), &:nth-child(odd) {
+                        flex-direction: column;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}

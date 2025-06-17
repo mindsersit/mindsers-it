@@ -1,0 +1,45 @@
+@use 'colors';
+
+.mds-testimonials {
+    margin: 50px 0;
+
+    @media (max-width: 1024px) {
+        margin: 0 auto;
+    }
+
+    .mds-container {
+        display: flex;
+        justify-content: space-between;
+
+        @media (max-width: 850px) {
+            overflow: scroll;
+        }
+
+        .testimonial {
+            text-align: center;
+            margin: 10px;
+            max-width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .stars {
+                font-size: 2em;
+                background: radial-gradient(gold, goldenrod, brown);
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                flex-grow: 1;
+            }
+
+            p {
+                flex-grow: 1;
+            }
+
+            .author {
+                color: colors.$accent;
+                flex-grow: 2;
+            }
+        }
+    }
+}

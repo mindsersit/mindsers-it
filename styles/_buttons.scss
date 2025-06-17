@@ -1,0 +1,57 @@
+@use 'colors';
+@use 'fonts';
+
+.button {
+    display: inline-block;
+    appearance: none;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    border-width: 0;
+    border-style: solid;
+    color: colors.$background;
+    background-color: colors.$foreground;
+    font-family: var(--gh-font-body, fonts.$sans);
+    font-weight: 600;
+    font-size: 0.83rem;
+    margin: 2px 0;
+
+    &.primary {
+        background-color: colors.$accent;
+        color: colors.$background;
+    }
+
+    &.secondary {
+        background-color: colors.$secondary;
+        color: white;
+    }
+
+    &.highlighted {
+        background-color: colors.$secondary;
+        background: colors.$default_gradient;
+        background-size: 200% 200%;
+        animation: highlightButton 3s ease alternate infinite;
+        color: white;
+    }
+
+    &.rounded {
+        border-radius: 50%;
+        padding: 10px 10px;
+    }
+
+    &:hover {
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+}
+
+@keyframes highlightButton {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

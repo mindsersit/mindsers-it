@@ -1,0 +1,28 @@
+name: CD Theme
+on:
+    release:
+        types: [published]
+    workflow_dispatch:
+
+jobs:
+    deploy:
+        runs-on: ubuntu-18.04
+        steps:
+            - uses: actions/checkout@v2
+            - name: Use Node.js
+              uses: actions/setup-node@v1
+              with:
+                  node-version: 16.x
+            - name: Use PNPM
+              uses: pnpm/action-setup@v2.0.1
+              with:
+                  version: 6.0.2
+                  run_install: true
+            - name: Build
+              run: pnpm run build:prod
+            - name: Deploy Ghost Theme
+              uses: TryGhost/action-deploy-theme@v1.4.0
+              with:
+                  api-url: ${{ secrets.GHOST_ADMIN_API_URL }}
+                  api-key: ${{ secrets.GHOST_ADMIN_API_KEY }}
+                  theme-name: 'mindsers-blog'

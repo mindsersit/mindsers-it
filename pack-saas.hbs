@@ -1,0 +1,187 @@
+{{!< default}}
+
+{{#contentFor 'htmlLang'}}{{@site.locale}}{{/contentFor}}
+
+{{#contentFor 'styles'}}
+<link rel="stylesheet" type="text/css" href="{{asset "css/landing.css"}}" />
+{{/contentFor}}
+
+{{#contentFor 'title'}}{{meta_title}} - Confiez-nous votre idée,
+on conçoit, design, developpe,
+market et lance votre SaaS
+rapidement !{{/contentFor}}
+
+<div class="mds-home mds-landing-page">
+    <header class="mds-header">
+        <div class="mds-container">
+            <div class="presentation">
+                <div class="section-type">Offre "SaaS clé-en-main"</div>
+                <h1 class="mds-title">Confiez-nous votre idée,
+on conçoit, design, developpe,
+market et lance votre SaaS
+rapidement</h1>
+                <p>
+                    Votre idées est validée ? La faisabilité technique n'est pas un problème ? Vous êtes pret à lancer le développement complet de votre SaaS
+                </p>
+                {{#if @custom.global_cta_url}}
+                <div class="mds-cta">
+                    <p>
+                        <a href="{{@custom.global_cta_url}}" class="button primary">Parlez-nous de votre projet</a>
+                    </p>
+                    <p class='rate'>
+                        <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
+                        <span>
+                            +{{@custom.amout_of_landing_pages_done }} landing pages réalisées avec succès ! !
+                        </span>
+                    </p>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+    </header>
+
+    {{> "ui/customer-logos"}}
+
+    {{> "ui/method"}}
+
+    <section class="mds-process">
+        <div class="mds-container">
+            <div class="section-type">Notre méthodologie</div>
+            <h2 class="section-title">
+                Un accompagnement en 8 étapes
+            </h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="text"
+                        <h3>Atelier de conception léger</h3>
+                        <p>On travail avec toi sur ton idée pour commencer à esquisser les futures fonctionnalités de ton SaaS.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="text">
+                        <h3>Conception graphique du SaaS</h3>
+                        <p>On prend tout ce que tu nous as dit de ton SaaS ainsi que les retours de l'atelier de conception, on design le plus rapidement possible un MVP pour ton SaaS qui mettra en avant sa fonctionnalité clé</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="text">
+                        <h3>Validation des maquettes</h3>
+                        <p>On travail avec toi sur ton idée pour commencer à esquisser les futures fonctionnalités de ton SaaS.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="text">
+                        <h3>Développement du MVP de ton SaaS</h3>
+                        <p>En moins de 7 jours on développe et on héberge une landing page à partir de la maquette UI/UX</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="text">
+                        <h3>Conception graphique & copywriting de la landing page</h3>
+                        <p>On prend tout ce que tu nous as dit de ton SaaS ainsi que les retours de l'atelier de conception et on met dans une landing page qui donnera envie d'utiliser le SaaS tout de suite.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="text">
+                        <h3>Développement de le landing page</h3>
+                        <p>En moins de 7 jours on développe et on héberge une landing page à partir de la maquette UI/UX</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="text">
+                        <h3>Mise en place des outils d'analyse produit et de suivi</h3>
+                        <p>Après le lancement de ton produit tu auras besoin d'un maximum d'info sur l'utilisation de ton SaaS pour prendre de bonne décision</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="text">
+                        <h3>Livraison et lancement</h3>
+                        <p>Ta landing page est accessible sur le web. Ton Saas aussi. On t'explique comment t'en sevir et comment analyser la donnée pour avancer dans ton projet de SaaS !</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="highlighted-band">
+        <div class="mds-container">
+            <div class="section-type">Budget & tarifs</div>
+            <h2 class="section-title">
+                Pret à lancer LE SaaS à succé de 2025 ?
+            </h2>
+            <div class="pricing-options">
+                <div class="pricing-option">
+                    <div class="body">
+                        <h3>Offre "SaaS clé-en-main"</h3>
+                        <p>Une solution complète incluant conception, développement, design graphique, déploiement et marketing.</p>
+                        <p class="price">25 000€ HT / mois</p>
+                        <p class="price-mentions">Minimum deux mois d'accompagnement</p>
+                        <hr>
+                        <div>
+                            <ul>
+                                <li>- Livraison rapide en 2 mois minimum</li>
+                                <li>- Développement de deux landing pages de validation</li>
+                                <li>- Conception produit pour identifier et concevoir <strong title="Peut nécessiter la reconduction de offre mensuelle sur plus de deux mois">toutes* les fonctionnalités</strong> de votre SaaS</li>
+                                <li>- Design UI/UX <strong>sur mesure</strong> des maquettes basées sur les bonnes pratiques du marché</li>
+                                <li>- Développement de <strong title="Peut nécessiter la reconduction de offre mensuelle sur plus de deux mois">toutes* les fonctionnalités</strong> de votre SaaS</li>
+                                <li>- Intégration avec PostHog pour comprendre le comportement des utilisateurs</li>
+                                <li>- Développement de fonctionnalités supplémentaires <strong title="Tant que vous souscrivez à l'offre SaaS clé-en-main, les développements suplémentaires sont inclus">sans frais supplémentaires*</strong></li>
+                                <li>- Hébergement sur notre cloud performant et européen</li>
+                                <li>- Déploiement sur votre domaine ou sous-domaine </li>
+                                <li>- <strong>1 mois</strong> de maintenance offert</li>
+                                {{!-- <li>- Accompagnement d'un mois pour vous aider à lancer votre SaaS</li> --}}
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="{{@custom.global_cta_url}}" class="button highlighted">Je choisis ce pack !</a>
+                </div>
+            </div>
+<p>Vous aviez fait faire votre MVP par notre équipe d'experts grâce au pack "MVP" ? Profitez d'une remise de 5000 € sur le premier mois !</p>
+        </div>
+    </section>
+
+    {{> "ui/team"}}
+
+    <section class="faq-section">
+        <div class="mds-container">
+            <div class="section-type">FAQ</div>
+            <h2 class="section-title">
+                Encore des questions ?
+            </h2>
+
+            <div class="faq-items">
+                <div class="faq-item">
+                    <h3>Qu’est-ce qu’un logiciel SaaS sur-mesure et pourquoi l’adopter ?</h3>
+                    <p>Un logiciel SaaS sur-mesure est une application cloud développée spécifiquement pour répondre aux besoins uniques de votre entreprise. Contrairement aux solutions SaaS génériques, il est conçu pour s’intégrer parfaitement à vos processus, offrant une expérience utilisateur optimisée et des fonctionnalités adaptées. Accessible depuis un navigateur ou une application, il permet d’éliminer les contraintes d’installation locale et de réduire les coûts de maintenance.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Combien de temps faut-il pour développer une application SaaS ?</h3>
+                    <p>La durée de développement dépend de l'objectif du projet. En général :</p>
+                    <ul>
+                        <li>MVP (Minimum Viable Product) : on s'engage à vous permettre de tester votre idée en 1 mois</li>
+                        <li>Produit complet : à partir de 2 mois et augmente en fonction de la complexité</li>
+                    </ul>
+                    <p>Nous adoptons une approche agile pour vous livrer des versions fonctionnelles dès les premières itérations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mds-cta-end">
+        {{#if @custom.global_cta_url}}
+        <div class="mds-cta">
+            <h2>Parlez-nous de votre projet en 15 min</h2>
+            <p>
+                <a href="{{@custom.global_cta_url}}" class="button highlighted">{{@custom.global_cta_text}}</a>
+            </p>
+            <p class='rate'>
+                <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
+                <span>
+                    +{{@custom.amout_of_project_done }} SaaS réalisés avec succès !
+                </span>
+            </p>
+        </div>
+        {{/if}}
+    </section>
+</div>

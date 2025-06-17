@@ -1,0 +1,129 @@
+{{!< default}}
+
+{{#contentFor 'htmlLang'}}{{@site.locale}}{{/contentFor}}
+
+{{#contentFor 'styles'}}
+<link rel="stylesheet" type="text/css" href="{{asset "css/home.css"}}" />
+{{/contentFor}}
+
+{{#contentFor 'title'}}{{meta_title}} - Le studio qui transforme ton idée en SaaS en 1 mois seulement !{{/contentFor}}
+
+<div class="mds-home">
+    <header class="mds-header">
+        <div class="mds-container">
+            <div class="presentation">
+                <h1 class="mds-title">{{@site.description}}</h1>
+                <p>
+                    Testez votre idée avec un MVP clé en main, conçu par des experts SaaS. Pas de prise de tête, pas de frais cachés, juste une solution rapide et efficace.
+                </p>
+                {{#if @custom.global_cta_url}}
+                <div class="mds-cta">
+                    <p>
+                        <a href="{{@custom.global_cta_url}}" class="button primary">Parlez-nous de votre projet</a>
+                    </p>
+                    <p class='rate'>
+                        <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
+                        <span>
+                            +{{@custom.amout_of_project_done }} SaaS réalisés avec succès !
+                        </span>
+                    </p>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+    </header>
+
+    {{> "ui/customer-logos"}}
+
+    {{> "ui/method"}}
+
+    {{> "ui/testimonial"}}
+
+    <section class="highlighted-band">
+        <div class="mds-container">
+            <div class="section-type">Budget & tarifs</div>
+            <h2 class="section-title">
+                Choisissez l'offre qui correspond à vos besoins
+            </h2>
+            <p>Pas sûr de l’offre qu’il vous faut ? Si vous avez une idée à tester, commencez par une landing page. Si vous voulez un prototype fonctionnel, prenez le MVP. Et si vous êtes prêt à scaler, partez sur l’offre SaaS clé en main.</p>
+            <div class="pricing-options">
+                <div class="pricing-option">
+                    <div class="body">
+                        <h3>Pack "Validation"</h3>
+                        <p>Testez rapidement l'intérêt du marché pour votre idée de SaaS avant même de commencer le développement.</p>
+                        <p class="price">{{@custom.price_of_landing_page }}€ HT</p>
+                    </div>
+                    <a href="{{@custom.global_cta_url}}" class="button primary">Prendre RDV !</a>
+                    <a href="/studio/landing-page/" class="more-link">En savoir plus</a>
+                </div>
+                <div class="pricing-option">
+                    <div class="body">
+                        <h3>Pack "MVP"</h3>
+                        <p>Obtenez une version minimale viable de votre SaaS mono-feature en seulement 1 mois pour confronter votre idée au marché.</p>
+                        <p class="price">{{@custom.price_of_mvp }}€ HT</p>
+                    </div>
+                    <a href="{{@custom.global_cta_url}}" class="button primary">Prendre RDV !</a>
+                    <a href="/studio/mvp-saas/" class="more-link">En savoir plus</a>
+                </div>
+                <div class="pricing-option featured">
+                    <div class="description">
+                        <h3>Offre "SaaS clé-en-main"</h3>
+                        <p>Une solution complète incluant conception, développement, design graphique, déploiement et marketing.</p>
+                    </div>
+                    <div class="cta">
+                        <p class="price">25 000€ HT / mois</p>
+                        <p class="price-mentions">Minimum deux mois d'accompagnement</p>
+                        <a href="{{@custom.global_cta_url}}" class="button highlighted">Prendre RDV !</a>
+                        <a href="/studio/saas/" class="more-link">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+            <p>Vous ne trouvez pas le pack qui vous correspond ? <a href="{{@custom.global_cta_url}}">Contactez-nous</a> pour une solution sur mesure adaptée à vos besoins spécifiques.</p>
+        </div>
+    </section>
+
+    {{> "ui/team"}}
+
+    <section class="faq-section">
+        <div class="mds-container">
+            <div class="section-type">FAQ</div>
+            <h2 class="section-title">
+                Encore des questions ?
+            </h2>
+
+            <div class="faq-items">
+                <div class="faq-item">
+                    <h3>Qu’est-ce qu’un logiciel SaaS sur-mesure et pourquoi l’adopter ?</h3>
+                    <p>Un logiciel SaaS sur-mesure est une application cloud développée spécifiquement pour répondre aux besoins uniques de votre entreprise. Contrairement aux solutions SaaS génériques, il est conçu pour s’intégrer parfaitement à vos processus, offrant une expérience utilisateur optimisée et des fonctionnalités adaptées. Accessible depuis un navigateur ou une application, il permet d’éliminer les contraintes d’installation locale et de réduire les coûts de maintenance.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Combien de temps faut-il pour développer une application SaaS ?</h3>
+                    <p>La durée de développement dépend de l'objectif du projet. En général :</p>
+                    <ul>
+                        <li>MVP (Minimum Viable Product) : on s'engage à vous permettre de tester votre idée en 1 mois</li>
+                        <li>Produit complet : à partir de 2 mois et augmente en fonction de la complexité</li>
+                    </ul>
+                    <p>Nous adoptons une approche agile pour vous livrer des versions fonctionnelles dès les premières itérations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mds-cta-end">
+        {{#if @custom.global_cta_url}}
+        <div class="mds-cta">
+            <h2>Parlez-nous de votre projet en 15 min</h2>
+            <p>
+                <a href="{{@custom.global_cta_url}}" class="button highlighted">{{@custom.global_cta_text}}</a>
+            </p>
+            <p class='rate'>
+                <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
+                <span>
+                    +{{@custom.amout_of_project_done }} SaaS réalisés avec succès !
+                </span>
+            </p>
+        </div>
+        {{/if}}
+    </section>
+</div>

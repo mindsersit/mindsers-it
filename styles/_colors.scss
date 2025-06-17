@@ -1,0 +1,16 @@
+// daa520
+$accent: var(--ghost-accent-color);
+$secondary: #5682F2;//#000080;
+$neutral: #e5e5e5;
+$foreground: var(--foreground-color);
+$background: var(--background-color);
+$default_gradient: linear-gradient(
+    85deg,
+    $accent 0%,
+    $secondary 80.21%
+);
+
+:root {
+    --foreground-color: #ffffff;
+    --background-color: #121922;
+}

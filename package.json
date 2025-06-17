@@ -1,0 +1,106 @@
+{
+    "name": "mindsers-it",
+    "version": "0.1.0",
+    "description": "Theme for MindsersIT website",
+    "keywords": [
+        "ghost-theme"
+    ],
+    "scripts": {
+        "start": "pnpm run build:dev",
+        "build": "pnpm run build:prod && pnpm run build:zip",
+        "build:dev": "gulp",
+        "build:prod": "gulp build",
+        "build:zip": "gulp zip",
+        "test": "gscan .",
+        "test:ci": "gscan --fatal --verbose ."
+    },
+    "author": {
+        "name": "Nathanaël CHERRIER",
+        "email": "nathanael@mindsers.it"
+    },
+    "private": true,
+    "engines": {
+        "ghost": ">=1.0.0"
+    },
+    "config": {
+        "posts_per_page": 10,
+        "image_sizes": {
+            "xxs": {
+                "width": 30
+            },
+            "xs": {
+                "width": 100
+            },
+            "s": {
+                "width": 300
+            },
+            "m": {
+                "width": 600
+            },
+            "l": {
+                "width": 1000
+            },
+            "xl": {
+                "width": 2000
+            }
+        },
+        "custom": {
+            "enable_search": {
+                "type": "boolean",
+                "default": true
+            },
+            "global_cta_url": {
+                "type": "text"
+            },
+            "global_cta_text": {
+                "type": "text",
+                "default": "Book a call!"
+            },
+            "menu_position": {
+                "type": "select",
+                "options": ["Menu centered", "Menu on the left side", "Menu on the right side"],
+                "default": "Menu on the left side"
+            },
+            "price_of_mvp": {
+                "type": "text",
+                "default": "15000",
+                "group": "homepage"
+            },
+            "amout_of_project_done": {
+                "type": "text",
+                "default": "5",
+                "group": "homepage"
+            },
+            "price_of_landing_page": {
+                "type": "text",
+                "default": "3000",
+                "group": "homepage"
+            },
+            "amout_of_landing_pages_done": {
+                "type": "text",
+                "default": "15",
+                "group": "homepage"
+            }
+        },
+        "card_assets": true
+    },
+    "devDependencies": {
+        "autoprefixer": "10.4.20",
+        "cssnano": "7.0.6",
+        "gscan": "4.47.0",
+        "gulp": "5.0.0",
+        "gulp-livereload": "4.0.2",
+        "gulp-postcss": "10.0.0",
+        "gulp-sass": "^6.0.0",
+        "gulp-sourcemaps": "3.0.0",
+        "gulp-uglify": "3.0.2",
+        "gulp-watch": "5.0.1",
+        "gulp-zip": "6.1.0",
+        "postcss": "8.5.2",
+        "postcss-color-mod-function": "4.1.1",
+        "postcss-easy-import": "4.0.0",
+        "sass": "^1.85.0",
+        "shiki": "^2.3.2"
+    },
+    "packageManager": "pnpm@10.0.0-alpha.2+sha512.f18a59ca3611002321af7681e6d49234cb3ece8496b05818be5b1081168ec21b8c3d28cbb4351e2fdec66ca95e6516faaf08b95b755013c88cf5174d5029865c"
+}
