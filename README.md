@@ -17,7 +17,7 @@ All the repositories part of the MindsersIT project:
 ## Getting started
 
 -   Download this repo into `/content/theme` on the Ghost installation.
--   In the Ghost GUI (`SETTINGS > Design`), activate the `@mindsersit/blog` theme
+-   In the Ghost GUI (`SETTINGS > Design`), activate the `mindsers-it` theme
 -   Check if the version number is the right one
 
 ## License
