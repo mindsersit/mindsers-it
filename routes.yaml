@@ -1,13 +1,20 @@
 routes:
     /:
-        controller: channel
         template: home
-    /studio/landing-page/:
+    # /studio-saas/:
+    #     template: home-saas
+    /studio-saas/landing-page/:
         template: pack-validation
-    /studio/mvp-saas/:
+    /studio-saas/mvp/:
         template: pack-mvp
-    /studio/saas/:
+    /studio-saas/saas/:
         template: pack-saas
+    # /agence-shopify/:
+    #     template: home-shopify
+    # /talent-freelance/:
+    #     template: home-talent
+
+
 
 collections:
 
