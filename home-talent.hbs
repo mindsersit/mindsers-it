@@ -1,0 +1,212 @@
+{{!< default}}
+
+{{#contentFor 'htmlLang'}}{{@site.locale}}{{/contentFor}}
+
+{{#contentFor 'styles'}}
+<link rel="stylesheet" type="text/css" href="{{asset "css/landing.css"}}" />
+{{/contentFor}}
+
+{{#contentFor 'title'}}MindsersIT Talent – Freelances tech recommandés par notre studio{{/contentFor}}
+
+<div class="mds-home mds-landing-page">
+    <header class="mds-header">
+        <div class="mds-container">
+            <div class="presentation">
+                <h1 class="mds-title">
+                    Vous cherchez un freelance tech de confiance ?
+                    On vous présente les meilleurs de notre équipe.
+                </h1>
+                <p>
+                    Développeurs, designers, product builders…
+                    Des profils testés, recommandés, prêts à rejoindre votre équipe dès maintenant.
+                    Pas d’agence. Pas d’intermédiaire inutile.
+                </p>
+
+                <div class="mds-cta">
+                    <p>
+                        <a href="{{@custom.global_cta_url}}" class="button primary">Trouver un talent maintenant</a>
+                    </p>
+                    <p class='rate'>
+                        <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
+                        <span>
+                            +{{@custom.amout_of_project_done }} missions réussies avec nos talents freelance !
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    {{> "ui/customer-logos"}}
+
+    <section class="mds-section mds-why accent">
+        <div class="mds-container">
+            <div class="section-type">Pourquoi cette offre ?</div>
+            <h2 class="section-title">
+                Pas envie d’une agence ?<br />
+                Mais pas envie de galérer non plus.
+            </h2>
+            <p>
+                Chez MindsersIT, on conçoit et développe des SaaS et des sites e-commerce. On connaît bien le problème :<br/>
+                quand on veut bosser vite et bien, il faut les bonnes personnes… mais les bons freelances sont durs à trouver.
+            </p>
+            <p>
+                Alors on a lancé <strong>MindsersIT Talent</strong> : une offre simple, directe, pour <strong>travailler avec les meilleurs profils tech</strong>, sans passer par une agence.
+            </p>
+        </div>
+    </section>
+
+    <section class="mds-section mds-process">
+        <div class="mds-container">
+            <div class="section-type">Notre fonctionnement</div>
+            <h2 class="section-title">
+                Du besoin au talent, en 3 étapes simples
+            </h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="body">
+                        <h3>1. Vous nous expliquez votre besoin</h3>
+                        <p>
+                            Un petit brief, un appel, et c’est parti. Vous nous dites ce que vous cherchez, pour quand, et avec quelles contraintes.
+                        </p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="body">
+                        <h3>2. On vous propose 1 à 3 talents adaptés</h3>
+                        <p>
+                            Des personnes de notre réseau de confiance, avec qui on a déjà travaillé ou qu’on recommande personnellement.
+                        </p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="body">
+                        <h3>3. Vous échangez, vous démarrez</h3>
+                        <p>
+                            Vous rencontrez les profils. Si ça matche, on démarre la mission. En direct ou via notre studio. Au TJM classique.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mds-section mds-solution accent">
+        <div class="mds-container">
+            <div class="section-type">Notre approche</div>
+            <h2 class="section-title">
+                Des talents fiables, intégrés, prêts à contribuer dès le jour 1.
+            </h2>
+            <p>
+                Notre mission : vous mettre en relation avec des freelances tech de qualité, déjà validés par notre studio.
+                Pas de catalogue anonyme. Pas de junior à former. Juste les bons profils, pour avancer tout de suite.
+            </p>
+
+            <ul class="key-points">
+                <li>
+                    {{> "images/solution"}}
+                    <h3 class="font-semibold text-lg mb-2">Profils testés & recommandés</h3>
+                    <p>
+                        Tous les talents que nous proposons ont été validés par nous sur de vrais projets. Pas de surprise.
+                    </p>
+                </li>
+                <li>
+                    {{> "images/techno"}}
+                    <h3 class="font-semibold text-lg mb-2">Sélection sur mesure</h3>
+                    <p>
+                        On vous propose 1 à 3 profils maximum, adaptés à vos besoins réels. Pas une liste infinie à filtrer.
+                    </p>
+                </li>
+                <li>
+                    {{> "images/data"}}
+                    <h3 class="font-semibold text-lg mb-2">Démarrage rapide, sans friction</h3>
+                    <p>
+                        Les talents sont dispo, briefés, et prêts à s’intégrer dans vos rituels. Remote ou hybride, comme vous préférez.
+                    </p>
+                </li>
+            </ul>
+
+            <p>
+                Une façon simple et humaine de renforcer votre équipe produit avec des talents au bon niveau.
+            </p>
+            <p>
+                TJM classique. Zéro bullshit.
+            </p>
+            <p>
+                <a href="#offres" class="button primary">
+                    Trouver mon talent
+                </a>
+            </p>
+        </div>
+    </section>
+
+    <section class="faq-section mds-section">
+        <div class="mds-container">
+            <div class="section-type">FAQ</div>
+            <h2 class="section-title">
+                Questions fréquentes sur l’offre MindsersIT Talent
+            </h2>
+
+            <div class="faq-items">
+                <div class="faq-item">
+                    <input type="checkbox" id="faq1" class="faq-toggle" />
+                    <h3><label for="faq1">Est-ce que je peux choisir le ou les freelances ?</label></h3>
+                    <p>Oui. On vous propose 1 à 3 profils que l’on recommande pour votre besoin. Vous échangez avec eux avant de prendre une décision.</p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq2" class="faq-toggle" />
+                    <h3><label for="faq2">Est-ce que je peux embaucher un freelance à la fin de la mission ?</label></h3>
+                    <p>Oui, c’est possible. On en discute ensemble selon les conditions prévues. L’objectif est toujours le bon match humain et technique.</p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq3" class="faq-toggle" />
+                    <h3><label for="faq3">Est-ce que c’est vous qui facturez ou le freelance directement ?</label></h3>
+                    <p>On s’adapte. Vous pouvez passer en direct avec le freelance, ou on peut facturer via MindsersIT si c’est plus simple pour vous.</p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq4" class="faq-toggle" />
+                    <h3><label for="faq4">Quelle est la durée minimale d’une mission ?</label></h3>
+                    <p>Pas de durée minimale imposée. Certains clients nous sollicitent pour 5 jours, d'autres pour plusieurs mois. C’est vous qui décidez.</p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq5" class="faq-toggle" />
+                    <h3><label for="faq5">Puis-je trouver un profil pour demain ?</label></h3>
+                    <p>Souvent, oui. Comme on travaille déjà avec ces talents, on connaît leurs dispos. On vous répond très vite sur ce point.</p>
+                </div>
+                <div class="faq-item">
+                    <input type="checkbox" id="faq6" class="faq-toggle" />
+                    <h3><label for="faq6">Et si aucun talent n’est dispo quand je fais ma demande ?</label></h3>
+                    <p>
+                        Ça peut arriver, surtout si vous avez un besoin urgent. Mais on vous le dira tout de suite, et on pourra vous proposer une alternative ou planifier en avance.
+                        On travaille avec plusieurs profils pour éviter ce cas de figure.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mds-cta-end">
+        {{#if @custom.global_cta_url}}
+        <div class="mds-cta">
+            <h2>Vous cherchez un profil tech de qualité ?<br/>On vous trouve la bonne personne.</h2>
+            <p>
+                Développeur, designer, product builder…<br />
+                On vous met en relation avec un talent validé par notre studio.
+            </p>
+            <p>
+                <a href="{{@custom.global_cta_url}}" class="button highlighted">{{@custom.global_cta_text}}</a>
+            </p>
+            <p class='rate'>
+                <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
+                <span>
+                    +{{@custom.amout_of_project_done }} missions réussies avec nos talents freelance.
+                </span>
+            </p>
+        </div>
+        {{/if}}
+    </section>
+</div>

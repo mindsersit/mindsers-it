@@ -11,8 +11,8 @@ routes:
         template: pack-saas
     # /agence-shopify/:
     #     template: home-shopify
-    # /talent-freelance/:
-    #     template: home-talent
+    /talent-freelance/:
+        template: home-talent
 
 
 

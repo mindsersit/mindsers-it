@@ -9,6 +9,11 @@
     &.accent {
         background: colors.$accent;
         color: colors.$background;
+
+        .button.primary {
+            background-color: colors.$foreground;
+            color: colors.$background;
+        }
     }
 
     .mds-container {

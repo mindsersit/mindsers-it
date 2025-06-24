@@ -1,14 +1,13 @@
 import { ready } from './ready.js'
 
-const isDark =
-  window.matchMedia?.('(prefers-color-scheme: dark)').matches
+const isDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches
 const highlighter = shiki.getHighlighter({
   theme: isDark ? 'github-light' : 'github-dark',
 })
 
 ready(async () => {
   const images = document.querySelectorAll('.kg-gallery-image img')
-  for(const image of images) {
+  for (const image of images) {
     const container = image.closest('.kg-gallery-image')
     const width = image.attributes.width.value
     const height = image.attributes.height.value

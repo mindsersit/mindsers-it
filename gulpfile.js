@@ -28,7 +28,7 @@ const handleError = done => {
 function templates(done) {
   pump(
     [src(['*.hbs', '**/**/*.hbs', '!node_modules/**/*.hbs']), livereload()],
-    handleError(done)
+    handleError(done),
   )
 }
 
@@ -43,7 +43,7 @@ function styles(done) {
       dest('assets/css/', { sourcemaps: '.' }),
       livereload(),
     ],
-    handleError(done)
+    handleError(done),
   )
 }
 
@@ -55,7 +55,7 @@ function scripts(done) {
       dest('assets/js/', { sourcemaps: '.' }),
       livereload(),
     ],
-    handleError(done)
+    handleError(done),
   )
 }
 
@@ -66,11 +66,13 @@ function zipper(done) {
 
   pump(
     [
-      src(['**', '!node_modules', '!node_modules/**', '!dist', '!dist/**'], {encoding: false}),
+      src(['**', '!node_modules', '!node_modules/**', '!dist', '!dist/**'], {
+        encoding: false,
+      }),
       zip(filename),
       dest(targetDir),
     ],
-    handleError(done)
+    handleError(done),
   )
 }
 
