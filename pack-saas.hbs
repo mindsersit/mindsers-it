@@ -16,19 +16,19 @@ rapidement !{{/contentFor}}
         <div class="mds-container">
             <div class="presentation">
                 <div class="section-type">Offre "SaaS clé-en-main"</div>
-                <h1 class="mds-title">Confiez-nous votre idée, on conçoit, design, developpe, market et lance votre SaaS rapidement</h1>
+                <h1 class="mds-title">Votre SaaS, en ligne en quelques semaines — sans recruter, sans perte de temps, sans friction</h1>
                 <p>
-                    Votre idées est validée ? La faisabilité technique n'est pas un problème ? Vous êtes pret à lancer le développement complet de votre SaaS
+                    Vous avez une idée validée, un besoin clair, et vous êtes prêt à passer à l’action ? On transforme ça en SaaS fonctionnel, pensé pour scaler.
                 </p>
                 {{#if @custom.global_cta_url}}
                 <div class="mds-cta">
                     <p>
-                        <a href="{{@custom.global_cta_url}}" class="button primary">Parlez-nous de votre projet</a>
+                        <a href="{{@custom.global_cta_url}}" class="button primary">Lancer mon SaaS</a>
                     </p>
                     <p class='rate'>
                         <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
                         <span>
-                            +{{@custom.amout_of_landing_pages_done }} landing pages réalisées avec succès ! !
+                            +{{@custom.amout_of_project_done }} projets tech livrés avec succès ! !
                         </span>
                     </p>
                 </div>
@@ -39,142 +39,422 @@ rapidement !{{/contentFor}}
 
     {{> "ui/customer-logos"}}
 
+    <section class="mds-section problem-section accent">
+        <div class="mds-container">
+            <div class="section-type">Votre problème</div>
+            <h2 class="section-title">
+                Construire un SaaS, ce n’est pas juste du code.
+            </h2>
+            <p>
+                Vous avez une idée claire. Vous connaissez votre marché.
+                Vous avez peut-être déjà parlé à des utilisateurs ou posé vos premiers écrans.
+            </p>
+            <ul class="key-points">
+                <li>
+                    <h3 class="font-semibold text-lg mb-2">❌ Vous ne voulez pas passer 6 mois à recruter</h3>
+                    <p>
+                        Ni CTO, ni dev, ni designer.
+                        Et encore moins devoir tout coordonner vous-même.
+                    </p>
+                </li>
+                <li>
+                    <h3 class="font-semibold text-lg mb-2">❌ Vous ne cherchez pas un freelance qui “code vite”</h3>
+                    <p>
+                        Vous cherchez un vrai partenaire produit + tech,
+                        pas juste un exécutant.
+                    </p>
+                </li>
+                <li>
+                    <h3 class="font-semibold text-lg mb-2">❌ Vous avez un budget, mais pas à brûler</h3>
+                    <p>
+                        Hors de question de cramer 200k dans un projet flou ou inutilisable.
+                    </p>
+                </li>
+            </ul>
+
+            <p>
+                Ce qu’il vous faut ? Une équipe agile, expérimentée,
+                qui sait aller <strong>de l’idée au marché</strong> — vite et bien.
+            </p>
+        </div>
+    </section>
+
+    <section class="mds-section mds-solution">
+        <div class="mds-container">
+            <div class="section-type">Notre approche</div>
+            <h2 class="section-title">
+                Une équipe produit externalisée pour<br/>
+                lancer votre SaaS — de l’idée aux premiers clients.
+            </h2>
+            <p>
+                Vous avez une vision. Nous avons l’équipe pour la concrétiser.<br/>
+                Design, développement, analytics, go-to-market : on vous accompagne de A à Z,<br/>
+                sans friction, sans délai inutile, sans complexité.
+            </p>
+            </p>
+            <ul class="key-points">
+                <li>
+                    {{> "images/solution"}}
+                    <h3 class="font-semibold text-lg mb-2">Ateliers stratégiques</h3>
+                    <p>
+                        Cadrage produit, priorisation, scope MVP…
+                        On vous aide à construire une roadmap qui fait sens pour le business.
+                    </p>
+                </li>
+                <li>
+                    {{> "images/design"}}
+                    <h3 class="font-semibold text-lg mb-2">Design UX & UI</h3>
+                    <p>
+                        Des interfaces qui donnent envie. Pensées pour l’usage réel.
+                        Maquettes Figma, prototypage, logique produit.
+                    </p>
+                </li>
+                <li>
+                    {{> "images/techno"}}
+                    <h3 class="font-semibold text-lg mb-2">Développement fullstack</h3>
+                    <p>
+                        On code vite, bien, et scalable.
+                        React, Remix, NestJS, PostgreSQL, CI/CD — propre et prêt pour la suite.
+                    </p>
+                </li>
+                <li>
+                    {{> "images/data"}}
+                    <h3 class="font-semibold text-lg mb-2">Analytics & feedback</h3>
+                    <p>
+                        On mesure. On teste. On ajuste.
+                        Objectif : comprendre l’usage, identifier ce qui marche, itérer.
+                    </p>
+                </li>
+                <li>
+                    {{> "images/launch"}}
+                    <h3 class="font-semibold text-lg mb-2">Go-to-market</h3>
+                    <p>
+                        Landing, onboarding, email, Stripe : on prépare votre lancement
+                        pour générer du trafic, de l’usage et des premiers clients.
+                    </p>
+                </li>
+                <li>
+                    {{> "images/delivery"}}
+                    <h3 class="font-semibold text-lg mb-2">Livraison + accompagnement</h3>
+                    <p>
+                        Le SaaS est en ligne. On vous forme. On reste disponibles.
+                        Et on vous aide à préparer la suite.
+                    </p>
+                </li>
+            </ul>
+
+            <p>
+                Un accompagnement clair, complet, et taillé pour lancer vite.
+            </p>
+            <p>
+                En moyenne, on met 8 à 14 semaines pour livrer un SaaS solide.
+            </p>
+            <p>
+                <a href="{{@custom.global_cta_url}}" class="button primary">
+                    Discutons de votre projet
+                </a>
+            </p>
+        </div>
+    </section>
+
     {{> "ui/method"}}
 
-    <section class="mds-process">
+    <section class="mds-section mds-process">
         <div class="mds-container">
-            <div class="section-type">Notre méthodologie</div>
+            <div class="section-type">Comment on travaille</div>
             <h2 class="section-title">
-                Un accompagnement en 9 étapes (itératif)
+                Un process clair, structuré et orienté résultats
             </h2>
             <div class="steps">
                 <div class="step">
                     <div class="text">
-                        <h3>Atelier de conception complet</h3>
-                        <p>On travail avec toi sur ton idée pour esquisser les futures fonctionnalités de ton SaaS.</p>
+                        <h3>Atelier produit</h3>
+                        <p>On creuse votre idée, on priorise les fonctionnalités, on transforme le flou en plan d’action concret.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="text">
-                        <h3>Conception graphique du SaaS</h3>
-                        <p>On prend tout ce que tu nous as dit de ton SaaS ainsi que les retours de l'atelier de conception, on design ton SaaS.</p>
+                        <h3>Design du SaaS</h3>
+                        <p>UI, UX, flows utilisateurs : on conçoit une interface claire, élégante, et pensée pour l’usage réel.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="text">
-                        <h3>Développement de ton SaaS</h3>
-                        <p>On développe le logiciel SaaS à partir des maquettes UI/UX, des wireframes, et des zoning.</p>
+                        <h3>Développement du SaaS</h3>
+                        <p>On développe un produit fonctionnel, fiable et scalable — directement à partir des maquettes validées.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="text">
-                        <h3>Conception graphique & copywriting de la landing page</h3>
-                        <p>A partir des fonctionnalités priorisées sur le SaaS, on travaille une landing page qui donnera envie d'utiliser le SaaS tout de suite.</p>
+                        <h3>Design de la landing page</h3>
+                        <p>On conçoit une landing convaincante, alignée sur la promesse de votre SaaS et ce que vos users attendent.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="text">
                         <h3>Développement de le landing page</h3>
-                        <p>On développe ou met à jour la landing page du SaaS à partir de maquettes UI/UX.</p>
+                        <p>On développe la page (ou on optimise l’existante) pour convertir dès le premier jour.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="text">
-                        <h3>Audit & amélioration SEO</h3>
-                        <p>Notre équipe SEO auditera ton site (landing page, blog, etc) pour s'assurer que tu puisses tirer le maximum des moteurs de recherches.</p>
+                        <h3>Audit SEO</h3>
+                        <p>On vérifie que votre site est prêt pour le référencement : structure, contenu, perf. Tout passe au crible.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="text">
-                        <h3>Mise en place des outils d'analyse produit et de suivi</h3>
-                        <p>Après le lancement et pendant tout le dévloppement du produit, tu auras besoin d'un maximum d'info sur l'utilisation de ton SaaS pour prendre de bonne décision.</p>
+                        <h3>Mise en place analytics</h3>
+                        <p>On intègre les bons outils pour suivre l’usage de votre produit, comprendre vos users, et ajuster vite.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="text">
-                        <h3>Livraison et lancement</h3>
-                        <p>Ta landing page est accessible sur le web. Ton Saas aussi. Notre équipes coordone et maximise le lancement de ton SaaS grâce à des technique de growth hacking !</p>
+                        <h3>Lancement</h3>
+                        <p>On synchronise tout pour un lancement propre, coordonné et visible. Avec un petit boost de growth en prime.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="text">
-                        <h3>Mise en place d'une stratégie d'acquisition / rétention</h3>
-                        <p>Avoir un SaaS c'est bien mais un SaaS rentable c'est mieux. Notre équipe maketing t'acompagne le mois suivant le lancement du SaaS.</p>
+                        <h3>Plan d’acquisition & rétention</h3>
+                        <p>On vous accompagne le mois suivant pour mettre en place des actions concrètes : trafic, conversion, feedback loops.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="highlighted-band">
+    <section class="mds-section offer-section accent">
         <div class="mds-container">
             <div class="section-type">Budget & tarifs</div>
             <h2 class="section-title">
-                Pret à lancer LE SaaS à succé de 2025 ?
+                Une équipe produit à la demande pour construire votre SaaS — sans recruter
             </h2>
-            <div class="pricing-options">
+            <div class="pricing-options detailed">
                 <div class="pricing-option">
                     <div class="body">
                         <h3>Offre "SaaS clé-en-main"</h3>
-                        <p>Une solution complète incluant conception, développement, design graphique, déploiement et marketing.</p>
+                        <p>Une solution complète, pensée pour les porteurs de projet exigeants :<br/>cadrage produit, design, développement, déploiement, marketing et croissance.<br/> En 2 mois, votre SaaS est prêt à convertir.</p>
                         <p class="price">25 000€ HT / mois</p>
-                        <p class="price-mentions">Minimum deux mois d'accompagnement</p>
+                        <p class="price-mentions">Engagement minimum : 2 mois</p>
                         <hr>
                         <div>
+                            <h4 class="text-sm uppercase font-semibold mb-2">Ce que l’offre inclut :</h4>
                             <ul>
-                                <li>- Livraison rapide en 2 mois minimum</li>
-                                <li>- Développement de deux landing pages de validation</li>
-                                <li>- Conception produit pour identifier et concevoir <strong title="Peut nécessiter la reconduction de offre mensuelle sur plus de deux mois">toutes* les fonctionnalités</strong> de votre SaaS</li>
-                                <li>- Design UI/UX <strong>sur mesure</strong> des maquettes basées sur les bonnes pratiques du marché</li>
-                                <li>- Développement de <strong title="Peut nécessiter la reconduction de offre mensuelle sur plus de deux mois">toutes* les fonctionnalités</strong> de votre SaaS</li>
-                                <li>- Intégration avec PostHog pour comprendre le comportement des utilisateurs</li>
-                                <li>- Développement de fonctionnalités supplémentaires <strong title="Tant que vous souscrivez à l'offre SaaS clé-en-main, les développements suplémentaires sont inclus">sans frais supplémentaires*</strong></li>
-                                <li>- Hébergement sur notre cloud performant et européen</li>
-                                <li>- Déploiement sur votre domaine ou sous-domaine </li>
-                                <li>- <strong>1 mois</strong> de maintenance offert</li>
-                                {{!-- <li>- Accompagnement d'un mois pour vous aider à lancer votre SaaS</li> --}}
+                                <li><strong>Cadrage & stratégie</strong></li>
+                                <ul>
+                                    <li>- Ateliers UX & roadmap priorisée</li>
+                                    <li>- 2 landing pages de validation</li>
+                                </ul>
+
+                                <li class="mt-3"><strong>Design & expérience utilisateur</strong></li>
+                                <ul>
+                                    <li>- UI/UX sur mesure</li>
+                                    <li>- Maquettes Figma prêtes à coder</li>
+                                </ul>
+
+                                <li class="mt-3"><strong>Développement SaaS</strong></li>
+                                <ul>
+                                    <li>- Frontend, backend, base de données</li>
+                                    <li>- Fonctionnalités définies ensemble*</li>
+                                    <li>- Dev supplémentaires <strong title="Tant que vous restez abonné à l’offre, on déroule la roadmap produit et on continue à livrer.">inclus sans surcoût*</strong></li>
+                                </ul>
+
+                                <li class="mt-3"><strong>Marketing & Analytics</strong></li>
+                                <ul>
+                                    <li>- Intégration PostHog (comportements users)</li>
+                                    <li>- Landing page principale : design + dev</li>
+                                </ul>
+
+                                <li class="mt-3"><strong>Déploiement & suivi</strong></li>
+                                <ul>
+                                    <li>- Hébergement sur notre cloud 🇪🇺</li>
+                                    <li>- Déploiement sur votre domaine</li>
+                                    <li>- 1 mois de maintenance corrective offert</li>
+                                </ul>
                             </ul>
                         </div>
                     </div>
-                    <a href="{{@custom.global_cta_url}}" class="button highlighted">Je choisis ce pack !</a>
+                    <a href="{{@custom.global_cta_url}}" class="button highlighted">Discutons de votre projet SaaS</a>
                 </div>
             </div>
-            <p>Vous aviez fait faire votre MVP par notre équipe d'experts grâce au pack "MVP" ? Profitez d'une remise de 5000 € sur le premier mois !</p>
+            <p>Vous avez fait <a href="/studio-saas/mvp/">votre MVP</a> avec nous ? 🎉 Bénéficiez d’une remise de <strong>5 000 €</strong> sur le premier mois de cette offre.</p>
         </div>
     </section>
 
-    {{> "ui/team"}}
+    {{> "ui/team" dark="true"}}
 
-    <section class="faq-section">
+    <section class="mds-section faq-section accent">
         <div class="mds-container">
             <div class="section-type">FAQ</div>
             <h2 class="section-title">
-                Encore des questions ?
+                Questions fréquentes sur l’offre SaaS clé-en-main
             </h2>
 
             <div class="faq-items">
                 <div class="faq-item">
-                    <h3>Qu’est-ce qu’un logiciel SaaS sur-mesure et pourquoi l’adopter ?</h3>
-                    <p>Un logiciel SaaS sur-mesure est une application cloud développée spécifiquement pour répondre aux besoins uniques de votre entreprise. Contrairement aux solutions SaaS génériques, il est conçu pour s’intégrer parfaitement à vos processus, offrant une expérience utilisateur optimisée et des fonctionnalités adaptées. Accessible depuis un navigateur ou une application, il permet d’éliminer les contraintes d’installation locale et de réduire les coûts de maintenance.</p>
+                    <input type="checkbox" id="faq1" class="faq-toggle" />
+                    <h3><label for="faq1">Qu’est-ce qu’un logiciel SaaS sur-mesure et pourquoi l’adopter ?</label></h3>
+                    <p>
+                        Un SaaS sur-mesure est une application web conçue spécialement pour votre projet, vos utilisateurs, vos besoins.
+                        Contrairement aux solutions génériques, tout est pensé pour coller à vos objectifs, sans superflu.
+                    </p>
+                    <p>
+                        Résultat : un produit plus rapide à prendre en main, plus efficace, et 100% aligné avec votre vision.
+                    </p>
                 </div>
 
                 <div class="faq-item">
-                    <h3>Combien de temps faut-il pour développer une application SaaS ?</h3>
-                    <p>La durée de développement dépend de l'objectif du projet. En général :</p>
+                    <input type="checkbox" id="faq2" class="faq-toggle" />
+                    <h3><label for="faq2">Combien de temps faut-il pour développer une application SaaS ?</label></h3>
+                    <p>
+                        En moyenne, un produit complet prend entre 6 et 10 semaines.
+                        Notre approche agile nous permet de livrer des versions fonctionnelles dès les premières itérations.
+                    </p>
                     <ul>
-                        <li>MVP (Minimum Viable Product) : on s'engage à vous permettre de tester votre idée en 1 mois</li>
-                        <li>Produit complet : à partir de 2 mois et augmente en fonction de la complexité</li>
+                        <li><strong>MVP :</strong> livrable en 4 semaines</li>
+                        <li><strong>Produit complet :</strong> à partir de 2 mois</li>
                     </ul>
-                    <p>Nous adoptons une approche agile pour vous livrer des versions fonctionnelles dès les premières itérations.</p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq3" class="faq-toggle" />
+                    <h3><label for="faq3">Est-ce que je garde la propriété du code ?</label></h3>
+                    <p>
+                        Bien sûr. Le code est hébergé sur un dépôt Git que nous vous transférons. Vous en êtes 100% propriétaire.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq4" class="faq-toggle" />
+                    <h3><label for="faq4">Et après les deux mois d'accompagnement ?</label></h3>
+                    <p>
+                        Vous êtes libre. Soit vous continuez avec nous (mois supplémentaires sans engagement), soit vous reprenez la main avec votre propre équipe.
+                    </p>
+                    <p>
+                        Dans tous les cas, vous repartez avec un produit exploitable et bien documenté.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq5" class="faq-toggle" />
+                    <h3><label for="faq5">Est-ce que je dois déjà avoir un cahier des charges ?</label></h3>
+                    <p>
+                        Non. On vous accompagne dès l’idéation. Nos ateliers produits servent justement à clarifier les besoins et prioriser les fonctionnalités.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq6" class="faq-toggle" />
+                    <h3><label for="faq6">Quels outils et technos utilisez-vous ?</label></h3>
+                    <p>
+                        Pour le produit : Figma, Notion, Linear. <br />
+                        Pour le dev : React, Remix, NestJS, PostgreSQL, Prisma, Docker, GitHub Actions.<br />
+                        Pour l’analytics : PostHog, Plausible.
+                    </p>
+                    <p>Une stack moderne, documentée et scalable.</p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq7" class="faq-toggle" />
+                    <h3><label for="faq7">Comment minimisez-vous les risques d’échec ?</label></h3>
+                    <p>
+                        On commence chaque mission par des ateliers de cadrage approfondis pour définir clairement les objectifs, les fonctionnalités prioritaires et les risques potentiels.
+                        On avance ensuite en sprints courts avec des démos régulières pour garder une bonne visibilité.
+                    </p>
+                    <p>
+                        L’objectif : ne jamais partir dans la mauvaise direction, et livrer un produit utilisable le plus tôt possible.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq8" class="faq-toggle" />
+                    <h3><label for="faq8">Proposez-vous un rendez-vous gratuit pour évaluer mon projet ?</label></h3>
+                    <p>
+                        Oui. On propose systématiquement un appel découverte gratuit de 20 minutes.
+                        C’est l’occasion de valider ensemble la pertinence de votre idée, le niveau de maturité du projet, et de répondre à toutes vos questions avant d’aller plus loin.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq9" class="faq-toggle" />
+                    <h3><label for="faq9">Pourquoi cette offre coûte-t-elle 25 000 €/mois ?</label></h3>
+                    <p>
+                        Vous ne payez pas seulement du code. Vous accédez à une équipe complète (design, produit, dev, marketing) qui exécute rapidement, sans perte de temps ni coordination interne à gérer.
+                    </p>
+                    <p>
+                        Le coût couvre un accompagnement clé-en-main, une livraison rapide et des outils professionnels. C’est un investissement optimisé pour sortir un SaaS de qualité en un temps record.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq10" class="faq-toggle" />
+                    <h3><label for="faq10">Proposez-vous des offres plus accessibles pour démarrer ?</label></h3>
+                    <p>
+                        Oui. On propose une offre “Validation” pour tester l’intérêt du marché à partir de {{@custom.price_of_landing_page }} € HT, ainsi qu’une offre spécial MVP à partir de {{@custom.price_of_mvp }} € HT.
+                        Si vous hésitez à partir sur l’offre complète, on peut en discuter ensemble lors de l’appel découverte.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq11" class="faq-toggle" />
+                    <h3><label for="faq11">Est-ce que vous prenez en charge des projets spécifiques ou complexes ?</label></h3>
+                    <p>
+                        Oui, à condition que les besoins soient clairs et que le périmètre soit maîtrisable. On a déjà géré des projets avec IA, multi-tenant, interconnexion API, mobile, etc.
+                    </p>
+                    <p>
+                        Si vous avez un doute, le mieux reste d’en parler directement : on vous dira très vite si on est les bonnes personnes pour le faire.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq12" class="faq-toggle" />
+                    <h3><label for="faq12">Est-ce que je peux suivre l’avancement et donner mon feedback ?</label></h3>
+                    <p>
+                        Bien sûr. Vous avez accès à l’outil de gestion de projet, aux maquettes, aux itérations, aux livrables techniques.
+                        Et on planifie des points de suivi réguliers pour s’assurer qu’on est bien alignés à chaque étape.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq13" class="faq-toggle" />
+                    <h3><label for="faq13">Combien de temps dois-je consacrer au projet chaque semaine ?</label></h3>
+                    <p>
+                        Comptez 1 à 2h par semaine pour les points d’avancement, validations de maquettes, tests ou retours produit.
+                        On fait en sorte de vous impliquer uniquement sur ce qui a de la valeur, et de tout rendre simple côté communication.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq14" class="faq-toggle" />
+                    <h3><label for="faq14">Est-ce que vous m’accompagnez sur la croissance / les utilisateurs ?</label></h3>
+                    <p>
+                        Oui. L’offre inclut une phase de lancement et un mois d’accompagnement sur l’acquisition, la rétention, et l’analyse de l’usage via les outils analytics qu’on installe pour vous.
+                    </p>
+                    <p>
+                        Objectif : transformer votre lancement en traction.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq15" class="faq-toggle" />
+                    <h3><label for="faq15">Mon SaaS sera-t-il présentable à des investisseurs ?</label></h3>
+                    <p>
+                        Absolument. On livre un produit propre, documenté, prêt à être montré en démo, testé, et utilisé.
+                        Certains de nos clients l’ont utilisé pour décrocher leur première levée après leur MVP.
+                    </p>
                 </div>
             </div>
+            <p class="faq-cta">
+                Une autre question ? <a href="{{@custom.global_cta_url}}">Parlons-en</a> lors d’un appel.
+            </p>
         </div>
     </section>
 
     <section class="mds-cta-end">
         {{#if @custom.global_cta_url}}
         <div class="mds-cta">
-            <h2>Parlez-nous de votre projet en 15 min</h2>
+            <h2>Parlez-nous de votre projet en 20 min</h2>
             <p>
                 <a href="{{@custom.global_cta_url}}" class="button highlighted">{{@custom.global_cta_text}}</a>
             </p>

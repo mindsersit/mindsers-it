@@ -13,9 +13,12 @@
         <div class="mds-container">
             <div class="presentation">
                 <div class="section-type">Pack "Validation"</div>
-                <h1 class="mds-title">Validez votre idée en 2 semaines sans risquer tout votre budget</h1>
+                <h1 class="mds-title">
+                    Validez votre idée de SaaS en 2 semaines.<br />
+                    Sans MVP. Sans vous ruiner.
+                </h1>
                 <p>
-                    Avant même de songer à créer un MVP de votre SaaS, tester votre idée face au marché !
+                    On conçoit pour vous une landing page qui teste votre idée auprès de vrais utilisateurs, collecte des emails qualifiés, et vous dit si ça vaut le coup d’aller plus loin.
                 </p>
                 {{#if @custom.global_cta_url}}
                 <div class="mds-cta">
@@ -25,7 +28,7 @@
                     <p class='rate'>
                         <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
                         <span>
-                            +{{@custom.amout_of_landing_pages_done }} landing pages réalisées avec succès !
+                            +{{@custom.amout_of_landing_pages_done }} landing pages validées avec succès !
                         </span>
                     </p>
                 </div>
@@ -36,74 +39,191 @@
 
     {{> "ui/customer-logos"}}
 
+    <section class="mds-section problem-section accent">
+        <div class="mds-container">
+            <div class="section-type">Votre problème</div>
+            <h2 class="section-title">
+                Construire un SaaS sans savoir si ça va intéresser… c’est risqué.
+            </h2>
+            <p>
+                Vous avez une idée. Elle a du potentiel. Vos amis trouvent ça cool.<br />
+                Mais en vrai, vous n’avez aucune certitude que des gens cliqueront. Ou paieront.
+            </p>
+            <ul class="key-points">
+            <li>
+                <h3 class="font-semibold text-lg mb-2">❌ Vous ne voulez pas cramer 15k pour un MVP flou</h3>
+                <p>
+                    Tant que l’idée n’est pas validée, vous préférez tester vite et léger. Logique.
+                </p>
+            </li>
+            <li>
+                <h3 class="font-semibold text-lg mb-2">❌ Vous ne savez pas si ça va vraiment intéresser</h3>
+                <p>
+                    C’est frustrant de rester bloqué dans le flou. Il vous faut des datas, pas des suppositions.
+                </p>
+            </li>
+            <li>
+                <h3 class="font-semibold text-lg mb-2">❌ Vous manquez de temps ou d’énergie pour tout faire vous-même</h3>
+                <p>
+                    Design, copy, tracking, SEO, emailing… vous avez autre chose à gérer.
+                </p>
+            </li>
+            </ul>
+
+            <p>
+                Ce qu’il vous faut ? Un moyen simple, rapide et pro<br />
+                pour valider (ou invalider) votre idée — et commencer à bâtir une base d’early adopters.
+            </p>
+        </div>
+    </section>
+
+    <section class="mds-section mds-solution">
+        <div class="mds-container">
+            <div class="section-type">Notre approche</div>
+            <h2 class="section-title">
+                Une landing page bien pensée pour tester votre idée en conditions réelles.
+            </h2>
+            <p>
+                Pas de dev inutile, pas de feature superflue.<br />
+                On vous aide à confronter votre idée au marché dès maintenant — avec des vrais signaux.
+            </p>
+
+            <ul class="key-points">
+                <li>
+                    {{> "images/solution"}}
+                    <h3 class="font-semibold text-lg mb-2">Cadrage rapide de votre idée</h3>
+                    <p>
+                        On vous aide à poser l’angle, le bon message, et la cible utilisateur.
+                        Objectif : clarifier, pas complexifier.
+                    </p>
+                </li>
+                <li>
+                    {{> "images/design"}}
+                    <h3 class="font-semibold text-lg mb-2">Design & copywriting orientés conversion</h3>
+                    <p>
+                        Une landing page claire, persuasive et jolie.<br />
+                        Pensée pour convaincre et faire cliquer.
+                    </p>
+                </li>
+                <li>
+                    {{> "images/data"}}
+                    <h3 class="font-semibold text-lg mb-2">Tracking & analytics intégrés</h3>
+                    <p>
+                        On installe les bons outils (PostHog, Plausible...) pour mesurer le trafic, les clics, les signups.
+                    </p>
+                </li>
+                <li>
+                    {{> "images/mail"}}
+                    <h3 class="font-semibold text-lg mb-2">Collecte d’emails qualifiés</h3>
+                    <p>
+                        Les visiteurs intéressés laissent leur email. Vous construisez votre base d’early adopters.
+                    </p>
+                </li>
+                <li>
+                    {{> "images/brain"}}
+                    <h3 class="font-semibold text-lg mb-2">Débrief & recommandations stratégiques</h3>
+                    <p>
+                        Une fois les premiers retours collectés, on vous aide à interpréter les signaux et planifier la suite.
+                    </p>
+                </li>
+            </ul>
+
+            <p>
+                En 2 semaines, vous repartez avec des insights concrets, une base d’emails et une vision claire pour avancer.
+            </p>
+            <p>
+                <a href="{{@custom.global_cta_url}}" class="button primary">
+                    Discutons de votre idée
+                </a>
+            </p>
+        </div>
+    </section>
+
     {{> "ui/method"}}
 
-    <section class="mds-process">
+    <section class="mds-section mds-process">
         <div class="mds-container">
             <div class="section-type">Notre méthodologie</div>
             <h2 class="section-title">
-                Un accompagnement en 4 étapes
+                Validez votre idée en 4 étapes simples
             </h2>
             <div class="steps">
                 <div class="step">
                     <div class="body">
-                        <h3>Atelier de conception léger</h3>
-                        <p>On travail avec toi sur ton idée pour commencer à esquisser les futures fonctionnalités de ton SaaS.</p>
+                        <h3>Atelier de cadrage express</h3>
+                        <p>
+                            On creuse votre idée, votre cible et votre différenciateur.
+                            Objectif : trouver le bon angle pour pitcher votre SaaS en une phrase claire.
+                        </p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="body">
-                        <h3>Conception graphique & copywriting de la landing page</h3>
-                        <p>On prend tout ce que tu nous as dit de ton SaaS ainsi que les retours de l'atelier de conception et on met dans une landing page qui donnera envie d'utiliser le SaaS tout de suite.</p>
+                        <h3>Design + copywriting orientés conversion</h3>
+                        <p>
+                            On conçoit une landing page qui attire, convainc, et pousse à l’action.
+                            Textes, visuels, layout : tout est pensé pour maximiser les conversions.
+                        </p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="body">
-                        <h3>Développement de le landing page</h3>
-                        <p>On développe et on héberge une landing page à partir des maquettes UI/UX validées</p>
+                        <h3>Développement & mise en ligne</h3>
+                        <p>
+                            Votre page est développée, hébergée, connectée aux outils d’analyse et formulaires.
+                            Pas besoin de vous en occuper : tout est prêt pour capter les premiers signaux.
+                        </p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="body">
-                        <h3>Livraison et lancement</h3>
-                        <p>En moins de 15 jours ta landing page est accessible sur le web. On t'explique comment t'en sevir et comment analyser la donnée pour avancer dans ton projet de SaaS !</p>
+                        <h3>Lancement + interprétation des résultats</h3>
+                        <p>
+                            On vous aide à lire les données (clics, emails, taux de conversion), en tirer des leçons
+                            et décider des prochaines étapes.
+                            Vous repartez avec une vision plus claire.
+                        </p>
                     </div>
                 </div>
         </div>
     </section>
 
-    <section class="highlighted-band">
+    <section class="mds-section offer-section accent">
         <div class="mds-container">
             <div class="section-type">Budget & tarifs</div>
             <h2 class="section-title">
-                Pret à confronter ton idée au marché ?
+                Testez votre idée sans brûler votre budget
             </h2>
-            <div class="pricing-options">
+            <div class="pricing-options detailed">
                 <div class="pricing-option">
                     <div class="body">
                         <h3>Pack "Validation"</h3>
-                        <p>Testez rapidement l'intérêt du marché pour votre idée de SaaS avant même de commencer le développement.</p>
+                        <p>
+                            Une landing page prête à lancer pour tester l’intérêt réel de votre idée de SaaS.<br/>
+                            Pas de produit, pas de dev — juste ce qu’il faut pour avoir des retours concrets.
+                        </p>
                         <p class="price">{{@custom.price_of_landing_page }}€ HT</p>
                         <hr>
                         <div>
                             <ul>
-                                <li>- Livraison rapide en 7 à 10 jours</li>
-                                <li>- Développement d'une landing page optimisée (inspirée des meilleures landing pages SaaS)</li>
-                                <li>- Mise en place de la collecte d'emails pour capturer l’intérêt des visiteurs</li>
-                                <li>- Déploiement sur votre domaine ou sous-domaine (inclus dans l'offre de maintenance)</li>
+                                <li>- Livraison express en 7 à 10 jours</li>
+                                <li>- Design & copywriting orientés conversion</li>
+                                <li>- Intégration de formulaires pour capter des emails qualifiés</li>
+                                <li>- Tracking analytics pour mesurer l’intérêt réel</li>
+                                <li>- Déploiement sur votre domaine ou sous-domaine</li>
                             </ul>
                         </div>
                     </div>
-                    <a href="{{@custom.global_cta_url}}" class="button highlighted">Je choisis ce pack !</a>
+                    <a href="{{@custom.global_cta_url}}" class="button highlighted">Lancer mon test marché</a>
                 </div>
             </div>
 
         </div>
     </section>
 
-    {{> "ui/team"}}
+    {{> "ui/team" dark="true"}}
 
-    <section class="faq-section">
+    <section class="mds-section faq-section accent">
         <div class="mds-container">
             <div class="section-type">FAQ</div>
             <h2 class="section-title">
@@ -112,18 +232,78 @@
 
             <div class="faq-items">
                 <div class="faq-item">
-                    <h3>Qu’est-ce qu’un logiciel SaaS sur-mesure et pourquoi l’adopter ?</h3>
-                    <p>Un logiciel SaaS sur-mesure est une application cloud développée spécifiquement pour répondre aux besoins uniques de votre entreprise. Contrairement aux solutions SaaS génériques, il est conçu pour s’intégrer parfaitement à vos processus, offrant une expérience utilisateur optimisée et des fonctionnalités adaptées. Accessible depuis un navigateur ou une application, il permet d’éliminer les contraintes d’installation locale et de réduire les coûts de maintenance.</p>
+                    <input type="checkbox" id="faq1" class="faq-toggle" />
+                    <h3><label for="faq1">Est-ce que je dois déjà avoir un nom de domaine ?</label></h3>
+                    <p>
+                       Non, ce n'est pas nécessaire. On peut vous guider pour en acheter un au bon moment. Mais si vous en avez déjà un, on peut l’utiliser pour héberger la landing page.
+                    </p>
                 </div>
 
                 <div class="faq-item">
-                    <h3>Combien de temps faut-il pour développer une application SaaS ?</h3>
-                    <p>La durée de développement dépend de l'objectif du projet. En général :</p>
-                    <ul>
-                        <li>MVP (Minimum Viable Product) : on s'engage à vous permettre de tester votre idée en 1 mois</li>
-                        <li>Produit complet : à partir de 2 mois et augmente en fonction de la complexité</li>
-                    </ul>
-                    <p>Nous adoptons une approche agile pour vous livrer des versions fonctionnelles dès les premières itérations.</p>
+                    <input type="checkbox" id="faq2" class="faq-toggle" />
+                    <h3><label for="faq2">Combien d’emails je peux collecter avec ce système ?</label></h3>
+                    <p>
+                        Autant que vous voulez. On installe un système de capture connecté à un outil simple pour que vous puissiez suivre et exporter vos leads.
+                    </p>
+                    <p>
+                        Plus vous récoltez d’emails, plus vous aurez de données pour décider si votre idée est viable.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq3" class="faq-toggle" />
+                    <h3><label for="faq3">Est-ce que vous m’aidez à rédiger les bons messages ?</label></h3>
+                    <p>
+                        Oui. Notre travail inclut du copywriting pour formuler un message clair, crédible et engageant — même si votre idée est encore floue.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq4" class="faq-toggle" />
+                    <h3><label for="faq4">Et si j’ai plusieurs idées de SaaS ?</label></h3>
+                    <p>
+                        On vous aide à choisir celle qui mérite le plus d’être testée maintenant. Et si vous voulez faire plusieurs landing pages, on peut adapter le pack.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq5" class="faq-toggle" />
+                    <h3><label for="faq5">Quelles données vais-je obtenir à la fin ?</label></h3>
+                    <p>
+                        Le nombre de visiteurs, les taux de clics, les emails collectés, et des insights comportementaux (heatmaps, scroll, clics). De quoi décider si ça vaut le coup d’aller plus loin.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq6" class="faq-toggle" />
+                    <h3><label for="faq6">Et après, je fais quoi avec les leads ?</label></h3>
+                    <p>
+                        Vous pouvez leur écrire pour discuter du projet, les sonder plus en détail, ou les recontacter quand vous lancez un MVP. Ce sont vos premiers early adopters.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq7" class="faq-toggle" />
+                    <h3><label for="faq7">Pourquoi ne pas juste faire une page Notion ou un Google Form ?</label></h3>
+                    <p>
+                        Ça peut dépanner, mais c’est rarement perçu comme pro. Une vraie landing page inspire plus de confiance, convertit mieux, et vous donne des données exploitables (taux de clics, heatmaps, etc.).
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq8" class="faq-toggle" />
+                    <h3><label for="faq8">Est-ce que je peux le faire moi-même avec un no-code ?</label></h3>
+                    <p>
+                        Bien sûr. Mais ce pack va plus loin : on travaille l’angle, le message, le design, le tracking… Vous gagnez du temps et obtenez un livrable pro, optimisé, testé.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq9" class="faq-toggle" />
+                    <h3><label for="faq9">Et si je n’ai pas encore de logo ou de charte graphique ?</label></h3>
+                    <p>
+                        Aucun problème. On vous livre une landing page sobre, crédible et lisible, même sans branding. On peut aussi vous conseiller pour poser une base graphique légère.
+                    </p>
                 </div>
             </div>
         </div>
@@ -132,14 +312,17 @@
     <section class="mds-cta-end">
         {{#if @custom.global_cta_url}}
         <div class="mds-cta">
-            <h2>Parlez-nous de votre projet en 15 min</h2>
+            <h2>Votre idée mérite mieux qu’un fichier Notion.</h2>
+            <p>
+                En moins de 2 semaines, on vous aide à tester le potentiel de votre SaaS et à bâtir votre première base d’emails qualifiés.
+            </p>
             <p>
                 <a href="{{@custom.global_cta_url}}" class="button highlighted">{{@custom.global_cta_text}}</a>
             </p>
             <p class='rate'>
                 <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
                 <span>
-                    +{{@custom.amout_of_landing_pages_done }} landing pages réalisées avec succès !
+                    +{{@custom.amout_of_landing_pages_done }} landing pages validées avec succès !
                 </span>
             </p>
         </div>

@@ -13,9 +13,10 @@
         <div class="mds-container">
             <div class="presentation">
                 <div class="section-type">Pack "MVP"</div>
-                <h1 class="mds-title">Testez la faisabilité de votre idée rapidement, commencez à gagner de l'argent tout de suite</h1>
+                <h1 class="mds-title">Testez votre idée avec un MVP fonctionnel, prêt à vendre — en 1 mois.</h1>
                 <p>
-                    Votre idées est validée ? Le marché ne demande qu'à utiliser votre produit ? Il est temps de test la partie technique et la viabilité financièr de votre projet.
+                    Idéal pour les fondateurs post-validation : on conçoit et développe une première version de votre SaaS avec UX claire, fonctionnalité clé, Stripe intégré, et tracking.<br/>
+                    Assez léger pour aller vite, assez solide pour prouver que ça peut marcher.
                 </p>
                 {{#if @custom.global_cta_url}}
                 <div class="mds-cta">
@@ -25,7 +26,7 @@
                     <p class='rate'>
                         <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
                         <span>
-                            +{{@custom.amout_of_project_done }} MVP de SaaS réalisés avec succès !
+                            +{{@custom.amout_of_project_done }} MVP SaaS livrés avec succès !
                         </span>
                     </p>
                 </div>
@@ -36,54 +37,145 @@
 
     {{> "ui/customer-logos"}}
 
+    <section class="mds-section problem-section accent">
+        <div class="mds-container">
+            <div class="section-type">Votre problème</div>
+            <h2 class="section-title">
+                Construire trop, trop tôt… pour rien.
+            </h2>
+            <p>
+                Vous avez une idée solide. Vous avez déjà des retours, peut-être même une liste d’attente ou un deck.<br/>
+                Mais vous n’avez encore rien à montrer, rien à vendre, rien pour prouver que ça peut fonctionner.
+            </p>
+
+            <p>
+                Le plus dur, ce n’est pas de démarrer. C’est de savoir quoi construire d’abord — et comment ne pas y laisser tout votre budget.
+            </p>
+
+            <ul class="key-points">
+                <li>
+                    <h3 class="font-semibold text-lg mb-2">Trop de specs, pas de décision</h3>
+                    <p>
+                        Tout semble important. Mais vouloir tout faire, c’est souvent ne rien livrer. Et perdre 3 mois à tourner en rond.
+                    </p>
+                </li>
+                <li>
+                    <h3 class="font-semibold text-lg mb-2">Pas envie de cramer 6 mois de budget</h3>
+                    <p>
+                        Vous avez un budget. Mais pas pour un chantier open bar. Vous voulez valider avant d’investir plus.
+                    </p>
+                </li>
+                <li>
+                    <h3 class="font-semibold text-lg mb-2">Besoin de concret pour tester, pitcher, vendre</h3>
+                    <p>
+                        Il vous faut un produit, pas un prototype. Un truc utilisable, montrable, vendable — dès maintenant.
+                    </p>
+                </li>
+            </ul>
+
+            <p>
+                Ce qu’il vous faut ? Un MVP clair, fonctionnel, focalisé sur l’essentiel.<br/>
+                <strong>Assez simple pour être rapide. Assez solide pour valider.</strong>
+            </p>
+        </div>
+    </section>
+
+    <section class="mds-section mds-solution">
+        <div class="mds-container">
+            <div class="section-type">Notre approche</div>
+            <h2 class="section-title">
+                Un MVP clair, rapide, prêt à être montré ou vendu.
+            </h2>
+            <p>
+                Notre mission : vous aider à passer de “bonne idée” à “preuve concrète”.
+                En 4 semaines, on conçoit et développe un MVP léger, utilisable,
+                centré sur la fonctionnalité qui fait la différence.
+            </p>
+
+            <ul class="key-points">
+                <li>
+                    {{> "images/solution"}}
+                    <h3 class="font-semibold text-lg mb-2">Co-conception ciblée</h3>
+                    <p>
+                        On vous aide à prioriser les bonnes fonctionnalités et cadrer un MVP utile, testable, lançable. Pas une démo jetable.
+                    </p>
+                </li>
+                <li>
+                    {{> "images/techno"}}
+                    <h3 class="font-semibold text-lg mb-2">Développement fonctionnel</h3>
+                    <p>
+                        Stack moderne, clean code, déploiement rapide. Vous repartez avec un produit exploitable en ligne.
+                    </p>
+                </li>
+                <li>
+                    {{> "images/data"}}
+                    <h3 class="font-semibold text-lg mb-2">Prêt à tester le marché</h3>
+                    <p>
+                        On intègre Stripe et les analytics. Objectif : savoir si les gens s’inscrivent, testent… ou paient.
+                    </p>
+                </li>
+            </ul>
+
+            <p>
+                Un MVP pour valider la valeur de votre idée — en vrai.
+            </p>
+            <p>
+                Délai moyen : 4 semaines. Tarif fixe. Pas de surprises.
+            </p>
+            <p>
+                <a href="{{@custom.global_cta_url}}" class="button primary">
+                    Discutons de votre MVP
+                </a>
+            </p>
+        </div>
+    </section>
+
     {{> "ui/method"}}
 
-    <section class="mds-process">
+    <section class="mds-section mds-process">
         <div class="mds-container">
-            <div class="section-type">Notre méthodologie</div>
+            <div class="section-type">Comment on travaille</div>
             <h2 class="section-title">
-                Un accompagnement en 6 étapes
+                Un MVP livré en 4 semaines. Voici comment.
             </h2>
             <div class="steps">
                 <div class="step">
                     <div class="text">
-                        <h3>Atelier de conception léger</h3>
-                        <p>On travail avec toi sur ton idée pour commencer à esquisser les futures fonctionnalités de ton SaaS. Puis, on creuse sa fonctionnalité clé.</p>
+                        <h3>Cadrage rapide & priorisation</h3>
+                        <p>
+                            On travaille ensemble sur votre idée, vos users et vos objectifs.
+                            On priorise la fonctionnalité différenciante, celle qui doit absolument être testée.
+                        </p>
                     </div>
                 </div>
 
                 <div class="step">
                     <div class="text">
-                        <h3>Conception graphique du SaaS</h3>
-                        <p>On prend tout ce que tu nous as dit de ton SaaS ainsi que les retours de l'atelier de conception, on design le plus rapidement possible un MVP pour ton SaaS qui mettra en avant sa fonctionnalité clé.</p>
+                        <h3>Maquettes Figma légères & orientées usage</h3>
+                        <p>
+                            On design un MVP clair, minimal, centré sur le parcours clé.
+                            Assez bon pour tester, pas trop lourd à développer.
+                        </p>
                     </div>
                 </div>
 
                 <div class="step">
                     <div class="text">
-                        <h3>Développement du MVP de ton SaaS</h3>
-                        <p>On développe le MVP à partir des maquettes validées de ton SaaS et on l'héberge dans un cloud sécurisé.</p>
+                        <h3>Développement, tracking & paiement</h3>
+                        <p>
+                            On développe votre MVP avec une stack moderne.
+                            Stripe et PostHog sont intégrés pour permettre les paiements et comprendre l’usage dès le jour 1.
+                        </p>
                     </div>
                 </div>
 
                 <div class="step">
                     <div class="text">
-                        <h3>Amélioration & copywriting de la landing page</h3>
-                        <p>Pendant le développement du MVP, nos expert marketing et nos copywriters mettent à jour la landing page pour qu'elle soient prête pour le lancement</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="text">
-                        <h3>Mise en place des outils d'analyse produit et de suivi</h3>
-                        <p>Après le lancement de ton produit tu auras besoin d'un maximum d'info sur l'utilisation de ton SaaS pour prendre de bonne décision.</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="text">
-                        <h3>Livraison et lancement</h3>
-                        <p>Ta landing page est accessible sur le web. Ton Saas aussi. On t'explique comment t'en sevir et comment analyser la donnée pour avancer dans ton projet de SaaS !</p>
+                        <h3>Mise en ligne & kit de lancement</h3>
+                        <p>
+                            Le produit est en ligne, hébergé, déployé.
+                            On vous livre une landing page optimisée, vous briefe sur la prise en main, et vous êtes prêt à tester le marché.
+                        </p>
                     </div>
                 </div>
 
@@ -91,63 +183,129 @@
         </div>
     </section>
 
-    <section class="highlighted-band">
+    <section class="mds-section offer-section accent">
         <div class="mds-container">
             <div class="section-type">Budget & tarifs</div>
             <h2 class="section-title">
-                Pret à tester la faisabilité technique de ton projet ?
+                Un MVP fonctionnel. En ligne. En 30 jours.
             </h2>
-            <div class="pricing-options">
+            <div class="pricing-options detailed">
                 <div class="pricing-option">
                     <div class="body">
                         <h3>Pack "MVP"</h3>
-                        <p>Obtenez une version minimale viable de votre SaaS mono-feature en seulement 1 mois pour confronter votre idée au marché.</p>
+                        <p>
+                            Un MVP mono-feature, complet et testable,<br/>
+                            conçu pour valider votre idée avec de vrais utilisateurs.
+                        </p>
                         <p class="price">{{@custom.price_of_mvp }}€ HT</p>
+                        <p class="price-mentions">Livré en 30 jours. Maintenance incluse.</p>
                         <hr>
                         <div>
+                            <h4 class="text-sm uppercase font-semibold mb-2">Ce que l’offre inclut :</h4>
                             <ul>
-                                <li>- Livraison rapide en 30 jours</li>
-                                <li>- Conception produit pour identifier et concevoir la fonctionnalité différenciante de votre SaaS</li>
-                                <li>- Design UI/UX simple des maquettes basées sur les bonnes pratiques du marché</li>
-                                <li>- Développement de la fonctionnalité clé du SaaS et des fonctionnalités essentielles (Authentification, gestion des utilisateurs, paiement, etc.)</li>
-                                <li>- Hébergement sur notre cloud performant et européen</li>
-                                <li>- Déploiement sur votre domaine ou sous-domaine (inclus dans l'offre de maintenance)</li>
-                                <li>- Intégration avec PostHog pour comprendre le comportement des utilisateurs</li>
+                                <li>- Ateliers UX pour identifier et cadrer la fonctionnalité clé</li>
+                                <li>- Maquettes UI/UX simples mais claires (Figma)</li>
+                                <li>- Dev fullstack du MVP (avec auth, users, paiements…)</li>
+                                <li>- Intégration PostHog pour analyser l’usage réel</li>
+                                <li>- Déploiement sur votre domaine</li>
+                                <li>- Hébergement performant et sécurisé</li>
                                 <li>- 2 semaines de maintenance offertes</li>
                             </ul>
                         </div>
                     </div>
-                    <a href="{{@custom.global_cta_url}}" class="button highlighted">Je choisis ce pack !</a>
+                    <a href="{{@custom.global_cta_url}}" class="button highlighted">Je veux tester mon idée</a>
                 </div>
             </div>
-<p>Vous aviez fait faire votre landing page par notre équipe d'expert grâce au pack "validation" ? Profitez d'une remise de 1500 € sur le pack MVP !</p>
+            <p>
+                🎁 Vous avez lancé une landing page avec nous ?
+                Profitez de <strong>1500 € de remise</strong> sur ce pack MVP.
+            </p>
         </div>
     </section>
 
-    {{> "ui/team"}}
+    {{> "ui/team" dark="true"}}
 
-    <section class="faq-section">
+    <section class="mds-section faq-section accent">
         <div class="mds-container">
             <div class="section-type">FAQ</div>
             <h2 class="section-title">
-                Encore des questions ?
+                Questions fréquentes sur le pack MVP
             </h2>
 
             <div class="faq-items">
+
                 <div class="faq-item">
-                    <h3>Qu’est-ce qu’un logiciel SaaS sur-mesure et pourquoi l’adopter ?</h3>
-                    <p>Un logiciel SaaS sur-mesure est une application cloud développée spécifiquement pour répondre aux besoins uniques de votre entreprise. Contrairement aux solutions SaaS génériques, il est conçu pour s’intégrer parfaitement à vos processus, offrant une expérience utilisateur optimisée et des fonctionnalités adaptées. Accessible depuis un navigateur ou une application, il permet d’éliminer les contraintes d’installation locale et de réduire les coûts de maintenance.</p>
+                    <input type="checkbox" id="faq1" class="faq-toggle" />
+                    <h3><label for="faq1">Est-ce qu’un MVP en 1 mois, c’est réaliste ?</label></h3>
+                    <p>
+                        Oui — si on se concentre sur la fonctionnalité clé.
+                        On travaille avec toi pour cadrer un périmètre viable, testable, et utile dès le départ.
+                    </p>
+                    <p>Pas de fluff, juste l’essentiel pour valider ton idée rapidement.</p>
                 </div>
 
                 <div class="faq-item">
-                    <h3>Combien de temps faut-il pour développer une application SaaS ?</h3>
-                    <p>La durée de développement dépend de l'objectif du projet. En général :</p>
-                    <ul>
-                        <li>MVP (Minimum Viable Product) : on s'engage à vous permettre de tester votre idée en 1 mois</li>
-                        <li>Produit complet : à partir de 2 mois et augmente en fonction de la complexité</li>
-                    </ul>
-                    <p>Nous adoptons une approche agile pour vous livrer des versions fonctionnelles dès les premières itérations.</p>
+                    <input type="checkbox" id="faq2" class="faq-toggle" />
+                    <h3><label for="faq2">Est-ce que mon MVP sera vraiment utilisable ?</label></h3>
+                    <p>
+                        Oui. Il est hébergé, sécurisé, et accessible sur ton domaine.
+                        Auth, paiement, analytics : tout est en place pour tester avec de vrais utilisateurs.
+                    </p>
+                    <p>Ce n’est pas un prototype, c’est un produit minimal viable.</p>
                 </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq3" class="faq-toggle" />
+                    <h3><label for="faq3">Pourquoi vous plutôt qu’un freelance ou une agence ?</label></h3>
+                    <p>
+                        Un freelance code vite. Une agence vend un cahier des charges.
+                    </p>
+                    <p>
+                        Nous, on agit comme une <strong>équipe produit externalisée</strong> : cadrage, design, dev, go-to-market — tout est pensé pour tester ton idée sans perte de temps ni budget.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq4" class="faq-toggle" />
+                    <h3><label for="faq4">Est-ce que je peux vous parler de mon idée avant de m’engager ?</label></h3>
+                    <p>
+                        Bien sûr. On propose un call gratuit pour évaluer ton projet,
+                        vérifier qu’il rentre dans notre périmètre MVP, et valider qu’on est un bon match.
+                    </p>
+                    <p>C’est sans engagement.</p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq5" class="faq-toggle" />
+                    <h3><label for="faq5">Et après le MVP ?</label></h3>
+                    <p>
+                        Si ton MVP fonctionne, on peut enchaîner avec l’offre <strong>SaaS complet</strong> :
+                        ajout de features, refonte design, stratégie d’acquisition.
+                    </p>
+                    <p>Tu capitalises sur ce qu’on a déjà construit.</p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq6" class="faq-toggle" />
+                    <h3><label for="faq6">Quels outils et technos utilisez-vous ?</label></h3>
+                    <p>
+                        Pour le produit : Figma, Notion, Linear. <br />
+                        Pour le dev : React, Remix, NestJS, PostgreSQL, Prisma, Docker, GitHub Actions.<br />
+                        Pour l’analytics : PostHog, Plausible.
+                    </p>
+                    <p>Une stack moderne, documentée et scalable.</p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq7" class="faq-toggle" />
+                    <h3><label for="faq7">Et si je n’ai pas encore une idée très précise ?</label></h3>
+                    <p>
+                        Le pack MVP est fait pour les projets déjà cadrés.
+                        Si tu es encore en phase d’exploration, notre offre “Validation” sera plus adaptée.
+                    </p>
+                    <p>On t’aide à tester l’intérêt du marché avant d’écrire une seule ligne de code.</p>
+                </div>
+
             </div>
         </div>
     </section>
@@ -162,7 +320,7 @@
             <p class='rate'>
                 <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
                 <span>
-                    +{{@custom.amout_of_project_done }} MVP de SaaS réalisés avec succès !
+                    +{{@custom.amout_of_project_done }} MVP SaaS livrés avec succès !
                 </span>
             </p>
         </div>

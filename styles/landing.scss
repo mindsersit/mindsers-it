@@ -61,7 +61,6 @@
                     flex: 1 0 $badgeSize;
                 }
 
-
                 &:nth-child(even) {
                     align-self: flex-end;
                     flex-direction: row;
@@ -76,12 +75,45 @@
                     align-items: center;
                     width: unset;
 
-                    &:nth-child(even), &:nth-child(odd) {
+                    &:nth-child(even),
+                    &:nth-child(odd) {
                         flex-direction: column;
                         text-align: center;
                     }
                 }
             }
         }
+    }
+
+    .problem-section,
+    .mds-solution {
+        p {
+            text-align: center;
+        }
+
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            margin: 40px 0;
+
+            & > li {
+                max-width: 28%;
+
+                @media (max-width: 1024px) {
+                    max-width: unset;
+                }
+
+                p {
+                    margin: 10px 0;
+                }
+            }
+        }
+    }
+
+    .mds-solution {
+        background: unset;
     }
 }
