@@ -63,12 +63,22 @@
         ],
         "default": "Menu on the left side"
       },
+      "talent_accent_color": {
+        "type": "color",
+        "default": "#9b694b",
+        "group": "homepage"
+      },
+      "shopify_accent_color": {
+        "type": "color",
+        "default": "#36f4a4",
+        "group": "homepage"
+      },
       "price_of_mvp": {
         "type": "text",
         "default": "15000",
         "group": "homepage"
       },
-      "amout_of_project_done": {
+      "amount_of_project_done": {
         "type": "text",
         "default": "5",
         "group": "homepage"
@@ -78,9 +88,14 @@
         "default": "3000",
         "group": "homepage"
       },
-      "amout_of_landing_pages_done": {
+      "amount_of_landing_pages_done": {
         "type": "text",
         "default": "15",
+        "group": "homepage"
+      },
+      "amount_of_freelancers_recommended": {
+        "type": "text",
+        "default": "3",
         "group": "homepage"
       }
     },
