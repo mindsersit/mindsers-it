@@ -77,6 +77,12 @@ body {
                         position: relative;
                         padding: 5px;
 
+                        &.nav-current a {
+                            color: colors.$accent;
+                            text-decoration: underline;
+                            text-underline-offset: 4px;
+                        }
+
                         .mds-main-submenu {
                             position: absolute;
                             display: flex;
