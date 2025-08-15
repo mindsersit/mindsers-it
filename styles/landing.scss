@@ -118,5 +118,17 @@
         p {
             text-align: center;
         }
+
+        .versus {
+            display: inline-flex;
+            gap: 50px;
+            text-align: left;
+            width: max-content;
+            margin: auto;
+
+            p {
+                text-align: left;
+            }
+        }
     }
 }
