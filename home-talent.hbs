@@ -2,13 +2,15 @@
 
 {{#contentFor 'htmlLang'}}{{@site.locale}}{{/contentFor}}
 
+{{#contentFor 'activityClass'}}mds-talent{{/contentFor}}
+
 {{#contentFor 'styles'}}
 <link rel="stylesheet" type="text/css" href="{{asset "css/landing.css"}}" />
 {{/contentFor}}
 
 {{#contentFor 'title'}}MindsersIT Talent – Freelances tech recommandés par notre studio{{/contentFor}}
 
-<div class="mds-home mds-landing-page">
+<div class="mds-home mds-landing-page mds-talent">
     <header class="mds-header">
         <div class="mds-container">
             <div class="presentation">
@@ -29,7 +31,7 @@
                     <p class='rate'>
                         <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
                         <span>
-                            +{{@custom.amout_of_project_done }} missions réussies avec nos talents freelance !
+                            +{{@custom.amount_of_freelancers_recommended }} missions réussies avec nos talents freelance !
                         </span>
                     </p>
                 </div>
@@ -203,7 +205,7 @@
             <p class='rate'>
                 <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
                 <span>
-                    +{{@custom.amout_of_project_done }} missions réussies avec nos talents freelance.
+                    +{{@custom.amount_of_freelancers_recommended }} missions réussies avec nos talents freelance.
                 </span>
             </p>
         </div>

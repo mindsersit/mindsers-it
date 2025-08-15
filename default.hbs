@@ -11,6 +11,16 @@
     <title>{{{block 'title'}}}</title>
     {{{block 'styles'}}}
 
+    <style>
+        body.mds-talent {
+            --ghost-accent-color: {{@custom.talent_accent_color}};
+        }
+        body.mds-shopify {
+            --ghost-accent-color: {{@custom.shopify_accent_color}};
+        }
+    }
+    </style>
+
     <link rel="preconnect" href="https://www.facebook.com" crossorigin="anonymous" />
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous" />
     <link rel="preconnect" href="https://www.google-analytics.com" crossorigin="anonymous" />
@@ -21,7 +31,7 @@
     {{ghost_head}}
 </head>
 
-<body class='{{body_class}}'>
+<body class='{{body_class}} {{{block 'activityClass'}}}'>
     <div class='mds-viewport'>
         <header id='mds-head' class='mds-head'>
             <nav class='mds-head-inner mds-container' role='navigation' aria-label='Main Navigation'>

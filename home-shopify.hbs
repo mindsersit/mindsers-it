@@ -1,5 +1,8 @@
 {{!< default}}
 {{#contentFor 'htmlLang'}}{{@site.locale}}{{/contentFor}}
+
+{{#contentFor 'activityClass'}}mds-shopify{{/contentFor}}
+
 {{#contentFor 'styles'}}
     <link
         rel="stylesheet"
@@ -7,8 +10,9 @@
         href="{{asset "css/home.css"}}"
     />
 {{/contentFor}}
-{{#contentFor 'title'}}{{meta_title}} - L'agence Shopify qui transforme ton entreprise en commerce multicanal performant
-    !{{/contentFor}}
+
+{{#contentFor 'title'}}{{meta_title}} - L'agence Shopify qui transforme ton entreprise en commerce multicanal performant !{{/contentFor}}
+
 <div class="mds-home">
     <header class="mds-header">
         <div class="mds-container">
@@ -30,7 +34,7 @@
                         <p class='rate'>
                             <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
                             <span>
-                                +{{@custom.amout_of_project_done }} boutiques réalisés avec succès !
+                                +{{@custom.amount_of_project_done }} boutiques réalisés avec succès !
                             </span>
                         </p>
                     </div>
@@ -150,7 +154,7 @@
                 <p class='rate'>
                     <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
                     <span>
-                        +{{@custom.amout_of_project_done }} SaaS réalisés avec succès !
+                        +{{@custom.amount_of_project_done }} SaaS réalisés avec succès !
                     </span>
                 </p>
             </div>
