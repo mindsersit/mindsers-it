@@ -4,160 +4,214 @@
 {{#contentFor 'activityClass'}}mds-shopify{{/contentFor}}
 
 {{#contentFor 'styles'}}
-    <link
-        rel="stylesheet"
-        type="text/css"
-        href="{{asset "css/home.css"}}"
-    />
+<link rel="stylesheet" type="text/css" href="{{asset "css/home.css"}}" />
 {{/contentFor}}
 
-{{#contentFor 'title'}}{{meta_title}} - L'agence Shopify qui transforme ton entreprise en commerce multicanal performant !{{/contentFor}}
+{{#contentFor 'title'}}{{meta_title}} - L'agence Shopify qui transforme votre business en e-commerce performant !{{/contentFor}}
 
 <div class="mds-home">
     <header class="mds-header">
         <div class="mds-container">
             <div class="presentation">
-                <h1 class="mds-title">Confiez-nous votre produit, on conçoit, design, developpe, market et lance votre
-                    boutique e-commerce rapidement</h1>
+                <h1 class="mds-title">L'agence Shopify qui transforme votre business en e-commerce à succès</h1>
                 <p>
-                    Nous transformons vos boutiques en success story online et offline grâce à Shopify et notre équipe
-                    d'experts !
+                    De la boutique basique à l'architecture enterprise : nous concevons, développons et optimisons votre e-commerce Shopify pour maximiser vos ventes.
                 </p>
-                {{#if @custom.global_cta_url}}
-                    <div class="mds-cta">
-                        <p>
-                            <a
-                                href="{{@custom.global_cta_url}}"
-                                class="button primary"
-                            >Parlez-nous de votre projet</a>
-                        </p>
-                        <p class='rate'>
-                            <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
-                            <span>
-                                +{{@custom.amount_of_project_done }} boutiques réalisés avec succès !
-                            </span>
-                        </p>
-                    </div>
-                {{/if}}
+
+                <div class="mds-cta">
+                    <p>
+                        <a href="#offres" class="button primary">Découvrir nos solutions</a>
+                    </p>
+                    <p class='rate'>
+                        <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
+                        <span>
+                            +{{@custom.amount_of_project_done }} boutiques e-commerce réalisées !
+                        </span>
+                    </p>
+                </div>
+
+                <div class="offer-links">
+                    <a href="#offres" class="offer-link">→ Boutique basique (4-7k€)</a>
+                    <a href="#offres" class="offer-link">→ Solution personnalisée (8-30k€)</a>
+                    <a href="#offres" class="offer-link">→ Architecture enterprise (30-100k€)</a>
+                </div>
             </div>
         </div>
     </header>
+
     {{> "ui/customer-logos"}}
-    {{> "ui/method"}}
-    {{> "ui/testimonial"}}
-    <section class="highlighted-band">
+
+    <section class="mds-section mds-personas accent">
         <div class="mds-container">
-            <div class="section-type">Budget & tarifs</div>
+            <div class="section-type">Pour qui ?</div>
             <h2 class="section-title">
-                Choisissez l'offre qui correspond à vos besoins
+                Que vous lanciez votre première boutique<br />
+                ou que vous souhaitiez scaler votre e-commerce.
             </h2>
-            <p>Pas sûr de l’offre qu’il vous faut ? Si vous avez une idée à tester, commencez par une landing page. Si
-                vous voulez un prototype fonctionnel, prenez le MVP. Et si vous êtes prêt à scaler, partez sur l’offre
-                SaaS clé en main.</p>
+
+            <div class="persona-cards">
+                <div class="persona-card">
+                    <h3>Je lance ma première boutique e-commerce</h3>
+                    <p>Vous avez des produits à vendre et voulez démarrer rapidement avec une boutique professionnelle ? Nous créons votre site Shopify opérationnel en quelques semaines.</p>
+                    <a href="#offres" class="button primary">Voir l'offre Basique</a>
+                </div>
+
+                <div class="persona-card">
+                    <h3>Je veux personnaliser et optimiser ma boutique</h3>
+                    <p>Votre business décolle et vous avez besoin de fonctionnalités spécifiques ? Nous développons des solutions sur-mesure adaptées à vos processus.</p>
+                    <a href="#offres" class="button primary">Voir l'offre Personnalisée</a>
+                </div>
+
+                <div class="persona-card">
+                    <h3>J'ai besoin d'une architecture enterprise</h3>
+                    <p>Vous gérez un volume important et souhaitez intégrer ERP, logistique, ou passer en headless ? Nous concevons l'infrastructure qui scale.</p>
+                    <a href="#offres" class="button primary">Voir l'offre Enterprise</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="offres" class="mds-section offer-section">
+        <div class="mds-container">
+            <div class="section-type">Nos solutions</div>
+            <h2 class="section-title">
+                Trois niveaux d'expertise Shopify pour trois objectifs business
+            </h2>
+            <p>Pas sûr de la solution qu'il vous faut ? Si vous démarrez, partez sur l'offre basique. Si vous avez des besoins spécifiques, optez pour du personnalisé. Et si vous visez l'international et les gros volumes, l'architecture enterprise est faite pour vous.</p>
             <div class="pricing-options">
                 <div class="pricing-option">
                     <div class="body">
-                        <h3>Pack "Validation"</h3>
-                        <p>Testez rapidement l'intérêt du marché pour votre idée de SaaS avant même de commencer le
-                            développement.</p>
-                        <p class="price">{{@custom.price_of_landing_page }}€ HT</p>
+                        <h3>Boutique Basique</h3>
+                        <p>Site e-commerce Shopify clé en main avec thème personnalisé, paiements configurés et produits intégrés. Parfait pour démarrer.</p>
+                        <p class="price">4 000€ - 7 000€</p>
                     </div>
-                    <a
-                        href="{{@custom.global_cta_url}}"
-                        class="button primary"
-                    >Prendre RDV !</a>
-                    <a
-                        href="/studio/landing-page/"
-                        class="more-link"
-                    >En savoir plus</a>
+                    <a href="{{@custom.global_cta_url}}" class="button primary">Voir en détail</a>
                 </div>
                 <div class="pricing-option">
                     <div class="body">
-                        <h3>Pack "MVP"</h3>
-                        <p>Obtenez une version minimale viable de votre SaaS mono-feature en seulement 1 mois pour
-                            confronter votre idée au marché.</p>
-                        <p class="price">{{@custom.price_of_mvp }}€ HT</p>
+                        <h3>Solution Personnalisée</h3>
+                        <p>Développement sur-mesure avec fonctionnalités spécifiques, multilingue, et intégrations tierces adaptées à votre business.</p>
+                        <p class="price">8 000€ - 30 000€</p>
                     </div>
-                    <a
-                        href="{{@custom.global_cta_url}}"
-                        class="button primary"
-                    >Prendre RDV !</a>
-                    <a
-                        href="/studio/mvp-saas/"
-                        class="more-link"
-                    >En savoir plus</a>
+                    <a href="{{@custom.global_cta_url}}" class="button primary">Voir en détail</a>
                 </div>
-                <div class="pricing-option featured">
-                    <div class="description">
-                        <h3>Offre "SaaS clé-en-main"</h3>
-                        <p>Une solution complète incluant conception, développement, design graphique, déploiement et
-                            marketing.</p>
+                <div class="pricing-option">
+                    <div class="body">
+                        <h3>Architecture Enterprise</h3>
+                        <p>Solution complète avec ERP, logistique, architecture headless, multimarket et performance optimisée pour les gros volumes.</p>
+                        <p class="price">30 000€ - 100 000€</p>
                     </div>
-                    <div class="cta">
-                        <p class="price">25 000€ HT / mois</p>
-                        <p class="price-mentions">Minimum deux mois d'accompagnement</p>
-                        <a
-                            href="{{@custom.global_cta_url}}"
-                            class="button highlighted"
-                        >Prendre RDV !</a>
-                        <a
-                            href="/studio/saas/"
-                            class="more-link"
-                        >En savoir plus</a>
-                    </div>
+                    <a href="{{@custom.global_cta_url}}" class="button primary">Voir en détail</a>
                 </div>
             </div>
-            <p>Vous ne trouvez pas le pack qui vous correspond ? <a href="{{@custom.global_cta_url}}">Contactez-nous</a>
-                pour une solution sur mesure adaptée à vos besoins spécifiques.</p>
+            <p>Vous ne trouvez pas la solution qui vous correspond ? <a href="{{@custom.global_cta_url}}">Contactez-nous</a> pour un devis personnalisé adapté à votre projet e-commerce.</p>
         </div>
     </section>
+
+    {{!-- <section class="mds-section mds-expertise">
+        <div class="mds-container">
+            <div class="section-type">Notre expertise</div>
+            <h2 class="section-title">
+                Maîtrise technique complète de l'écosystème Shopify
+            </h2>
+            <p>
+                Plus qu'une simple agence web, nous sommes des experts Shopify qui maîtrisent toute la stack technique pour créer des expériences e-commerce performantes.
+            </p>
+
+            <div class="expertise-grid">
+                <div class="expertise-item">
+                    <h3>Développement & Customisation</h3>
+                    <ul>
+                        <li>Thèmes sur-mesure et modifications avancées</li>
+                        <li>Applications Shopify personnalisées</li>
+                        <li>Architecture headless avec API</li>
+                    </ul>
+                </div>
+                <div class="expertise-item">
+                    <h3>Intégrations & Paiements</h3>
+                    <ul>
+                        <li>Configuration Stripe, PayPal, paiements locaux</li>
+                        <li>Intégration ERP et systèmes de gestion</li>
+                        <li>Solutions logistiques et fulfillment</li>
+                    </ul>
+                </div>
+                <div class="expertise-item">
+                    <h3>Performance & Scale</h3>
+                    <ul>
+                        <li>Optimisation pour les gros catalogues</li>
+                        <li>Solutions multimarket et multilingues</li>
+                        <li>Architecture haute performance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section> --}}
+
+    {{> "ui/method" activity="shopify"}}
+
+    {{> "ui/testimonial" dark="true"}}
+
     {{> "ui/team"}}
-    <section class="faq-section">
+
+    <section class="faq-section mds-section">
         <div class="mds-container">
             <div class="section-type">FAQ</div>
             <h2 class="section-title">
-                Encore des questions ?
+                Questions fréquentes sur nos solutions Shopify
             </h2>
+
             <div class="faq-items">
                 <div class="faq-item">
-                    <h3>Qu’est-ce qu’un logiciel SaaS sur-mesure et pourquoi l’adopter ?</h3>
-                    <p>Un logiciel SaaS sur-mesure est une application cloud développée spécifiquement pour répondre aux
-                        besoins uniques de votre entreprise. Contrairement aux solutions SaaS génériques, il est conçu
-                        pour s’intégrer parfaitement à vos processus, offrant une expérience utilisateur optimisée et
-                        des fonctionnalités adaptées. Accessible depuis un navigateur ou une application, il permet
-                        d’éliminer les contraintes d’installation locale et de réduire les coûts de maintenance.</p>
+                    <input type="checkbox" id="faq1" class="faq-toggle" />
+                    <h3><label for="faq1">Pourquoi choisir Shopify plutôt qu'une autre solution e-commerce ?</label></h3>
+                    <p>Shopify combine simplicité d'utilisation, robustesse technique et écosystème riche. C'est la plateforme qui grandit avec votre business, du premier euro aux millions de chiffre d'affaires, avec des fonctionnalités natives pour l'international.</p>
                 </div>
+
                 <div class="faq-item">
-                    <h3>Combien de temps faut-il pour développer une application SaaS ?</h3>
-                    <p>La durée de développement dépend de l'objectif du projet. En général :</p>
-                    <ul>
-                        <li>MVP (Minimum Viable Product) : on s'engage à vous permettre de tester votre idée en 1 mois
-                        </li>
-                        <li>Produit complet : à partir de 2 mois et augmente en fonction de la complexité</li>
-                    </ul>
-                    <p>Nous adoptons une approche agile pour vous livrer des versions fonctionnelles dès les premières
-                        itérations.</p>
+                    <input type="checkbox" id="faq2" class="faq-toggle" />
+                    <h3><label for="faq2">Combien de temps faut-il pour lancer ma boutique ?</label></h3>
+                    <p>Cela dépend de la complexité : 2-4 semaines pour une boutique basique, 1-3 mois pour du personnalisé, 3-6 mois pour de l'enterprise. Nous travaillons en mode agile pour vous livrer une première version rapidement.</p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq3" class="faq-toggle" />
+                    <h3><label for="faq3">Proposez-vous la maintenance et le support après livraison ?</label></h3>
+                    <p>Oui ! Nous proposons deux formules : Maintenance basique (100€/mois) pour les mises à jour et bugs, et Support technique (1100-1500€/mois) pour 15h d'accompagnement mensuel et optimisations continues.</p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq4" class="faq-toggle" />
+                    <h3><label for="faq4">Pouvez-vous migrer ma boutique existante vers Shopify ?</label></h3>
+                    <p>Absolument. Nous gérons la migration complète de votre catalogue, clients, commandes et SEO depuis n'importe quelle plateforme (WooCommerce, Prestashop, Magento, etc.) avec zéro interruption de service.</p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq5" class="faq-toggle" />
+                    <h3><label for="faq5">Est-ce que vous gérez aussi le marketing et l'acquisition ?</label></h3>
+                    <p>Notre expertise se concentre sur la partie technique et UX de votre e-commerce. Pour le marketing, nous travaillons en partenariat avec des agences spécialisées que nous pouvons vous recommander.</p>
                 </div>
             </div>
         </div>
     </section>
+
     <section class="mds-cta-end">
         {{#if @custom.global_cta_url}}
-            <div class="mds-cta">
-                <h2>Parlez-nous de votre projet en 15 min</h2>
-                <p>
-                    <a
-                        href="{{@custom.global_cta_url}}"
-                        class="button highlighted"
-                    >{{@custom.global_cta_text}}</a>
-                </p>
-                <p class='rate'>
-                    <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
-                    <span>
-                        +{{@custom.amount_of_project_done }} SaaS réalisés avec succès !
-                    </span>
-                </p>
-            </div>
+        <div class="mds-cta">
+            <h2>Prêt à lancer votre e-commerce Shopify ?</h2>
+            <p>
+                Discutons de votre projet en 15 minutes pour identifier<br />
+                la solution qui maximisera vos ventes.
+            </p>
+            <p>
+                <a href="{{@custom.global_cta_url}}" class="button highlighted">{{@custom.global_cta_text}}</a>
+            </p>
+            <p class='rate'>
+                <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
+                <span>
+                    +{{@custom.amount_of_project_done }} e-commerces Shopify réalisés avec succès !
+                </span>
+            </p>
+        </div>
         {{/if}}
     </section>
 </div>

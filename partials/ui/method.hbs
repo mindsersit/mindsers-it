@@ -7,7 +7,7 @@
         <ul class="key-points">
             <li>
                 {{> "images/experts"}}
-                Experts SaaS avec 10+ ans d’expérience
+                Experts {{#match activity "shopify"}}Shopify{{else}}SaaS{{/match}} avec 10+ ans d’expérience
             </li>
             <li>
                 {{> "images/time"}}
@@ -15,7 +15,7 @@
             </li>
             <li>
                 {{> "images/techno"}}
-                Stack moderne et évolutive (React, Nest, K8s…)
+                Stack moderne et évolutive ({{#match activity "shopify"}}React, Hydrogen, Liquid…{{else}}React, Nest, K8s…{{/match}})
             </li>
             <li>
                 {{> "images/startups"}}
