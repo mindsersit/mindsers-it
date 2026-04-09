@@ -27,6 +27,24 @@
                 margin: 40px 0 0 0;
                 color: colors.$accent;
             }
+
+            .breadcrumb {
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                margin: 40px 0 0 0;
+                opacity: 0.5;
+
+                a {
+                    color: colors.$accent;
+                    text-decoration: none;
+                    opacity: 1;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
         }
     }
 
