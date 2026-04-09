@@ -6,33 +6,33 @@
 <link rel="stylesheet" type="text/css" href="{{asset "css/home.css"}}" />
 {{/contentFor}}
 
-{{#contentFor 'title'}}{{meta_title}} - Le studio qui transforme ton idée en SaaS en 1 mois seulement !{{/contentFor}}
+{{#contentFor 'title'}}{{meta_title}} - Le studio tech qui construit des produits SaaS et e-commerce{{/contentFor}}
 
 <div class="mds-home">
     <header class="mds-header">
         <div class="mds-container">
             <div class="presentation">
-                <h1 class="mds-title">{{@site.description}}</h1>
+                <h1 class="mds-title">On ne vend pas du service. On construit des produits.</h1>
                 <p>
-                    Landing page de validation, MVP ou produit complet : on intervient à chaque étape, comme une vraie équipe produit externalisée.
+                    MindsersIT est un studio tech indépendant, spécialisé dans la conception et le développement de produits SaaS et e-commerce Shopify. On a commencé par construire les nôtres. Aujourd'hui, on met cette exigence au service de vos projets.
                 </p>
 
                 <div class="mds-cta">
                     <p>
-                        <a href="#offres" class="button primary">Découvrir nos offres</a>
+                        <a href="{{@custom.global_cta_url}}" class="button primary">{{@custom.global_cta_text}}</a>
                     </p>
                     <p class='rate'>
                         <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
                         <span>
-                            +{{@custom.amount_of_project_done }} projets SaaS accompagnés !
+                            +{{@custom.amount_of_project_done }} produits livrés avec succès !
                         </span>
                     </p>
                 </div>
 
                 <div class="offer-links">
-                    <a href="/studio-saas/landing-page/" class="offer-link">→ Valider une idée</a>
-                    <a href="/studio-saas/mvp/" class="offer-link">→ Lancer un MVP</a>
-                    <a href="/studio-saas/saas/" class="offer-link">→ Construire un SaaS complet</a>
+                    <a href="/studio-saas/" class="offer-link">&rarr; Studio SaaS</a>
+                    <a href="/agence-shopify/" class="offer-link">&rarr; Expertise Shopify</a>
+                    <a href="/talent-freelance/" class="offer-link">&rarr; Talents freelance</a>
                 </div>
             </div>
         </div>
@@ -40,129 +40,115 @@
 
     {{> "ui/customer-logos"}}
 
-    <section class="mds-section mds-personas accent">
+    <section class="mds-section accent">
         <div class="mds-container">
-            <div class="section-type">Pour qui ?</div>
+            <div class="section-type">Notre histoire</div>
             <h2 class="section-title">
-                Que vous soyez au stade de l’idée ou prêt à scaler,<br />
-                notre studio vous accompagne.
+                Un studio né de nos propres produits
+            </h2>
+
+            <p>
+                Tout a commencé par une conviction simple : pour bien construire, il faut construire pour soi. Nos premiers projets, c'étaient les nôtres. Des SaaS qu'on a conçus, développés, lancés et opérés. Des boutiques e-commerce qu'on a montées de A à Z.
+            </p>
+            <p>
+                Très vite, les gens autour de nous ont vu la qualité de ce qu'on produisait. Ils ont voulu la même chose pour eux. C'est comme ça que le studio est né : pas comme une agence qui cherche des clients, mais comme une équipe de builders qui partage son savoir-faire.
+            </p>
+            <p>
+                Aujourd'hui, on applique exactement la même rigueur à vos projets qu'aux nôtres. Parce qu'on ne fait pas de différence entre "notre produit" et "votre produit". Pour nous, c'est le même standard.
+            </p>
+        </div>
+    </section>
+
+    <section class="mds-section mds-personas">
+        <div class="mds-container">
+            <div class="section-type">Nos univers</div>
+            <h2 class="section-title">
+                Deux passions, un même ADN produit
             </h2>
 
             <div class="persona-cards">
                 <div class="persona-card">
-                    <h3>J’ai une idée, mais pas encore de produit</h3>
-                    <p>Vous voulez tester l’intérêt du marché sans tout développer ? On vous aide à valider votre idée en 2 semaines avec une landing page optimisée.</p>
-                    <a href="/studio-saas/landing-page/" class="button primary">Voir l’offre Validation</a>
+                    <h3>SaaS Software</h3>
+                    <p>De l'idée à la mise en marché : on conçoit, développe et lance des produits SaaS comme si c'étaient les nôtres. Parce que souvent, ils l'ont été.</p>
+                    <a href="/studio-saas/" class="button primary">Découvrir le studio SaaS</a>
                 </div>
 
                 <div class="persona-card">
-                    <h3>Mon idée est validée, je veux un MVP rapide</h3>
-                    <p>Vous avez parlé à des users, défini votre feature clé et souhaitez confronter l’idée à la réalité terrain ? On construit votre MVP, prêt à vendre, en 1 mois.</p>
-                    <a href="/studio-saas/mvp/" class="button primary">Voir l’offre MVP</a>
-                </div>
-
-                <div class="persona-card">
-                    <h3>J’ai une vision claire, je veux lancer mon SaaS</h3>
-                    <p>Vous avez besoin d’une équipe complète pour designer, coder, marketer et lancer votre SaaS clé-en-main ? On s’occupe de tout.</p>
-                    <a href="/studio-saas/saas/" class="button primary">Voir l’offre SaaS complet</a>
+                    <h3>E-commerce Shopify</h3>
+                    <p>Boutique clé en main, solution sur-mesure ou architecture headless : on construit des e-commerces pensés pour vendre, durer et scaler.</p>
+                    <a href="/agence-shopify/" class="button primary">Découvrir l'expertise Shopify</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="offres" class="mds-section offer-section">
+    <section class="mds-section method-section accent">
         <div class="mds-container">
-            <div class="section-type">Nos offres</div>
+            <div class="section-type">Ce qu'on croit</div>
             <h2 class="section-title">
-                Trois offres pour trois étapes clés dans la vie de votre SaaS
+                Notre façon de travailler n'est pas négociable
             </h2>
-            <p>Pas sûr de l’offre qu’il vous faut ? Si vous avez une idée à tester, commencez par une landing page. Si vous voulez un prototype fonctionnel, prenez le MVP. Et si vous êtes prêt à scaler, partez sur l’offre SaaS clé en main.</p>
-            <div class="pricing-options">
-                <div class="pricing-option">
-                    <div class="body">
-                        <h3>Pack "Validation"</h3>
-                        <p>Testez rapidement l'intérêt du marché pour votre idée de SaaS avant même de commencer le développement.</p>
-                        <p class="price">{{@custom.price_of_landing_page }}€ HT</p>
-                    </div>
-                    <a href="/studio-saas/landing-page/" class="button primary">Voir en détail</a>
-                </div>
-                <div class="pricing-option">
-                    <div class="body">
-                        <h3>Pack "MVP"</h3>
-                        <p>Obtenez une version minimale viable de votre SaaS mono-feature en seulement 1 mois pour confronter votre idée au marché.</p>
-                        <p class="price">{{@custom.price_of_mvp }}€ HT</p>
-                    </div>
-                    <a href="/studio-saas/mvp/" class="button primary">Voir en détail</a>
-                </div>
-                <div class="pricing-option">
-                    <div class="body">
-                        <h3>Offre "SaaS clé-en-main"</h3>
-                        <p>Une solution complète incluant conception, développement, design graphique, déploiement et marketing.</p>
-                        <p class="price">25 000€ HT / mois</p>
-                        <p class="price-mentions">Minimum deux mois d'accompagnement</p>
-                    </div>
-                    <a href="/studio-saas/saas/" class="button primary">Voir en détail</a>
-                </div>
-            </div>
-            <p>Vous ne trouvez pas le pack qui vous correspond ? <a href="{{@custom.global_cta_url}}">Contactez-nous</a> pour une solution sur mesure adaptée à vos besoins spécifiques.</p>
+            <ul class="key-points">
+                <li>
+                    {{> "images/experts"}}
+                    Vous parlez directement aux experts qui construisent votre produit. Pas de commercial, pas d'intermédiaire.
+                </li>
+                <li>
+                    {{> "images/startups"}}
+                    On pense comme des fondateurs, pas comme des prestataires. Chaque décision est prise pour le produit, pas pour la facture.
+                </li>
+                <li>
+                    {{> "images/techno"}}
+                    Stack moderne, maintenable et évolutive. React, Nest, Shopify, Kubernetes : on choisit ce qui sert le produit.
+                </li>
+                <li>
+                    {{> "images/time"}}
+                    On s'engage sur des délais et on les tient. Pas de surprise, pas de rallonge, pas d'excuse.
+                </li>
+            </ul>
         </div>
     </section>
-
-    {{> "ui/method"}}
 
     {{> "ui/testimonial" dark="true"}}
 
     {{> "ui/team"}}
 
-    <section class="faq-section mds-section">
-  <div class="mds-container">
-    <div class="section-type">FAQ</div>
-    <h2 class="section-title">
-      Questions fréquentes sur notre studio SaaS
-    </h2>
+    <section class="mds-section mds-personas">
+        <div class="mds-container">
+            <div class="section-type">Explorez nos univers</div>
+            <h2 class="section-title">
+                Trouvez l'accompagnement qui vous correspond
+            </h2>
 
-    <div class="faq-items">
-      <div class="faq-item">
-        <input type="checkbox" id="faq1" class="faq-toggle" />
-        <h3><label for="faq1">Quelle est la différence entre vos trois offres ?</label></h3>
-        <p>Notre offre "Validation" vous aide à tester une idée. L’offre "MVP" permet de créer un premier produit vendable. L’offre "SaaS complet" est idéale si vous êtes prêt à passer à l’échelle avec un vrai produit complet.</p>
-      </div>
+            <div class="persona-cards">
+                <div class="persona-card">
+                    <h3>Studio SaaS</h3>
+                    <p>Vous avez une idée de produit logiciel ? On vous accompagne de la validation à la mise en marché, avec une vraie approche produit.</p>
+                    <a href="/studio-saas/" class="button primary">Explorer les offres SaaS</a>
+                </div>
 
-      <div class="faq-item">
-        <input type="checkbox" id="faq2" class="faq-toggle" />
-        <h3><label for="faq2">Comment savoir si je suis prêt à vous confier mon projet ?</label></h3>
-        <p>Si vous avez une idée claire et un minimum de retours utilisateurs, c’est suffisant. Le reste, on vous aide à le structurer.</p>
-      </div>
+                <div class="persona-card">
+                    <h3>Expertise Shopify</h3>
+                    <p>Vous lancez ou faites évoluer un e-commerce ? On conçoit des boutiques Shopify performantes, de la première vente au passage à l'échelle.</p>
+                    <a href="/agence-shopify/" class="button primary">Explorer les offres Shopify</a>
+                </div>
 
-      <div class="faq-item">
-        <input type="checkbox" id="faq3" class="faq-toggle" />
-        <h3><label for="faq3">Est-ce que vous pouvez m’aider à lever des fonds ?</label></h3>
-        <p>On ne fait pas de levée, mais on vous aide à construire un produit ou MVP qui impressionne investisseurs ou banquiers. Plusieurs projets accompagnés ont levé après livraison.</p>
-      </div>
-
-      <div class="faq-item">
-        <input type="checkbox" id="faq4" class="faq-toggle" />
-        <h3><label for="faq4">Est-ce que vous travaillez aussi avec des freelances ou agences ?</label></h3>
-        <p>Oui, régulièrement. On intervient comme extension produit / tech pour des agences débordées ou des freelances non techniques.</p>
-      </div>
-
-      <div class="faq-item">
-        <input type="checkbox" id="faq5" class="faq-toggle" />
-        <h3><label for="faq5">Et si je ne suis pas satisfait du résultat ?</label></h3>
-        <p>On livre par itérations avec retours constants. Vous validez chaque étape. Pas de surprise, pas de livrable “jeté en prod sans votre accord”.</p>
-      </div>
-    </div>
-  </div>
-</section>
+                <div class="persona-card">
+                    <h3>Talents freelance</h3>
+                    <p>Vous cherchez un développeur senior de confiance ? On recommande uniquement des talents qu'on connaît et avec qui on a déjà travaillé.</p>
+                    <a href="/talent-freelance/" class="button primary">Découvrir nos talents</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="mds-cta-end">
         {{#if @custom.global_cta_url}}
         <div class="mds-cta">
-            <h2>On transforme votre idée en produit réel.<br/>
-      Prêt à commencer ?</h2>
+            <h2>Envie d'en parler ?</h2>
             <p>
-                Que vous soyez au stade de l’idée ou prêt à scaler,<br />
-                on a une offre pensée pour vous.
+                On ne fait pas de devis en 5 minutes. On prend le temps de comprendre<br />
+                votre projet pour vous proposer la bonne approche.
             </p>
             <p>
                 <a href="{{@custom.global_cta_url}}" class="button highlighted">{{@custom.global_cta_text}}</a>
@@ -170,7 +156,7 @@
             <p class='rate'>
                 <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
                 <span>
-                    +{{@custom.amount_of_project_done }} SaaS réalisés avec succès !
+                    +{{@custom.amount_of_project_done }} produits livrés avec succès !
                 </span>
             </p>
         </div>

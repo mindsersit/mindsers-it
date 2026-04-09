@@ -1,8 +1,8 @@
 routes:
     /:
         template: home
-    # /studio-saas/:
-    #     template: home-saas
+    /studio-saas/:
+        template: home-saas
     /studio-saas/landing-page/:
         template: pack-validation
     /studio-saas/mvp/:
