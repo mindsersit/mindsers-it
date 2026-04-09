@@ -27,9 +27,15 @@ body {
     }
 
     .mds-head {
-        background-color: colors.$background;
+        background-color: rgba(#121922, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         font-family: var(--gh-font-body, fonts.$sans);
         padding: 0 20px;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 
         .mds-container {
             display: flex;
@@ -87,9 +93,9 @@ body {
                             position: absolute;
                             display: flex;
                             background-color: colors.$background;
-                            border-radius: 5px;
+                            border-radius: 12px;
                             width: max-content;
-                            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+                            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.1);
                             margin: 5px 0;
                             display: none;
                             z-index: 1;
@@ -151,7 +157,7 @@ body {
                                             background: colors.$default_gradient;
                                             color: white;
                                             padding: 10px;
-                                            border-radius: 5px;
+                                            border-radius: 8px;
                                             display: inline-block;
                                             box-sizing: border-box;
                                             width: 200px;
@@ -329,13 +335,13 @@ body {
                     $color: colors.$neutral;
                     position: absolute;
                     background-color: colors.$background;
-                    border-radius: 3px;
+                    border-radius: 12px;
                     right: 0;
                     z-index: 4;
                     margin: 10px 0;
                     width: 200px;
                     display: none;
-                    box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+                    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.1);
 
                     &.menu-open {
                         display: block;
@@ -399,9 +405,10 @@ body {
         color: colors.$foreground;
         background-color: colors.$background;
         font-family: var(--gh-font-body, fonts.$sans);
-        padding: 30px;
-        margin-top: 30px;
+        padding: 40px 30px;
+        margin-top: 60px;
         font-size: 0.85em;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
 
         @media (max-width: 820px) {
             padding: 0;
@@ -421,6 +428,11 @@ body {
                 color: colors.$secondary;
                 text-decoration: none;
                 font-weight: normal;
+                transition: color 0.2s ease;
+
+                &:hover {
+                    color: colors.$foreground;
+                }
             }
 
             .mds-foot-menu {
@@ -496,7 +508,7 @@ body {
     input[type='email'] {
         padding: 10px 15px;
         border: 1px solid colors.$accent;
-        border-radius: 3px;
+        border-radius: 8px;
         margin: 5px 0;
         font-family: var(--gh-font-body, fonts.$sans);
         font-size: 1rem;
@@ -514,7 +526,7 @@ body {
             height: 12px;
             width: 12px;
             vertical-align: middle;
-            border-radius: 3px;
+            border-radius: 4px;
             background-color: colors.$background;
             line-height: 12px;
             text-align: center;
@@ -533,7 +545,7 @@ body {
         position: fixed;
         bottom: 10px;
         left: 10px;
-        border-radius: 3px;
+        border-radius: 12px;
         background-color: colors.$background;
         padding: 10px 20px;
         font-family: var(--gh-font-body, fonts.$sans);

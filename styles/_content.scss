@@ -93,7 +93,7 @@
             display: inline-block;
             background-color: rgba(colors.$secondary, 0.3);
             padding: 0 5px;
-            border-radius: 3px;
+            border-radius: 6px;
         }
 
         p {
@@ -104,7 +104,7 @@
         pre {
             background-color: colors.$foreground;
             color: $background-color;
-            border-radius: 3px;
+            border-radius: 8px;
             padding: 20px;
             margin: 30px;
             overflow-y: auto;
@@ -136,7 +136,7 @@
 
                 .kg-image {
                     width: 100%;
-                    border-radius: 3px;
+                    border-radius: 8px;
                     height: auto;
                 }
 
@@ -213,7 +213,7 @@
                     text-decoration: none;
                     border: 1px solid rgba(0, 0, 0, 0.1);
                     min-height: 150px;
-                    border-radius: 3px;
+                    border-radius: 8px;
 
                     &:hover {
                         text-decoration: none;
@@ -344,7 +344,7 @@
         .upgrade-cta {
             text-align: center;
             background: colors.$default_gradient;
-            border-radius: 3px;
+            border-radius: 16px;
             padding: 50px;
             margin: 40px 0;
             color: white;

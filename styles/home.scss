@@ -40,8 +40,13 @@
                 font-family: var(--gh-font-heading, fonts.$sans);
                 font-size: 3.5em;
                 font-weight: 900;
+                letter-spacing: -0.03em;
                 text-align: center;
                 margin: 40px 0 20px;
+                background: linear-gradient(135deg, colors.$foreground 0%, rgba(colors.$secondary, 0.7) 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
 
                 @media (max-width: 850px) {
                     font-size: 3em;
@@ -65,27 +70,39 @@
 
                 .rate {
                     display: flex;
-                    flex-direction: column;
-                    gap: 1px;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 6px;
                     font-size: small;
+                    opacity: 0.7;
 
                     .stars {
-                        font-size: large;
+                        color: colors.$accent;
                     }
                 }
             }
 
             .offer-links {
                 display: flex;
-                gap: 20px;
+                gap: 12px;
+                flex-wrap: wrap;
 
                 a {
                     color: colors.$secondary;
                     text-decoration: none;
-                    transition: all 0.3s ease-in-out;
+                    display: inline-block;
+                    font-size: 0.9em;
+                    font-weight: 500;
+                    padding: 6px 14px;
+                    border: 1px solid rgba(colors.$secondary, 0.3);
+                    border-radius: 100px;
+                    transition: all 0.2s ease;
 
                     &:hover {
                         color: colors.$foreground;
+                        border-color: rgba(colors.$foreground, 0.4);
+                        background: rgba(colors.$secondary, 0.1);
+                        transform: translateX(2px);
                     }
                 }
 
@@ -156,16 +173,23 @@
 
             .pricing-option {
                 text-align: left;
-                border: 3px solid white;
-                border-radius: 10px;
-                padding: 10px 20px;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                border-radius: 16px;
+                padding: 24px 28px;
                 max-width: 350px;
                 background-color: white;
                 color: colors.$background;
                 display: flex;
                 flex-direction: column;
-                gap: 10px;
+                gap: 12px;
                 justify-content: space-between;
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+                &:hover {
+                    transform: translateY(-4px);
+                    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1);
+                }
 
                 h3 {
                     font-family: var(--gh-font-heading, fonts.$sans);
@@ -262,7 +286,7 @@
             .card {
                 border: 5px solid gray;
                 padding: 10px;
-                border-radius: 10px;
+                border-radius: 16px;
                 min-width: 100px;
                 text-align: center;
 
@@ -293,14 +317,22 @@
             .persona-card {
                 background-color: colors.$foreground;
                 color: colors.$background;
-                border-radius: 10px;
-                padding: 10px 20px;
+                border-radius: 16px;
+                padding: 24px 28px;
                 max-width: 350px;
                 text-align: center;
                 display: flex;
                 flex-direction: column;
-                gap: 10px;
+                gap: 12px;
                 justify-content: space-between;
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+
+                &:hover {
+                    transform: translateY(-4px);
+                    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1);
+                }
 
                 @media (max-width: 1024px) {
                     max-width: 650px;
@@ -321,21 +353,39 @@
     }
 
     .mds-cta-end {
-        margin: 50px;
+        margin: 80px 20px;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 20px;
         justify-content: center;
         text-align: center;
+
+        .mds-cta {
+            padding: 60px 40px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(colors.$secondary, 0.08) 0%, rgba(colors.$secondary, 0.02) 100%);
+            border: 1px solid rgba(colors.$secondary, 0.12);
+            max-width: 680px;
+            width: 100%;
+
+            h2 {
+                font-size: 2rem;
+                letter-spacing: -0.02em;
+                margin: 0 0 12px;
+            }
+
+            @media (max-width: 550px) {
+                padding: 40px 24px;
+            }
+        }
     }
 
     .key-points {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 50px;
-        margin: 50px auto;
+        gap: 24px;
         margin: 0;
         padding: 0;
 
@@ -347,45 +397,57 @@
             gap: 10px;
             text-align: center;
             max-width: 250px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 28px 20px;
 
             svg {
-                height: 150px;
-                width: 150px;
+                height: 100px;
+                width: 100px;
             }
         }
     }
 
     .mds-testimonials .mds-container {
+        max-width: 720px;
+
         .review {
-            font-family: Georgia, 'Times New Roman', Times, serif;
-            font-size: 1.5em;
+            font-family: var(--gh-font-body, fonts.$sans);
+            font-size: 1.4em;
+            font-style: italic;
+            font-weight: 300;
+            line-height: 1.6;
+            position: relative;
+            padding-left: 24px;
+            border-left: 3px solid colors.$accent;
 
-            &::before {
-                content: '“';
-                font-size: 2em;
-                line-height: 20px;
-            }
-
+            &::before,
             &::after {
-                content: '”';
+                content: none;
             }
         }
 
         .footer {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            margin-top: 24px;
 
             img {
-                width: 50px;
-                height: 50px;
-                border-radius: 50px;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
             }
 
             .author {
                 font-family: fonts.$sans;
                 display: flex;
                 flex-direction: column;
+                gap: 2px;
+
+                .fullname {
+                    font-weight: 600;
+                }
 
                 .title {
                     font-size: 0.8em;
@@ -398,7 +460,7 @@
     .mds-customers .mds-container {
         display: flex;
         flex-direction: column;
-        margin: 100px 0;
+        margin: 60px 0;
         overflow: hidden;
         width: 100%;
         max-width: none;
@@ -505,12 +567,30 @@
             .faq-item {
                 background-color: colors.$foreground;
                 color: colors.$background;
-                padding: 10px 20px;
-                border-radius: 10px;
+                padding: 16px 24px;
+                border-radius: 16px;
                 transition: all 0.3s ease-in-out;
 
-                label {
-                    cursor: pointer;
+                h3 {
+                    position: relative;
+                    padding-right: 32px;
+
+                    label {
+                        cursor: pointer;
+
+                        &::after {
+                            content: '+';
+                            position: absolute;
+                            right: 0;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            font-size: 1.4em;
+                            font-weight: 300;
+                            line-height: 1;
+                            opacity: 0.5;
+                            transition: transform 0.2s ease;
+                        }
+                    }
                 }
 
                 p,
@@ -520,6 +600,10 @@
 
                 input[type='checkbox'] {
                     display: none;
+                }
+
+                input[type='checkbox']:checked ~ h3 label::after {
+                    content: '−';
                 }
 
                 input[type='checkbox']:checked ~ p,

@@ -25,9 +25,13 @@
             .section-type {
                 text-align: left;
                 margin: 40px 0 0 0;
-                color: colors.$secondary;
+                color: colors.$accent;
             }
         }
+    }
+
+    &.mds-talent .mds-header .mds-container .presentation .mds-title {
+        text-align: center;
     }
 
     .mds-process .mds-container {
@@ -41,7 +45,7 @@
             gap: 40px;
 
             .step {
-                $badgeSize: 60px;
+                $badgeSize: 48px;
                 width: calc(50% + $badgeSize / 2);
                 counter-increment: step;
                 display: flex;
@@ -51,14 +55,17 @@
                 &:before {
                     display: inline-flex;
                     content: counter(step);
-                    border: 1px solid colors.$foreground;
+                    background: colors.$default_gradient;
+                    color: white;
                     width: $badgeSize;
                     height: $badgeSize;
                     border-radius: 100%;
                     justify-content: center;
                     align-items: center;
-                    font-size: 2.5rem;
-                    flex: 1 0 $badgeSize;
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    flex: 0 0 $badgeSize;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
                 }
 
                 &:nth-child(even) {
@@ -95,12 +102,15 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            align-items: center;
-            gap: 60px;
+            align-items: stretch;
+            gap: 24px;
             margin: 40px 0;
 
             & > li {
                 max-width: 28%;
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 16px;
+                padding: 24px;
 
                 @media (max-width: 1024px) {
                     max-width: unset;
@@ -121,10 +131,17 @@
 
         .versus {
             display: inline-flex;
-            gap: 50px;
+            gap: 24px;
             text-align: left;
             width: max-content;
             margin: auto;
+
+            > * {
+                background: rgba(255, 255, 255, 0.04);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 16px;
+                padding: 24px;
+            }
 
             p {
                 text-align: left;
