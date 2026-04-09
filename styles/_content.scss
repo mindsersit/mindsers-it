@@ -103,7 +103,7 @@
 
         pre {
             background-color: colors.$foreground;
-            color: $background-color;
+            color: colors.$background;
             border-radius: 8px;
             padding: 20px;
             margin: 30px;
@@ -419,6 +419,74 @@
 
         .thanks-cta {
             font-style: italic;
+        }
+    }
+}
+
+.mds-page {
+    .mds-canvas {
+        max-width: 720px;
+        padding: 60px 20px 80px;
+
+        @media (max-width: 550px) {
+            padding: 40px 20px 60px;
+        }
+    }
+
+    > .mds-canvas > h1 {
+        font-family: var(--gh-font-heading, fonts.$sans);
+        font-size: 2.5rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin: 0 0 16px;
+
+        @media (max-width: 550px) {
+            font-size: 2rem;
+        }
+    }
+
+    .mds-content {
+        font-family: var(--gh-font-body, fonts.$sans);
+        font-size: 0.95rem;
+        line-height: 1.7;
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-top: 48px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-top: 32px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            margin: 12px 0;
+            opacity: 0.85;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 12px 0;
+
+            li {
+                margin: 6px 0;
+                opacity: 0.85;
+            }
+        }
+
+        a {
+            color: colors.$accent;
+        }
+
+        strong {
+            font-weight: 600;
         }
     }
 }
