@@ -1,0 +1,312 @@
+{{!< default}}
+
+{{#contentFor 'htmlLang'}}{{@site.locale}}{{/contentFor}}
+
+{{#contentFor 'activityClass'}}mds-shopify{{/contentFor}}
+
+{{#contentFor 'styles'}}
+<link rel="stylesheet" type="text/css" href="{{asset "css/landing.css"}}" />
+{{/contentFor}}
+
+{{#contentFor 'title'}}{{meta_title}} - Lancez votre boutique Shopify clé en main en 3 semaines !{{/contentFor}}
+
+<div class="mds-home mds-landing-page">
+    <header class="mds-header">
+        <div class="mds-container">
+            <div class="presentation">
+                <div class="section-type">Boutique Basique</div>
+                <h1 class="mds-title">
+                    Votre boutique e-commerce professionnelle en ligne en 3 semaines.
+                </h1>
+                <p>
+                    Vous avez des produits à vendre ? On créé votre site Shopify complet avec design personnalisé, paiements configurés et tous vos produits intégrés. Prêt à vendre dès la mise en ligne.
+                </p>
+                {{#if @custom.global_cta_url}}
+                <div class="mds-cta">
+                    <p>
+                        <a href="{{@custom.global_cta_url}}" class="button primary">Lancer ma boutique</a>
+                    </p>
+                    <p class='rate'>
+                        <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
+                        <span>
+                            +{{@custom.amount_of_ecommerce_websites_done }} boutiques e-commerce créées !
+                        </span>
+                    </p>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+    </header>
+
+    {{> "ui/customer-logos"}}
+
+    <section class="mds-section problem-section accent">
+        <div class="mds-container">
+            <div class="section-type">Votre problème</div>
+            <h2 class="section-title">
+                Créer une boutique e-commerce... c'est plus compliqué qu'il n'y paraît.
+            </h2>
+            <p>
+                Vous avez de super produits. Vos clients adorent ce que vous faites.<br/>
+                Mais vendre en ligne, c'est un autre métier. Et vous n'avez pas le temps d'apprendre.
+            </p>
+            <ul class="key-points">
+            <li>
+                <h3 class="font-semibold text-lg mb-2">❌ Trop de choix techniques, pas assez de clarté</h3>
+                <p>
+                    WooCommerce, Shopify, Prestashop... Chacun vous dit que sa solution est la meilleure. Vous ne savez plus où donner de la tête.
+                </p>
+            </li>
+            <li>
+                <h3 class="font-semibold text-lg mb-2">❌ Les thèmes gratuits font amateur</h3>
+                <p>
+                    Vos concurrents ont tous le même template basique. Vous voulez quelque chose de professionnel qui vous démarque.
+                </p>
+            </li>
+            <li>
+                <h3 class="font-semibold text-lg mb-2">❌ Configuration des paiements = casse-tête</h3>
+                <p>
+                    Stripe, PayPal, frais, sécurité, conformité... Une jungle technique que vous préférez éviter.
+                </p>
+            </li>
+            </ul>
+
+            <p>
+                Ce qu'il vous faut ? Une boutique professionnelle, clé en main,<br/>
+                qui vous ressemble et qui convertit — sans vous prendre la tête.
+            </p>
+        </div>
+    </section>
+
+    <section class="mds-section mds-solution">
+        <div class="mds-container">
+            <div class="section-type">Notre approche</div>
+            <h2 class="section-title">
+                Une boutique Shopify sur-mesure, prête à vendre, livrée en 3 semaines.
+            </h2>
+            <p>
+                On s'occupe de tout : design, développement, configuration, intégration de vos produits.<br/>
+                Vous vous concentrez sur votre métier, nous sur le vôtre e-commerce.
+            </p>
+
+            <ul class="key-points">
+                <li>
+                    {{> "images/design"}}
+                    <h3 class="font-semibold text-lg mb-2">Design personnalisé qui vous ressemble</h3>
+                    <p>
+                        Pas de template générique. On adapte le design à votre identité, vos produits et votre clientèle. Responsive et moderne.
+                    </p>
+                </li>
+                <li>
+                    {{> "images/techno"}}
+                    <h3 class="font-semibold text-lg mb-2">Configuration technique complète</h3>
+                    <p>
+                        Paiements sécurisés, gestion des stocks, livraisons, taxes... Tout est configuré pour que vous puissiez vendre immédiatement.
+                    </p>
+                </li>
+                <li>
+                    {{> "images/solution"}}
+                    <h3 class="font-semibold text-lg mb-2">Intégration de vos produits</h3>
+                    <p>
+                        On importe tous vos produits, photos, descriptions. Votre catalogue complet est prêt dès l'ouverture.
+                    </p>
+                </li>
+                <li>
+                    {{> "images/data"}}
+                    <h3 class="font-semibold text-lg mb-2">Formation et prise en main</h3>
+                    <p>
+                        On vous forme à la gestion quotidienne : ajouter des produits, traiter les commandes, suivre vos ventes.
+                    </p>
+                </li>
+            </ul>
+
+            <p>
+                <strong>Résultat :</strong> Une boutique professionnelle qui inspire confiance et génère des ventes dès le premier jour.
+            </p>
+            <p>
+                <a href="{{@custom.global_cta_url}}" class="button primary">
+                    Discutons de votre projet
+                </a>
+            </p>
+        </div>
+    </section>
+
+    {{> "ui/method" activity="shopify"}}
+
+    <section class="mds-section mds-process">
+        <div class="mds-container">
+            <div class="section-type">Notre méthodologie</div>
+            <h2 class="section-title">
+                Votre boutique en ligne en 4 étapes simples
+            </h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="body">
+                        <h3>Audit de vos besoins et brief créatif</h3>
+                        <p>
+                            On analyse vos produits, votre clientèle, vos objectifs. On définit ensemble l'identité visuelle et les fonctionnalités essentielles.
+                        </p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="body">
+                        <h3>Design et validation des maquettes</h3>
+                        <p>
+                            Création du design personnalisé : page d'accueil, fiches produits, tunnel de commande. Vous validez avant développement.
+                        </p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="body">
+                        <h3>Développement et configuration Shopify</h3>
+                        <p>
+                            Intégration du design sur Shopify, configuration des paiements, livraisons, taxes. Import et optimisation de votre catalogue.
+                        </p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="body">
+                        <h3>Formation et mise en ligne</h3>
+                        <p>
+                            Tests complets, formation à l'administration, mise en ligne sur votre domaine. Votre boutique est opérationnelle !
+                        </p>
+                    </div>
+                </div>
+        </div>
+    </section>
+
+    <section class="mds-section offer-section accent">
+        <div class="mds-container">
+            <div class="section-type">Budget & tarifs</div>
+            <h2 class="section-title">
+                Une boutique professionnelle sans surprise
+            </h2>
+            <div class="pricing-options detailed">
+                <div class="pricing-option">
+                    <div class="body">
+                        <h3>Boutique Basique</h3>
+                        <p>
+                            Tout ce qu'il faut pour commencer à vendre en ligne avec une boutique professionnelle.<br/>
+                            Design personnalisé, paiements configurés, produits intégrés.
+                        </p>
+                        <p class="price">4 000€ - 7 000€</p>
+                        <p class="price-mentions">Prix final selon nombre de produits et complexité</p>
+                        <hr>
+                        <div>
+                            <h4 class="text-sm uppercase font-semibold mb-2">Ce qui est inclus :</h4>
+                            <ul>
+                                <li>- Design personnalisé responsive (desktop + mobile)</li>
+                                <li>- Configuration complète Shopify (paiements, livraisons, taxes)</li>
+                                <li>- Intégration jusqu'à 50 produits avec photos et descriptions</li>
+                                <li>- Pages essentielles (accueil, contact, CGV, mentions légales)</li>
+                                <li>- Optimisation SEO de base</li>
+                                <li>- Formation à la gestion de la boutique (2h)</li>
+                                <li>- 1 mois de support technique inclus</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="{{@custom.global_cta_url}}" class="button highlighted">Démarrer mon projet</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    {{> "ui/team" dark="true"}}
+
+    <section class="mds-section faq-section accent">
+        <div class="mds-container">
+            <div class="section-type">FAQ</div>
+            <h2 class="section-title">
+                Questions fréquentes sur la boutique basique
+            </h2>
+
+            <div class="faq-items">
+                <div class="faq-item">
+                    <input type="checkbox" id="faq1" class="faq-toggle" />
+                    <h3><label for="faq1">Pourquoi Shopify plutôt qu'une autre solution ?</label></h3>
+                    <p>
+                       Shopify est la plateforme e-commerce la plus simple à utiliser au quotidien. Mise à jour automatique, sécurité incluse, assistance 24/7. Vous vous concentrez sur vos ventes, pas sur la technique.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq2" class="faq-toggle" />
+                    <h3><label for="faq2">Combien de produits puis-je avoir sur ma boutique ?</label></h3>
+                    <p>
+                        Autant que vous voulez ! L'intégration de base inclut jusqu'à 50 produits. Au-delà, comptez 10€ par produit supplémentaire pour l'intégration.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq3" class="faq-toggle" />
+                    <h3><label for="faq3">Est-ce que je peux modifier ma boutique après livraison ?</label></h3>
+                    <p>
+                        Bien sûr ! On vous forme à l'administration. Vous pourrez ajouter des produits, modifier les textes, ajuster les prix. Pour des changements de design importants, on reste disponibles.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq4" class="faq-toggle" />
+                    <h3><label for="faq4">Quels moyens de paiement seront disponibles ?</label></h3>
+                    <p>
+                        Carte bancaire (Visa, Mastercard), PayPal, Apple Pay, Google Pay. On configure tout selon vos préférences et votre marché.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq5" class="faq-toggle" />
+                    <h3><label for="faq5">Y a-t-il des frais mensuels ?</label></h3>
+                    <p>
+                        Shopify facture 29€/mois pour l'hébergement et les fonctionnalités. Les frais de transaction varient selon votre volume (1,9% à 2,9% par vente).
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq6" class="faq-toggle" />
+                    <h3><label for="faq6">Ma boutique sera-t-elle optimisée pour mobile ?</label></h3>
+                    <p>
+                        Absolument. Plus de 70% des achats se font sur mobile. Votre boutique sera parfaitement adaptée à tous les écrans.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq7" class="faq-toggle" />
+                    <h3><label for="faq7">Proposez-vous un accompagnement après la livraison ?</label></h3>
+                    <p>
+                        Oui ! Support technique inclus pendant 1 mois. Ensuite, nous proposons des formules de maintenance à partir de 100€/mois si vous souhaitez être accompagné.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq8" class="faq-toggle" />
+                    <h3><label for="faq8">Et si j'ai besoin de fonctionnalités plus avancées plus tard ?</label></h3>
+                    <p>
+                        Pas de problème ! Votre boutique peut évoluer. On peut ajouter des fonctionnalités, intégrer des outils marketing, ou passer sur notre offre "Solution Personnalisée".
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mds-cta-end">
+        {{#if @custom.global_cta_url}}
+        <div class="mds-cta">
+            <h2>Prêt à lancer votre boutique e-commerce ?</h2>
+            <p>
+                Discutons de vos produits et de vos objectifs.<br/>
+                Votre boutique professionnelle en ligne dans 3 semaines.
+            </p>
+            <p>
+                <a href="{{@custom.global_cta_url}}" class="button highlighted">{{@custom.global_cta_text}}</a>
+            </p>
+            <p class='rate'>
+                <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
+                <span>
+                    +{{@custom.amount_of_ecommerce_websites_done }} boutiques e-commerce créées avec succès !
+                </span>
+            </p>
+        </div>
+        {{/if}}
+    </section>
+</div>

@@ -1,0 +1,350 @@
+{{!< default}}
+
+{{#contentFor 'htmlLang'}}{{@site.locale}}{{/contentFor}}
+
+{{#contentFor 'activityClass'}}mds-shopify{{/contentFor}}
+
+{{#contentFor 'styles'}}
+<link rel="stylesheet" type="text/css" href="{{asset "css/landing.css"}}" />
+{{/contentFor}}
+
+{{#contentFor 'title'}}{{meta_title}} - E-commerce Shopify sur-mesure : fonctionnalités avancées et intégrations{{/contentFor}}
+
+<div class="mds-home mds-landing-page">
+    <header class="mds-header">
+        <div class="mds-container">
+            <div class="presentation">
+                <div class="section-type">Solution Personnalisée</div>
+                <h1 class="mds-title">
+                    Votre e-commerce Shopify sur-mesure avec les fonctionnalités qui font la différence.
+                </h1>
+                <p>
+                    Votre business a des spécificités ? Nous développons la solution e-commerce qui s'adapte parfaitement à votre modèle : fonctionnalités custom, intégrations tierces, multilingue.
+                </p>
+                {{#if @custom.global_cta_url}}
+                <div class="mds-cta">
+                    <p>
+                        <a href="{{@custom.global_cta_url}}" class="button primary">Voir les possibilités</a>
+                    </p>
+                    <p class='rate'>
+                        <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
+                        <span>
+                            +{{@custom.amount_of_ecommerce_websites_done }} solutions e-commerce personnalisées !
+                        </span>
+                    </p>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+    </header>
+
+    {{> "ui/customer-logos"}}
+
+    <section class="mds-section problem-section accent">
+        <div class="mds-container">
+            <div class="section-type">Votre problème</div>
+            <h2 class="section-title">
+                Les solutions standard ne collent pas à votre business.
+            </h2>
+            <p>
+                Votre activité décolle. Vous avez des processus spécifiques, des besoins particuliers.<br/>
+                Mais les thèmes classiques vous limitent au lieu de vous faire grandir.
+            </p>
+            <ul class="key-points">
+            <li>
+                <h3 class="font-semibold text-lg mb-2">❌ Votre modèle économique sort des sentiers battus</h3>
+                <p>
+                    Abonnements, vente B2B, configurateur produit, devis en ligne... Les thèmes standards ne savent pas gérer ça.
+                </p>
+            </li>
+            <li>
+                <h3 class="font-semibold text-lg mb-2">❌ Vous devez vous intégrer à vos outils existants</h3>
+                <p>
+                    ERP, CRM, logistique, comptabilité... Vos systèmes doivent communiquer avec votre e-commerce.
+                </p>
+            </li>
+            <li>
+                <h3 class="font-semibold text-lg mb-2">❌ Vous visez l'international et le multilingue</h3>
+                <p>
+                    Devises multiples, traductions, spécificités locales... Il vous faut une solution qui scale globalement.
+                </p>
+            </li>
+            </ul>
+
+            <p>
+                Ce qu'il vous faut ? Une solution pensée pour <strong>votre</strong> business,<br/>
+                qui grandit avec vous et s'adapte à vos évolutions.
+            </p>
+        </div>
+    </section>
+
+    <section class="mds-section mds-solution">
+        <div class="mds-container">
+            <div class="section-type">Notre approche</div>
+            <h2 class="section-title">
+                Développement sur-mesure pour un e-commerce qui vous ressemble.
+            </h2>
+            <p>
+                On part de vos besoins réels, pas d'un template générique.<br/>
+                Fonctionnalités custom, intégrations tierces, design unique : votre e-commerce devient votre avantage concurrentiel.
+            </p>
+
+            <ul class="key-points">
+                <li>
+                    {{> "images/solution"}}
+                    <h3 class="font-semibold text-lg mb-2">Audit fonctionnel approfondi</h3>
+                    <p>
+                        On analyse vos processus métier, vos outils existants, vos objectifs. On conçoit la solution technique optimale.
+                    </p>
+                </li>
+                <li>
+                    {{> "images/techno"}}
+                    <h3 class="font-semibold text-lg mb-2">Développement de fonctionnalités avancées</h3>
+                    <p>
+                        Configurateur produit, espace client B2B, système d'abonnements... On développe ce qui n'existe pas sur étagère.
+                    </p>
+                </li>
+                <li>
+                    {{> "images/data"}}
+                    <h3 class="font-semibold text-lg mb-2">Intégrations avec vos systèmes</h3>
+                    <p>
+                        Synchronisation automatique avec votre ERP, CRM, outils logistiques. Vos données circulent sans friction.
+                    </p>
+                </li>
+                <li>
+                    {{> "images/design"}}
+                    <h3 class="font-semibold text-lg mb-2">Design sur-mesure et multilingue</h3>
+                    <p>
+                        Interface unique qui renforce votre marque. Support multilingue et multi-devises pour l'international.
+                    </p>
+                </li>
+            </ul>
+
+            <p>
+                <strong>Résultat :</strong> Un e-commerce qui s'adapte à vous, pas l'inverse. Performance et différenciation garanties.
+            </p>
+            <p>
+                <a href="{{@custom.global_cta_url}}" class="button primary">
+                    Étudions votre projet
+                </a>
+            </p>
+        </div>
+    </section>
+
+    {{> "ui/method" activity="shopify"}}
+
+    <section class="mds-section mds-process">
+        <div class="mds-container">
+            <div class="section-type">Notre méthodologie</div>
+            <h2 class="section-title">
+                Du cahier des charges à la mise en production en 6 étapes
+            </h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="body">
+                        <h3>Audit & spécifications techniques</h3>
+                        <p>
+                            Analyse de vos besoins, contraintes techniques, intégrations nécessaires. Rédaction du cahier des charges détaillé.
+                        </p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="body">
+                        <h3>Architecture & wireframes</h3>
+                        <p>
+                            Conception de l'architecture technique et des parcours utilisateurs. Validation des mockups fonctionnels.
+                        </p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="body">
+                        <h3>Design UX/UI personnalisé</h3>
+                        <p>
+                            Création du design sur-mesure : identité visuelle, interfaces, expérience utilisateur optimisée pour vos objectifs.
+                        </p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="body">
+                        <h3>Développement des fonctionnalités</h3>
+                        <p>
+                            Codage des fonctionnalités custom, développement des intégrations, configuration avancée de Shopify.
+                        </p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="body">
+                        <h3>Tests & intégration des données</h3>
+                        <p>
+                            Tests complets, import de vos données, configuration des intégrations avec vos outils existants.
+                        </p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="body">
+                        <h3>Formation & mise en production</h3>
+                        <p>
+                            Formation de vos équipes, optimisation SEO, mise en ligne progressive, support au lancement.
+                        </p>
+                    </div>
+                </div>
+        </div>
+    </section>
+
+    <section class="mds-section offer-section accent">
+        <div class="mds-container">
+            <div class="section-type">Budget & tarifs</div>
+            <h2 class="section-title">
+                Un investissement adapté à vos ambitions
+            </h2>
+            <div class="pricing-options detailed">
+                <div class="pricing-option">
+                    <div class="body">
+                        <h3>Solution Personnalisée</h3>
+                        <p>
+                            E-commerce sur-mesure avec fonctionnalités avancées et intégrations spécifiques.<br/>
+                            Chaque projet est unique, le prix s'adapte à vos besoins réels.
+                        </p>
+                        <p class="price">8 000€ - 30 000€</p>
+                        <p class="price-mentions">Devis personnalisé selon complexité et intégrations</p>
+                        <hr>
+                        <div>
+                            <h4 class="text-sm uppercase font-semibold mb-2">Exemples de fonctionnalités incluses :</h4>
+                            <ul>
+                                <li><strong>Fonctionnalités métier :</strong></li>
+                                <ul>
+                                    <li>- Configurateur de produits avancé</li>
+                                    <li>- Gestion B2B (prix par client, catalogues privés)</li>
+                                    <li>- Système d'abonnements ou location</li>
+                                    <li>- Module de devis en ligne</li>
+                                </ul>
+
+                                <li class="mt-3"><strong>Intégrations tierces :</strong></li>
+                                <ul>
+                                    <li>- Connexion ERP/CRM (Sage, Odoo, HubSpot...)</li>
+                                    <li>- Synchronisation stocks et commandes</li>
+                                    <li>- Outils marketing (Mailchimp, Klaviyo...)</li>
+                                    <li>- Solutions logistiques spécialisées</li>
+                                </ul>
+
+                                <li class="mt-3"><strong>International :</strong></li>
+                                <ul>
+                                    <li>- Site multilingue (jusqu'à 5 langues)</li>
+                                    <li>- Multi-devises avec taux de change</li>
+                                    <li>- Adaptations réglementaires par pays</li>
+                                </ul>
+
+                                <li class="mt-3"><strong>Performance & évolutivité :</strong></li>
+                                <ul>
+                                    <li>- Optimisation pour gros catalogues (1000+ produits)</li>
+                                    <li>- Cache et optimisations de performance</li>
+                                    <li>- Formation équipe et documentation technique</li>
+                                </ul>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="{{@custom.global_cta_url}}" class="button highlighted">Demander un devis</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    {{> "ui/team" dark="true"}}
+
+    <section class="mds-section faq-section accent">
+        <div class="mds-container">
+            <div class="section-type">FAQ</div>
+            <h2 class="section-title">
+                Questions fréquentes sur les solutions personnalisées
+            </h2>
+
+            <div class="faq-items">
+                <div class="faq-item">
+                    <input type="checkbox" id="faq1" class="faq-toggle" />
+                    <h3><label for="faq1">Comment définissez-vous le périmètre et le prix de mon projet ?</label></h3>
+                    <p>
+                       Nous commençons par un audit détaillé de vos besoins. Ensuite, nous établissons un cahier des charges précis avec devis fixe. Pas de surprise en cours de route.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq2" class="faq-toggle" />
+                    <h3><label for="faq2">Combien de temps prend le développement d'une solution personnalisée ?</label></h3>
+                    <p>
+                        Entre 1 et 3 mois selon la complexité. Les projets simples (personnalisation de thème + 1-2 intégrations) prennent 4-6 semaines. Les projets complexes peuvent aller jusqu'à 3 mois.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq3" class="faq-toggle" />
+                    <h3><label for="faq3">Quels types d'intégrations pouvez-vous réaliser ?</label></h3>
+                    <p>
+                        ERP (Sage, Odoo, NetSuite), CRM (Salesforce, HubSpot), logistique (Colissimo, Chronopost), marketing (Klaviyo, Mailchimp), PIM, outils métier spécialisés. Si ça a une API, on peut l'intégrer.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq4" class="faq-toggle" />
+                    <h3><label for="faq4">Ma solution sera-t-elle évolutive ?</label></h3>
+                    <p>
+                        Absolument. On développe en pensant aux évolutions futures. Code documenté, architecture modulaire, et nous restons disponibles pour les améliorations.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq5" class="faq-toggle" />
+                    <h3><label for="faq5">Proposez-vous la maintenance après livraison ?</label></h3>
+                    <p>
+                        Oui ! Maintenance corrective (100€/mois) et support technique avancé (1100-1500€/mois) avec 15h d'accompagnement mensuel pour les évolutions.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq6" class="faq-toggle" />
+                    <h3><label for="faq6">Pouvez-vous reprendre un projet Shopify existant ?</label></h3>
+                    <p>
+                        Oui, nous réalisons souvent des refontes ou ajouts de fonctionnalités sur des sites existants. Audit de l'existant inclus pour optimiser les évolutions.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq7" class="faq-toggle" />
+                    <h3><label for="faq7">Travaillez-vous avec Shopify Plus ?</label></h3>
+                    <p>
+                        Oui ! Pour les gros volumes (>500k€ CA/an), Shopify Plus offre plus de flexibilité. Nous maîtrisons ses spécificités : Scripts, Flow, Launchpad...
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq8" class="faq-toggle" />
+                    <h3><label for="faq8">Et si mon besoin évolue en cours de projet ?</label></h3>
+                    <p>
+                        Notre méthode agile permet d'ajuster. Changements mineurs inclus, évolutions importantes évaluées et chiffrées séparément avec votre accord.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mds-cta-end">
+        {{#if @custom.global_cta_url}}
+        <div class="mds-cta">
+            <h2>Votre e-commerce sur-mesure vous attend.</h2>
+            <p>
+                Discutons de vos spécificités métier et concevons ensemble<br/>
+                la solution qui vous donnera un avantage concurrentiel.
+            </p>
+            <p>
+                <a href="{{@custom.global_cta_url}}" class="button highlighted">{{@custom.global_cta_text}}</a>
+            </p>
+            <p class='rate'>
+                <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
+                <span>
+                    +{{@custom.amount_of_ecommerce_websites_done }} solutions e-commerce personnalisées !
+                </span>
+            </p>
+        </div>
+        {{/if}}
+    </section>
+</div>

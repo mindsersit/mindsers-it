@@ -97,6 +97,11 @@
         "type": "text",
         "default": "3",
         "group": "homepage"
+      },
+      "amount_of_ecommerce_websites_done": {
+        "type": "text",
+        "default": "4",
+        "group": "homepage"
       }
     },
     "card_assets": true

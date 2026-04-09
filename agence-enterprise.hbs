@@ -1,0 +1,384 @@
+{{!< default}}
+
+{{#contentFor 'htmlLang'}}{{@site.locale}}{{/contentFor}}
+
+{{#contentFor 'activityClass'}}mds-shopify{{/contentFor}}
+
+{{#contentFor 'styles'}}
+<link rel="stylesheet" type="text/css" href="{{asset "css/landing.css"}}" />
+{{/contentFor}}
+
+{{#contentFor 'title'}}{{meta_title}} - Architecture e-commerce enterprise : Shopify headless, ERP, performance{{/contentFor}}
+
+<div class="mds-home mds-landing-page">
+    <header class="mds-header">
+        <div class="mds-container">
+            <div class="presentation">
+                <div class="section-type">Architecture Enterprise</div>
+                <h1 class="mds-title">
+                    Architecture e-commerce enterprise qui scale avec vos ambitions internationales.
+                </h1>
+                <p>
+                    Votre croissance exige une infrastructure technique robuste ? Nous concevons des plateformes e-commerce haute performance : Shopify headless, intégrations ERP complexes, multimarket.
+                </p>
+                {{#if @custom.global_cta_url}}
+                <div class="mds-cta">
+                    <p>
+                        <a href="{{@custom.global_cta_url}}" class="button primary">Étudier votre architecture</a>
+                    </p>
+                    <p class='rate'>
+                        <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
+                        <span>
+                            +{{@custom.amount_of_ecommerce_websites_done }} plateformes enterprise développées !
+                        </span>
+                    </p>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+    </header>
+
+    {{> "ui/customer-logos"}}
+
+    <section class="mds-section problem-section accent">
+        <div class="mds-container">
+            <div class="section-type">Votre défi</div>
+            <h2 class="section-title">
+                Votre croissance dépasse les limites de votre infrastructure actuelle.
+            </h2>
+            <p>
+                Vous gérez des millions d'euros de CA, plusieurs marchés, des milliers de références.<br/>
+                Votre plateforme e-commerce doit suivre le rythme de votre expansion.
+            </p>
+            <ul class="key-points">
+            <li>
+                <h3 class="font-semibold text-lg mb-2">⚠️ Performance dégradée avec les gros volumes</h3>
+                <p>
+                    Site lent, pics de charge mal gérés, expérience utilisateur qui se dégrade avec la croissance. Vos ventes en pâtissent.
+                </p>
+            </li>
+            <li>
+                <h3 class="font-semibold text-lg mb-2">⚠️ Silos de données et process manuels</h3>
+                <p>
+                    ERP, CRM, WMS, comptabilité... Vos systèmes ne communiquent pas. Ressaisies, erreurs, temps perdu.
+                </p>
+            </li>
+            <li>
+                <h3 class="font-semibold text-lg mb-2">⚠️ Complexité internationale mal maîtrisée</h3>
+                <p>
+                    Devises, langues, réglementations, logistique... Chaque nouveau marché devient un casse-tête technique.
+                </p>
+            </li>
+            </ul>
+
+            <p>
+                Ce qu'il vous faut ? Une architecture pensée pour l'enterprise,<br/>
+                qui transforme la complexité en avantage concurrentiel.
+            </p>
+        </div>
+    </section>
+
+    <section class="mds-section mds-solution">
+        <div class="mds-container">
+            <div class="section-type">Notre expertise</div>
+            <h2 class="section-title">
+                Architecture e-commerce enterprise : performance, intégration, scalabilité.
+            </h2>
+            <p>
+                Nous concevons des plateformes e-commerce qui accompagnent votre croissance.<br/>
+                Technologies modernes, intégrations robustes, performance optimisée pour les gros volumes.
+            </p>
+
+            <ul class="key-points">
+                <li>
+                    {{> "images/techno"}}
+                    <h3 class="font-semibold text-lg mb-2">Architecture headless haute performance</h3>
+                    <p>
+                        Shopify Plus en headless avec frontend React/Next.js. Performance maximale, flexibilité totale, expérience utilisateur sur-mesure.
+                    </p>
+                </li>
+                <li>
+                    {{> "images/data"}}
+                    <h3 class="font-semibold text-lg mb-2">Intégrations ERP et systèmes complexes</h3>
+                    <p>
+                        Synchronisation temps réel avec SAP, Oracle, NetSuite. Workflows automatisés, données cohérentes, zéro ressaisie.
+                    </p>
+                </li>
+                <li>
+                    {{> "images/solution"}}
+                    <h3 class="font-semibold text-lg mb-2">Plateforme multimarket et multilingue</h3>
+                    <p>
+                        Architecture technique pour gérer plusieurs pays, devises, catalogues, réglementations depuis une seule interface.
+                    </p>
+                </li>
+                <li>
+                    {{> "images/delivery"}}
+                    <h3 class="font-semibold text-lg mb-2">Optimisation performance et monitoring</h3>
+                    <p>
+                        CDN global, cache intelligent, monitoring temps réel. Votre site reste rapide même sur les pics de trafic.
+                    </p>
+                </li>
+            </ul>
+
+            <p>
+                <strong>Résultat :</strong> Une infrastructure qui grandit avec vous et transforme la complexité en efficacité opérationnelle.
+            </p>
+            <p>
+                <a href="{{@custom.global_cta_url}}" class="button primary">
+                    Auditer votre infrastructure
+                </a>
+            </p>
+        </div>
+    </section>
+
+    {{> "ui/method" activity="shopify"}}
+
+    <section class="mds-section mds-process">
+        <div class="mds-container">
+            <div class="section-type">Notre méthodologie</div>
+            <h2 class="section-title">
+                De l'audit technique à la mise en production enterprise
+            </h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="body">
+                        <h3>Audit technique et business approfondi</h3>
+                        <p>
+                            Analyse de votre infrastructure actuelle, volumes, contraintes techniques, objectifs de croissance. Architecture cible définie.
+                        </p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="body">
+                        <h3>Conception de l'architecture technique</h3>
+                        <p>
+                            Stack technologique, APIs, intégrations, sécurité, monitoring. Schéma directeur technique validé avec vos équipes IT.
+                        </p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="body">
+                        <h3>Design system et interfaces utilisateur</h3>
+                        <p>
+                            Création du design system enterprise, interfaces back-office, expérience front-end optimisée pour la performance.
+                        </p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="body">
+                        <h3>Développement par phases iteratives</h3>
+                        <p>
+                            Développement en sprints, tests continus, intégration progressive avec vos systèmes existants. Déploiement sans interruption.
+                        </p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="body">
+                        <h3>Intégrations et synchronisations</h3>
+                        <p>
+                            Connexion avec ERP, CRM, WMS, outils marketing. Workflow automatisés, synchronisation temps réel, monitoring des flux.
+                        </p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="body">
+                        <h3>Tests de charge et optimisation</h3>
+                        <p>
+                            Tests de performance sous forte charge, optimisation des temps de réponse, configuration CDN et cache global.
+                        </p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="body">
+                        <h3>Formation équipes et mise en production</h3>
+                        <p>
+                            Formation de vos équipes techniques et métier, documentation complète, monitoring 24/7, support au lancement.
+                        </p>
+                    </div>
+                </div>
+        </div>
+    </section>
+
+    <section class="mds-section offer-section accent">
+        <div class="mds-container">
+            <div class="section-type">Budget & tarifs</div>
+            <h2 class="section-title">
+                Investissement pour une infrastructure pérenne
+            </h2>
+            <div class="pricing-options detailed">
+                <div class="pricing-option">
+                    <div class="body">
+                        <h3>Architecture Enterprise</h3>
+                        <p>
+                            Plateforme e-commerce enterprise avec architecture technique robuste,<br/>
+                            intégrations complexes et performance optimisée pour vos volumes.
+                        </p>
+                        <p class="price">30 000€ - 100 000€</p>
+                        <p class="price-mentions">Budget adapté à la complexité et aux intégrations</p>
+                        <hr>
+                        <div>
+                            <h4 class="text-sm uppercase font-semibold mb-2">Fonctionnalités enterprise incluses :</h4>
+                            <ul>
+                                <li><strong>Architecture technique :</strong></li>
+                                <ul>
+                                    <li>- Shopify Plus headless avec React/Next.js</li>
+                                    <li>- API Gateway et microservices</li>
+                                    <li>- CDN global et optimisations performance</li>
+                                    <li>- Monitoring et alertes 24/7</li>
+                                </ul>
+
+                                <li class="mt-3"><strong>Intégrations enterprise :</strong></li>
+                                <ul>
+                                    <li>- Connexion ERP majeurs (SAP, Oracle, NetSuite...)</li>
+                                    <li>- CRM et outils marketing automation</li>
+                                    <li>- WMS et solutions logistiques complexes</li>
+                                    <li>- PIM et gestion de catalogues massifs</li>
+                                </ul>
+
+                                <li class="mt-3"><strong>International & multimarket :</strong></li>
+                                <ul>
+                                    <li>- Architecture multisite/multilingue</li>
+                                    <li>- Gestion devises et réglementations locales</li>
+                                    <li>- Adaptation des process par marché</li>
+                                    <li>- Consolidation reporting global</li>
+                                </ul>
+
+                                <li class="mt-3"><strong>Performance & évolutivité :</strong></li>
+                                <ul>
+                                    <li>- Optimisation pour catalogues 10k+ produits</li>
+                                    <li>- Gestion pics de trafic (Black Friday...)</li>
+                                    <li>- Cache distribué et optimisation base de données</li>
+                                    <li>- Tests de charge et optimisation continue</li>
+                                </ul>
+
+                                <li class="mt-3"><strong>Accompagnement :</strong></li>
+                                <ul>
+                                    <li>- Formation équipes techniques et métier</li>
+                                    <li>- Documentation complète et bonnes pratiques</li>
+                                    <li>- Support dédié et maintenance evolutive</li>
+                                    <li>- Audit de sécurité et conformité</li>
+                                </ul>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="{{@custom.global_cta_url}}" class="button highlighted">Planifier un audit</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    {{> "ui/team" dark="true"}}
+
+    <section class="mds-section faq-section accent">
+        <div class="mds-container">
+            <div class="section-type">FAQ</div>
+            <h2 class="section-title">
+                Questions fréquentes sur les architectures enterprise
+            </h2>
+
+            <div class="faq-items">
+                <div class="faq-item">
+                    <input type="checkbox" id="faq1" class="faq-toggle" />
+                    <h3><label for="faq1">À partir de quel volume d'activité une architecture enterprise se justifie-t-elle ?</label></h3>
+                    <p>
+                       Généralement à partir de 500k€ de CA annuel, ou si vous gérez plus de 1000 références, plusieurs marchés, ou avez des intégrations ERP complexes. L'audit initial nous permet de valider la pertinence.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq2" class="faq-toggle" />
+                    <h3><label for="faq2">Qu'apporte l'architecture headless par rapport à un Shopify classique ?</label></h3>
+                    <p>
+                        Performance supérieure, expérience utilisateur sur-mesure, flexibilité totale sur le front-end, possibilité d'alimenter plusieurs canaux (site, app mobile, bornes...) depuis la même base.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq3" class="faq-toggle" />
+                    <h3><label for="faq3">Quels ERP pouvez-vous intégrer ?</label></h3>
+                    <p>
+                        SAP, Oracle NetSuite, Microsoft Dynamics, Sage X3, Odoo, et de nombreux autres. Nous créons des connecteurs sur-mesure si nécessaire. L'important est la qualité des APIs disponibles.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq4" class="faq-toggle" />
+                    <h3><label for="faq4">Comment gérez-vous la migration depuis notre plateforme actuelle ?</label></h3>
+                    <p>
+                        Migration progressive sans interruption de service. Synchronisation des données, tests en parallèle, bascule maîtrisée. Nous avons l'expérience de migrations depuis Magento, SAP Commerce, solutions custom...
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq5" class="faq-toggle" />
+                    <h3><label for="faq5">Quel niveau de performance peut-on atteindre ?</label></h3>
+                    <p>
+                        Temps de chargement < 2s même sur gros catalogues, gestion de milliers de visiteurs simultanés, disponibilité 99.9%. Nous optimisons chaque composant pour la performance.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq6" class="faq-toggle" />
+                    <h3><label for="faq6">Comment assurez-vous la sécurité enterprise ?</label></h3>
+                    <p>
+                        Chiffrement end-to-end, authentification multi-facteurs, audit de sécurité, conformité RGPD/PCI-DSS, monitoring des vulnérabilités, sauvegardes redondantes.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq7" class="faq-toggle" />
+                    <h3><label for="faq7">Nos équipes techniques peuvent-elles maintenir la solution ?</label></h3>
+                    <p>
+                        Absolument. Documentation complète, formation des équipes, stack technologique standard. Nous restons disponibles pour le support niveau 3 et les évolutions complexes.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq8" class="faq-toggle" />
+                    <h3><label for="faq8">Combien de temps prend un projet enterprise ?</label></h3>
+                    <p>
+                        Entre 3 et 6 mois selon la complexité. Projets livrés en phases : MVP fonctionnel rapidement, puis enrichissement progressif des fonctionnalités.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq9" class="faq-toggle" />
+                    <h3><label for="faq9">Proposez-vous un accompagnement post-lancement ?</label></h3>
+                    <p>
+                        Oui : monitoring 24/7, support technique dédié, maintenance evolutive, optimisation continue des performances. Forfaits adaptés aux besoins enterprise.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <input type="checkbox" id="faq10" class="faq-toggle" />
+                    <h3><label for="faq10">Comment validez-vous la faisabilité technique avant de démarrer ?</label></h3>
+                    <p>
+                        Audit technique approfondi (2-3 jours), POC sur les points critiques, validation avec vos équipes IT. Nous ne démarrons qu'avec la certitude de réussir.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mds-cta-end">
+        {{#if @custom.global_cta_url}}
+        <div class="mds-cta">
+            <h2>Votre infrastructure e-commerce à la hauteur de vos ambitions.</h2>
+            <p>
+                Planifions ensemble l'architecture technique qui soutiendra<br/>
+                votre croissance nationale et internationale.
+            </p>
+            <p>
+                <a href="{{@custom.global_cta_url}}" class="button highlighted">{{@custom.global_cta_text}}</a>
+            </p>
+            <p class='rate'>
+                <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
+                <span>
+                    +{{@custom.amount_of_ecommerce_websites_done }} architectures enterprise développées !
+                </span>
+            </p>
+        </div>
+        {{/if}}
+    </section>
+</div>

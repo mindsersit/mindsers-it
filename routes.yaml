@@ -11,6 +11,12 @@ routes:
         template: pack-saas
     /agence-shopify/:
         template: home-shopify
+    /agence-shopify/basic/:
+        template: agence-basic
+    /agence-shopify/personnalise/:
+        template: agence-personnalise
+    /agence-shopify/enterprise/:
+        template: agence-enterprise
     /talent-freelance/:
         template: home-talent
 
