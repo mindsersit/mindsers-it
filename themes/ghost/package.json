@@ -5,7 +5,7 @@
   "keywords": ["ghost-theme"],
   "scripts": {
     "dev": "gulp",
-    "build": "pnpm run build:prod && pnpm run build:zip",
+    "build": "gulp zip",
     "build:prod": "gulp build",
     "build:zip": "gulp zip",
     "test": "gscan .",

@@ -4,9 +4,13 @@ The styles in `scss/` and the script in `js/menu.js` expect the HTML below.
 Both themes must output it so that mindsers.it (Ghost) and shop.mindsers.it
 (Shopify) look and behave the same.
 
-Source of truth: `themes/ghost/default.hbs`. The Shopify version lives in
-`themes/shopify/layout/theme.liquid`, `sections/header.liquid` and
-`sections/footer.liquid`. When you change one, change the other.
+Source of truth: `themes/ghost/default.hbs`. The Shopify theme (planned, not
+yet in the repo) will implement it in `themes/shopify/layout/theme.liquid`,
+`sections/header.liquid` and `sections/footer.liquid`. When you change one
+side, change the other.
+
+URLs below are shown as rendered on production. Ghost outputs them from
+`{{@site.url}}`; don't hard-code them in templates.
 
 ## Page shell
 
@@ -17,6 +21,7 @@ Source of truth: `themes/ghost/default.hbs`. The Shopify version lives in
     <main class="mds-main">…</main>
     <footer class="mds-foot">…</footer>
   </div>
+  <!-- module, no async: menu.js relies on the document being parsed -->
   <script type="module" src="…/menu.js"></script>
 </body>
 ```
@@ -41,22 +46,27 @@ Source of truth: `themes/ghost/default.hbs`. The Shopify version lives in
     <div class="mds-head-placeholder"></div>  <!-- after the menu unless "Menu on the right side" -->
 
     <div class="mds-head-actions">
-      <a class="search-button" …><svg …/></a>                         <!-- optional -->
+      <!-- optional: only when search is enabled -->
+      <a class="search-button" …><svg …/></a>
+      <!-- optional: only when a CTA URL is configured -->
       <a class="button highlighted shop-button" target="_blank" href="CTA_URL">CTA_TEXT</a>
       <!-- theme-specific action icons go here (Shopify: account, cart) -->
-      <a class="more-button-small-screen" href="#" aria-label="Menu" aria-expanded="false"><svg …/></a>
+      <button type="button" class="more-button-small-screen" aria-label="Menu"
+              aria-controls="mds-more-menu" aria-expanded="false"><svg …/></button>
 
-      <div class="more-menu">                    <!-- mobile drawer, toggled by .menu-open -->
+      <div class="more-menu" id="mds-more-menu">   <!-- mobile drawer, toggled by .menu-open -->
         <header class="mds-head">
           <div class="mds-container">
             <div class="mds-head-brand"><a class="mds-head-logo" href="https://mindsers.it">…</a></div>
             <div class="mds-head-placeholder"></div>
-            <div class="close-button" tabindex="0"><svg …/></div>
+            <button type="button" class="close-button" aria-label="Fermer le menu"><svg …/></button>
           </div>
         </header>
         <!-- NAV LIST, see below -->
         <ul>
+          <!-- optional: only when a CTA URL is configured -->
           <li><a class="button highlighted" href="CTA_URL">CTA_TEXT</a></li>
+          <!-- optional: only when search is enabled; SEARCH_URL is #/search on Ghost -->
           <li><a href="SEARCH_URL">Recherche</a></li>
         </ul>
       </div>
@@ -67,17 +77,19 @@ Source of truth: `themes/ghost/default.hbs`. The Shopify version lives in
 
 ### Nav list
 
-The HTML that Ghost's `{{navigation}}` helper outputs:
+The HTML that Ghost's `{{navigation}}` helper outputs, here on the Studio SaaS
+page:
 
 ```html
 <ul class="nav">
-  <li class="nav-studio-saas"><a href="https://mindsers.it/studio-saas/">Studio SaaS</a></li>
-  <li class="nav-boutique nav-current"><a href="https://shop.mindsers.it/">Boutique</a></li>
+  <li class="nav-studio-saas nav-current"><a href="https://mindsers.it/studio-saas/">Studio SaaS</a></li>
+  <li class="nav-boutique"><a href="https://shop.mindsers.it/">Boutique</a></li>
 </ul>
 ```
 
 - `nav-{slug}`: the slugified label.
-- `nav-current`: added to the item for the current site/page.
+- `nav-current`: Ghost adds it only to the item whose URL matches the current
+  page. The Shopify theme must add it to the Boutique item on every shop page.
 - Links are **absolute** because the menu is shared across two domains. It is
   maintained by hand in both admins (Ghost navigation and the Shopify
   `main-menu`).
@@ -99,15 +111,15 @@ The HTML that Ghost's `{{navigation}}` helper outputs:
 
 ## CSS custom properties
 
-| Property | Required | Ghost | Shopify |
+| Property | Required | Ghost | Shopify (planned) |
 |---|---|---|---|
-| `--ghost-accent-color` | no (falls back to `#f4be7e`) | injected by `{{ghost_head}}` | set in `layout/theme.liquid` from the `accent_color` setting |
-| `--gh-font-body`, `--gh-font-heading` | no (fall back to Fira Sans) | injected by Ghost's font settings | not set |
+| `--ghost-accent-color` | no (falls back to `#f4be7e`) | injected by `{{ghost_head}}`, and overridden on `body.mds-talent` / `body.mds-shopify` in `default.hbs` | set in `layout/theme.liquid` from an `accent_color` setting |
+| `--gh-font-body`, `--gh-font-heading` | no (the shared styles fall back to Fira Sans) | injected by Ghost only when a custom font is chosen in the admin | not set |
 
 ## Sass configuration
 
 `_fonts.scss` reads font files from `$font-path` (default `/assets/fonts/`).
-Configure it the first time the module is loaded:
+Configure it in the entry file, before any other design-system module:
 
 ```scss
 @use 'fonts' with ($font-path: ''); // Shopify: fonts sit next to the CSS on the CDN
@@ -116,7 +128,14 @@ Configure it the first time the module is loaded:
 
 ## JS hooks (`js/menu.js`)
 
-- `.more-button-small-screen`, `.close-button`, `.profile-button` toggle
-  `.menu-open` on `.more-menu` / `.profile-menu`, and
-  `.no-scroll-small-screen` on `<body>`.
-- `aria-expanded` on `.more-button-small-screen` follows the drawer state.
+- Clicking any `.more-button-small-screen`, `.close-button` or
+  `.profile-button` opens or closes **every** `.more-menu` and `.profile-menu`
+  together (class `.menu-open`), and sets `.no-scroll-small-screen` on
+  `<body>`. A page should contain only one of the two menus.
+  `.profile-button` / `.profile-menu` are optional hooks: `_global.scss`
+  styles them, but the Ghost theme doesn't use them.
+- The open/closed state is read from the first `.more-menu` / `.profile-menu`
+  in the document.
+- `Escape` closes the menu. Opening it moves focus to its `.close-button`;
+  closing it moves focus back to the first `.more-button-small-screen`.
+- `aria-expanded` on every `.more-button-small-screen` follows that state.

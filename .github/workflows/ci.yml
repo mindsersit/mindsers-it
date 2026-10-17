@@ -5,14 +5,22 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: read
+  pull-requests: read # dorny/paths-filter lists PR files through the API
+
 jobs:
   changes:
     runs-on: ubuntu-latest
     outputs:
       ghost: ${{ steps.filter.outputs.ghost }}
       shopify: ${{ steps.filter.outputs.shopify }}
+      # hashFiles() isn't allowed in job-level `if`, so check here instead
+      shopify_exists: ${{ steps.exists.outputs.shopify }}
     steps:
       - uses: actions/checkout@v4
+      - id: exists
+        run: echo "shopify=$([ -f themes/shopify/package.json ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
       - uses: dorny/paths-filter@0e4a8c6effa4802afeda77dc8d303f8176d7dfad # v3.0.4
         id: filter
         with:
@@ -55,7 +63,7 @@ jobs:
 
   shopify:
     needs: changes
-    if: needs.changes.outputs.shopify == 'true' && hashFiles('themes/shopify/package.json') != ''
+    if: needs.changes.outputs.shopify == 'true' && needs.changes.outputs.shopify_exists == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -66,5 +74,5 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm --filter @mindsers/shopify-theme build
-      - run: npm install -g @shopify/cli
+      - run: npm install -g @shopify/cli@4.9.4
       - run: shopify theme check --path themes/shopify --fail-level error

@@ -28,6 +28,7 @@ jobs:
           name: Release ${{ steps.changelog_reader.outputs.version }}
           body: ${{ steps.changelog_reader.outputs.changes }}
           prerelease: ${{ steps.changelog_reader.outputs.status == 'prereleased' }}
-          # optional fine-grained PAT (this repo only, contents: write) so the
-          # release event triggers the Deploy workflow
+          # Optional fine-grained PAT (this repo only, contents: write). Releases created
+          # with GITHUB_TOKEN don't trigger other workflows: without RELEASE_TOKEN the
+          # release is still created, but run the Deploy workflow by hand.
           token: ${{ secrets.RELEASE_TOKEN || secrets.GITHUB_TOKEN }}

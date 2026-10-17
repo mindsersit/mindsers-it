@@ -1,5 +1,6 @@
-// Where the font files are served from. Ghost serves them from /assets/fonts/;
-// Shopify puts every asset in one flat CDN folder, so it sets this to ''.
+// Where the font files are served from. Ghost serves them from /assets/fonts/
+// (assumes Ghost runs at the domain root). Shopify puts every asset in one flat
+// CDN folder, so the Shopify theme will set this to ''.
 $font-path: '/assets/fonts/' !default;
 
 @font-face {

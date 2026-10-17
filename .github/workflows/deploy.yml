@@ -11,9 +11,10 @@ on:
         options: [both, ghost, shopify]
         default: both
 
+# Prereleases don't deploy: publish a full release, or run this workflow by hand.
 jobs:
   ghost:
-    if: github.event_name == 'release' || inputs.target != 'shopify'
+    if: (github.event_name == 'release' && !github.event.release.prerelease) || (github.event_name == 'workflow_dispatch' && inputs.target != 'shopify')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,7 +33,8 @@ jobs:
           file: themes/ghost/dist/mindsers-it.zip
 
   shopify:
-    if: (github.event_name == 'release' || inputs.target != 'ghost') && vars.SHOPIFY_ENABLED == 'true'
+    # off until the Shopify theme exists and the store secrets are set (repo variable SHOPIFY_ENABLED=true)
+    if: ((github.event_name == 'release' && !github.event.release.prerelease) || (github.event_name == 'workflow_dispatch' && inputs.target != 'ghost')) && vars.SHOPIFY_ENABLED == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -43,10 +45,12 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm --filter @mindsers/shopify-theme build
-      - run: npm install -g @shopify/cli
-      # settings_data.json holds the theme editor's global settings: never overwrite it.
-      # Content edited in the editor (templates/*.json, sections/*.json) must be pulled
-      # into git with `pnpm shop:pull` before releasing, or this push reverts it.
+      - run: npm install -g @shopify/cli@4.9.4
+      # settings_data.json holds the theme editor's global settings and is never pushed,
+      # so the live values stay. Everything else is mirrored from git: editor changes to
+      # templates/*.json, sections/*.json and locales/*.json are overwritten, and files
+      # created in the editor are deleted, unless they were pulled into git with
+      # `pnpm shop:pull` before releasing.
       - name: Deploy Shopify theme
         run: >
           shopify theme push --path themes/shopify
