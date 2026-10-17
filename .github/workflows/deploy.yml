@@ -1,0 +1,59 @@
+name: Deploy
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      target:
+        description: Which theme to deploy
+        type: choice
+        options: [both, ghost, shopify]
+        default: both
+
+jobs:
+  ghost:
+    if: github.event_name == 'release' || inputs.target != 'shopify'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter mindsers-it build
+      - name: Deploy Ghost theme
+        uses: TryGhost/action-deploy-theme@v1
+        with:
+          api-url: ${{ secrets.GHOST_ADMIN_API_URL }}
+          api-key: ${{ secrets.GHOST_ADMIN_API_KEY }}
+          file: themes/ghost/dist/mindsers-it.zip
+
+  shopify:
+    if: (github.event_name == 'release' || inputs.target != 'ghost') && vars.SHOPIFY_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @mindsers/shopify-theme build
+      - run: npm install -g @shopify/cli
+      # settings_data.json holds the theme editor's global settings: never overwrite it.
+      # Content edited in the editor (templates/*.json, sections/*.json) must be pulled
+      # into git with `pnpm shop:pull` before releasing, or this push reverts it.
+      - name: Deploy Shopify theme
+        run: >
+          shopify theme push --path themes/shopify
+          --theme "$SHOPIFY_THEME_ID"
+          --ignore config/settings_data.json
+          --allow-live --json
+        env:
+          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+          SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_FLAG_STORE }}
+          SHOPIFY_THEME_ID: ${{ secrets.SHOPIFY_THEME_ID }}
