@@ -22,3 +22,9 @@ projectFilesBackup
 .DS_Store
 
 dist/
+
+# build output (produced by `pnpm build` and CI)
+themes/ghost/assets/css/
+themes/ghost/assets/js/
+themes/ghost/assets/fonts/
+themes/shopify/assets/

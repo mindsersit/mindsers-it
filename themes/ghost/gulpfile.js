@@ -14,6 +14,9 @@ const colorFunction = require('postcss-color-mod-function')
 const cssnano = require('cssnano')
 const easyimport = require('postcss-easy-import')
 
+// shared styles, scripts and fonts (also used by the Shopify theme)
+const DS = '../../packages/design-system'
+
 function serve(done) {
   livereload.listen()
   done()
@@ -38,7 +41,10 @@ function styles(done) {
   pump(
     [
       src('styles/*.scss', { sourcemaps: true }),
-      sass({ outputStyle: 'compressed' }).on('error', sass.logError),
+      sass({ outputStyle: 'compressed', loadPaths: [`${DS}/scss`] }).on(
+        'error',
+        sass.logError,
+      ),
       postcss(processors),
       dest('assets/css/', { sourcemaps: '.' }),
       livereload(),
@@ -50,11 +56,18 @@ function styles(done) {
 function scripts(done) {
   pump(
     [
-      src('scripts/*.js', { sourcemaps: true }),
+      src(['scripts/*.js', `${DS}/js/*.js`], { sourcemaps: true }),
       uglify(),
       dest('assets/js/', { sourcemaps: '.' }),
       livereload(),
     ],
+    handleError(done),
+  )
+}
+
+function fonts(done) {
+  pump(
+    [src(`${DS}/fonts/*`, { encoding: false }), dest('assets/fonts/')],
     handleError(done),
   )
 }
@@ -76,12 +89,12 @@ function zipper(done) {
   )
 }
 
-const stylesWatcher = () => watch('styles/**', styles)
-const scriptsWatcher = () => watch(['scripts/**'], scripts)
+const stylesWatcher = () => watch(['styles/**', `${DS}/scss/**`], styles)
+const scriptsWatcher = () => watch(['scripts/**', `${DS}/js/**`], scripts)
 const templatesWatcher = () =>
   watch(['*.hbs', '**/**/*.hbs', '!node_modules/**/*.hbs'], templates)
 const watcher = parallel(scriptsWatcher, stylesWatcher, templatesWatcher)
-const build = series(styles, scripts)
+const build = parallel(styles, scripts, fonts)
 const dev = series(build, serve, watcher)
 
 exports.build = build

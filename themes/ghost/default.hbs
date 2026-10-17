@@ -18,7 +18,6 @@
         body.mds-shopify {
             --ghost-accent-color: {{@custom.shopify_accent_color}};
         }
-    }
     </style>
 
     <link rel="preconnect" href="https://www.facebook.com" crossorigin="anonymous" />
@@ -70,6 +69,10 @@
                         href="{{@custom.global_cta_url}}">{{@custom.global_cta_text}}</a>
                     {{/if}}
 
+                    <a class="more-button-small-screen" href="#" aria-label="Menu" aria-expanded="false">
+                        {{> "icons/more"}}
+                    </a>
+
                     <div class="more-menu">
                         <header class="mds-head">
                             <div class="mds-container">
@@ -87,15 +90,17 @@
                             </div>
                         </header>
 
-                        {{#if @custom.global_cta_url}}
+                        {{navigation}}
+
                         <ul>
+                            {{#if @custom.global_cta_url}}
                             <li><a class="button highlighted"
                                     href="{{@custom.global_cta_url}}">{{@custom.global_cta_text}}</a></li>
+                            {{/if}}
                             {{#if @custom.enable_search}}
                             <li><a class="" href="#/search">Recherche</a></li>
                             {{/if}}
                         </ul>
-                        {{/if}}
                     </div>
                 </div>
             </nav>
@@ -120,7 +125,7 @@
                 <div class='mds-foot-meta'>
                     Développé avec amour par <a href='https://nathanaelcherrier.dev/'>Nathanaël Cherrier</a>.
                     &copy;{{date format='YYYY'}} <a href='https://mindsers.it/'>MindsersIT</a>. Tous droits réservés.<br />
-                    <a href='/legal-notices/'>
+                    <a href='{{@site.url}}/legal-notices/'>
                         Mentions Légales
                     </a>
                 </div>
