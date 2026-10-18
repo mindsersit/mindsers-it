@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+-   Publishing a release now deploys both themes (it needed a manual run)
+
 ## [2.0.0] - 2026-10-18
 
 ### Added

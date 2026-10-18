@@ -41,8 +41,8 @@ pnpm test         # gscan on the Ghost theme
 
 ## Deploying
 
-Deploys run from GitHub Actions (`.github/workflows/deploy.yml`) when a release is
-published, or by hand from the Actions tab (Ghost, Shopify or both):
+Deploys run from GitHub Actions (`.github/workflows/deploy.yml`) right after the
+release workflow publishes a release (prereleases excepted), or by hand from the Actions tab (Ghost, Shopify or both):
 
 - Ghost: the built zip is uploaded with `GHOST_ADMIN_API_URL` / `GHOST_ADMIN_API_KEY`.
 - Shopify (only when the `SHOPIFY_ENABLED` variable is `true`): `shopify theme push`
@@ -57,9 +57,8 @@ published, or by hand from the Actions tab (Ghost, Shopify or both):
    which a deploy overwrites:
    `SHOPIFY_THEME_ID=<id> pnpm shop:pull`, then commit.
 2. Move the `[Unreleased]` entries of `CHANGELOG.md` under a new version.
-3. Tag `vX.Y.Z` and push the tag: the GitHub Release is created from the changelog.
-4. If the release didn't trigger the Deploy workflow (no `RELEASE_TOKEN` secret),
-   run it by hand.
+3. Tag `vX.Y.Z` and push the tag: the GitHub Release is created from the changelog,
+   then both themes are deployed.
 
 ## License
 

@@ -8,6 +8,8 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    outputs:
+      prerelease: ${{ steps.changelog_reader.outputs.status == 'prereleased' }}
     permissions:
       contents: write
     steps:
@@ -28,7 +30,13 @@ jobs:
           name: Release ${{ steps.changelog_reader.outputs.version }}
           body: ${{ steps.changelog_reader.outputs.changes }}
           prerelease: ${{ steps.changelog_reader.outputs.status == 'prereleased' }}
-          # Optional fine-grained PAT (this repo only, contents: write). Releases created
-          # with GITHUB_TOKEN don't trigger other workflows: without RELEASE_TOKEN the
-          # release is still created, but run the Deploy workflow by hand.
-          token: ${{ secrets.RELEASE_TOKEN || secrets.GITHUB_TOKEN }}
+
+  # A release created with GITHUB_TOKEN doesn't trigger other workflows, so the
+  # deploy is called from here. Prereleases don't deploy.
+  deploy:
+    needs: release
+    if: needs.release.outputs.prerelease != 'true'
+    uses: ./.github/workflows/deploy.yml
+    with:
+      target: both
+    secrets: inherit
