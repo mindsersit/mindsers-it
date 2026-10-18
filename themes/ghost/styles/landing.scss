@@ -152,7 +152,14 @@
             gap: 24px;
             text-align: left;
             width: max-content;
+            max-width: 100%;
             margin: auto;
+
+            // side by side it needs ~850px
+            @media (max-width: 900px) {
+                flex-direction: column;
+                width: auto;
+            }
 
             > * {
                 background: rgba(255, 255, 255, 0.04);

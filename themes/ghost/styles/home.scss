@@ -372,6 +372,7 @@
             border: 1px solid rgba(colors.$secondary, 0.12);
             max-width: 680px;
             width: 100%;
+            box-sizing: border-box;
 
             h2 {
                 font-size: 2rem;
