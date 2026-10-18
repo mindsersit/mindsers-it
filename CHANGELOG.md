@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+-   Unreadable "Pour qui ?" cards on the Studio SaaS and Agence Shopify pages
 -   Publishing a release now deploys both themes (it needed a manual run)
 
 ## [2.0.0] - 2026-10-18
