@@ -1,0 +1,12 @@
+{%- comment -%}
+  Not placed in any template: cart.js requests it through the Section
+  Rendering API to refresh the header cart button.
+{%- endcomment -%}
+{% render 'cart-button' %}
+
+{% schema %}
+{
+  "name": "t:sections.cart_button.name",
+  "settings": []
+}
+{% endschema %}

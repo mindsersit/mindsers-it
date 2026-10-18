@@ -1,46 +1,54 @@
-<div class="mds-container mds-shop-page">
+<div class="mds-container mds-shop-page cart-page">
   <h1>{{ 'cart.title' | t }}</h1>
 
-  {% if cart.item_count > 0 %}
-    <form action="{{ routes.cart_url }}" method="post">
-      <table>
-        {% for item in cart.items %}
-          <tr>
-            <td>
-              {% if item.image %}
-                {% render 'image', image: item.image, url: item.url, width: 150 %}
-              {% endif %}
-            </td>
-            <td>
-              <p>{{ item.product.title | link_to: item.url }}</p>
-              {% unless item.product.has_only_default_variant %}
-                <p>{{ item.variant.title }}</p>
-              {% endunless %}
-              {{ 'cart.remove' | t | link_to: item.url_to_remove }}
-            </td>
-            <td>
-              <label for="CartQuantity-{{ forloop.index }}">{{ 'product.quantity' | t }}</label>
-              <input id="CartQuantity-{{ forloop.index }}" type="number" min="0" name="updates[]" value="{{ item.quantity }}">
-            </td>
-            <td>{{ item.final_line_price | money }}</td>
-          </tr>
-        {% endfor %}
-      </table>
+  {%- if cart.item_count > 0 -%}
+    <form action="{{ routes.cart_url }}" method="post" id="CartForm">
+      <ul class="cart-items">
+        {%- for item in cart.items -%}
+          {% render 'cart-item', item: item, index: forloop.index %}
+        {%- endfor -%}
+      </ul>
 
-      <p>{{ 'cart.subtotal' | t }} {{ cart.total_price | money_with_currency }}</p>
+      {%- if section.settings.show_note -%}
+        <div class="field cart-note">
+          <label for="CartNote">{{ 'cart.note' | t }}</label>
+          <textarea id="CartNote" name="note">{{ cart.note | escape }}</textarea>
+        </div>
+      {%- endif -%}
 
-      <button type="submit" class="button">{{ 'cart.update' | t }}</button>
-      <button type="submit" name="checkout" class="button primary">{{ 'cart.checkout' | t }}</button>
+      <div class="cart-footer">
+        {% render 'cart-totals' %}
+        <button type="submit" class="button full">{{ 'cart.update' | t }}</button>
+        <button type="submit" name="checkout" class="button primary full">{{ 'cart.checkout' | t }}</button>
+        {%- if additional_checkout_buttons -%}
+          <div class="additional-checkout-buttons">{{ content_for_additional_checkout_buttons }}</div>
+        {%- endif -%}
+      </div>
     </form>
-  {% else %}
+
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when '@app' -%}
+          {% render block %}
+      {%- endcase -%}
+    {%- endfor -%}
+  {%- else -%}
     <p>{{ 'cart.empty' | t }}</p>
-    <a href="{{ routes.all_products_collection_url }}">{{ '404.back_to_shopping' | t }}</a>
-  {% endif %}
+    <a class="button" href="{{ routes.all_products_collection_url }}">{{ '404.back_to_shopping' | t }}</a>
+  {%- endif -%}
 </div>
 
 {% schema %}
 {
   "name": "t:sections.main_cart.name",
-  "settings": []
+  "blocks": [{ "type": "@app" }],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_note",
+      "label": "t:sections.main_cart.show_note",
+      "default": false
+    }
+  ]
 }
 {% endschema %}

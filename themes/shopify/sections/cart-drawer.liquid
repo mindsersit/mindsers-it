@@ -1,0 +1,42 @@
+{%- comment -%}
+  Content of the cart drawer <dialog> in layout/theme.liquid. Rendered in
+  place there, and requested again by cart.js through the Section Rendering
+  API after each cart change.
+{%- endcomment -%}
+<div class="mds-dialog__header">
+  <h2 id="CartDrawerTitle">{{ 'cart.title' | t }}</h2>
+  <button type="button" class="mds-dialog__close" data-cart-close aria-label="{{ 'cart.close' | t }}">
+    {% render 'icon-times' %}
+  </button>
+</div>
+
+<div class="mds-dialog__body">
+  <p class="form-error" role="alert" data-cart-error></p>
+  {%- if cart.item_count > 0 -%}
+    <ul class="cart-items">
+      {%- for item in cart.items -%}
+        {% render 'cart-item', item: item, index: forloop.index, ajax: true %}
+      {%- endfor -%}
+    </ul>
+  {%- else -%}
+    <div class="cart-empty">
+      <p>{{ 'cart.empty' | t }}</p>
+      <a class="button" href="{{ routes.all_products_collection_url }}">{{ '404.back_to_shopping' | t }}</a>
+    </div>
+  {%- endif -%}
+</div>
+
+{%- if cart.item_count > 0 -%}
+  <form class="cart-footer" action="{{ routes.cart_url }}" method="post">
+    {% render 'cart-totals' %}
+    <button type="submit" name="checkout" class="button primary full">{{ 'cart.checkout' | t }}</button>
+    <a class="button full" href="{{ routes.cart_url }}">{{ 'cart.view' | t }}</a>
+  </form>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.cart_drawer.name",
+  "settings": []
+}
+{% endschema %}
