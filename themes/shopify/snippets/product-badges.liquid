@@ -1,0 +1,15 @@
+{%- doc -%}
+  Sold out, sale and "Numérique" badges.
+
+  @param {variant} variant - The variant the badges describe
+{%- enddoc -%}
+<div class="badges">
+  {%- unless variant.available -%}
+    <span class="badge badge--sold-out">{{ 'product.sold_out' | t }}</span>
+  {%- elsif variant.compare_at_price > variant.price -%}
+    <span class="badge badge--sale">{{ 'product.on_sale' | t }}</span>
+  {%- endunless -%}
+  {%- unless variant.requires_shipping -%}
+    <span class="badge">{{ 'product.digital' | t }}</span>
+  {%- endunless -%}
+</div>

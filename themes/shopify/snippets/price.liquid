@@ -1,0 +1,27 @@
+{%- doc -%}
+  Renders a price with its compare-at price and unit price.
+
+  @param {variant} variant - The variant whose price is shown
+  @param {product} [product] - Pass it to show "À partir de" when variant prices differ
+{%- enddoc -%}
+<div class="price">
+  {%- if product and product.price_varies -%}
+    {%- assign price_min = product.price_min | money -%}
+    <span class="price__regular">{{ 'product.price_from' | t: price: price_min }}</span>
+  {%- else -%}
+    <span class="price__regular">{{ variant.price | money }}</span>
+    {%- if variant.compare_at_price > variant.price -%}
+      <span class="visually-hidden">{{ 'product.regular_price' | t }}</span>
+      <s class="price__compare">{{ variant.compare_at_price | money }}</s>
+    {%- endif -%}
+  {%- endif -%}
+  {%- if variant.unit_price_measurement -%}
+    <span class="price__unit">
+      {{- variant.unit_price | money }}/
+      {%- if variant.unit_price_measurement.reference_value != 1 -%}
+        {{- variant.unit_price_measurement.reference_value -}}
+      {%- endif -%}
+      {{- variant.unit_price_measurement.reference_unit -}}
+    </span>
+  {%- endif -%}
+</div>

@@ -1,0 +1,127 @@
+{%- doc -%}
+  Storefront filters and sort for a collection or search results. The form
+  is a plain GET form: facets.js submits it when a value changes, and the
+  submit button keeps it working without JavaScript.
+
+  @param {object} results - The collection or search object
+  @param {string} [terms] - Search terms to keep when filtering search results
+{%- enddoc -%}
+{%- assign sort_by = results.sort_by | default: results.default_sort_by -%}
+<form class="facets" data-facets action="{{ request.path }}" method="get">
+  {%- if terms -%}
+    <input type="hidden" name="q" value="{{ terms | escape }}">
+    <input type="hidden" name="options[prefix]" value="last">
+  {%- endif -%}
+
+  {%- for filter in results.filters -%}
+    <details>
+      <summary>
+        {{- filter.label | escape -}}
+        {%- if filter.active_values.size > 0 %} ({{ filter.active_values.size }}){% endif -%}
+      </summary>
+      <div class="facets__panel">
+        {%- case filter.type -%}
+          {%- when 'list', 'boolean' -%}
+            <ul>
+              {%- for value in filter.values -%}
+                {%- assign input_id = 'Filter-' | append: filter.param_name | handleize | append: '-' | append: forloop.index -%}
+                <li>
+                  <input
+                    type="checkbox"
+                    id="{{ input_id }}"
+                    name="{{ value.param_name }}"
+                    value="{{ value.value | escape }}"
+                    {% if value.active %}
+                      checked
+                    {% endif %}
+                    {% if value.count == 0 and value.active == false %}
+                      disabled
+                    {% endif %}
+                  >
+                  <label for="{{ input_id }}">
+                    {{- value.label | escape }} <span class="count">({{ value.count }})</span>
+                  </label>
+                </li>
+              {%- endfor -%}
+            </ul>
+          {%- when 'price_range' -%}
+            {%- assign currency = cart.currency.symbol -%}
+            <div class="facets__price">
+              <div class="field">
+                <label for="Filter-price-min">{{ 'collections.price_from' | t }} ({{ currency }})</label>
+                <input
+                  type="number"
+                  id="Filter-price-min"
+                  name="{{ filter.min_value.param_name }}"
+                  {% if filter.min_value.value %}
+                    value="{{ filter.min_value.value | money_without_currency | replace: ',', '.' }}"
+                  {% endif %}
+                  min="0"
+                  max="{{ filter.range_max | money_without_currency | replace: ',', '.' }}"
+                  step="0.01"
+                >
+              </div>
+              <div class="field">
+                <label for="Filter-price-max">{{ 'collections.price_to' | t }} ({{ currency }})</label>
+                <input
+                  type="number"
+                  id="Filter-price-max"
+                  name="{{ filter.max_value.param_name }}"
+                  {% if filter.max_value.value %}
+                    value="{{ filter.max_value.value | money_without_currency | replace: ',', '.' }}"
+                  {% endif %}
+                  min="0"
+                  max="{{ filter.range_max | money_without_currency | replace: ',', '.' }}"
+                  step="0.01"
+                >
+              </div>
+            </div>
+        {%- endcase -%}
+      </div>
+    </details>
+  {%- endfor -%}
+
+  <div class="facets__sort">
+    <label for="SortBy">{{ 'collections.sort_by' | t }}</label>
+    <select id="SortBy" name="sort_by">
+      {%- for option in results.sort_options -%}
+        <option
+          value="{{ option.value | escape }}"
+          {% if option.value == sort_by %}
+            selected
+          {% endif %}
+        >
+          {{ option.name | escape }}
+        </option>
+      {%- endfor -%}
+    </select>
+    <noscript><button type="submit" class="button">{{ 'collections.apply' | t }}</button></noscript>
+  </div>
+
+  {%- liquid
+    assign active_count = 0
+    for filter in results.filters
+      assign active_count = active_count | plus: filter.active_values.size
+      if filter.type == 'price_range' and filter.min_value.value or filter.max_value.value
+        assign active_count = active_count | plus: 1
+      endif
+    endfor
+  -%}
+  {%- if active_count > 0 -%}
+    <div class="facets__active">
+      {%- for filter in results.filters -%}
+        {%- for value in filter.active_values -%}
+          <a href="{{ value.url_to_remove }}">{{ value.label | escape }} &times;</a>
+        {%- endfor -%}
+        {%- if filter.type == 'price_range' -%}
+          {%- if filter.min_value.value or filter.max_value.value -%}
+            <a href="{{ filter.url_to_remove }}">
+              {{- filter.min_value.value | default: 0 | money }} – {{ filter.max_value.value | default: filter.range_max | money }} &times;
+            </a>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+      <a href="{{ request.path }}{% if terms %}?q={{ terms | url_encode }}{% endif %}">{{ 'collections.clear_all' | t }}</a>
+    </div>
+  {%- endif -%}
+</form>

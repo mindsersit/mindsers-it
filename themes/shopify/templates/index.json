@@ -1,14 +1,14 @@
 {
   "sections": {
-    "intro": {
-      "type": "rich-text",
+    "products": {
+      "type": "featured-collection",
       "settings": {
         "eyebrow": "Boutique",
         "title": "La boutique MindsersIT",
-        "text": "<p>Bientôt disponible.</p>",
-        "accent": false
+        "limit": 8,
+        "show_view_all": true
       }
     }
   },
-  "order": ["intro"]
+  "order": ["products"]
 }
