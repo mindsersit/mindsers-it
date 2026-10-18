@@ -2,23 +2,64 @@
 
 # @mindsersit/mindsers-it
 
-"MindsersIT" is a brand website served on mindsers.it. This part of the site is based on [Ghost][ghost-blog].
+The two websites of MindsersIT, built from one design system:
 
-This repo host the ghost theme that powers mindsers.it.
-**Be aware that some parts of the theme are hardcoded for the needs of "MindsersIT". This theme is NOT production ready.**
+- **mindsers.it**: the studio's website, a [Ghost][ghost-blog] theme
+- **shop.mindsers.it**: the merch shop, a Shopify Online Store 2.0 theme
 
-All the repositories part of the MindsersIT project:
+**Some parts of the themes are hardcoded for the needs of MindsersIT. They are not meant to be reused as is.**
 
--   [@mindsersit/mindsers-live](https://github.com/mindsersit/mindsers-live)
--   [@mindsersit/mindsers-blog](https://github.com/mindsersit/mindsers-blog)
--   [@mindsersit/mindsers-api](https://github.com/mindsersit/mindsers-api)
--   [@mindsersit/fallback-page](https://github.com/mindsersit/fallback-page)
+## Repository layout
+
+```
+packages/design-system/   shared Sass, fonts and menu script (see MARKUP.md)
+themes/ghost/             Ghost theme for mindsers.it (package "mindsers-it")
+themes/shopify/           Shopify theme for shop.mindsers.it (package "@mindsers/shopify-theme")
+```
+
+Both themes compile `packages/design-system` into their own assets. The HTML both
+themes must output for the header, footer and navigation is described in
+[`packages/design-system/MARKUP.md`](packages/design-system/MARKUP.md): when you
+change one theme, change the other.
 
 ## Getting started
 
--   Download this repo into `/content/theme` on the Ghost installation.
--   In the Ghost GUI (`SETTINGS > Design`), activate the `mindsers-it` theme
--   Check if the version number is the right one
+Requirements: Node (see `.node-version`), pnpm 10, and the
+[Shopify CLI](https://shopify.dev/docs/api/shopify-cli) for the shop.
+
+```sh
+pnpm install
+pnpm build        # builds both themes (Ghost zip in themes/ghost/dist/)
+pnpm lint         # Biome
+pnpm test         # gscan on the Ghost theme
+```
+
+- `pnpm dev:ghost`: rebuilds the Ghost theme on change (use it with a local Ghost).
+- `pnpm dev:shop`: rebuilds the Shopify theme on change and runs `shopify theme dev`
+  (log in first with `shopify theme list --store <store>.myshopify.com`).
+- `pnpm --filter @mindsers/shopify-theme check`: Shopify theme check.
+
+## Deploying
+
+Deploys run from GitHub Actions (`.github/workflows/deploy.yml`) when a release is
+published, or by hand from the Actions tab (Ghost, Shopify or both):
+
+- Ghost: the built zip is uploaded with `GHOST_ADMIN_API_URL` / `GHOST_ADMIN_API_KEY`.
+- Shopify (only when the `SHOPIFY_ENABLED` variable is `true`): `shopify theme push`
+  to `SHOPIFY_THEME_ID` on `SHOPIFY_FLAG_STORE`, with the Theme Access password in
+  `SHOPIFY_CLI_THEME_TOKEN`. Global theme settings (`config/settings_data.json`) are
+  never overwritten.
+
+### Release checklist
+
+1. **Pull the shop's editor changes first.** Section content edited in the Shopify
+   theme editor lives in `templates/*.json`, `sections/*.json` and `locales/*.json`,
+   which a deploy overwrites:
+   `SHOPIFY_THEME_ID=<id> pnpm shop:pull`, then commit.
+2. Move the `[Unreleased]` entries of `CHANGELOG.md` under a new version.
+3. Tag `vX.Y.Z` and push the tag: the GitHub Release is created from the changelog.
+4. If the release didn't trigger the Deploy workflow (no `RELEASE_TOKEN` secret),
+   run it by hand.
 
 ## License
 
