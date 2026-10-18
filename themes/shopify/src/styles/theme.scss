@@ -1,0 +1,68 @@
+// Fonts sit next to theme.css in Shopify's flat assets folder, so they are
+// loaded by file name. Must come before the other design-system modules.
+@use 'fonts' with ($font-path: '');
+@use 'colors';
+@use 'global';
+@use 'sections';
+@use 'commerce';
+
+// The header section is wrapped in Shopify's <div class="shopify-section">.
+// Without this, .mds-head would only stick within that wrapper.
+.shopify-section-group-header-group {
+    display: contents;
+}
+
+.skip-link {
+    position: absolute;
+    left: 20px;
+    top: -100px;
+    z-index: 30;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-color: colors.$foreground;
+    color: colors.$background;
+
+    &:focus {
+        top: 10px;
+    }
+}
+
+// Shop-only header actions (icon size and colour come from the design system)
+.mds-head .mds-head-actions {
+    .cart-button {
+        position: relative;
+    }
+
+    .cart-count {
+        position: absolute;
+        top: -6px;
+        right: -8px;
+        min-width: 16px;
+        padding: 0 3px;
+        box-sizing: border-box;
+        border-radius: 8px;
+        background-color: colors.$accent;
+        color: colors.$background;
+        font-size: 0.65rem;
+        font-weight: 600;
+        line-height: 16px;
+        text-align: center;
+    }
+}
+
+.mds-foot .localization {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    select {
+        padding: 5px 10px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        background-color: colors.$background;
+        color: colors.$foreground;
+        font-family: inherit;
+        font-size: 0.8rem;
+    }
+}
+

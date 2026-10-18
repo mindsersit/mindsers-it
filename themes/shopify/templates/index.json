@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "products": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "Boutique",
+        "title": "La boutique MindsersIT",
+        "limit": 8,
+        "show_view_all": true
+      }
+    }
+  },
+  "order": ["products"]
+}

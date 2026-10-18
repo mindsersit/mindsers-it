@@ -1,0 +1,29 @@
+{%- doc -%}
+  Search dialog opened by the header search button. search.js fills it with
+  predictive results; without JavaScript the button links to the search page.
+{%- enddoc -%}
+<dialog
+  id="SearchDialog"
+  class="mds-dialog search-dialog"
+  aria-label="{{ 'search.title' | t }}"
+  data-suggest-url="{{ routes.predictive_search_url }}"
+  data-error="{{ 'search.error' | t }}"
+>
+  <form action="{{ routes.search_url }}" method="get" role="search">
+    <label for="PredictiveSearchInput" class="visually-hidden">{{ 'search.title' | t }}</label>
+    <input
+      id="PredictiveSearchInput"
+      type="search"
+      name="q"
+      placeholder="{{ 'search.placeholder' | t }}"
+      autocomplete="off"
+      aria-controls="PredictiveSearchResults"
+    >
+    <input type="hidden" name="options[prefix]" value="last">
+    <button type="button" class="mds-dialog__close" data-search-close aria-label="{{ 'search.close' | t }}">
+      {% render 'icon-times' %}
+    </button>
+  </form>
+  <p class="visually-hidden" role="status" id="PredictiveSearchStatus"></p>
+  <div class="mds-dialog__body" id="PredictiveSearchResults"></div>
+</dialog>

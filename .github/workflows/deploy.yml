@@ -1,0 +1,63 @@
+name: Deploy
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      target:
+        description: Which theme to deploy
+        type: choice
+        options: [both, ghost, shopify]
+        default: both
+
+# Prereleases don't deploy: publish a full release, or run this workflow by hand.
+jobs:
+  ghost:
+    if: (github.event_name == 'release' && !github.event.release.prerelease) || (github.event_name == 'workflow_dispatch' && inputs.target != 'shopify')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter mindsers-it build
+      - name: Deploy Ghost theme
+        uses: TryGhost/action-deploy-theme@a0ee1147d15641db25681e54549c4db9a53c2629 # v1.6.6
+        with:
+          api-url: ${{ secrets.GHOST_ADMIN_API_URL }}
+          api-key: ${{ secrets.GHOST_ADMIN_API_KEY }}
+          file: themes/ghost/dist/mindsers-it.zip
+
+  shopify:
+    # off until the Shopify theme exists and the store secrets are set (repo variable SHOPIFY_ENABLED=true)
+    if: ((github.event_name == 'release' && !github.event.release.prerelease) || (github.event_name == 'workflow_dispatch' && inputs.target != 'ghost')) && vars.SHOPIFY_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @mindsers/shopify-theme build
+      - run: npm install -g @shopify/cli@4.9.4
+      # settings_data.json holds the theme editor's global settings and is never pushed,
+      # so the live values stay. Everything else is mirrored from git: editor changes to
+      # templates/*.json, sections/*.json and locales/*.json are overwritten, and files
+      # created in the editor are deleted, unless they were pulled into git with
+      # `pnpm shop:pull` before releasing.
+      - name: Deploy Shopify theme
+        run: >
+          shopify theme push --path themes/shopify
+          --theme "$SHOPIFY_THEME_ID"
+          --ignore config/settings_data.json
+          --allow-live --json
+        env:
+          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+          SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_FLAG_STORE }}
+          SHOPIFY_THEME_ID: ${{ secrets.SHOPIFY_THEME_ID }}

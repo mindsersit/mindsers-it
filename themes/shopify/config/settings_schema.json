@@ -1,0 +1,117 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "mindsers-it",
+    "theme_version": "0.1.0",
+    "theme_author": "Nathanaël Cherrier",
+    "theme_documentation_url": "https://github.com/mindsers/mindsers-it",
+    "theme_support_url": "https://mindsers.it/"
+  },
+  {
+    "name": "t:settings.brand.name",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "t:settings.brand.logo",
+        "info": "t:settings.brand.logo_info"
+      },
+      {
+        "type": "text",
+        "id": "site_title",
+        "label": "t:settings.brand.site_title",
+        "default": "MindsersIT"
+      },
+      {
+        "type": "text",
+        "id": "main_site_url",
+        "label": "t:settings.brand.main_site_url",
+        "info": "t:settings.brand.main_site_url_info",
+        "default": "https://mindsers.it"
+      },
+      {
+        "type": "color",
+        "id": "accent_color",
+        "label": "t:settings.brand.accent_color",
+        "info": "t:settings.brand.accent_color_info",
+        "default": "#f4be7e"
+      }
+    ]
+  },
+  {
+    "name": "t:settings.header.name",
+    "settings": [
+      {
+        "type": "text",
+        "id": "cta_url",
+        "label": "t:settings.header.cta_url",
+        "info": "t:settings.header.cta_url_info",
+        "default": "https://cal.com/nathanael-cherrier/discovery-call"
+      },
+      {
+        "type": "text",
+        "id": "cta_text",
+        "label": "t:settings.header.cta_text",
+        "default": "Réservez un appel"
+      },
+      {
+        "type": "select",
+        "id": "menu_position",
+        "label": "t:settings.header.menu_position",
+        "options": [
+          {
+            "value": "center",
+            "label": "t:settings.header.menu_position_center"
+          },
+          {
+            "value": "left",
+            "label": "t:settings.header.menu_position_left"
+          },
+          {
+            "value": "right",
+            "label": "t:settings.header.menu_position_right"
+          }
+        ],
+        "default": "right"
+      }
+    ]
+  },
+  {
+    "name": "t:settings.cart.name",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "t:settings.cart.cart_type",
+        "options": [
+          {
+            "value": "drawer",
+            "label": "t:settings.cart.cart_type_drawer"
+          },
+          {
+            "value": "page",
+            "label": "t:settings.cart.cart_type_page"
+          }
+        ],
+        "default": "drawer"
+      }
+    ]
+  },
+  {
+    "name": "t:settings.social.name",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_x_link",
+        "label": "t:settings.social.x",
+        "default": "https://x.com/MindsersCodes"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "t:settings.social.facebook",
+        "default": "https://www.facebook.com/MindsersCodes"
+      }
+    ]
+  }
+]

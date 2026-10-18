@@ -1,0 +1,103 @@
+{
+  "404": {
+    "title": "Page introuvable",
+    "not_found": "Cette page n'existe pas.",
+    "back_to_shopping": "Retour à la boutique"
+  },
+  "accessibility": {
+    "skip_to_content": "Aller au contenu"
+  },
+  "header": {
+    "logo_alt": "{{ title }} - Back to home page",
+    "search": "Recherche",
+    "account": "Mon compte",
+    "cart": {
+      "one": "Panier ({{ count }} article)",
+      "other": "Panier ({{ count }} articles)"
+    },
+    "menu": "Menu",
+    "close_menu": "Fermer le menu"
+  },
+  "footer": {
+    "country": "Pays / devise",
+    "update_country": "Mettre à jour",
+    "sitemap": "Plan du site",
+    "studio": "Studio",
+    "links": "Liens",
+    "shop": "Boutique",
+    "legal_notices": "Mentions légales",
+    "social_x": "{{ title }} sur X",
+    "social_facebook": "{{ title }} sur Facebook"
+  },
+  "cart": {
+    "title": "Panier",
+    "empty": "Votre panier est vide.",
+    "subtotal": "Sous-total",
+    "checkout": "Paiement",
+    "update": "Mettre à jour",
+    "remove": "Retirer",
+    "close": "Fermer le panier",
+    "view": "Voir le panier",
+    "note": "Instructions spéciales pour la commande",
+    "quantity_for": "Quantité pour {{ title }}",
+    "taxes_included": "Taxes incluses. Frais de port calculés lors du paiement.",
+    "taxes_excluded": "Taxes et frais de port calculés lors du paiement."
+  },
+  "collections": {
+    "title": "Collections",
+    "empty": "Aucun produit dans cette collection.",
+    "price_from": "De",
+    "price_to": "À",
+    "sort_by": "Trier par",
+    "apply": "Appliquer",
+    "clear_all": "Tout effacer",
+    "pagination": "Pagination",
+    "view_all": "Voir tous les produits",
+    "coming_soon": "Les produits arrivent bientôt."
+  },
+  "product": {
+    "quantity": "Quantité",
+    "add_to_cart": "Ajouter au panier",
+    "sold_out": "Épuisé",
+    "price_from": "À partir de {{ price }}",
+    "regular_price": "Prix habituel",
+    "on_sale": "Promo",
+    "digital": "Numérique",
+    "unavailable": "Indisponible",
+    "decrease": "Diminuer la quantité",
+    "increase": "Augmenter la quantité"
+  },
+  "gift_card": {
+    "add_to_apple_wallet": "Ajouter à Apple Wallet",
+    "card": "Carte cadeau",
+    "expired": "Cette carte cadeau a expiré",
+    "expires_on": "Expire le {{ expires_on }}",
+    "use_at_checkout": "Utilisez cette carte cadeau lors du paiement"
+  },
+  "password": {
+    "title": "Cette boutique ouvre bientôt",
+    "password": "Mot de passe",
+    "enter": "Entrer"
+  },
+  "search": {
+    "title": "Recherche",
+    "placeholder": "Rechercher un produit",
+    "submit": "Rechercher",
+    "no_results_html": "Aucun résultat pour « {{ terms }} »",
+    "results_for_html": {
+      "one": "{{ count }} résultat pour « {{ terms }} »",
+      "other": "{{ count }} résultats pour « {{ terms }} »"
+    },
+    "close": "Fermer la recherche",
+    "error": "La recherche n'a pas abouti. Réessayez.",
+    "products": "Produits",
+    "collections": "Collections",
+    "pages": "Pages",
+    "results_count": {
+      "zero": "Aucun résultat",
+      "one": "{{ count }} résultat",
+      "other": "{{ count }} résultats"
+    },
+    "see_all_html": "Voir tous les résultats pour « {{ terms }} »"
+  }
+}

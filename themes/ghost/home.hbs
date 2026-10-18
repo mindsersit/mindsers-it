@@ -1,0 +1,136 @@
+{{!< default}}
+
+{{#contentFor 'htmlLang'}}{{@site.locale}}{{/contentFor}}
+
+{{#contentFor 'styles'}}
+<link rel="stylesheet" type="text/css" href="{{asset "css/home.css"}}" />
+{{/contentFor}}
+
+{{#contentFor 'title'}}{{meta_title}} - Le studio tech qui construit des produits SaaS et e-commerce{{/contentFor}}
+
+<div class="mds-home">
+    <header class="mds-header">
+        <div class="mds-container">
+            <div class="presentation">
+                <h1 class="mds-title">On ne vend pas du service. On construit des produits.</h1>
+                <p>
+                    MindsersIT est un studio tech indépendant, spécialisé dans la conception et le développement de produits SaaS et e-commerce Shopify. On a commencé par construire les nôtres. Aujourd'hui, on met cette exigence au service de vos projets.
+                </p>
+
+                <div class="mds-cta">
+                    <p>
+                        <a href="{{@custom.global_cta_url}}" class="button primary">{{@custom.global_cta_text}}</a>
+                    </p>
+                    <p class='rate'>
+                        <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
+                        <span>
+                            +{{@custom.amount_of_project_done }} produits livrés avec succès !
+                        </span>
+                    </p>
+                </div>
+
+                <div class="offer-links">
+                    <a href="/studio-saas/" class="offer-link">&rarr; Studio SaaS</a>
+                    <a href="/agence-shopify/" class="offer-link">&rarr; Expertise Shopify</a>
+                    <a href="/talent-freelance/" class="offer-link">&rarr; Talents freelance</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    {{> "ui/customer-logos"}}
+
+    <section class="mds-section accent">
+        <div class="mds-container">
+            <div class="section-type">Notre histoire</div>
+            <h2 class="section-title">
+                Un studio né de nos propres produits
+            </h2>
+
+            <p>
+                Tout a commencé par une conviction simple : pour bien construire, il faut construire pour soi. Nos premiers projets, c'étaient les nôtres. Des SaaS qu'on a conçus, développés, lancés et opérés. Des boutiques e-commerce qu'on a montées de A à Z.
+            </p>
+            <p>
+                Très vite, les gens autour de nous ont vu la qualité de ce qu'on produisait. Ils ont voulu la même chose pour eux. C'est comme ça que le studio est né : pas comme une agence qui cherche des clients, mais comme une équipe de builders qui partage son savoir-faire.
+            </p>
+            <p>
+                Aujourd'hui, on applique exactement la même rigueur à vos projets qu'aux nôtres. Parce qu'on ne fait pas de différence entre "notre produit" et "votre produit". Pour nous, c'est le même standard.
+            </p>
+        </div>
+    </section>
+
+    <section class="mds-section mds-personas">
+        <div class="mds-container">
+            <div class="section-type">Nos univers</div>
+            <h2 class="section-title">
+                Deux passions, un même ADN produit
+            </h2>
+
+            <div class="persona-cards">
+                <div class="persona-card">
+                    <h3>SaaS Software</h3>
+                    <p>De l'idée à la mise en marché : on conçoit, développe et lance des produits SaaS comme si c'étaient les nôtres. Parce que souvent, ils l'ont été.</p>
+                    <a href="/studio-saas/" class="button primary">Découvrir le studio SaaS</a>
+                </div>
+
+                <div class="persona-card">
+                    <h3>E-commerce Shopify</h3>
+                    <p>Boutique clé en main, solution sur-mesure ou architecture headless : on construit des e-commerces pensés pour vendre, durer et scaler.</p>
+                    <a href="/agence-shopify/" class="button primary">Découvrir l'expertise Shopify</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mds-section method-section accent">
+        <div class="mds-container">
+            <div class="section-type">Ce qu'on croit</div>
+            <h2 class="section-title">
+                Notre façon de travailler n'est pas négociable
+            </h2>
+            <ul class="key-points">
+                <li>
+                    {{> "images/experts"}}
+                    Vous parlez directement aux experts qui construisent votre produit. Pas de commercial, pas d'intermédiaire.
+                </li>
+                <li>
+                    {{> "images/startups"}}
+                    On pense comme des fondateurs, pas comme des prestataires. Chaque décision est prise pour le produit, pas pour la facture.
+                </li>
+                <li>
+                    {{> "images/techno"}}
+                    Stack moderne, maintenable et évolutive. React, Nest, Shopify, Kubernetes : on choisit ce qui sert le produit.
+                </li>
+                <li>
+                    {{> "images/time"}}
+                    On s'engage sur des délais et on les tient. Pas de surprise, pas de rallonge, pas d'excuse.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    {{> "ui/testimonial" dark="true"}}
+
+    {{> "ui/team"}}
+
+    <section class="mds-cta-end">
+        {{#if @custom.global_cta_url}}
+        <div class="mds-cta">
+            <h2>Envie d'en parler ?</h2>
+            <p>
+                On ne fait pas de devis en 5 minutes. On prend le temps de comprendre<br />
+                votre projet pour vous proposer la bonne approche.
+            </p>
+            <p>
+                <a href="{{@custom.global_cta_url}}" class="button primary">{{@custom.global_cta_text}}</a>
+            </p>
+            <p class='rate'>
+                <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
+                <span>
+                    +{{@custom.amount_of_project_done }} produits livrés avec succès !
+                </span>
+            </p>
+        </div>
+        {{/if}}
+    </section>
+</div>

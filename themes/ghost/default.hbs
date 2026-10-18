@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang='{{{block 'htmlLang'}}}'>
+
+<head>
+    <meta charset='utf-8' />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+    <meta name='monetization' content='$ilp.uphold.com/Apm7DzrByBYN' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+
+    {{{block 'meta'}}}
+    <title>{{{block 'title'}}}</title>
+    {{{block 'styles'}}}
+
+    <style>
+        body.mds-talent {
+            --ghost-accent-color: {{@custom.talent_accent_color}};
+        }
+        body.mds-shopify {
+            --ghost-accent-color: {{@custom.shopify_accent_color}};
+        }
+    </style>
+
+    <link rel="preconnect" href="https://www.facebook.com" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://connect.facebook.net" crossorigin="anonymous" />
+
+    <link rel="preload" as="script" href="https://cdn.jsdelivr.net/ghost/portal@~2.25/umd/portal.min.js" crossorigin />
+
+    {{ghost_head}}
+</head>
+
+<body class='{{body_class}} {{{block 'activityClass'}}}'>
+    <div class='mds-viewport'>
+        <header id='mds-head' class='mds-head'>
+            <nav class='mds-head-inner mds-container' role='navigation' aria-label='Main Navigation'>
+                <div class='mds-head-brand'>
+                    <a class='mds-head-logo' href='{{@site.url}}'>
+                        {{#if @site.logo}}
+                        <img src='{{@site.logo}}' alt='{{@site.title}} - Back to home page' />
+                        {{else}}
+                        {{@site.title}}
+                        {{/if}}
+                    </a>
+                </div>
+                {{#match @custom.menu_position "!=" "Menu on the left side"}}
+                <div class='mds-head-placeholder'></div>
+                {{/match}}
+                <div class='mds-head-menu'>
+                    <nav class="mds-main-menu">
+                        {{navigation}}
+                    </nav>
+                </div>
+                {{#match @custom.menu_position "!=" "Menu on the right side"}}
+                <div class='mds-head-placeholder'></div>
+                {{/match}}
+                <div class='mds-head-actions'>
+                    {{#if @custom.enable_search}}
+                    <a class="search-button" data-ghost-search aria-label="Recherche">{{> "icons/search"}}
+                    </a>
+                    {{/if}}
+
+                    {{#if @custom.global_cta_url}}
+                    <a class="button primary shop-button" target='_blank'
+                        href="{{@custom.global_cta_url}}">{{@custom.global_cta_text}}</a>
+                    {{/if}}
+
+                    <button type="button" class="more-button-small-screen" aria-label="Menu"
+                        aria-controls="mds-more-menu" aria-expanded="false">
+                        {{> "icons/more"}}
+                    </button>
+
+                    <div class="more-menu" id="mds-more-menu">
+                        <header class="mds-head">
+                            <div class="mds-container">
+                                <div class='mds-head-brand'>
+                                    <a class='mds-head-logo' href='{{@site.url}}'>
+                                        {{#if @site.logo}}
+                                        <img src='{{@site.logo}}' alt='{{@site.title}} - Back to home page' />
+                                        {{else}}
+                                        {{@site.title}}
+                                        {{/if}}
+                                    </a>
+                                </div>
+                                <div class='mds-head-placeholder'></div>
+                                <button type="button" class="close-button" aria-label="Fermer le menu">{{> "icons/times"}}</button>
+                            </div>
+                        </header>
+
+                        {{navigation}}
+
+                        <ul>
+                            {{#if @custom.global_cta_url}}
+                            <li><a class="button primary"
+                                    href="{{@custom.global_cta_url}}">{{@custom.global_cta_text}}</a></li>
+                            {{/if}}
+                            {{#if @custom.enable_search}}
+                            <li><a class="" href="#/search">Recherche</a></li>
+                            {{/if}}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main class='mds-main'>
+
+            {{{body}}}
+            {{! All content gets inserted here, index.hbs, post.hbs, etc }}
+
+        </main>
+
+        <footer class='mds-foot'>
+            <div class='mds-container'>
+                <div class='mds-foot-top'>
+                    <div class='mds-foot-brand'>
+                        <a class='mds-foot-logo' href='{{@site.url}}'>
+                            {{#if @site.logo}}
+                            <img src='{{@site.logo}}' alt='{{@site.title}}' loading='lazy' />
+                            {{else}}
+                            {{@site.title}}
+                            {{/if}}
+                        </a>
+                        {{#if @site.description}}
+                        <p>{{@site.description}}</p>
+                        {{/if}}
+                        {{#if @custom.global_cta_url}}
+                        <a class='button primary' href='{{@custom.global_cta_url}}'>{{@custom.global_cta_text}}</a>
+                        {{/if}}
+                        <ul class='mds-foot-social'>
+                            {{#if @site.twitter}}
+                            <li><a href='{{twitter_url @site.twitter}}' target='_blank' rel='noopener' aria-label='{{@site.title}} sur X'>{{> "icons/x"}}</a></li>
+                            {{/if}}
+                            {{#if @site.facebook}}
+                            <li><a href='{{facebook_url @site.facebook}}' target='_blank' rel='noopener' aria-label='{{@site.title}} sur Facebook'>{{> "icons/facebook"}}</a></li>
+                            {{/if}}
+                        </ul>
+                    </div>
+
+                    <nav class='mds-foot-menu' aria-label='Plan du site'>
+                        <div class='mds-foot-col'>
+                            <h2>Studio</h2>
+                            {{navigation}}
+                        </div>
+                        <div class='mds-foot-col'>
+                            <h2>Liens</h2>
+                            {{navigation type='secondary'}}
+                            {{#if @custom.shop_url}}
+                            <ul>
+                                <li><a href='{{@custom.shop_url}}'>Boutique</a></li>
+                            </ul>
+                            {{/if}}
+                        </div>
+                    </nav>
+                </div>
+
+                <div class='mds-foot-bottom'>
+                    <p class='mds-foot-meta'>
+                        Développé avec amour par <a href='https://nathanaelcherrier.dev/'>Nathanaël Cherrier</a>.
+                        &copy;{{date format='YYYY'}} <a href='https://mindsers.it/'>MindsersIT</a>. Tous droits réservés.
+                    </p>
+                    <ul class='mds-foot-legal'>
+                        <li><a href='{{@site.url}}/legal-notices/'>Mentions légales</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    {{! <foot> }}
+    <script type="module" src="{{asset 'js/menu.js'}}"></script>
+    {{{block 'scripts'}}}
+    {{ghost_foot}}
+</body>
+
+</html>

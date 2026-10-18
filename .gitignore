@@ -22,3 +22,16 @@ projectFilesBackup
 .DS_Store
 
 dist/
+
+# build output (produced by `pnpm build` and CI)
+themes/ghost/assets/css/
+themes/ghost/assets/js/
+themes/ghost/assets/fonts/
+# Shopify: only the files generated from src/ and packages/design-system;
+# hand-written assets in themes/shopify/assets/ stay tracked
+themes/shopify/assets/*.css
+themes/shopify/assets/*.css.map
+themes/shopify/assets/*.js
+themes/shopify/assets/*.js.map
+themes/shopify/assets/*.ttf
+themes/shopify/.shopify/

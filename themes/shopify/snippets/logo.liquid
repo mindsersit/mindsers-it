@@ -1,0 +1,12 @@
+{%- doc -%}
+  Renders the brand logo link, as in themes/ghost/default.hbs. Falls back to
+  the bundled assets/logo.png (the mindsers.it logo) when no logo is uploaded.
+{%- enddoc -%}
+{%- assign title = settings.site_title | default: shop.name -%}
+<a class="mds-head-logo" href="{{ settings.main_site_url | default: 'https://mindsers.it' }}">
+  {%- if settings.logo -%}
+    {{ settings.logo | image_url: height: 140 | image_tag: alt: title, height: 70, loading: 'eager' }}
+  {%- else -%}
+    <img src="{{ 'logo.png' | asset_url }}" alt="{{ 'header.logo_alt' | t: title: title }}" width="104" height="70">
+  {%- endif -%}
+</a>

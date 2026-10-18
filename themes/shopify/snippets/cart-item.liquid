@@ -1,0 +1,68 @@
+{%- doc -%}
+  One cart line, shared by the cart page and the cart drawer.
+
+  @param {line_item} item - The cart line
+  @param {number} index - The line number (1-based), used by /cart/change.js
+  @param {boolean} [ajax] - Drawer mode: quantity buttons handled by cart.js
+    instead of the cart page's form fields
+{%- enddoc -%}
+<li class="cart-item" data-line="{{ index }}">
+  <a href="{{ item.url }}" tabindex="-1" aria-hidden="true">
+    {%- if item.image -%}
+      {{ item.image | image_url: width: 160, height: 160, crop: 'center' | image_tag: loading: 'lazy', alt: '' }}
+    {%- endif -%}
+  </a>
+
+  <div>
+    <p class="cart-item__title"><a href="{{ item.url }}">{{ item.product.title | escape }}</a></p>
+    {%- unless item.product.has_only_default_variant -%}
+      <p class="cart-item__meta">{{ item.variant.title | escape }}</p>
+    {%- endunless -%}
+    {%- if item.selling_plan_allocation -%}
+      <p class="cart-item__meta">{{ item.selling_plan_allocation.selling_plan.name | escape }}</p>
+    {%- endif -%}
+    {%- for property in item.properties -%}
+      {%- assign first_char = property.first | slice: 0 -%}
+      {%- if property.last != blank and first_char != '_' -%}
+        <p class="cart-item__meta">{{ property.first | escape }} : {{ property.last | escape }}</p>
+      {%- endif -%}
+    {%- endfor -%}
+    {%- unless item.requires_shipping -%}
+      <p class="cart-item__meta">{{ 'product.digital' | t }}</p>
+    {%- endunless -%}
+    {%- for discount in item.line_level_discount_allocations -%}
+      <p class="cart-item__meta">{{ discount.discount_application.title | escape }} (−{{ discount.amount | money }})</p>
+    {%- endfor -%}
+
+    <div class="cart-item__actions">
+      {%- assign quantity_id = 'Quantity-' | append: index -%}
+      {%- if ajax -%}
+        {%- assign quantity_id = 'DrawerQuantity-' | append: index -%}
+      {%- endif -%}
+      <label class="visually-hidden" for="{{ quantity_id }}">
+        {{- 'cart.quantity_for' | t: title: item.product.title -}}
+      </label>
+      <div class="quantity">
+        {%- if ajax -%}
+          <button type="button" data-quantity-change="-1" aria-label="{{ 'product.decrease' | t }}">&minus;</button>
+          <input id="{{ quantity_id }}" type="number" min="0" value="{{ item.quantity }}" inputmode="numeric" data-line-quantity>
+          <button type="button" data-quantity-change="1" aria-label="{{ 'product.increase' | t }}">+</button>
+        {%- else -%}
+          <input id="{{ quantity_id }}" type="number" min="0" name="updates[]" value="{{ item.quantity }}" inputmode="numeric">
+        {%- endif -%}
+      </div>
+      {%- if ajax -%}
+        <button type="button" class="cart-item__remove" data-line-remove>{{ 'cart.remove' | t }}</button>
+      {%- else -%}
+        <a class="cart-item__remove" href="{{ item.url_to_remove }}">{{ 'cart.remove' | t }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="cart-item__price">
+    {%- if item.original_line_price > item.final_line_price -%}
+      <s class="price__compare">{{ item.original_line_price | money }}</s><br>
+    {%- endif -%}
+    {{ item.final_line_price | money }}
+  </div>
+</li>

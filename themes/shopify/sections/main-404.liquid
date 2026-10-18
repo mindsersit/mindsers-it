@@ -1,0 +1,16 @@
+<div class="mds-container mds-shop-page">
+  <h1>{{ '404.title' | t }}</h1>
+
+  <p>{{ '404.not_found' | t }}</p>
+
+  <a href="{{ routes.all_products_collection_url }}">
+    {{ '404.back_to_shopping' | t }}
+  </a>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main_404.name",
+  "settings": []
+}
+{% endschema %}

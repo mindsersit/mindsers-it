@@ -1,35 +1,34 @@
-name: CD - GH Release
+name: GitHub Release
 
 on:
-    push:
-        # Sequence of patterns matched against refs/tags
-        tags:
-            - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+  push:
+    tags:
+      - 'v*'
 
 jobs:
-    deploy:
-        runs-on: ubuntu-18.04
-        steps:
-            - name: Get version from tag
-              id: tag_name
-              run: |
-                  echo ::set-output name=current_version::${GITHUB_REF#refs/tags/v}
-              shell: bash
-            - uses: actions/checkout@v2
-            - name: Get Changelog Entry
-              id: changelog_reader
-              uses: mindsers/changelog-reader-action@v2
-              with:
-                  version: ${{ steps.tag_name.outputs.current_version }}
-                  path: ./CHANGELOG.md
-            - name: Create Github Release
-              id: create_release
-              uses: actions/create-release@v1
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              with:
-                  tag_name: ${{ steps.changelog_reader.outputs.version }}
-                  release_name: Release ${{ steps.changelog_reader.outputs.version }}
-                  body: ${{ steps.changelog_reader.outputs.changes }}
-                  prerelease: ${{ steps.changelog_reader.outputs.status == 'prereleased' }}
-                  draft: false
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Get version from tag
+        id: tag_name
+        run: echo "current_version=${GITHUB_REF#refs/tags/v}" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v4
+      - name: Get Changelog Entry
+        id: changelog_reader
+        uses: mindsers/changelog-reader-action@v2
+        with:
+          version: ${{ steps.tag_name.outputs.current_version }}
+          path: ./CHANGELOG.md
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2.6.2
+        with:
+          tag_name: v${{ steps.changelog_reader.outputs.version }}
+          name: Release ${{ steps.changelog_reader.outputs.version }}
+          body: ${{ steps.changelog_reader.outputs.changes }}
+          prerelease: ${{ steps.changelog_reader.outputs.status == 'prereleased' }}
+          # Optional fine-grained PAT (this repo only, contents: write). Releases created
+          # with GITHUB_TOKEN don't trigger other workflows: without RELEASE_TOKEN the
+          # release is still created, but run the Deploy workflow by hand.
+          token: ${{ secrets.RELEASE_TOKEN || secrets.GITHUB_TOKEN }}

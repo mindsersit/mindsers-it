@@ -1,0 +1,43 @@
+{%- assign featured = section.settings.collection | default: collections.all -%}
+<section class="mds-section">
+  <div class="mds-container">
+    {%- if section.settings.eyebrow != blank -%}
+      <div class="section-type">{{ section.settings.eyebrow | escape }}</div>
+    {%- endif -%}
+    {%- if section.settings.title != blank -%}
+      <h2 class="section-title">{{ section.settings.title | escape }}</h2>
+    {%- endif -%}
+
+    {%- if featured.products.size > 0 -%}
+      <ul class="product-grid">
+        {%- for product in featured.products limit: section.settings.limit -%}
+          <li>{% render 'product-card', product: product %}</li>
+        {%- endfor -%}
+      </ul>
+      {%- if section.settings.show_view_all and featured.products_count > section.settings.limit -%}
+        <p><a class="button primary" href="{{ featured.url }}">{{ 'collections.view_all' | t }}</a></p>
+      {%- endif -%}
+    {%- else -%}
+      <p>{{ 'collections.coming_soon' | t }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.featured_collection.name",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "t:sections.rich_text.eyebrow", "default": "Boutique" },
+    { "type": "text", "id": "title", "label": "t:sections.rich_text.title", "default": "Nos produits" },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "t:sections.featured_collection.collection",
+      "info": "t:sections.featured_collection.collection_info"
+    },
+    { "type": "range", "id": "limit", "label": "t:sections.featured_collection.limit", "min": 2, "max": 24, "step": 1, "default": 8 },
+    { "type": "checkbox", "id": "show_view_all", "label": "t:sections.featured_collection.show_view_all", "default": true }
+  ],
+  "presets": [{ "name": "t:sections.featured_collection.name" }]
+}
+{% endschema %}

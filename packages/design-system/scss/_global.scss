@@ -1,0 +1,661 @@
+@use 'colors';
+@use 'fonts';
+@use 'buttons';
+@use 'tokens';
+
+body {
+    padding: 0;
+    margin: 0;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-font-smoothing: antialiased !important;
+    text-rendering: optimizelegibility !important;
+    letter-spacing: 0.2px;
+    background-color: colors.$background;
+    color: colors.$foreground;
+    font-family: var(--gh-font-body, fonts.$sans);
+
+    &.no-scroll-small-screen {
+        @media (max-width: 700px) {
+            overflow: hidden;
+        }
+
+        // backdrop-filter makes the header the containing block of the fixed
+        // .more-menu drawer, which would clip the open drawer to the header
+        .mds-head {
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+    }
+
+    .mds-container {
+        max-width: tokens.$content-width;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .mds-head {
+        background-color: rgba(#121922, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        font-family: var(--gh-font-body, fonts.$sans);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+        .mds-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            padding-bottom: 12px;
+
+            .mds-head-logo {
+                font-size: 1.5em;
+                font-weight: 700;
+                text-decoration: none;
+                color: colors.$foreground;
+
+                img {
+                    display: block;
+                    height: 48px;
+                    width: auto;
+                }
+            }
+
+            .mds-head-menu {
+                margin: 0 20px;
+                font-size: 0.95em;
+
+                @media (max-width: 700px) {
+                    display: none;
+                }
+
+                ul {
+                    display: flex;
+                    justify-content: space-between;
+                    list-style: none;
+                    padding: 0;
+
+                    li {
+                        margin: 0 6px;
+
+                        a {
+                            color: colors.$foreground;
+                            text-decoration: none;
+                            transition: color 0.2s ease;
+
+                            &:hover {
+                                color: colors.$accent;
+                            }
+                        }
+                    }
+                }
+
+                .mds-main-menu {
+                    li {
+                        position: relative;
+                        padding: 5px;
+
+                        &.nav-current a {
+                            color: colors.$accent;
+                            text-decoration: underline;
+                            text-underline-offset: 4px;
+                        }
+
+                        .mds-main-submenu {
+                            position: absolute;
+                            display: flex;
+                            background-color: colors.$background;
+                            border-radius: 12px;
+                            width: max-content;
+                            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.1);
+                            margin: 5px 0;
+                            display: none;
+                            z-index: 1;
+
+                            .mds-submenu-column {
+                                padding: 5px 20px;
+                                margin: 15px 0px;
+
+                                &.mds-submenu-links {
+                                    min-width: 150px;
+
+                                    ul + ul {
+                                        margin-top: 20px;
+                                    }
+
+                                    li {
+                                        padding: 0;
+                                    }
+
+                                    .asap-label {
+                                        font-size: 0.7em;
+                                        background-color: colors.$neutral;
+                                        border-radius: 5px;
+                                        padding: 1px 3px;
+                                    }
+
+                                    .more-links {
+                                        font-size: 0.9em;
+                                        text-decoration: underline;
+
+                                        a {
+                                            color: colors.$foreground;
+                                            text-decoration: underline;
+                                            font-weight: 400;
+                                        }
+                                    }
+                                }
+
+                                &.mds-submenu-plans {
+                                    border-left: 1px solid colors.$neutral;
+
+                                    .more {
+                                        color: colors.$foreground;
+                                        text-decoration: underline;
+                                        font-weight: 400;
+                                        font-size: 0.9em;
+                                    }
+
+                                    .title {
+                                        font-weight: bolder;
+                                        font-size: 0.9em;
+                                    }
+
+                                    li {
+                                        margin: 5px;
+                                        padding: 0;
+
+                                        a {
+                                            background: colors.$default_gradient;
+                                            color: white;
+                                            padding: 10px;
+                                            border-radius: 8px;
+                                            display: inline-block;
+                                            box-sizing: border-box;
+                                            width: 200px;
+                                            height: 60px;
+                                            display: flex;
+                                            justify-content: space-between;
+                                            align-items: center;
+
+                                            .price {
+                                                background-color: white;
+                                                color: colors.$accent;
+                                                font-weight: 400;
+                                                border-radius: 15px;
+                                                padding: 5px 10px;
+                                                font-size: 0.8em;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            ul {
+                                flex-direction: column;
+                            }
+                        }
+
+                        &:hover .mds-main-submenu {
+                            display: flex;
+                        }
+                    }
+                }
+            }
+
+            .mds-head-placeholder {
+                flex-grow: 2;
+            }
+
+            .mds-head-actions {
+                position: relative;
+                display: flex;
+                align-items: center;
+                gap: 18px;
+
+                // icon buttons share one size, colour and hover
+                .search-button,
+                .account-button,
+                .cart-button,
+                .more-button-small-screen {
+                    display: inline-flex;
+                    width: 22px;
+                    height: 22px;
+                    margin: 0;
+                    color: #c9cfd6;
+                    transition: color 0.2s ease;
+
+                    &:hover {
+                        color: colors.$accent;
+                    }
+
+                    svg {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+
+                .profile-button {
+                    color: white;
+                    display: inline-block;
+                    width: 40px;
+                    height: 40px;
+                    box-sizing: border-box;
+                    background-color: colors.$accent;
+                    border-radius: 50%;
+                    vertical-align: middle;
+                    margin: 0 10px;
+                    position: relative;
+                    overflow: hidden;
+                    cursor: pointer;
+
+                    svg {
+                        stop-color: white;
+                        width: 34px;
+                        height: 34px;
+                        position: absolute;
+                        top: 3px;
+                        left: 3px;
+                    }
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                    }
+                }
+
+                .search-button {
+                    cursor: pointer;
+                }
+
+                .login-button,
+                .shop-button {
+                    &:not(.button) {
+                        color: colors.$accent;
+                        text-decoration: none;
+                        font-weight: bold;
+                        margin: 10px;
+                        font-size: 0.9em;
+                    }
+
+                    @media (max-width: 700px) {
+                        display: none;
+                    }
+                }
+
+                .more-button-small-screen {
+                    display: none;
+                    width: 24px;
+                    height: 24px;
+                    padding: 0;
+                    border: 0;
+                    background: none;
+                    cursor: pointer;
+
+                    @media (max-width: 700px) {
+                        display: inline-flex;
+                    }
+                }
+
+                .more-menu {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    overflow: scroll;
+                    background-color: colors.$background;
+                    z-index: 20;
+                    display: none;
+
+                    &.menu-open {
+                        display: none;
+
+                        @media (max-width: 700px) {
+                            display: block;
+                        }
+                    }
+
+                    .close-button {
+                        display: inline-flex;
+                        width: 24px;
+                        height: 24px;
+                        padding: 0;
+                        border: 0;
+                        background: none;
+                        color: colors.$foreground;
+                        cursor: pointer;
+
+                        svg {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+
+                    ul {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: space-between;
+                        list-style: none;
+                        padding: 0;
+                        margin: 40px 0;
+
+                        li {
+                            margin: 10px;
+
+                            a {
+                                color: colors.$foreground;
+                                text-decoration: none;
+                                font-size: 1.25rem;
+                                font-weight: 600;
+
+                                &.button {
+                                    color: colors.$background;
+                                    font-size: 0.9rem;
+                                }
+
+                                &[data-members-signout] {
+                                    color: #ff424d;
+                                }
+                            }
+
+                            &.reminder {
+                                color: #bfbfbf;
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                                text-align: center;
+                            }
+
+                            &.nav-current a {
+                                color: colors.$accent;
+                            }
+                        }
+                    }
+                }
+
+                .profile-menu {
+                    $color: colors.$neutral;
+                    position: absolute;
+                    background-color: colors.$background;
+                    border-radius: 12px;
+                    right: 0;
+                    z-index: 4;
+                    margin: 10px 0;
+                    width: 200px;
+                    display: none;
+                    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.1);
+
+                    &.menu-open {
+                        display: block;
+
+                        @media (max-width: 700px) {
+                            display: none;
+                        }
+                    }
+
+                    &::before {
+                        content: '';
+                        display: inline-block;
+                        border-bottom: 10px solid $color;
+                        border-left: 10px solid transparent;
+                        border-right: 10px solid transparent;
+                        position: absolute;
+                        top: -10px;
+                        right: 19px;
+                    }
+
+                    ul {
+                        list-style: none;
+                        padding: 0;
+                        margin: 0;
+
+                        li {
+                            padding: 10px;
+                            font-size: 0.85rem;
+
+                            &.reminder {
+                                border-bottom: 1px solid $color;
+                                color: #bfbfbf;
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                            }
+
+                            &:not(.reminder) {
+                                padding: 15px 10px;
+
+                                & + li:not(.reminder) {
+                                    padding-top: 0;
+                                }
+                            }
+
+                            a {
+                                text-decoration: none;
+                                color: colors.$accent;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .gh-announcement-bar {
+        font-family: var(--gh-font-body, fonts.$sans);
+    }
+
+    .mds-foot {
+        $muted: tokens.$muted;
+
+        color: colors.$foreground;
+        background-color: colors.$background;
+        font-family: var(--gh-font-body, fonts.$sans);
+        margin-top: 60px;
+        padding: 60px 0 30px;
+        font-size: 0.9rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+        @media (max-width: 700px) {
+            padding: 40px 0 20px;
+        }
+
+        a {
+            color: colors.$foreground;
+            text-decoration: none;
+            transition: color 0.2s ease;
+
+            &:hover {
+                color: colors.$accent;
+            }
+        }
+
+        .mds-foot-top {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+            gap: 40px;
+
+            @media (max-width: 820px) {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .mds-foot-brand {
+            img {
+                display: block;
+                height: 56px;
+                width: auto;
+            }
+
+            p {
+                max-width: 320px;
+                margin: 16px 0 0;
+                color: $muted;
+                line-height: 1.6;
+            }
+
+            .button {
+                margin-top: 24px;
+
+                &,
+                &:hover {
+                    color: colors.$background;
+                }
+            }
+        }
+
+        .mds-foot-social {
+            display: flex;
+            gap: 16px;
+            margin: 24px 0 0;
+            padding: 0;
+            list-style: none;
+
+            a {
+                display: inline-flex;
+                width: 20px;
+                height: 20px;
+                color: $muted;
+            }
+
+            svg {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .mds-foot-menu {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 30px;
+        }
+
+        .mds-foot-col {
+            h2 {
+                margin: 0 0 16px;
+                color: $muted;
+                font-family: var(--gh-font-heading, fonts.$sans);
+                font-size: 0.75rem;
+                font-weight: 600;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+            }
+
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+            li {
+                margin: 0 0 10px;
+            }
+        }
+
+        .mds-foot-bottom {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 50px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            color: $muted;
+            font-size: 0.8rem;
+
+            p {
+                margin: 0;
+            }
+
+            a {
+                color: colors.$secondary;
+
+                &:hover {
+                    color: colors.$foreground;
+                }
+            }
+
+            .mds-foot-legal {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 6px 20px;
+                margin: 0;
+                padding: 0;
+                list-style: none;
+
+                a {
+                    color: $muted;
+
+                    &:hover {
+                        color: colors.$foreground;
+                    }
+                }
+            }
+        }
+    }
+
+    input[type='text'],
+    input[type='email'] {
+        padding: 10px 15px;
+        border: 1px solid colors.$accent;
+        border-radius: 8px;
+        margin: 5px 0;
+        font-family: var(--gh-font-body, fonts.$sans);
+        font-size: 1rem;
+        appearance: none;
+    }
+
+    input[type='checkbox'] {
+        display: none;
+
+        & + label::before {
+            content: '';
+            display: inline-block;
+            border: 1px solid colors.$accent;
+            margin: 5px;
+            height: 12px;
+            width: 12px;
+            vertical-align: middle;
+            border-radius: 4px;
+            background-color: colors.$background;
+            line-height: 12px;
+            text-align: center;
+            position: relative;
+            top: -1px;
+        }
+
+        &:checked + label::before {
+            content: '\2713';
+        }
+    }
+
+    div.cookie-consent {
+        display: none;
+        width: calc(100% - 60px);
+        position: fixed;
+        bottom: 10px;
+        left: 10px;
+        border-radius: 12px;
+        background-color: colors.$background;
+        padding: 10px 20px;
+        font-family: var(--gh-font-body, fonts.$sans);
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+        z-index: 2;
+
+        @media (max-width: 400px) {
+            flex-direction: column;
+        }
+
+        &.active {
+            display: flex;
+        }
+    }
+}

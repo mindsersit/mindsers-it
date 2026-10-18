@@ -1,0 +1,6 @@
+# Sources and tooling: only the compiled theme is uploaded
+src/*
+gulpfile.js
+package.json
+node_modules/*
+*.md

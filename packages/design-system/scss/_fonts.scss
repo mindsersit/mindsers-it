@@ -1,0 +1,69 @@
+// Where the font files are served from. Ghost serves them from /assets/fonts/
+// (assumes Ghost runs at the domain root). Shopify puts every asset in one flat
+// CDN folder, so the Shopify theme will set this to ''.
+$font-path: '/assets/fonts/' !default;
+
+@font-face {
+    font-family: 'Fira Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Fira Sans'),
+        url('#{$font-path}FiraSans-Regular.ttf') format('truetype');
+    unicode-range: U+000-5FF; /* Latin glyphs */
+}
+
+@font-face {
+    font-family: 'Fira Sans';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: local('Fira Sans Light'),
+        url('#{$font-path}FiraSans-Light.ttf') format('truetype');
+    unicode-range: U+000-5FF; /* Latin glyphs */
+}
+
+@font-face {
+    font-family: 'Fira Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: local('Fira Sans Bold'),
+        url('#{$font-path}FiraSans-Bold.ttf') format('truetype');
+    unicode-range: U+000-5FF; /* Latin glyphs */
+}
+
+@font-face {
+    font-family: 'Fira Sans';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: local('Fira Sans Black'),
+        url('#{$font-path}FiraSans-Black.ttf') format('truetype');
+    unicode-range: U+000-5FF; /* Latin glyphs */
+}
+
+@font-face {
+    font-family: 'Fira Code';
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    src: local('Fira Code'),
+        url('#{$font-path}FiraCode.ttf') format('truetype');
+    unicode-range: U+000-5FF; /* Latin glyphs */
+}
+
+@font-face {
+    font-family: 'Merriweather';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Merriweather'),
+        url('#{$font-path}Merriweather-Regular.ttf') format('truetype');
+    unicode-range: U+000-5FF; /* Latin glyphs */
+}
+
+$sans: 'Fira Sans', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+$mono: 'Fira Code', monospace;
+$serif: 'Merriweather', serif;

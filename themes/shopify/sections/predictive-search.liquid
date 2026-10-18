@@ -1,0 +1,64 @@
+{%- comment -%}
+  Not placed in any template: search.js requests it from
+  routes.predictive_search_url with section_id=predictive-search.
+{%- endcomment -%}
+{%- if predictive_search.performed -%}
+  {%- liquid
+    assign resources = predictive_search.resources
+    assign count = resources.products.size | plus: resources.collections.size | plus: resources.pages.size
+    assign terms = predictive_search.terms | escape
+  -%}
+  <div class="predictive-search" data-status="{{ 'search.results_count' | t: count: count }}">
+    {%- if resources.products.size > 0 -%}
+      <h3>{{ 'search.products' | t }}</h3>
+      <ul>
+        {%- for product in resources.products -%}
+          <li>
+            <a href="{{ product.url }}">
+              {%- if product.featured_media -%}
+                {{ product.featured_media | image_url: width: 96, height: 96, crop: 'center' | image_tag: loading: 'lazy', alt: '' }}
+              {%- endif -%}
+              <span>
+                {{ product.title | escape }}<br>
+                {%- render 'price', variant: product.selected_or_first_available_variant, product: product -%}
+              </span>
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- if resources.collections.size > 0 -%}
+      <h3>{{ 'search.collections' | t }}</h3>
+      <ul>
+        {%- for collection in resources.collections -%}
+          <li><a href="{{ collection.url }}">{{ collection.title | escape }}</a></li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- if resources.pages.size > 0 -%}
+      <h3>{{ 'search.pages' | t }}</h3>
+      <ul>
+        {%- for page in resources.pages -%}
+          <li><a href="{{ page.url }}">{{ page.title | escape }}</a></li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- if count == 0 -%}
+      <p>{{ 'search.no_results_html' | t: terms: terms }}</p>
+    {%- endif -%}
+
+    <a class="predictive-search__all" href="{{ routes.search_url }}?q={{ predictive_search.terms | url_encode }}&options%5Bprefix%5D=last">
+      {{- 'search.see_all_html' | t: terms: terms -}}
+    </a>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.predictive_search.name",
+  "settings": []
+}
+{% endschema %}

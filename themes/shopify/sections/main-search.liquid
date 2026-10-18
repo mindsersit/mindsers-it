@@ -1,0 +1,65 @@
+{%- assign terms = search.terms | escape -%}
+<div class="mds-container mds-shop-page search-results-page">
+  <h1>{{ 'search.title' | t }}</h1>
+
+  <form action="{{ routes.search_url }}" method="get" role="search">
+    <label for="SearchInput" class="visually-hidden">{{ 'search.title' | t }}</label>
+    <input
+      id="SearchInput"
+      type="search"
+      name="q"
+      value="{{ terms }}"
+      placeholder="{{ 'search.placeholder' | t }}"
+    >
+    <input type="hidden" name="options[prefix]" value="last">
+    <button type="submit" class="button">{{ 'search.submit' | t }}</button>
+  </form>
+
+  {%- if search.performed -%}
+    {% paginate search.results by 24 %}
+      {%- if search.filters.size > 0 -%}
+        {% render 'facets', results: search, terms: search.terms %}
+      {%- endif -%}
+
+      {%- if search.results_count == 0 -%}
+        <p>{{ 'search.no_results_html' | t: terms: terms }}</p>
+      {%- else -%}
+        <p>{{ 'search.results_for_html' | t: terms: terms, count: search.results_count }}</p>
+
+        <ul class="product-grid">
+          {%- for result in search.results -%}
+            <li>
+              {%- if result.object_type == 'product' -%}
+                {% render 'product-card', product: result %}
+              {%- else -%}
+                <article class="product-card">
+                  <a class="product-card__link" href="{{ result.url }}">
+                    <div class="product-card__info">
+                      <h3 class="product-card__title">{{ result.title | escape }}</h3>
+                      <p>{{ result.content | strip_html | truncatewords: 20 }}</p>
+                    </div>
+                  </a>
+                </article>
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+
+        {%- if paginate.pages > 1 -%}
+          <nav class="pagination" aria-label="{{ 'collections.pagination' | t }}">
+            {{ paginate | default_pagination }}
+          </nav>
+        {%- endif -%}
+      {%- endif -%}
+    {% endpaginate %}
+  {%- endif -%}
+</div>
+
+<script type="module" src="{{ 'facets.js' | asset_url }}"></script>
+
+{% schema %}
+{
+  "name": "t:sections.main_search.name",
+  "settings": []
+}
+{% endschema %}
