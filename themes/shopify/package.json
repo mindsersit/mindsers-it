@@ -1,6 +1,6 @@
 {
   "name": "@mindsers/shopify-theme",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Shopify theme for shop.mindsers.it, sharing the mindsers.it design system",
   "private": true,
   "scripts": {

@@ -1,6 +1,6 @@
 {
   "name": "@mindsers/design-system",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Shared styles, fonts and scripts for the mindsers.it Ghost and Shopify themes",
   "private": true,
   "files": ["scss", "fonts", "js"]
