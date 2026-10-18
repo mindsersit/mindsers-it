@@ -1,7 +1,7 @@
 {%- comment -%}
   Mirrors the footer in themes/ghost/default.hbs; the shared markup is in
   packages/design-system/MARKUP.md. Shop-only additions (policies, country
-  selector) come after the legal notices link.
+  selector) come after the legal notices and shop links.
 {%- endcomment -%}
 {%- assign main_url = settings.main_site_url | default: 'https://mindsers.it' -%}
 
@@ -11,6 +11,7 @@
       Développé avec amour par <a href="https://nathanaelcherrier.dev/">Nathanaël Cherrier</a>.
       &copy;{{ 'now' | date: '%Y' }} <a href="{{ main_url }}/">MindsersIT</a>. Tous droits réservés.<br>
       <a href="{{ main_url }}/legal-notices/">Mentions Légales</a>
+      &middot; <a href="{{ routes.root_url }}">Boutique</a>
 
       {%- if shop.policies.size > 0 -%}
         <div class="policies">

@@ -86,13 +86,16 @@ page:
 ```html
 <ul class="nav">
   <li class="nav-studio-saas nav-current"><a href="https://mindsers.it/studio-saas/">Studio SaaS</a></li>
-  <li class="nav-boutique"><a href="https://shop.mindsers.it/">Boutique</a></li>
+  <li class="nav-agence-shopify"><a href="https://mindsers.it/agence-shopify/">Agence Shopify</a></li>
+  <li class="nav-talents"><a href="https://mindsers.it/talent-freelance/">Talents</a></li>
 </ul>
 ```
 
 - `nav-{slug}`: the slugified label.
 - `nav-current`: Ghost adds it only to the item whose URL matches the current
-  page. The Shopify theme must add it to the Boutique item on every shop page.
+  page. On the shop no item is current (the menu only points to mindsers.it).
+- The shop isn't in the menu: selling merch isn't the main business. It is
+  linked from the footer instead.
 - Links are **absolute** because the menu is shared across two domains. It is
   maintained by hand in both admins (Ghost navigation and the Shopify
   `main-menu`).
@@ -106,7 +109,8 @@ page:
       Développé avec amour par <a href="https://nathanaelcherrier.dev/">Nathanaël Cherrier</a>.
       &copy;YYYY <a href="https://mindsers.it/">MindsersIT</a>. Tous droits réservés.<br />
       <a href="https://mindsers.it/legal-notices/">Mentions Légales</a>
-      <!-- theme-specific links go after this one (Shopify: policies, currency selector) -->
+      &middot; <a href="https://shop.mindsers.it/">Boutique</a>  <!-- Ghost: only when the shop_url setting is set -->
+      <!-- theme-specific content goes after these links (Shopify: policies, currency selector) -->
     </div>
   </div>
 </footer>

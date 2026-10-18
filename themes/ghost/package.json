@@ -62,6 +62,10 @@
         ],
         "default": "Menu on the left side"
       },
+      "shop_url": {
+        "type": "text",
+        "default": "https://shop.mindsers.it/"
+      },
       "talent_accent_color": {
         "type": "color",
         "default": "#9b694b",
