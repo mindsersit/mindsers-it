@@ -20,7 +20,13 @@
   },
   "footer": {
     "country": "Pays / devise",
-    "update_country": "Mettre à jour"
+    "update_country": "Mettre à jour",
+    "sitemap": "Plan du site",
+    "studio": "Studio",
+    "links": "Liens",
+    "shop": "Boutique",
+    "legal": "Légal",
+    "legal_notices": "Mentions légales"
   },
   "cart": {
     "title": "Panier",

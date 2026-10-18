@@ -94,8 +94,6 @@ page:
 - `nav-{slug}`: the slugified label.
 - `nav-current`: Ghost adds it only to the item whose URL matches the current
   page. On the shop no item is current (the menu only points to mindsers.it).
-- The shop isn't in the menu: selling merch isn't the main business. It is
-  linked from the footer instead.
 - Links are **absolute** because the menu is shared across two domains. It is
   maintained by hand in both admins (Ghost navigation and the Shopify
   `main-menu`).
@@ -105,16 +103,43 @@ page:
 ```html
 <footer class="mds-foot">
   <div class="mds-container">
-    <div class="mds-foot-meta">
-      Développé avec amour par <a href="https://nathanaelcherrier.dev/">Nathanaël Cherrier</a>.
-      &copy;YYYY <a href="https://mindsers.it/">MindsersIT</a>. Tous droits réservés.<br />
-      <a href="https://mindsers.it/legal-notices/">Mentions Légales</a>
-      &middot; <a href="https://shop.mindsers.it/">Boutique</a>  <!-- Ghost: only when the shop_url setting is set -->
-      <!-- theme-specific content goes after these links (Shopify: policies, currency selector) -->
+    <div class="mds-foot-top">
+      <div class="mds-foot-brand">
+        <a class="mds-foot-logo" href="https://mindsers.it/"><img src="…" alt="MindsersIT" /></a>
+        <p>Studio de développement de SaaS</p>  <!-- Ghost: @site.description -->
+      </div>
+      <nav class="mds-foot-menu" aria-label="Plan du site">
+        <div class="mds-foot-col">
+          <h2>Studio</h2>
+          <!-- NAV LIST: the main menu again -->
+        </div>
+        <div class="mds-foot-col">
+          <h2>Liens</h2>
+          <!-- Ghost: secondary navigation; Shopify: the "footer" menu -->
+          <ul><li><a href="https://shop.mindsers.it/">Boutique</a></li></ul>  <!-- Ghost: only when shop_url is set -->
+        </div>
+        <div class="mds-foot-col">
+          <h2>Légal</h2>
+          <ul>
+            <li><a href="https://mindsers.it/legal-notices/">Mentions légales</a></li>
+            <!-- Shopify: store policies, except its own legal notice -->
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="mds-foot-bottom">
+      <p class="mds-foot-meta">
+        Développé avec amour par <a href="https://nathanaelcherrier.dev/">Nathanaël Cherrier</a>.
+        &copy;YYYY <a href="https://mindsers.it/">MindsersIT</a>. Tous droits réservés.
+      </p>
+      <!-- Shopify: country/currency selector -->
     </div>
   </div>
 </footer>
 ```
+
+The shop isn't in the main menu (selling merch isn't the main business); the
+footer's "Liens" column links to it.
 
 ## CSS custom properties
 

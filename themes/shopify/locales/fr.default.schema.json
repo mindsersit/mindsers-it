@@ -43,7 +43,11 @@
     "footer": {
       "name": "Pied de page",
       "show_country_selector": "Afficher le sélecteur de pays",
-      "show_country_selector_info": "Visible seulement si plusieurs pays sont configurés dans Markets."
+      "show_country_selector_info": "Visible seulement si plusieurs pays sont configurés dans Markets.",
+      "description": "Description",
+      "menu": "Menu « Studio »",
+      "menu_info": "Les mêmes liens que l'en-tête de mindsers.it.",
+      "secondary_menu": "Menu « Liens »"
     },
     "main_page": {
       "name": "Page"

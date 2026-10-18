@@ -62,26 +62,19 @@
     }
 }
 
-.mds-foot .mds-foot-meta {
-    .policies {
-        margin-top: 10px;
+.mds-foot .localization {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 
-        a + a {
-            margin-left: 10px;
-        }
-    }
-
-    .localization {
-        margin-top: 10px;
-
-        select {
-            padding: 5px 10px;
-            border: 1px solid colors.$accent;
-            border-radius: 8px;
-            background-color: colors.$background;
-            color: colors.$foreground;
-            font-family: inherit;
-        }
+    select {
+        padding: 5px 10px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        background-color: colors.$background;
+        color: colors.$foreground;
+        font-family: inherit;
+        font-size: 0.8rem;
     }
 }
 

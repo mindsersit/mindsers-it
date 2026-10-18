@@ -1,25 +1,70 @@
 {%- comment -%}
   Mirrors the footer in themes/ghost/default.hbs; the shared markup is in
-  packages/design-system/MARKUP.md. Shop-only additions (policies, country
-  selector) come after the legal notices and shop links.
+  packages/design-system/MARKUP.md. Shop-only additions: store policies in
+  the "Légal" column and the country/currency selector in the bottom bar.
 {%- endcomment -%}
-{%- assign main_url = settings.main_site_url | default: 'https://mindsers.it' -%}
+{%- liquid
+  assign main_url = settings.main_site_url | default: 'https://mindsers.it'
+  assign title = settings.site_title | default: shop.name
+-%}
 
 <footer class="mds-foot">
   <div class="mds-container">
-    <div class="mds-foot-meta">
-      Développé avec amour par <a href="https://nathanaelcherrier.dev/">Nathanaël Cherrier</a>.
-      &copy;{{ 'now' | date: '%Y' }} <a href="{{ main_url }}/">MindsersIT</a>. Tous droits réservés.<br>
-      <a href="{{ main_url }}/legal-notices/">Mentions Légales</a>
-      &middot; <a href="{{ routes.root_url }}">Boutique</a>
+    <div class="mds-foot-top">
+      <div class="mds-foot-brand">
+        <a class="mds-foot-logo" href="{{ main_url }}">
+          {%- if settings.logo -%}
+            {{ settings.logo | image_url: height: 112 | image_tag: alt: title, height: 56, loading: 'lazy' }}
+          {%- else -%}
+            <img src="{{ 'logo.png' | asset_url }}" alt="{{ title | escape }}" width="84" height="56" loading="lazy">
+          {%- endif -%}
+        </a>
+        {%- if section.settings.description != blank -%}
+          <p>{{ section.settings.description | escape }}</p>
+        {%- endif -%}
+      </div>
 
-      {%- if shop.policies.size > 0 -%}
-        <div class="policies">
-          {%- for policy in shop.policies -%}
-            <a href="{{ policy.url }}">{{ policy.title }}</a>
-          {%- endfor -%}
+      <nav class="mds-foot-menu" aria-label="{{ 'footer.sitemap' | t }}">
+        {%- if section.settings.menu.links.size > 0 -%}
+          <div class="mds-foot-col">
+            <h2>{{ 'footer.studio' | t }}</h2>
+            <ul class="nav">
+              {%- for link in section.settings.menu.links -%}
+                <li class="nav-{{ link.handle }}"><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+
+        <div class="mds-foot-col">
+          <h2>{{ 'footer.links' | t }}</h2>
+          <ul class="nav">
+            {%- for link in section.settings.secondary_menu.links -%}
+              <li class="nav-{{ link.handle }}"><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+            {%- endfor -%}
+            <li><a href="{{ routes.root_url }}">{{ 'footer.shop' | t }}</a></li>
+          </ul>
         </div>
-      {%- endif -%}
+
+        <div class="mds-foot-col">
+          <h2>{{ 'footer.legal' | t }}</h2>
+          <ul>
+            <li><a href="{{ main_url }}/legal-notices/">{{ 'footer.legal_notices' | t }}</a></li>
+            {%- for policy in shop.policies -%}
+              {%- # the mindsers.it legal notice above already covers the shop -%}
+              {%- if policy.url contains '/legal-notice' -%}{%- continue -%}{%- endif -%}
+              <li><a href="{{ policy.url }}">{{ policy.title | escape }}</a></li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="mds-foot-bottom">
+      <p class="mds-foot-meta">
+        Développé avec amour par <a href="https://nathanaelcherrier.dev/">Nathanaël Cherrier</a>.
+        &copy;{{ 'now' | date: '%Y' }} <a href="{{ main_url }}/">MindsersIT</a>. Tous droits réservés.
+      </p>
 
       {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
         <div class="localization">
@@ -52,6 +97,25 @@
     "groups": ["footer"]
   },
   "settings": [
+    {
+      "type": "text",
+      "id": "description",
+      "label": "t:sections.footer.description",
+      "default": "Studio de développement de SaaS"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "t:sections.footer.menu",
+      "info": "t:sections.footer.menu_info",
+      "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "secondary_menu",
+      "label": "t:sections.footer.secondary_menu",
+      "default": "footer"
+    },
     {
       "type": "checkbox",
       "id": "show_country_selector",

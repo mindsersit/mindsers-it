@@ -116,22 +116,48 @@
 
         <footer class='mds-foot'>
             <div class='mds-container'>
-                {{!-- <nav class='mds-foot-menu' role='navigation' aria-label='More Links'>
-                    <div class='menu-list'>
-                        <h2>À propos</h2>
-
-                        {{navigation type='secondary'}}
+                <div class='mds-foot-top'>
+                    <div class='mds-foot-brand'>
+                        <a class='mds-foot-logo' href='{{@site.url}}'>
+                            {{#if @site.logo}}
+                            <img src='{{@site.logo}}' alt='{{@site.title}}' loading='lazy' />
+                            {{else}}
+                            {{@site.title}}
+                            {{/if}}
+                        </a>
+                        {{#if @site.description}}
+                        <p>{{@site.description}}</p>
+                        {{/if}}
                     </div>
-                </nav> --}}
-                <div class='mds-foot-meta'>
-                    Développé avec amour par <a href='https://nathanaelcherrier.dev/'>Nathanaël Cherrier</a>.
-                    &copy;{{date format='YYYY'}} <a href='https://mindsers.it/'>MindsersIT</a>. Tous droits réservés.<br />
-                    <a href='{{@site.url}}/legal-notices/'>
-                        Mentions Légales
-                    </a>
-                    {{#if @custom.shop_url}}
-                    &middot; <a href='{{@custom.shop_url}}'>Boutique</a>
-                    {{/if}}
+
+                    <nav class='mds-foot-menu' aria-label='Plan du site'>
+                        <div class='mds-foot-col'>
+                            <h2>Studio</h2>
+                            {{navigation}}
+                        </div>
+                        <div class='mds-foot-col'>
+                            <h2>Liens</h2>
+                            {{navigation type='secondary'}}
+                            {{#if @custom.shop_url}}
+                            <ul>
+                                <li><a href='{{@custom.shop_url}}'>Boutique</a></li>
+                            </ul>
+                            {{/if}}
+                        </div>
+                        <div class='mds-foot-col'>
+                            <h2>Légal</h2>
+                            <ul>
+                                <li><a href='{{@site.url}}/legal-notices/'>Mentions légales</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+
+                <div class='mds-foot-bottom'>
+                    <p class='mds-foot-meta'>
+                        Développé avec amour par <a href='https://nathanaelcherrier.dev/'>Nathanaël Cherrier</a>.
+                        &copy;{{date format='YYYY'}} <a href='https://mindsers.it/'>MindsersIT</a>. Tous droits réservés.
+                    </p>
                 </div>
             </div>
         </footer>

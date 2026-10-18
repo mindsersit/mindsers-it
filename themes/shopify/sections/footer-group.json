@@ -5,6 +5,9 @@
     "footer": {
       "type": "footer",
       "settings": {
+        "description": "Studio de développement de SaaS",
+        "menu": "main-menu",
+        "secondary_menu": "footer",
         "show_country_selector": true
       }
     }
