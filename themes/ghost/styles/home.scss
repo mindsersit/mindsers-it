@@ -173,6 +173,18 @@
         }
     }
 
+    .accent .persona-cards .persona-card {
+        @include tokens.card(true);
+
+        &:hover {
+            border-color: rgba(#121922, 0.3);
+        }
+
+        p {
+            color: inherit;
+        }
+    }
+
     .key-points {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
