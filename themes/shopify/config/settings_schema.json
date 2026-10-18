@@ -63,10 +63,37 @@
             "value": "center",
             "label": "t:settings.header.menu_position_center"
           },
-          { "value": "left", "label": "t:settings.header.menu_position_left" },
-          { "value": "right", "label": "t:settings.header.menu_position_right" }
+          {
+            "value": "left",
+            "label": "t:settings.header.menu_position_left"
+          },
+          {
+            "value": "right",
+            "label": "t:settings.header.menu_position_right"
+          }
         ],
         "default": "right"
+      }
+    ]
+  },
+  {
+    "name": "t:settings.cart.name",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "t:settings.cart.cart_type",
+        "options": [
+          {
+            "value": "drawer",
+            "label": "t:settings.cart.cart_type_drawer"
+          },
+          {
+            "value": "page",
+            "label": "t:settings.cart.cart_type_page"
+          }
+        ],
+        "default": "drawer"
       }
     ]
   }

@@ -44,7 +44,13 @@
     {% endunless %}
     <div class="mds-head-actions">
       {% if section.settings.show_search %}
-        <a class="search-button" href="{{ routes.search_url }}" aria-label="{{ 'header.search' | t }}">
+        <a
+          class="search-button"
+          href="{{ routes.search_url }}"
+          aria-label="{{ 'header.search' | t }}"
+          aria-haspopup="dialog"
+          data-search-open
+        >
           {% render 'icon-search' %}
         </a>
       {% endif %}
@@ -59,16 +65,7 @@
         </a>
       {% endif %}
 
-      <a
-        class="cart-button"
-        href="{{ routes.cart_url }}"
-        aria-label="{{ 'header.cart' | t: count: cart.item_count }}"
-      >
-        {{ 'icon-cart.svg' | inline_asset_content }}
-        {%- if cart.item_count > 0 -%}
-          <span class="cart-count" aria-hidden="true">{{ cart.item_count }}</span>
-        {%- endif -%}
-      </a>
+      {% render 'cart-button' %}
 
       <button
         type="button"

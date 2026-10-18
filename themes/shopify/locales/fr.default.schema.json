@@ -19,6 +19,12 @@
       "menu_position_center": "Centré",
       "menu_position_left": "À gauche",
       "menu_position_right": "À droite"
+    },
+    "cart": {
+      "name": "Panier",
+      "cart_type": "Type de panier",
+      "cart_type_drawer": "Tiroir",
+      "cart_type_page": "Page"
     }
   },
   "sections": {
@@ -39,20 +45,68 @@
       "show_country_selector": "Afficher le sélecteur de pays",
       "show_country_selector_info": "Visible seulement si plusieurs pays sont configurés dans Markets."
     },
-    "main_page": { "name": "Page" },
-    "main_404": { "name": "Page introuvable" },
-    "main_product": { "name": "Produit" },
-    "main_collection": { "name": "Collection" },
-    "main_list_collections": { "name": "Liste des collections" },
-    "main_cart": { "name": "Panier" },
-    "main_search": { "name": "Recherche" },
-    "main_password": { "name": "Mot de passe" },
+    "main_page": {
+      "name": "Page"
+    },
+    "main_404": {
+      "name": "Page introuvable"
+    },
+    "main_product": {
+      "name": "Produit",
+      "show_dynamic_checkout": "Afficher les boutons de paiement accéléré",
+      "show_dynamic_checkout_info": "Apple Pay, Google Pay, Shop Pay… selon les moyens de paiement activés."
+    },
+    "main_collection": {
+      "name": "Collection",
+      "products_per_page": "Produits par page",
+      "enable_filters": "Activer les filtres et le tri"
+    },
+    "main_list_collections": {
+      "name": "Liste des collections"
+    },
+    "main_cart": {
+      "name": "Panier",
+      "show_note": "Afficher la note de commande"
+    },
+    "main_search": {
+      "name": "Recherche"
+    },
+    "main_password": {
+      "name": "Mot de passe"
+    },
     "rich_text": {
       "name": "Texte",
       "eyebrow": "Sur-titre",
       "title": "Titre",
       "text": "Texte",
       "accent": "Fond couleur d'accent"
+    },
+    "cart_button": {
+      "name": "Bouton panier"
+    },
+    "cart_drawer": {
+      "name": "Tiroir du panier"
+    },
+    "predictive_search": {
+      "name": "Recherche prédictive"
+    },
+    "product_recommendations": {
+      "name": "Recommandations",
+      "heading": "Titre",
+      "limit": "Nombre de produits"
+    },
+    "featured_collection": {
+      "name": "Collection en vedette",
+      "collection": "Collection",
+      "collection_info": "Vide : tous les produits.",
+      "limit": "Nombre de produits",
+      "show_view_all": "Afficher le bouton « Voir tous les produits »"
+    },
+    "main_blog": {
+      "name": "Blog"
+    },
+    "main_article": {
+      "name": "Article"
     }
   }
 }

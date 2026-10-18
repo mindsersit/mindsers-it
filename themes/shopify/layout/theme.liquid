@@ -30,7 +30,19 @@
       {% sections 'footer-group' %}
     </div>
 
-    {%- # module, no async: menu.js relies on the document being parsed -%}
+    {% render 'search-dialog' %}
+
+    {%- if settings.cart_type == 'drawer' -%}
+      <dialog id="CartDrawer" class="mds-dialog cart-drawer" aria-labelledby="CartDrawerTitle">
+        {% section 'cart-drawer' %}
+      </dialog>
+    {%- endif -%}
+
+    {%- # modules, no async: they rely on the document being parsed -%}
     <script type="module" src="{{ 'menu.js' | asset_url }}"></script>
+    <script type="module" src="{{ 'search.js' | asset_url }}"></script>
+    {%- if settings.cart_type == 'drawer' -%}
+      <script type="module" src="{{ 'cart.js' | asset_url }}"></script>
+    {%- endif -%}
   </body>
 </html>

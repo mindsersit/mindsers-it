@@ -1,0 +1,17 @@
+<article class="mds-container mds-shop-page">
+  <h1>{{ article.title | escape }}</h1>
+  <p>{{ article.published_at | time_tag: format: 'date' }}</p>
+
+  {%- if article.image -%}
+    {{ article.image | image_url: width: 1400 | image_tag: widths: '600, 1000, 1400', sizes: '(min-width: 1100px) 1080px, 100vw' }}
+  {%- endif -%}
+
+  <div class="product__description">{{ article.content }}</div>
+</article>
+
+{% schema %}
+{
+  "name": "t:sections.main_article.name",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,38 @@
+<div class="mds-container mds-shop-page">
+  <h1>{{ blog.title | escape }}</h1>
+
+  {% paginate blog.articles by 12 %}
+    <ul class="product-grid">
+      {%- for article in blog.articles -%}
+        <li>
+          <article class="product-card">
+            <a class="product-card__link" href="{{ article.url }}">
+              {%- if article.image -%}
+                <div class="product-card__media">
+                  {{ article.image | image_url: width: 800 | image_tag: widths: '400, 600, 800', loading: 'lazy' }}
+                </div>
+              {%- endif -%}
+              <div class="product-card__info">
+                <h2 class="product-card__title">{{ article.title | escape }}</h2>
+                <p>{{ article.excerpt_or_content | strip_html | truncatewords: 25 }}</p>
+              </div>
+            </a>
+          </article>
+        </li>
+      {%- endfor -%}
+    </ul>
+
+    {%- if paginate.pages > 1 -%}
+      <nav class="pagination" aria-label="{{ 'collections.pagination' | t }}">
+        {{ paginate | default_pagination }}
+      </nav>
+    {%- endif -%}
+  {% endpaginate %}
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main_blog.name",
+  "settings": []
+}
+{% endschema %}
