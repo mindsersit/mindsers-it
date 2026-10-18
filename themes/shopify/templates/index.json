@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "intro": {
+      "type": "rich-text",
+      "settings": {
+        "eyebrow": "Boutique",
+        "title": "La boutique MindsersIT",
+        "text": "<p>Bientôt disponible.</p>",
+        "accent": false
+      }
+    }
+  },
+  "order": ["intro"]
+}

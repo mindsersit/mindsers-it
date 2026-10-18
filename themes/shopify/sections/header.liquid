@@ -1,0 +1,133 @@
+{%- comment -%}
+  Mirrors the header in themes/ghost/default.hbs; the shared markup is in
+  packages/design-system/MARKUP.md. Menu links are absolute (they point to
+  mindsers.it), so link.current never matches them: an item is also current
+  when it points to this shop, which highlights "Boutique" on every shop page.
+{%- endcomment -%}
+{%- liquid
+  assign menu_position = settings.menu_position
+  assign cta_url = settings.cta_url
+  assign cta_text = settings.cta_text
+-%}
+
+{%- capture nav_list -%}
+  <ul class="nav">
+    {%- for link in section.settings.menu.links -%}
+      {%- liquid
+        assign current = link.current
+        if link.url contains request.origin
+          assign current = true
+        endif
+      -%}
+      <li class="nav-{{ link.handle }}{% if current %} nav-current{% endif %}">
+        <a href="{{ link.url }}"{% if current %} aria-current="page"{% endif %}>{{ link.title }}</a>
+      </li>
+    {%- endfor -%}
+  </ul>
+{%- endcapture -%}
+
+<header id="mds-head" class="mds-head">
+  <nav class="mds-head-inner mds-container" role="navigation" aria-label="Main Navigation">
+    <div class="mds-head-brand">
+      {% render 'logo' %}
+    </div>
+    {% unless menu_position == 'left' %}
+      <div class="mds-head-placeholder"></div>
+    {% endunless %}
+    <div class="mds-head-menu">
+      <nav class="mds-main-menu">
+        {{ nav_list }}
+      </nav>
+    </div>
+    {% unless menu_position == 'right' %}
+      <div class="mds-head-placeholder"></div>
+    {% endunless %}
+    <div class="mds-head-actions">
+      {% if section.settings.show_search %}
+        <a class="search-button" href="{{ routes.search_url }}" aria-label="{{ 'header.search' | t }}">
+          {% render 'icon-search' %}
+        </a>
+      {% endif %}
+
+      {% if cta_url != blank %}
+        <a class="button highlighted shop-button" target="_blank" href="{{ cta_url }}">{{ cta_text }}</a>
+      {% endif %}
+
+      {% if shop.customer_accounts_enabled %}
+        <a class="account-button" href="{{ routes.account_url }}" aria-label="{{ 'header.account' | t }}">
+          {{ 'icon-account.svg' | inline_asset_content }}
+        </a>
+      {% endif %}
+
+      <a
+        class="cart-button"
+        href="{{ routes.cart_url }}"
+        aria-label="{{ 'header.cart' | t: count: cart.item_count }}"
+      >
+        {{ 'icon-cart.svg' | inline_asset_content }}
+        {%- if cart.item_count > 0 -%}
+          <span class="cart-count" aria-hidden="true">{{ cart.item_count }}</span>
+        {%- endif -%}
+      </a>
+
+      <button
+        type="button"
+        class="more-button-small-screen"
+        aria-label="{{ 'header.menu' | t }}"
+        aria-controls="mds-more-menu"
+        aria-expanded="false"
+      >
+        {% render 'icon-more' %}
+      </button>
+
+      <div class="more-menu" id="mds-more-menu">
+        <header class="mds-head">
+          <div class="mds-container">
+            <div class="mds-head-brand">
+              {% render 'logo' %}
+            </div>
+            <div class="mds-head-placeholder"></div>
+            <button type="button" class="close-button" aria-label="{{ 'header.close_menu' | t }}">
+              {% render 'icon-times' %}
+            </button>
+          </div>
+        </header>
+
+        {{ nav_list }}
+
+        <ul>
+          {% if cta_url != blank %}
+            <li><a class="button highlighted" href="{{ cta_url }}">{{ cta_text }}</a></li>
+          {% endif %}
+          {% if section.settings.show_search %}
+            <li><a href="{{ routes.search_url }}">{{ 'header.search' | t }}</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+{% schema %}
+{
+  "name": "t:sections.header.name",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "t:sections.header.menu",
+      "info": "t:sections.header.menu_info",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "t:sections.header.show_search",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

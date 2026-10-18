@@ -1,0 +1,58 @@
+{
+  "settings": {
+    "brand": {
+      "name": "Marque",
+      "logo": "Logo",
+      "logo_info": "Sans logo, le logo de mindsers.it inclus dans le thème est utilisé.",
+      "site_title": "Nom du site",
+      "main_site_url": "URL du site principal",
+      "main_site_url_info": "Le logo et le pied de page renvoient vers ce site.",
+      "accent_color": "Couleur d'accent",
+      "accent_color_info": "Doit être identique à la couleur d'accent de Ghost."
+    },
+    "header": {
+      "name": "En-tête",
+      "cta_url": "Lien du bouton d'appel à l'action",
+      "cta_url_info": "Identique au réglage « global_cta_url » du thème Ghost. Vide : pas de bouton.",
+      "cta_text": "Texte du bouton d'appel à l'action",
+      "menu_position": "Position du menu",
+      "menu_position_center": "Centré",
+      "menu_position_left": "À gauche",
+      "menu_position_right": "À droite"
+    }
+  },
+  "sections": {
+    "header_group": {
+      "name": "En-tête"
+    },
+    "footer_group": {
+      "name": "Pied de page"
+    },
+    "header": {
+      "name": "En-tête",
+      "menu": "Menu",
+      "menu_info": "Utilisez les mêmes liens absolus que la navigation Ghost.",
+      "show_search": "Afficher la recherche"
+    },
+    "footer": {
+      "name": "Pied de page",
+      "show_country_selector": "Afficher le sélecteur de pays",
+      "show_country_selector_info": "Visible seulement si plusieurs pays sont configurés dans Markets."
+    },
+    "main_page": { "name": "Page" },
+    "main_404": { "name": "Page introuvable" },
+    "main_product": { "name": "Produit" },
+    "main_collection": { "name": "Collection" },
+    "main_list_collections": { "name": "Liste des collections" },
+    "main_cart": { "name": "Panier" },
+    "main_search": { "name": "Recherche" },
+    "main_password": { "name": "Mot de passe" },
+    "rich_text": {
+      "name": "Texte",
+      "eyebrow": "Sur-titre",
+      "title": "Titre",
+      "text": "Texte",
+      "accent": "Fond couleur d'accent"
+    }
+  }
+}

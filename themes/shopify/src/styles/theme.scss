@@ -1,0 +1,94 @@
+// Fonts sit next to theme.css in Shopify's flat assets folder, so they are
+// loaded by file name. Must come before the other design-system modules.
+@use 'fonts' with ($font-path: '');
+@use 'colors';
+@use 'global';
+@use 'sections';
+
+// The header section is wrapped in Shopify's <div class="shopify-section">.
+// Without this, .mds-head would only stick within that wrapper.
+.shopify-section-group-header-group {
+    display: contents;
+}
+
+.skip-link {
+    position: absolute;
+    left: 20px;
+    top: -100px;
+    z-index: 30;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-color: colors.$foreground;
+    color: colors.$background;
+
+    &:focus {
+        top: 10px;
+    }
+}
+
+// Shop-only header actions, styled like the Ghost search button
+.mds-head .mds-head-actions {
+    .account-button,
+    .cart-button {
+        position: relative;
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        vertical-align: middle;
+        margin-right: 10px;
+        color: gainsboro;
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .cart-count {
+        position: absolute;
+        top: -6px;
+        right: -8px;
+        min-width: 16px;
+        padding: 0 3px;
+        box-sizing: border-box;
+        border-radius: 8px;
+        background-color: colors.$accent;
+        color: colors.$background;
+        font-size: 0.65rem;
+        font-weight: 600;
+        line-height: 16px;
+        text-align: center;
+    }
+}
+
+.mds-foot .mds-foot-meta {
+    .policies {
+        margin-top: 10px;
+
+        a + a {
+            margin-left: 10px;
+        }
+    }
+
+    .localization {
+        margin-top: 10px;
+
+        select {
+            padding: 5px 10px;
+            border: 1px solid colors.$accent;
+            border-radius: 8px;
+            background-color: colors.$background;
+            color: colors.$foreground;
+            font-family: inherit;
+        }
+    }
+}
+
+.mds-shop-page {
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+    a {
+        color: colors.$accent;
+    }
+}

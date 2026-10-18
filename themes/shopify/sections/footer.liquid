@@ -1,0 +1,63 @@
+{%- comment -%}
+  Mirrors the footer in themes/ghost/default.hbs; the shared markup is in
+  packages/design-system/MARKUP.md. Shop-only additions (policies, country
+  selector) come after the legal notices link.
+{%- endcomment -%}
+{%- assign main_url = settings.main_site_url | default: 'https://mindsers.it' -%}
+
+<footer class="mds-foot">
+  <div class="mds-container">
+    <div class="mds-foot-meta">
+      Développé avec amour par <a href="https://nathanaelcherrier.dev/">Nathanaël Cherrier</a>.
+      &copy;{{ 'now' | date: '%Y' }} <a href="{{ main_url }}/">MindsersIT</a>. Tous droits réservés.<br>
+      <a href="{{ main_url }}/legal-notices/">Mentions Légales</a>
+
+      {%- if shop.policies.size > 0 -%}
+        <div class="policies">
+          {%- for policy in shop.policies -%}
+            <a href="{{ policy.url }}">{{ policy.title }}</a>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
+        <div class="localization">
+          {%- form 'localization', id: 'FooterLocalization' -%}
+            <label for="FooterCountry">{{ 'footer.country' | t }}</label>
+            <select id="FooterCountry" name="country_code" onchange="this.form.requestSubmit()">
+              {%- for country in localization.available_countries -%}
+                <option
+                  value="{{ country.iso_code }}"
+                  {% if country.iso_code == localization.country.iso_code %}
+                    selected
+                  {% endif %}
+                >
+                  {{ country.name }} ({{ country.currency.iso_code }} {{ country.currency.symbol }})
+                </option>
+              {%- endfor -%}
+            </select>
+            <noscript><button type="submit">{{ 'footer.update_country' | t }}</button></noscript>
+          {%- endform -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "t:sections.footer.name",
+  "enabled_on": {
+    "groups": ["footer"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_country_selector",
+      "label": "t:sections.footer.show_country_selector",
+      "info": "t:sections.footer.show_country_selector_info",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

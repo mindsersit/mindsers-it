@@ -1,0 +1,14 @@
+{
+  "type": "header",
+  "name": "t:sections.header_group.name",
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {
+        "menu": "main-menu",
+        "show_search": true
+      }
+    }
+  },
+  "order": ["header"]
+}

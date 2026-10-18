@@ -1,0 +1,27 @@
+{
+  "name": "@mindsers/shopify-theme",
+  "version": "0.1.0",
+  "description": "Shopify theme for shop.mindsers.it, sharing the mindsers.it design system",
+  "private": true,
+  "scripts": {
+    "build": "gulp build",
+    "dev": "gulp",
+    "check": "shopify theme check --path . --fail-level error",
+    "pull": "shopify theme pull --path . --theme \"$SHOPIFY_THEME_ID\" --only 'templates/*.json' --only 'sections/*.json' --only 'locales/*.json'"
+  },
+  "author": {
+    "name": "Nathanaël CHERRIER",
+    "email": "nathanael@mindsers.it"
+  },
+  "devDependencies": {
+    "autoprefixer": "10.4.20",
+    "cssnano": "7.0.6",
+    "gulp": "5.0.0",
+    "gulp-postcss": "10.0.0",
+    "gulp-sass": "^6.0.0",
+    "gulp-uglify": "3.0.2",
+    "postcss": "8.5.2",
+    "pump": "3.0.2",
+    "sass": "^1.85.0"
+  }
+}

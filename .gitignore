@@ -34,3 +34,4 @@ themes/shopify/assets/*.css.map
 themes/shopify/assets/*.js
 themes/shopify/assets/*.js.map
 themes/shopify/assets/*.ttf
+themes/shopify/.shopify/

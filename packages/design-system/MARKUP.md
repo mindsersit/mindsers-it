@@ -4,10 +4,13 @@ The styles in `scss/` and the script in `js/menu.js` expect the HTML below.
 Both themes must output it so that mindsers.it (Ghost) and shop.mindsers.it
 (Shopify) look and behave the same.
 
-Source of truth: `themes/ghost/default.hbs`. The Shopify theme (planned, not
-yet in the repo) will implement it in `themes/shopify/layout/theme.liquid`,
-`sections/header.liquid` and `sections/footer.liquid`. When you change one
-side, change the other.
+Source of truth: `themes/ghost/default.hbs`. The Shopify theme implements it
+in `themes/shopify/layout/theme.liquid`, `sections/header.liquid` and
+`sections/footer.liquid`. When you change one side, change the other.
+
+Shopify wraps each section in `<div class="shopify-section …">`. The theme
+gives the header group's wrapper `display: contents` so that the sticky
+`.mds-head` stays sticky across the whole page.
 
 URLs below are shown as rendered on production. Ghost outputs them from
 `{{@site.url}}`; don't hard-code them in templates.
@@ -111,9 +114,9 @@ page:
 
 ## CSS custom properties
 
-| Property | Required | Ghost | Shopify (planned) |
+| Property | Required | Ghost | Shopify |
 |---|---|---|---|
-| `--ghost-accent-color` | no (falls back to `#f4be7e`) | injected by `{{ghost_head}}`, and overridden on `body.mds-talent` / `body.mds-shopify` in `default.hbs` | set in `layout/theme.liquid` from an `accent_color` setting |
+| `--ghost-accent-color` | no (falls back to `#f4be7e`) | injected by `{{ghost_head}}`, and overridden on `body.mds-talent` / `body.mds-shopify` in `default.hbs` | set in `layout/theme.liquid` from the `accent_color` theme setting |
 | `--gh-font-body`, `--gh-font-heading` | no (the shared styles fall back to Fira Sans) | injected by Ghost only when a custom font is chosen in the admin | not set |
 
 ## Sass configuration

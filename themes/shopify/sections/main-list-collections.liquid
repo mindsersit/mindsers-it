@@ -1,0 +1,28 @@
+<div class="mds-container mds-shop-page">
+  <h1>{{ 'collections.title' | t }}</h1>
+
+  <div class="collections">
+    {% for collection in collections %}
+      <a class="collection-card" href="{{ collection.url }}">
+        {% if collection.featured_image %}
+          {% render 'image',
+            class: 'collection-card__image',
+            image: collection.featured_image,
+            width: 600,
+            height: 600,
+            crop: 'center'
+          %}
+        {% endif %}
+
+        <p>{{ collection.title }}</p>
+      </a>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main_list_collections.name",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,25 @@
+{%- comment -%} Same markup as the .mds-section blocks of themes/ghost/home.hbs {%- endcomment -%}
+<section class="mds-section{% if section.settings.accent %} accent{% endif %}">
+  <div class="mds-container">
+    {%- if section.settings.eyebrow != blank -%}
+      <div class="section-type">{{ section.settings.eyebrow }}</div>
+    {%- endif -%}
+    {%- if section.settings.title != blank -%}
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+    {{ section.settings.text }}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.rich_text.name",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "t:sections.rich_text.eyebrow" },
+    { "type": "text", "id": "title", "label": "t:sections.rich_text.title" },
+    { "type": "richtext", "id": "text", "label": "t:sections.rich_text.text" },
+    { "type": "checkbox", "id": "accent", "label": "t:sections.rich_text.accent", "default": false }
+  ],
+  "presets": [{ "name": "t:sections.rich_text.name" }]
+}
+{% endschema %}
