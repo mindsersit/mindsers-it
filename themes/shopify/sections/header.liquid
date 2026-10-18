@@ -55,10 +55,6 @@
         </a>
       {% endif %}
 
-      {% if cta_url != blank %}
-        <a class="button primary shop-button" target="_blank" href="{{ cta_url }}">{{ cta_text }}</a>
-      {% endif %}
-
       {% if shop.customer_accounts_enabled %}
         <a class="account-button" href="{{ routes.account_url }}" aria-label="{{ 'header.account' | t }}">
           {{ 'icon-account.svg' | inline_asset_content }}
@@ -66,6 +62,11 @@
       {% endif %}
 
       {% render 'cart-button' %}
+
+      {%- # last, as on mindsers.it, so it doesn't move between the two sites -%}
+      {% if cta_url != blank %}
+        <a class="button primary shop-button" target="_blank" href="{{ cta_url }}">{{ cta_text }}</a>
+      {% endif %}
 
       <button
         type="button"

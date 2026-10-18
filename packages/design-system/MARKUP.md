@@ -51,10 +51,10 @@ URLs below are shown as rendered on production. Ghost outputs them from
     <div class="mds-head-actions">
       <!-- optional: only when search is enabled -->
       <a class="search-button" aria-label="Recherche" …><svg …/></a>
-      <!-- optional: only when a CTA URL is configured -->
-      <a class="button primary shop-button" target="_blank" href="CTA_URL">CTA_TEXT</a>
       <!-- theme-specific action icons go here (Shopify: account, cart).
            Icons are 20×20 outline SVGs with a 1.5 stroke, so they all match. -->
+      <!-- optional: only when a CTA URL is configured; always the last action -->
+      <a class="button primary shop-button" target="_blank" href="CTA_URL">CTA_TEXT</a>
       <button type="button" class="more-button-small-screen" aria-label="Menu"
               aria-controls="mds-more-menu" aria-expanded="false"><svg …/></button>
 
