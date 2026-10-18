@@ -27,22 +27,10 @@
     }
 }
 
-// Shop-only header actions, styled like the Ghost search button
+// Shop-only header actions (icon size and colour come from the design system)
 .mds-head .mds-head-actions {
-    .account-button,
     .cart-button {
         position: relative;
-        display: inline-block;
-        width: 24px;
-        height: 24px;
-        vertical-align: middle;
-        margin: 0 0 0 10px;
-        color: gainsboro;
-
-        svg {
-            width: 100%;
-            height: 100%;
-        }
     }
 
     .cart-count {

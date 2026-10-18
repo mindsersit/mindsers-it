@@ -39,7 +39,6 @@ body {
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         font-family: var(--gh-font-body, fonts.$sans);
-        padding: 0 20px;
         position: sticky;
         top: 0;
         z-index: 10;
@@ -49,6 +48,8 @@ body {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding-top: 12px;
+            padding-bottom: 12px;
 
             .mds-head-logo {
                 font-size: 1.5em;
@@ -57,8 +58,9 @@ body {
                 color: colors.$foreground;
 
                 img {
-                    display: inline-block;
-                    height: 70px;
+                    display: block;
+                    height: 48px;
+                    width: auto;
                 }
             }
 
@@ -77,11 +79,16 @@ body {
                     padding: 0;
 
                     li {
-                        margin: 10px;
+                        margin: 0 6px;
 
                         a {
                             color: colors.$foreground;
                             text-decoration: none;
+                            transition: color 0.2s ease;
+
+                            &:hover {
+                                color: colors.$accent;
+                            }
                         }
                     }
                 }
@@ -205,6 +212,31 @@ body {
 
             .mds-head-actions {
                 position: relative;
+                display: flex;
+                align-items: center;
+                gap: 18px;
+
+                // icon buttons share one size, colour and hover
+                .search-button,
+                .account-button,
+                .cart-button,
+                .more-button-small-screen {
+                    display: inline-flex;
+                    width: 22px;
+                    height: 22px;
+                    margin: 0;
+                    color: #c9cfd6;
+                    transition: color 0.2s ease;
+
+                    &:hover {
+                        color: colors.$accent;
+                    }
+
+                    svg {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
 
                 .profile-button {
                     color: white;
@@ -239,12 +271,6 @@ body {
                 }
 
                 .search-button {
-                    width: 20px;
-                    height: 20px;
-                    display: inline-block;
-                    vertical-align: middle;
-                    margin-right: 10px;
-                    color: gainsboro;
                     cursor: pointer;
                 }
 
@@ -265,18 +291,15 @@ body {
 
                 .more-button-small-screen {
                     display: none;
-                    margin: 0 10px;
+                    width: 24px;
+                    height: 24px;
                     padding: 0;
                     border: 0;
                     background: none;
                     cursor: pointer;
-                    color: colors.$foreground;
-                    svg {
-                        height: 30px;
-                        width: 30px;
-                    }
+
                     @media (max-width: 700px) {
-                        display: inline;
+                        display: inline-flex;
                     }
                 }
 
@@ -300,7 +323,9 @@ body {
                     }
 
                     .close-button {
-                        margin: 0 20px;
+                        display: inline-flex;
+                        width: 24px;
+                        height: 24px;
                         padding: 0;
                         border: 0;
                         background: none;
@@ -308,7 +333,8 @@ body {
                         cursor: pointer;
 
                         svg {
-                            height: 30px;
+                            width: 100%;
+                            height: 100%;
                         }
                     }
 
@@ -325,12 +351,14 @@ body {
                             margin: 10px;
 
                             a {
-                                color: colors.$accent;
+                                color: colors.$foreground;
                                 text-decoration: none;
-                                font-weight: bold;
+                                font-size: 1.25rem;
+                                font-weight: 600;
 
                                 &.button {
-                                    color: colors.$foreground;
+                                    color: colors.$background;
+                                    font-size: 0.9rem;
                                 }
 
                                 &[data-members-signout] {
@@ -343,6 +371,10 @@ body {
                                 text-overflow: ellipsis;
                                 overflow: hidden;
                                 text-align: center;
+                            }
+
+                            &.nav-current a {
+                                color: colors.$accent;
                             }
                         }
                     }
@@ -425,7 +457,7 @@ body {
         background-color: colors.$background;
         font-family: var(--gh-font-body, fonts.$sans);
         margin-top: 60px;
-        padding: 60px 20px 30px;
+        padding: 60px 0 30px;
         font-size: 0.9rem;
         border-top: 1px solid rgba(255, 255, 255, 0.08);
 

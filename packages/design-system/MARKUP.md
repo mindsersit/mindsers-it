@@ -50,10 +50,11 @@ URLs below are shown as rendered on production. Ghost outputs them from
 
     <div class="mds-head-actions">
       <!-- optional: only when search is enabled -->
-      <a class="search-button" …><svg …/></a>
+      <a class="search-button" aria-label="Recherche" …><svg …/></a>
       <!-- optional: only when a CTA URL is configured -->
-      <a class="button highlighted shop-button" target="_blank" href="CTA_URL">CTA_TEXT</a>
-      <!-- theme-specific action icons go here (Shopify: account, cart) -->
+      <a class="button primary shop-button" target="_blank" href="CTA_URL">CTA_TEXT</a>
+      <!-- theme-specific action icons go here (Shopify: account, cart).
+           Icons are 20×20 outline SVGs with a 1.5 stroke, so they all match. -->
       <button type="button" class="more-button-small-screen" aria-label="Menu"
               aria-controls="mds-more-menu" aria-expanded="false"><svg …/></button>
 
@@ -68,7 +69,7 @@ URLs below are shown as rendered on production. Ghost outputs them from
         <!-- NAV LIST, see below -->
         <ul>
           <!-- optional: only when a CTA URL is configured -->
-          <li><a class="button highlighted" href="CTA_URL">CTA_TEXT</a></li>
+          <li><a class="button primary" href="CTA_URL">CTA_TEXT</a></li>
           <!-- optional: only when search is enabled; SEARCH_URL is #/search on Ghost -->
           <li><a href="SEARCH_URL">Recherche</a></li>
         </ul>
@@ -108,7 +109,7 @@ page:
         <a class="mds-foot-logo" href="https://mindsers.it/"><img src="…" alt="MindsersIT" /></a>
         <p>Studio de développement de SaaS</p>  <!-- Ghost: @site.description -->
         <!-- optional: only when a CTA URL is configured -->
-        <a class="button highlighted" href="CTA_URL">CTA_TEXT</a>
+        <a class="button primary" href="CTA_URL">CTA_TEXT</a>
         <ul class="mds-foot-social">  <!-- each item only when the profile is set -->
           <li><a href="https://x.com/MindsersCodes" aria-label="MindsersIT sur X"><svg …/></a></li>
           <li><a href="https://www.facebook.com/MindsersCodes" aria-label="MindsersIT sur Facebook"><svg …/></a></li>
