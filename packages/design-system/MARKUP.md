@@ -107,6 +107,12 @@ page:
       <div class="mds-foot-brand">
         <a class="mds-foot-logo" href="https://mindsers.it/"><img src="…" alt="MindsersIT" /></a>
         <p>Studio de développement de SaaS</p>  <!-- Ghost: @site.description -->
+        <!-- optional: only when a CTA URL is configured -->
+        <a class="button highlighted" href="CTA_URL">CTA_TEXT</a>
+        <ul class="mds-foot-social">  <!-- each item only when the profile is set -->
+          <li><a href="https://x.com/MindsersCodes" aria-label="MindsersIT sur X"><svg …/></a></li>
+          <li><a href="https://www.facebook.com/MindsersCodes" aria-label="MindsersIT sur Facebook"><svg …/></a></li>
+        </ul>
       </div>
       <nav class="mds-foot-menu" aria-label="Plan du site">
         <div class="mds-foot-col">
@@ -118,13 +124,6 @@ page:
           <!-- Ghost: secondary navigation; Shopify: the "footer" menu -->
           <ul><li><a href="https://shop.mindsers.it/">Boutique</a></li></ul>  <!-- Ghost: only when shop_url is set -->
         </div>
-        <div class="mds-foot-col">
-          <h2>Légal</h2>
-          <ul>
-            <li><a href="https://mindsers.it/legal-notices/">Mentions légales</a></li>
-            <!-- Shopify: store policies, except its own legal notice -->
-          </ul>
-        </div>
       </nav>
     </div>
     <div class="mds-foot-bottom">
@@ -132,14 +131,20 @@ page:
         Développé avec amour par <a href="https://nathanaelcherrier.dev/">Nathanaël Cherrier</a>.
         &copy;YYYY <a href="https://mindsers.it/">MindsersIT</a>. Tous droits réservés.
       </p>
+      <ul class="mds-foot-legal">
+        <li><a href="https://mindsers.it/legal-notices/">Mentions légales</a></li>
+        <!-- Shopify: store policies, except its own legal notice -->
+      </ul>
       <!-- Shopify: country/currency selector -->
     </div>
   </div>
 </footer>
 ```
 
-The shop isn't in the main menu (selling merch isn't the main business); the
-footer's "Liens" column links to it.
+- Social profiles come from Ghost's settings (X, Facebook) and, on the shop,
+  from the "Réseaux sociaux" theme settings; keep them identical.
+- The shop isn't in the main menu (selling merch isn't the main business); the
+  footer's "Liens" column links to it.
 
 ## CSS custom properties
 

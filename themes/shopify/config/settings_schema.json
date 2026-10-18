@@ -96,5 +96,22 @@
         "default": "drawer"
       }
     ]
+  },
+  {
+    "name": "t:settings.social.name",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_x_link",
+        "label": "t:settings.social.x",
+        "default": "https://x.com/MindsersCodes"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "t:settings.social.facebook",
+        "default": "https://www.facebook.com/MindsersCodes"
+      }
+    ]
   }
 ]

@@ -25,8 +25,9 @@
     "studio": "Studio",
     "links": "Liens",
     "shop": "Boutique",
-    "legal": "Légal",
-    "legal_notices": "Mentions légales"
+    "legal_notices": "Mentions légales",
+    "social_x": "{{ title }} sur X",
+    "social_facebook": "{{ title }} sur Facebook"
   },
   "cart": {
     "title": "Panier",

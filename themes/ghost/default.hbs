@@ -128,6 +128,17 @@
                         {{#if @site.description}}
                         <p>{{@site.description}}</p>
                         {{/if}}
+                        {{#if @custom.global_cta_url}}
+                        <a class='button highlighted' href='{{@custom.global_cta_url}}'>{{@custom.global_cta_text}}</a>
+                        {{/if}}
+                        <ul class='mds-foot-social'>
+                            {{#if @site.twitter}}
+                            <li><a href='{{twitter_url @site.twitter}}' target='_blank' rel='noopener' aria-label='{{@site.title}} sur X'>{{> "icons/x"}}</a></li>
+                            {{/if}}
+                            {{#if @site.facebook}}
+                            <li><a href='{{facebook_url @site.facebook}}' target='_blank' rel='noopener' aria-label='{{@site.title}} sur Facebook'>{{> "icons/facebook"}}</a></li>
+                            {{/if}}
+                        </ul>
                     </div>
 
                     <nav class='mds-foot-menu' aria-label='Plan du site'>
@@ -144,12 +155,6 @@
                             </ul>
                             {{/if}}
                         </div>
-                        <div class='mds-foot-col'>
-                            <h2>Légal</h2>
-                            <ul>
-                                <li><a href='{{@site.url}}/legal-notices/'>Mentions légales</a></li>
-                            </ul>
-                        </div>
                     </nav>
                 </div>
 
@@ -158,6 +163,9 @@
                         Développé avec amour par <a href='https://nathanaelcherrier.dev/'>Nathanaël Cherrier</a>.
                         &copy;{{date format='YYYY'}} <a href='https://mindsers.it/'>MindsersIT</a>. Tous droits réservés.
                     </p>
+                    <ul class='mds-foot-legal'>
+                        <li><a href='{{@site.url}}/legal-notices/'>Mentions légales</a></li>
+                    </ul>
                 </div>
             </div>
         </footer>

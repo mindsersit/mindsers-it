@@ -25,6 +25,11 @@
       "cart_type": "Type de panier",
       "cart_type_drawer": "Tiroir",
       "cart_type_page": "Page"
+    },
+    "social": {
+      "name": "Réseaux sociaux",
+      "x": "Profil X",
+      "facebook": "Page Facebook"
     }
   },
   "sections": {
