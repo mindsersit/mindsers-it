@@ -1,0 +1,46 @@
+// Layout and surface values shared by mindsers.it and shop.mindsers.it, so
+// both sites line up and every card looks the same.
+@use 'colors';
+
+// Width of the content column: header, sections, shop pages and footer
+$content-width: 1200px;
+
+$radius: 16px;
+$radius-small: 8px;
+
+$surface: rgba(255, 255, 255, 0.03);
+$border-color: rgba(255, 255, 255, 0.08);
+$border-color-hover: rgba(255, 255, 255, 0.18);
+$border: 1px solid $border-color;
+$muted: #9aa3ad;
+
+// Vertical space around a section's content
+$section-space: 96px;
+$section-space-small: 64px;
+
+// A card on a dark background, or on an accent-coloured section
+@mixin card($on-accent: false) {
+    box-sizing: border-box;
+    border-radius: $radius;
+    padding: 28px;
+
+    @if $on-accent {
+        background: rgba(#121922, 0.06);
+        border: 1px solid rgba(#121922, 0.14);
+        color: inherit;
+    } @else {
+        background: $surface;
+        border: $border;
+        color: colors.$foreground;
+    }
+}
+
+// Hover lift used by interactive cards
+@mixin card-hover {
+    transition: transform 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+        border-color: $border-color-hover;
+    }
+}

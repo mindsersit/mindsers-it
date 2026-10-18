@@ -23,7 +23,7 @@
           <p>{{ section.settings.description | escape }}</p>
         {%- endif -%}
         {%- if settings.cta_url != blank -%}
-          <a class="button highlighted" href="{{ settings.cta_url }}">{{ settings.cta_text | escape }}</a>
+          <a class="button primary" href="{{ settings.cta_url }}">{{ settings.cta_text | escape }}</a>
         {%- endif -%}
         <ul class="mds-foot-social">
           {%- if settings.social_x_link != blank -%}

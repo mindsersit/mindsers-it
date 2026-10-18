@@ -1,6 +1,7 @@
 @use 'colors';
 @use 'fonts';
 @use 'buttons';
+@use 'tokens';
 
 body {
     padding: 0;
@@ -28,7 +29,7 @@ body {
     }
 
     .mds-container {
-        max-width: 1280px;
+        max-width: tokens.$content-width;
         margin: auto;
         padding: 20px;
     }
@@ -418,7 +419,7 @@ body {
     }
 
     .mds-foot {
-        $muted: #9aa3ad;
+        $muted: tokens.$muted;
 
         color: colors.$foreground;
         background-color: colors.$background;
@@ -471,7 +472,7 @@ body {
 
                 &,
                 &:hover {
-                    color: white;
+                    color: colors.$background;
                 }
             }
         }

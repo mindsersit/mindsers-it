@@ -4,11 +4,12 @@
 // theme loads this module today.
 @use 'colors';
 @use 'fonts';
+@use 'tokens';
 
-$radius: 12px;
-$border: 1px solid rgba(255, 255, 255, 0.08);
-$surface: rgba(255, 255, 255, 0.03);
-$muted: #bfbfbf;
+$radius: tokens.$radius;
+$border: tokens.$border;
+$surface: tokens.$surface;
+$muted: tokens.$muted;
 
 .visually-hidden {
     position: absolute !important;
@@ -269,11 +270,24 @@ select option {
 }
 
 .facets {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
     gap: 12px;
     margin-bottom: 30px;
+
+    // on phones the filter panels open across the whole bar
+    @media (max-width: 600px) {
+        details {
+            position: static;
+        }
+
+        details .facets__panel {
+            left: 0;
+            right: 0;
+        }
+    }
 
     details {
         position: relative;
@@ -339,7 +353,22 @@ select option {
         display: flex;
         align-items: center;
         gap: 8px;
+        max-width: 100%;
         font-size: 0.9rem;
+
+        select {
+            min-width: 0;
+            max-width: 100%;
+        }
+
+        @media (max-width: 600px) {
+            flex-basis: 100%;
+            margin-left: 0;
+
+            select {
+                flex: 1;
+            }
+        }
     }
 
     .facets__active {
@@ -768,6 +797,7 @@ body.dialog-open {
 
     input {
         flex: 1;
+        min-width: 0;
         max-width: 480px;
     }
 }
