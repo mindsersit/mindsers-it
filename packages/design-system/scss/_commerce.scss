@@ -96,6 +96,7 @@ select option {
 
 .quantity {
     display: inline-flex;
+    align-self: flex-start;
     align-items: center;
     border: $border;
     border-radius: 8px;
@@ -181,15 +182,23 @@ select option {
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 24px;
     padding: 0;
     margin: 0;
     list-style: none;
 
-    @media (max-width: 500px) {
-        grid-template-columns: repeat(2, 1fr);
+    @media (max-width: 1000px) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    @media (max-width: 700px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 12px;
+    }
+
+    @media (max-width: 500px) {
+        gap: 10px;
     }
 }
 
@@ -481,10 +490,20 @@ select option {
         gap: 10px;
     }
 
+    // Shopify's "Buy it now" button, restyled like .button.secondary
     .shopify-payment-button__button--unbranded {
+        min-height: 40px;
         border-radius: 8px;
+        background-color: colors.$secondary;
+        color: white;
         font-family: var(--gh-font-body, fonts.$sans);
+        font-size: 0.83rem;
         font-weight: 600;
+
+        &:hover:not([disabled]) {
+            background-color: colors.$secondary;
+            filter: brightness(1.1);
+        }
     }
 }
 
@@ -541,6 +560,7 @@ select option {
         }
 
         .cart-item__remove {
+            font-family: inherit;
             border: 0;
             background: none;
             padding: 0;
@@ -575,7 +595,7 @@ select option {
     }
 }
 
-.cart-page {
+.mds-container.cart-page {
     max-width: 900px;
 
     .cart-note textarea {

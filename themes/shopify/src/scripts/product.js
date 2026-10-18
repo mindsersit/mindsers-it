@@ -33,14 +33,13 @@ for (const root of document.querySelectorAll('[data-product]')) {
     })
   }
 
+  // Moves the variant's image to the front of the gallery: top of the column
+  // on desktop, first slide on mobile
   function showMedia(mediaId) {
     const item = gallery?.querySelector(`[data-media-id="${mediaId}"]`)
-    // Only the mobile gallery scrolls sideways; on desktop every image is shown
-    if (!item || gallery.scrollWidth <= gallery.clientWidth) return
-    gallery.scrollTo({
-      left: item.offsetLeft - gallery.offsetLeft,
-      behavior: 'smooth',
-    })
+    if (!item) return
+    gallery.prepend(item)
+    gallery.scrollTo({ left: 0, behavior: 'smooth' })
   }
 
   function update() {
