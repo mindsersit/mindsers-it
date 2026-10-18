@@ -1,59 +1,173 @@
 {%- comment -%}
-  Foundation only: gallery, variant picker, buy buttons and app blocks come
-  with the commerce features.
+  Product page. product.js swaps the price, badges and button state when the
+  visitor picks another variant, using the HTML pre-rendered below for each
+  variant (no price formatting in JavaScript). cart.js adds to the cart
+  without leaving the page when the cart drawer is enabled.
 {%- endcomment -%}
-{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign form_id = 'ProductForm-' | append: section.id
+-%}
 
 <div class="mds-container mds-shop-page">
-  <div class="product-images">
-    {% for image in product.images %}
-      {% render 'image', class: 'product-image', image: image, width: 1000 %}
-    {% endfor %}
-  </div>
+  <div class="product" data-product>
+    {%- if product.media.size > 0 -%}
+      <ul class="product__gallery" data-gallery>
+        {%- for media in product.media -%}
+          <li data-media-id="{{ media.id }}">
+            {%- case media.media_type -%}
+              {%- when 'image' -%}
+                {%- liquid
+                  assign loading = 'lazy'
+                  if forloop.first
+                    assign loading = 'eager'
+                  endif
+                  assign alt = media.alt | default: product.title
+                -%}
+                {{
+                  media
+                  | image_url: width: 1400
+                  | image_tag:
+                    widths: '500, 700, 1000, 1400',
+                    sizes: '(min-width: 1100px) 640px, (min-width: 820px) 55vw, 88vw',
+                    loading: loading,
+                    alt: alt
+                }}
+              {%- when 'external_video' -%}
+                {{ media | external_video_tag }}
+              {%- when 'video' -%}
+                {{ media | video_tag: controls: true }}
+              {%- else -%}
+                {{ media | media_tag }}
+            {%- endcase -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- else -%}
+      <div></div>
+    {%- endif -%}
 
-  <div class="product-info">
-    <h1>{{ product.title }}</h1>
-    <p>{{ current_variant.price | money }}</p>
-    {{ product.description }}
-  </div>
+    <div class="product__info">
+      <div data-badges>{% render 'product-badges', variant: current_variant %}</div>
+      <h1>{{ product.title | escape }}</h1>
+      <div data-price>{% render 'price', variant: current_variant %}</div>
 
-  <div class="product-form">
-    {% form 'product', product %}
-      <label for="ProductVariant-{{ section.id }}">{{ 'product.variant' | t }}</label>
-      <select id="ProductVariant-{{ section.id }}" name="id">
-        {% for variant in product.variants %}
-          <option
-            value="{{ variant.id }}"
-            {% if variant == current_variant %}
-              selected
-            {% endif %}
-            {% unless variant.available %}
+      {%- form 'product', product, id: form_id, class: 'product-form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+        <input type="hidden" name="id" value="{{ current_variant.id }}" data-variant-id>
+
+        {%- unless product.has_only_default_variant -%}
+          {%- for option in product.options_with_values -%}
+            {%- assign option_index = forloop.index0 -%}
+            <fieldset data-option>
+              <legend>{{ option.name | escape }}</legend>
+              <div class="option-values">
+                {%- for value in option.values -%}
+                  {%- assign input_id = section.id | append: '-' | append: option_index | append: '-' | append: forloop.index0 -%}
+                  <input
+                    type="radio"
+                    id="{{ input_id }}"
+                    name="{{ section.id }}-option-{{ option_index }}"
+                    value="{{ value | escape }}"
+                    {% if value.selected %}
+                      checked
+                    {% endif %}
+                    {% unless value.available %}
+                      class="unavailable"
+                    {% endunless %}
+                  >
+                  <label for="{{ input_id }}">{{ value | escape }}</label>
+                {%- endfor -%}
+              </div>
+            </fieldset>
+          {%- endfor -%}
+        {%- endunless -%}
+
+        <div class="field">
+          <label for="Quantity-{{ section.id }}">{{ 'product.quantity' | t }}</label>
+          <div class="quantity">
+            <button type="button" data-quantity-step="-1" aria-label="{{ 'product.decrease' | t }}">&minus;</button>
+            <input
+              id="Quantity-{{ section.id }}"
+              type="number"
+              name="quantity"
+              min="1"
+              value="1"
+              inputmode="numeric"
+            >
+            <button type="button" data-quantity-step="1" aria-label="{{ 'product.increase' | t }}">+</button>
+          </div>
+        </div>
+
+        <div class="product-form__buttons">
+          <button
+            type="submit"
+            class="button primary full"
+            data-add-button
+            data-label-add="{{ 'product.add_to_cart' | t }}"
+            data-label-sold-out="{{ 'product.sold_out' | t }}"
+            data-label-unavailable="{{ 'product.unavailable' | t }}"
+            {% unless current_variant.available %}
               disabled
             {% endunless %}
           >
-            {{ variant.title }} - {{ variant.price | money }}
-          </option>
-        {% endfor %}
-      </select>
+            {%- if current_variant.available -%}
+              {{ 'product.add_to_cart' | t }}
+            {%- else -%}
+              {{ 'product.sold_out' | t }}
+            {%- endif -%}
+          </button>
+          {%- if section.settings.show_dynamic_checkout -%}
+            {{ form | payment_button }}
+          {%- endif -%}
+        </div>
+        <p class="form-error" role="alert" data-form-error></p>
+      {%- endform -%}
 
-      <label for="ProductQuantity-{{ section.id }}">{{ 'product.quantity' | t }}</label>
-      <input id="ProductQuantity-{{ section.id }}" type="number" name="quantity" min="1" value="1">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when '@app' -%}
+            {% render block %}
+        {%- endcase -%}
+      {%- endfor -%}
 
-      <button type="submit" class="button primary"{% unless current_variant.available %} disabled{% endunless %}>
-        {%- if current_variant.available -%}
-          {{ 'product.add_to_cart' | t }}
-        {%- else -%}
-          {{ 'product.sold_out' | t }}
-        {%- endif -%}
-      </button>
-      {{ form | payment_button }}
-    {% endform %}
+      {%- if product.description != blank -%}
+        <div class="product__description">{{ product.description }}</div>
+      {%- endif -%}
+    </div>
+
+    <script type="application/json" data-variants>
+      [
+        {%- for variant in product.variants -%}
+          {%- capture price_html -%}{% render 'price', variant: variant %}{%- endcapture -%}
+          {%- capture badges_html -%}{% render 'product-badges', variant: variant %}{%- endcapture -%}
+          {
+            "id": {{ variant.id }},
+            "options": {{ variant.options | json }},
+            "available": {{ variant.available | json }},
+            "media": {{ variant.featured_media.id | json }},
+            "price": {{ price_html | json }},
+            "badges": {{ badges_html | json }}
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ]
+    </script>
   </div>
 </div>
+
+<script type="module" src="{{ 'product.js' | asset_url }}"></script>
 
 {% schema %}
 {
   "name": "t:sections.main_product.name",
-  "settings": []
+  "blocks": [{ "type": "@app" }],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_dynamic_checkout",
+      "label": "t:sections.main_product.show_dynamic_checkout",
+      "info": "t:sections.main_product.show_dynamic_checkout_info",
+      "default": true
+    }
+  ]
 }
 {% endschema %}

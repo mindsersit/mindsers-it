@@ -2,8 +2,19 @@
   "sections": {
     "main": {
       "type": "main-product",
-      "settings": {}
+      "blocks": {},
+      "block_order": [],
+      "settings": {
+        "show_dynamic_checkout": true
+      }
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "heading": "Vous aimerez aussi",
+        "limit": 4
+      }
     }
   },
-  "order": ["main"]
+  "order": ["main", "recommendations"]
 }
