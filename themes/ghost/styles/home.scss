@@ -141,11 +141,16 @@
 
     .persona-cards {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 24px;
         width: 100%;
-        max-width: 880px;
         margin: 0 auto;
+
+        // one per row before the cards get too narrow to read
+        @media (max-width: 900px) {
+            grid-template-columns: minmax(0, 1fr);
+            max-width: 560px;
+        }
 
         .persona-card {
             @include tokens.card;
