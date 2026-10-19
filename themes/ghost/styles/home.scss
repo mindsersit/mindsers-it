@@ -139,17 +139,27 @@
 
     // Cards ----------------------------------------------------------------
 
+    // As many columns as cards (2 or 3), centered; one per row on small screens
     .persona-cards {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 24px;
         width: 100%;
+        max-width: 880px;
         margin: 0 auto;
 
-        // one per row before the cards get too narrow to read
+        &:has(> :nth-child(3)) {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            max-width: none;
+        }
+
+        // before the cards get too narrow to read
         @media (max-width: 900px) {
-            grid-template-columns: minmax(0, 1fr);
-            max-width: 560px;
+            &,
+            &:has(> :nth-child(3)) {
+                grid-template-columns: minmax(0, 1fr);
+                max-width: 560px;
+            }
         }
 
         .persona-card {
