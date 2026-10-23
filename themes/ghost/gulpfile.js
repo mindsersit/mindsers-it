@@ -14,7 +14,7 @@ const colorFunction = require('postcss-color-mod-function')
 const cssnano = require('cssnano')
 const easyimport = require('postcss-easy-import')
 
-// shared styles, scripts and fonts (to be reused by the upcoming Shopify theme)
+// shared styles, scripts and fonts (also used by the Shopify theme)
 const DS = '../../packages/design-system'
 
 // in watch mode, log Sass errors and keep watching; otherwise fail the build

@@ -94,7 +94,8 @@ page:
 
 - `nav-{slug}`: the slugified label.
 - `nav-current`: Ghost adds it only to the item whose URL matches the current
-  page. On the shop no item is current (the menu only points to mindsers.it).
+  page. On the shop, it marks the item that points to the shop itself (its URL
+  contains the shop's origin), which also gets `aria-current="page"`.
 - Links are **absolute** because the menu is shared across two domains. It is
   maintained by hand in both admins (Ghost navigation and the Shopify
   `main-menu`).
