@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.0] - 2026-10-23
+
 ### Added
 
 -   Home: "Nos produits" section showing our own SaaS (MyCellier, Unitae, Tokens On Me)
@@ -58,7 +60,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   First version of the website
 
-[unreleased]: https://github.com/mindsersit/mindsers-it/compare/v2.0.2...HEAD
+[unreleased]: https://github.com/mindsersit/mindsers-it/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/mindsersit/mindsers-it/compare/v2.0.2...v2.1.0
 [2.0.2]: https://github.com/mindsersit/mindsers-it/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/mindsersit/mindsers-it/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/mindsersit/mindsers-it/compare/v1.0.0...v2.0.0
