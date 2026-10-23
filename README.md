@@ -1,5 +1,3 @@
-![Repo header image](https://repository-images.githubusercontent.com/189204408/ea286180-8cf2-11e9-9c88-ad7a2517c8f8)
-
 # @mindsersit/mindsers-it
 
 The two websites of MindsersIT, built from one design system:
@@ -15,6 +13,7 @@ The two websites of MindsersIT, built from one design system:
 packages/design-system/   shared Sass, fonts and menu script (see MARKUP.md)
 themes/ghost/             Ghost theme for mindsers.it (package "mindsers-it")
 themes/shopify/           Shopify theme for shop.mindsers.it (package "@mindsers/shopify-theme")
+.github/workflows/        CI, GitHub Release and deploys
 ```
 
 Both themes compile `packages/design-system` into their own assets. The HTML both
@@ -34,10 +33,62 @@ pnpm lint         # Biome
 pnpm test         # gscan on the Ghost theme
 ```
 
-- `pnpm dev:ghost`: rebuilds the Ghost theme on change (use it with a local Ghost).
+- `pnpm dev:ghost`: rebuilds the Ghost theme on change, with livereload. Link
+  `themes/ghost` into a local Ghost's `content/themes/` and activate it there.
 - `pnpm dev:shop`: rebuilds the Shopify theme on change and runs `shopify theme dev`
   (log in first with `shopify theme list --store <store>.myshopify.com`).
 - `pnpm --filter @mindsers/shopify-theme check`: Shopify theme check.
+
+Built files (`themes/ghost/assets/{css,js,fonts}/`, and the generated files in
+`themes/shopify/assets/`) are not committed: edit `styles/` and `scripts/` in the
+Ghost theme, `src/` in the Shopify theme, or the design system.
+
+## Ghost theme
+
+`routes.yaml` gives each landing page its template:
+
+| URL | Template | Stylesheet |
+|---|---|---|
+| `/` | `home.hbs` | `home.css` |
+| `/studio-saas/` | `home-saas.hbs` | `home.css` |
+| `/studio-saas/landing-page/`, `/mvp/`, `/saas/` | `pack-validation.hbs`, `pack-mvp.hbs`, `pack-saas.hbs` | `landing.css` |
+| `/agence-shopify/` | `home-shopify.hbs` | `home.css` |
+| `/agence-shopify/basic/`, `/personnalise/`, `/enterprise/` | `agence-basic.hbs`, `agence-personnalise.hbs`, `agence-enterprise.hbs` | `landing.css` |
+| `/talent-freelance/` | `home-talent.hbs` | `landing.css` |
+| pages and posts | `page.hbs`, `post.hbs` | `pages.css` |
+
+Deploying the theme doesn't apply `routes.yaml` or `redirects.yaml`: when you
+change them, upload them in Ghost Admin's settings.
+
+Theme settings (Ghost Admin, Design):
+
+- `global_cta_url`, `global_cta_text`: the call to action in the header, the
+  footer and every landing page
+- `enable_search`, `menu_position`: header search button and menu position
+- `shop_url`: the "Boutique" link in the footer
+- `talent_accent_color`, `shopify_accent_color`: the accent colour of the
+  Talents and Agence Shopify pages (their `mds-talent` / `mds-shopify` body class)
+- `amount_of_project_done`, `amount_of_landing_pages_done`,
+  `amount_of_ecommerce_websites_done`, `amount_of_freelancers_recommended`,
+  `price_of_mvp`, `price_of_landing_page`: figures shown on the landing pages
+
+## Shopify theme
+
+The shop's settings (brand, link back to mindsers.it, call to action, accent
+colour, cart, social profiles) are in `config/settings_schema.json`. The header
+menu is the shop's `main-menu`: its links are absolute and point to mindsers.it,
+like the Ghost navigation, and both are maintained by hand.
+
+Content edited in the Shopify theme editor lives in `templates/*.json`,
+`sections/*.json` and `locales/*.json`, which a deploy overwrites: pull it before
+releasing (see below).
+
+## CI
+
+Every pull request and every push to `main` runs `pnpm lint`. When their files
+change (or the design system, or the lockfile), the Ghost theme is built and
+checked with `gscan --fatal`, and the Shopify theme is built and checked with
+`shopify theme check`.
 
 ## Deploying
 
@@ -56,32 +107,30 @@ release workflow publishes a release (prereleases excepted), or by hand from the
    theme editor lives in `templates/*.json`, `sections/*.json` and `locales/*.json`,
    which a deploy overwrites:
    `SHOPIFY_THEME_ID=<id> pnpm shop:pull`, then commit.
-2. Move the `[Unreleased]` entries of `CHANGELOG.md` under a new version.
-3. Tag `vX.Y.Z` and push the tag: the GitHub Release is created from the changelog,
-   then both themes are deployed.
+2. Commit `chore(release): X.Y.Z` on `main`:
+   - in `CHANGELOG.md`, move the `[Unreleased]` entries under `## [X.Y.Z] - YYYY-MM-DD`
+     and update the compare links at the bottom;
+   - bump `version` in `packages/design-system`, `themes/ghost` and `themes/shopify`
+     (`package.json`).
+3. Tag that commit `vX.Y.Z` and push the tag: the GitHub Release is created from
+   the changelog (`.github/workflows/gh-release.yml`), then both themes are deployed.
+   A version the changelog marks as a prerelease gets a prerelease and no deploy.
 
 ## License
 
-MIT License
+The code is under the MIT License, see [`LICENSE.md`](LICENSE.md). It doesn't
+cover the following, which keep their own terms:
 
-**Copyright (c) 2025 Nathanaël CHERRIER**
+- the MindsersIT name and logo, and the client logos in `themes/ghost/assets/images/`:
+  trademarks of their owners, not licensed for reuse;
+- the websites' content (texts, team photos, product screenshots): not licensed
+  for reuse;
+- the illustrations in `themes/ghost/partials/images/`: most come from
+  [unDraw](https://undraw.co/license) and are under its license;
+- the fonts in `packages/design-system/fonts/` (Fira Sans, Fira Code,
+  Merriweather): SIL Open Font License 1.1, embedded in each file.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+`themes/shopify` also contains Shopify's theme license
+([`themes/shopify/LICENSE.md`](themes/shopify/LICENSE.md)).
 
 [ghost-blog]: https://ghost.org?lmref=739
