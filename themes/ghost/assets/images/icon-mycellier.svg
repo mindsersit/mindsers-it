@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MyCellier app icon. See docs/specs/classic-pantry-v1.md §14.4 for the design brief. -->
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 1024 1024"
+  shape-rendering="geometricPrecision"
+>
+  <rect width="1024" height="1024" rx="228" fill="#1F3A5F" />
+  <rect x="330" y="240" width="364" height="100" rx="20" fill="#FBFAF7" />
+  <rect x="298" y="356" width="428" height="468" rx="40" fill="#FBFAF7" />
+  <rect x="298" y="528" width="428" height="124" fill="#B8553A" />
+</svg>

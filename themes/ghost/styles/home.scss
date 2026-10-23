@@ -243,6 +243,195 @@
         }
     }
 
+    // Our own products -------------------------------------------------------
+
+    .mds-products {
+        // sets it apart from the dark "Nos univers" section that follows
+        background-image: radial-gradient(50% 30% at 50% 0%, rgba(colors.$secondary, 0.1) 0%, transparent 100%);
+        border-bottom: tokens.$border;
+
+        .products {
+            display: flex;
+            flex-direction: column;
+            gap: 96px;
+            width: 100%;
+            margin: 40px 0 0;
+
+            @media (max-width: 900px) {
+                gap: 64px;
+            }
+        }
+
+        // Screenshot on one side, the product on the other; sides alternate
+        .product {
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+            align-items: center;
+            gap: 56px;
+
+            &:nth-child(even) {
+                grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+
+                .product-shot {
+                    order: 2;
+                }
+            }
+
+            @media (max-width: 900px) {
+                &,
+                &:nth-child(even) {
+                    grid-template-columns: minmax(0, 1fr);
+                    gap: 28px;
+                }
+
+                &:nth-child(even) .product-shot {
+                    order: 0;
+                }
+            }
+        }
+
+        // The product in a browser window, its real address in the bar
+        .product-shot {
+            display: block;
+            overflow: hidden;
+            border: tokens.$border;
+            border-radius: tokens.$radius;
+            background: #1a222d;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
+            text-decoration: none;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+
+            &:hover {
+                transform: translateY(-4px);
+                border-color: tokens.$border-color-hover;
+            }
+
+            .browser-bar {
+                display: grid;
+                grid-template-columns: 1fr auto 1fr;
+                align-items: center;
+                padding: 10px 14px;
+                border-bottom: tokens.$border;
+            }
+
+            .dots {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: rgba(colors.$neutral, 0.2);
+                box-shadow: 16px 0 rgba(colors.$neutral, 0.2), 32px 0 rgba(colors.$neutral, 0.2);
+            }
+
+            .address {
+                padding: 4px 24px;
+                border-radius: 100px;
+                background: rgba(colors.$neutral, 0.06);
+                color: tokens.$muted;
+                font-family: fonts.$mono;
+                font-size: 0.75rem;
+            }
+
+            // each screenshot keeps its own ratio: one per row, nothing cropped
+            img {
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        .product-body {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+
+            p {
+                margin: 0;
+                color: #c9cfd6;
+                font-size: 1.1rem;
+                line-height: 1.65;
+            }
+
+            .stack {
+                color: tokens.$muted;
+                font-family: fonts.$mono;
+                font-size: 0.8rem;
+            }
+        }
+
+        .product-name {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px 14px;
+
+            h3 {
+                margin: 0;
+                font-size: clamp(1.6rem, 2.4vw, 2rem);
+                letter-spacing: -0.02em;
+            }
+        }
+
+        .product-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+
+            // the ticket has no background of its own
+            &.on-ink {
+                box-sizing: border-box;
+                padding: 9px;
+                background: #14183a;
+            }
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 10px;
+            border: 1px solid rgba(#3ecf8e, 0.3);
+            border-radius: 100px;
+            color: #3ecf8e;
+            font-size: 0.75rem;
+            font-weight: 600;
+
+            &::before {
+                content: '';
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: currentColor;
+            }
+        }
+
+        .product-link {
+            color: colors.$accent;
+            font-weight: 600;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .products-next {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            margin-top: 80px;
+            text-align: center;
+
+            p {
+                margin: 0;
+                font-family: var(--gh-font-heading, fonts.$sans);
+                font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+                font-weight: 700;
+            }
+        }
+    }
+
     // Closing call to action -------------------------------------------------
 
     .mds-cta-end {
