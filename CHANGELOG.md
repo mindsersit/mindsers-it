@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+-   Home: "Nos produits" section showing our own SaaS (MyCellier, Unitae, Tokens On Me)
+    with their screenshots, right after "Un studio né de nos propres produits"
+
 ### Fixed
 
 -   Two-card grids (home "Nos univers" and offer pages) left an empty third column
