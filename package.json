@@ -8,7 +8,10 @@
     "dev:shop": "pnpm --filter @mindsers/shopify-theme dev",
     "shop:pull": "pnpm --filter @mindsers/shopify-theme pull",
     "lint": "biome ci .",
-    "test": "pnpm -r test"
+    "test": "pnpm -r test",
+    "test:scripts": "node --test scripts/*.test.mjs",
+    "release:prepare": "node scripts/release.mjs prepare",
+    "release:tag": "node scripts/release.mjs tag"
   },
   "author": {
     "name": "Nathanaël CHERRIER",

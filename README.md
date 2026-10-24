@@ -32,6 +32,7 @@ pnpm install
 pnpm build        # builds both themes (Ghost zip in themes/ghost/dist/)
 pnpm lint         # Biome
 pnpm test         # gscan on the Ghost theme
+pnpm test:scripts # the release script's tests
 ```
 
 - `pnpm dev:ghost`: rebuilds the Ghost theme on change, with livereload. Link
@@ -107,18 +108,32 @@ release workflow publishes a release (prereleases excepted), or by hand from the
 
 ### Release checklist
 
+Nothing is committed straight to `main`: the release goes through a pull request
+that CI checks, and the tag is pushed once it is merged. Both steps run on your
+machine, with your own git and `gh` login (`scripts/release.mjs`).
+
 1. **Pull the shop's editor changes first.** Section content edited in the Shopify
    theme editor lives in `templates/*.json`, `sections/*.json` and `locales/*.json`,
    which a deploy overwrites:
-   `SHOPIFY_THEME_ID=<id> pnpm shop:pull`, then commit.
-2. Commit `chore(release): X.Y.Z` on `main`:
-   - in `CHANGELOG.md`, move the `[Unreleased]` entries under `## [X.Y.Z] - YYYY-MM-DD`
-     and update the compare links at the bottom;
-   - bump `version` in `packages/design-system`, `themes/ghost` and `themes/shopify`
-     (`package.json`).
-3. Tag that commit `vX.Y.Z` and push the tag: the GitHub Release is created from
-   the changelog (`.github/workflows/gh-release.yml`), then both themes are deployed.
-   A version the changelog marks as a prerelease gets a prerelease and no deploy.
+   `SHOPIFY_THEME_ID=<id> pnpm shop:pull`. If it changed anything, merge it
+   through a pull request of its own first.
+2. From an up-to-date, clean `main`, run `pnpm release:prepare X.Y.Z`. It:
+   - moves the `[Unreleased]` entries of `CHANGELOG.md` under
+     `## [X.Y.Z] - <today>` and updates the compare links at the bottom;
+   - bumps `version` in `packages/design-system`, `themes/ghost` and
+     `themes/shopify` (`package.json`);
+   - commits `chore(release): X.Y.Z` on `release/X.Y.Z`, pushes it and opens
+     the pull request.
+3. Merge that pull request once CI passes, and merge nothing else before step 4.
+4. Run `pnpm release:tag X.Y.Z`. It checks that `main`'s last commit is that
+   release, tags it `vX.Y.Z` and pushes the tag: the GitHub Release is created
+   from the changelog (`.github/workflows/gh-release.yml`), then both themes are
+   deployed. A version the changelog marks as a prerelease gets a prerelease and
+   no deploy.
+
+The tag is pushed from your machine on purpose: a tag or a pull request made in
+Actions with `GITHUB_TOKEN` starts no other workflow, so it would neither
+release nor run CI.
 
 ## License
 
