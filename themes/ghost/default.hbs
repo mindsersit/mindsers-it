@@ -119,10 +119,10 @@
                         {{/if}}
                         <ul class='mds-foot-social'>
                             {{#if @site.twitter}}
-                            <li><a href='{{twitter_url @site.twitter}}' target='_blank' rel='noopener' aria-label='{{@site.title}} sur X'>{{> "icons/x"}}</a></li>
+                            <li><a href='{{social_url type="twitter"}}' target='_blank' rel='noopener' aria-label='{{@site.title}} sur X'>{{> "icons/x"}}</a></li>
                             {{/if}}
                             {{#if @site.facebook}}
-                            <li><a href='{{facebook_url @site.facebook}}' target='_blank' rel='noopener' aria-label='{{@site.title}} sur Facebook'>{{> "icons/facebook"}}</a></li>
+                            <li><a href='{{social_url type="facebook"}}' target='_blank' rel='noopener' aria-label='{{@site.title}} sur Facebook'>{{> "icons/facebook"}}</a></li>
                             {{/if}}
                         </ul>
                     </div>
