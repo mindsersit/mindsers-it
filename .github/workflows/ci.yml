@@ -92,5 +92,5 @@ jobs:
         run: |
           set -euo pipefail
           pnpm --filter @mindsers/shopify-theme build
-          npm install -g @shopify/cli@4.9.4
-          shopify theme check --path themes/shopify --fail-level error
+          # the CLI is a devDependency of the theme: locked and cached by pnpm
+          pnpm --filter @mindsers/shopify-theme check
