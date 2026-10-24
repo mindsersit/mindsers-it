@@ -33,8 +33,15 @@ themes/shopify/assets/*.css
 themes/shopify/assets/*.css.map
 themes/shopify/assets/*.js
 themes/shopify/assets/*.js.map
+themes/shopify/assets/*.woff2
+# the fonts used to be TTF: older builds left these behind
 themes/shopify/assets/*.ttf
 themes/shopify/.shopify/
 
 # personal editor settings
 .vscode/
+
+# Claude Code: its git worktrees (each holds a biome.json that breaks
+# `pnpm lint`) and personal settings
+.claude/worktrees/
+.claude/settings.local.json
