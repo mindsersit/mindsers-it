@@ -60,17 +60,27 @@ function open() {
   drawer.showModal()
 }
 
-async function changeLine(line, quantity) {
-  try {
-    await post('cart/change.js', { line: Number(line), quantity })
-    const input = drawer.querySelector(
-      `[data-line="${line}"] [data-line-quantity]`,
-    )
-    ;(input ?? drawer.querySelector('[data-cart-close]')).focus()
-  } catch (error) {
-    const message = drawer.querySelector('[data-cart-error]')
-    if (message) message.textContent = error.message
-  }
+// Cart changes run one after the other, and each computes its quantity from
+// what the drawer shows once the previous one has rendered: two quick "+"
+// clicks add two items instead of sending the same quantity twice. Lines are
+// found by their key, which, unlike their position, survives a removal.
+let changes = Promise.resolve()
+
+function changeLine(key, quantityFrom) {
+  const item = () => drawer.querySelector(`[data-key="${CSS.escape(key)}"]`)
+  changes = changes.then(async () => {
+    const input = item()?.querySelector('[data-line-quantity]')
+    if (!input) return
+    try {
+      const quantity = Math.max(0, quantityFrom(Number(input.value)))
+      await post('cart/change.js', { id: key, quantity })
+      const next = item()?.querySelector('[data-line-quantity]')
+      ;(next ?? drawer.querySelector('[data-cart-close]')).focus()
+    } catch (error) {
+      const message = drawer.querySelector('[data-cart-error]')
+      if (message) message.textContent = error.message
+    }
+  })
 }
 
 if (drawer) {
@@ -112,24 +122,23 @@ if (drawer) {
       return
     }
 
-    const line = event.target.closest('[data-line]')?.dataset.line
-    if (!line) return
+    const key = event.target.closest('[data-key]')?.dataset.key
+    if (!key) return
     if (event.target.closest('[data-line-remove]')) {
-      changeLine(line, 0)
+      changeLine(key, () => 0)
       return
     }
     const step = event.target.closest('[data-quantity-change]')
     if (step) {
-      const input = step.parentElement.querySelector('[data-line-quantity]')
-      const quantity = Number(input.value) + Number(step.dataset.quantityChange)
-      changeLine(line, Math.max(0, quantity))
+      const by = Number(step.dataset.quantityChange)
+      changeLine(key, quantity => quantity + by)
     }
   })
 
   drawer.addEventListener('change', event => {
     const input = event.target.closest('[data-line-quantity]')
     if (!input) return
-    const line = input.closest('[data-line]').dataset.line
-    changeLine(line, Math.max(0, Number(input.value)))
+    const typed = Number(input.value)
+    changeLine(input.closest('[data-key]').dataset.key, () => typed)
   })
 }

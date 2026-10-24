@@ -2,11 +2,11 @@
   One cart line, shared by the cart page and the cart drawer.
 
   @param {line_item} item - The cart line
-  @param {number} index - The line number (1-based), used by /cart/change.js
+  @param {number} index - The line number (1-based), for the input ids
   @param {boolean} [ajax] - Drawer mode: quantity buttons handled by cart.js
     instead of the cart page's form fields
 {%- enddoc -%}
-<li class="cart-item" data-line="{{ index }}">
+<li class="cart-item" data-key="{{ item.key }}">
   <a href="{{ item.url }}" tabindex="-1" aria-hidden="true">
     {%- if item.image -%}
       {{ item.image | image_url: width: 160, height: 160, crop: 'center' | image_tag: loading: 'lazy', alt: '' }}
