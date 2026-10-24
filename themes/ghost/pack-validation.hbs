@@ -1,7 +1,5 @@
 {{!< default}}
 
-{{#contentFor 'htmlLang'}}{{@site.locale}}{{/contentFor}}
-
 {{#contentFor 'styles'}}
 <link rel="stylesheet" type="text/css" href="{{asset "css/landing.css"}}" />
 {{/contentFor}}
@@ -20,19 +18,10 @@
                 <p>
                     On conçoit pour vous une landing page qui teste votre idée auprès de vrais utilisateurs, collecte des emails qualifiés, et vous dit si ça vaut le coup d’aller plus loin.
                 </p>
-                {{#if @custom.global_cta_url}}
-                <div class="mds-cta">
-                    <p>
-                        <a href="{{@custom.global_cta_url}}" class="button primary">Parlez-nous de votre projet</a>
-                    </p>
-                    <p class='rate'>
-                        <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
-                        <span>
-                            +{{@custom.amount_of_landing_pages_done }} landing pages validées avec succès !
-                        </span>
-                    </p>
-                </div>
-                {{/if}}
+                {{> "ui/hero-cta"
+                    cta_label="Parlez-nous de votre projet"
+                    counter=@custom.amount_of_landing_pages_done
+                    counter_label="landing pages validées avec succès !"}}
             </div>
         </div>
     </header>
@@ -90,7 +79,7 @@
 
             <ul class="key-points">
                 <li>
-                    {{> "images/solution"}}
+                    <img src="{{asset "images/illustrations/solution.svg"}}" alt="" width="88" height="88" loading="lazy" />
                     <h3>Cadrage rapide de votre idée</h3>
                     <p>
                         On vous aide à poser l’angle, le bon message, et la cible utilisateur.
@@ -98,7 +87,7 @@
                     </p>
                 </li>
                 <li>
-                    {{> "images/design"}}
+                    <img src="{{asset "images/illustrations/design.svg"}}" alt="" width="88" height="88" loading="lazy" />
                     <h3>Design & copywriting orientés conversion</h3>
                     <p>
                         Une landing page claire, persuasive et jolie.<br />
@@ -106,21 +95,21 @@
                     </p>
                 </li>
                 <li>
-                    {{> "images/data"}}
+                    <img src="{{asset "images/illustrations/data.svg"}}" alt="" width="88" height="88" loading="lazy" />
                     <h3>Tracking & analytics intégrés</h3>
                     <p>
                         On installe les bons outils (PostHog, Plausible...) pour mesurer le trafic, les clics, les signups.
                     </p>
                 </li>
                 <li>
-                    {{> "images/mail"}}
+                    <img src="{{asset "images/illustrations/mail.svg"}}" alt="" width="88" height="88" loading="lazy" />
                     <h3>Collecte d’emails qualifiés</h3>
                     <p>
                         Les visiteurs intéressés laissent leur email. Vous construisez votre base d’early adopters.
                     </p>
                 </li>
                 <li>
-                    {{> "images/brain"}}
+                    <img src="{{asset "images/illustrations/brain.svg"}}" alt="" width="88" height="88" loading="lazy" />
                     <h3>Débrief & recommandations stratégiques</h3>
                     <p>
                         Une fois les premiers retours collectés, on vous aide à interpréter les signaux et planifier la suite.
@@ -131,11 +120,13 @@
             <p>
                 En 2 semaines, vous repartez avec des insights concrets, une base d’emails et une vision claire pour avancer.
             </p>
+            {{#if @custom.global_cta_url}}
             <p>
                 <a href="{{@custom.global_cta_url}}" class="button primary">
                     Discutons de votre idée
                 </a>
             </p>
+            {{/if}}
         </div>
     </section>
 
@@ -214,7 +205,9 @@
                             </ul>
                         </div>
                     </div>
+                    {{#if @custom.global_cta_url}}
                     <a href="{{@custom.global_cta_url}}" class="button primary">Lancer mon test marché</a>
+                    {{/if}}
                 </div>
             </div>
 
@@ -231,80 +224,71 @@
             </h2>
 
             <div class="faq-items">
-                <div class="faq-item">
-                    <input type="checkbox" id="faq1" class="faq-toggle" />
-                    <h3><label for="faq1">Est-ce que je dois déjà avoir un nom de domaine ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Est-ce que je dois déjà avoir un nom de domaine ?</h3></summary>
                     <p>
                        Non, ce n'est pas nécessaire. On peut vous guider pour en acheter un au bon moment. Mais si vous en avez déjà un, on peut l’utiliser pour héberger la landing page.
                     </p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq2" class="faq-toggle" />
-                    <h3><label for="faq2">Combien d’emails je peux collecter avec ce système ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Combien d’emails je peux collecter avec ce système ?</h3></summary>
                     <p>
                         Autant que vous voulez. On installe un système de capture connecté à un outil simple pour que vous puissiez suivre et exporter vos leads.
                     </p>
                     <p>
                         Plus vous récoltez d’emails, plus vous aurez de données pour décider si votre idée est viable.
                     </p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq3" class="faq-toggle" />
-                    <h3><label for="faq3">Est-ce que vous m’aidez à rédiger les bons messages ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Est-ce que vous m’aidez à rédiger les bons messages ?</h3></summary>
                     <p>
                         Oui. Notre travail inclut du copywriting pour formuler un message clair, crédible et engageant — même si votre idée est encore floue.
                     </p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq4" class="faq-toggle" />
-                    <h3><label for="faq4">Et si j’ai plusieurs idées de SaaS ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Et si j’ai plusieurs idées de SaaS ?</h3></summary>
                     <p>
                         On vous aide à choisir celle qui mérite le plus d’être testée maintenant. Et si vous voulez faire plusieurs landing pages, on peut adapter le pack.
                     </p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq5" class="faq-toggle" />
-                    <h3><label for="faq5">Quelles données vais-je obtenir à la fin ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Quelles données vais-je obtenir à la fin ?</h3></summary>
                     <p>
                         Le nombre de visiteurs, les taux de clics, les emails collectés, et des insights comportementaux (heatmaps, scroll, clics). De quoi décider si ça vaut le coup d’aller plus loin.
                     </p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq6" class="faq-toggle" />
-                    <h3><label for="faq6">Et après, je fais quoi avec les leads ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Et après, je fais quoi avec les leads ?</h3></summary>
                     <p>
                         Vous pouvez leur écrire pour discuter du projet, les sonder plus en détail, ou les recontacter quand vous lancez un MVP. Ce sont vos premiers early adopters.
                     </p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq7" class="faq-toggle" />
-                    <h3><label for="faq7">Pourquoi ne pas juste faire une page Notion ou un Google Form ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Pourquoi ne pas juste faire une page Notion ou un Google Form ?</h3></summary>
                     <p>
                         Ça peut dépanner, mais c’est rarement perçu comme pro. Une vraie landing page inspire plus de confiance, convertit mieux, et vous donne des données exploitables (taux de clics, heatmaps, etc.).
                     </p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq8" class="faq-toggle" />
-                    <h3><label for="faq8">Est-ce que je peux le faire moi-même avec un no-code ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Est-ce que je peux le faire moi-même avec un no-code ?</h3></summary>
                     <p>
                         Bien sûr. Mais ce pack va plus loin : on travaille l’angle, le message, le design, le tracking… Vous gagnez du temps et obtenez un livrable pro, optimisé, testé.
                     </p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq9" class="faq-toggle" />
-                    <h3><label for="faq9">Et si je n’ai pas encore de logo ou de charte graphique ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Et si je n’ai pas encore de logo ou de charte graphique ?</h3></summary>
                     <p>
                         Aucun problème. On vous livre une landing page sobre, crédible et lisible, même sans branding. On peut aussi vous conseiller pour poser une base graphique légère.
                     </p>
-                </div>
+                </details>
             </div>
         </div>
     </section>
@@ -314,37 +298,23 @@
             <div class="section-type">Voir aussi</div>
             <h2 class="section-title">Nos autres offres SaaS</h2>
             <div class="persona-cards">
-                <div class="persona-card">
-                    <h3>Pack "MVP"</h3>
-                    <p>Votre idée est validée ? On construit un MVP fonctionnel, prêt à vendre, en 1 mois.</p>
-                    <a href="/studio-saas/mvp/" class="button primary">Découvrir le pack MVP</a>
-                </div>
-                <div class="persona-card">
-                    <h3>SaaS clé-en-main</h3>
-                    <p>Vous êtes prêt à scaler ? On lance votre SaaS complet avec design, dev et go-to-market.</p>
-                    <a href="/studio-saas/saas/" class="button primary">Découvrir l’offre SaaS</a>
-                </div>
+                {{> "ui/offer-card"
+                    heading='Pack "MVP"'
+                    intro="Votre idée est validée ? On construit un MVP fonctionnel, prêt à vendre, en 1 mois."
+                    href="/studio-saas/mvp/"
+                    cta_label="Découvrir le pack MVP"}}
+                {{> "ui/offer-card"
+                    heading="SaaS clé-en-main"
+                    intro="Vous êtes prêt à scaler ? On lance votre SaaS complet avec design, dev et go-to-market."
+                    href="/studio-saas/saas/"
+                    cta_label="Découvrir l’offre SaaS"}}
             </div>
         </div>
     </section>
 
-    <section class="mds-cta-end">
-        {{#if @custom.global_cta_url}}
-        <div class="mds-cta">
-            <h2>Votre idée mérite mieux qu’un fichier Notion.</h2>
-            <p>
-                En moins de 2 semaines, on vous aide à tester le potentiel de votre SaaS et à bâtir votre première base d’emails qualifiés.
-            </p>
-            <p>
-                <a href="{{@custom.global_cta_url}}" class="button primary">{{@custom.global_cta_text}}</a>
-            </p>
-            <p class='rate'>
-                <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
-                <span>
-                    +{{@custom.amount_of_landing_pages_done }} landing pages validées avec succès !
-                </span>
-            </p>
-        </div>
-        {{/if}}
-    </section>
+    {{> "ui/cta-end"
+        heading="Votre idée mérite mieux qu’un fichier Notion."
+        intro="En moins de 2 semaines, on vous aide à tester le potentiel de votre SaaS et à bâtir votre première base d’emails qualifiés."
+        counter=@custom.amount_of_landing_pages_done
+        counter_label="landing pages validées avec succès !"}}
 </div>

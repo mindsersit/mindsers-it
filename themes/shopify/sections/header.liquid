@@ -27,7 +27,7 @@
 {%- endcapture -%}
 
 <header id="mds-head" class="mds-head">
-  <nav class="mds-head-inner mds-container" role="navigation" aria-label="Main Navigation">
+  <div class="mds-head-inner mds-container">
     <div class="mds-head-brand">
       {% render 'logo' %}
     </div>
@@ -35,7 +35,7 @@
       <div class="mds-head-placeholder"></div>
     {% endunless %}
     <div class="mds-head-menu">
-      <nav class="mds-main-menu">
+      <nav class="mds-main-menu" aria-label="{{ 'header.main_navigation' | t }}">
         {{ nav_list }}
       </nav>
     </div>
@@ -103,7 +103,7 @@
         </ul>
       </div>
     </div>
-  </nav>
+  </div>
 </header>
 
 {% schema %}

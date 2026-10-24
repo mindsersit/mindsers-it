@@ -8,7 +8,6 @@ body {
     margin: 0;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased !important;
-    -moz-font-smoothing: antialiased !important;
     text-rendering: optimizelegibility !important;
     letter-spacing: 0.2px;
     background-color: colors.$background;
@@ -35,7 +34,7 @@ body {
     }
 
     .mds-head {
-        background-color: rgba(#121922, 0.85);
+        background-color: rgba(colors.$ink, 0.85);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         font-family: var(--gh-font-body, fonts.$sans);
@@ -95,112 +94,12 @@ body {
 
                 .mds-main-menu {
                     li {
-                        position: relative;
                         padding: 5px;
 
                         &.nav-current a {
                             color: colors.$accent;
                             text-decoration: underline;
                             text-underline-offset: 4px;
-                        }
-
-                        .mds-main-submenu {
-                            position: absolute;
-                            display: flex;
-                            background-color: colors.$background;
-                            border-radius: 12px;
-                            width: max-content;
-                            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.1);
-                            margin: 5px 0;
-                            display: none;
-                            z-index: 1;
-
-                            .mds-submenu-column {
-                                padding: 5px 20px;
-                                margin: 15px 0px;
-
-                                &.mds-submenu-links {
-                                    min-width: 150px;
-
-                                    ul + ul {
-                                        margin-top: 20px;
-                                    }
-
-                                    li {
-                                        padding: 0;
-                                    }
-
-                                    .asap-label {
-                                        font-size: 0.7em;
-                                        background-color: colors.$neutral;
-                                        border-radius: 5px;
-                                        padding: 1px 3px;
-                                    }
-
-                                    .more-links {
-                                        font-size: 0.9em;
-                                        text-decoration: underline;
-
-                                        a {
-                                            color: colors.$foreground;
-                                            text-decoration: underline;
-                                            font-weight: 400;
-                                        }
-                                    }
-                                }
-
-                                &.mds-submenu-plans {
-                                    border-left: 1px solid colors.$neutral;
-
-                                    .more {
-                                        color: colors.$foreground;
-                                        text-decoration: underline;
-                                        font-weight: 400;
-                                        font-size: 0.9em;
-                                    }
-
-                                    .title {
-                                        font-weight: bolder;
-                                        font-size: 0.9em;
-                                    }
-
-                                    li {
-                                        margin: 5px;
-                                        padding: 0;
-
-                                        a {
-                                            background: colors.$default_gradient;
-                                            color: white;
-                                            padding: 10px;
-                                            border-radius: 8px;
-                                            display: inline-block;
-                                            box-sizing: border-box;
-                                            width: 200px;
-                                            height: 60px;
-                                            display: flex;
-                                            justify-content: space-between;
-                                            align-items: center;
-
-                                            .price {
-                                                background-color: white;
-                                                color: colors.$accent;
-                                                font-weight: 400;
-                                                border-radius: 15px;
-                                                padding: 5px 10px;
-                                                font-size: 0.8em;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-
-                            ul {
-                                flex-direction: column;
-                            }
-                        }
-
-                        &:hover .mds-main-submenu {
-                            display: flex;
                         }
                     }
                 }
@@ -216,7 +115,8 @@ body {
                 align-items: center;
                 gap: 18px;
 
-                // icon buttons share one size, colour and hover
+                // icon buttons share one size, colour and hover; reset for
+                // <button> (Ghost's search, the mobile menu toggle)
                 .search-button,
                 .account-button,
                 .cart-button,
@@ -225,7 +125,11 @@ body {
                     width: 22px;
                     height: 22px;
                     margin: 0;
-                    color: #c9cfd6;
+                    padding: 0;
+                    border: 0;
+                    background: none;
+                    color: tokens.$text-soft;
+                    cursor: pointer;
                     transition: color 0.2s ease;
 
                     &:hover {
@@ -238,52 +142,7 @@ body {
                     }
                 }
 
-                .profile-button {
-                    color: white;
-                    display: inline-block;
-                    width: 40px;
-                    height: 40px;
-                    box-sizing: border-box;
-                    background-color: colors.$accent;
-                    border-radius: 50%;
-                    vertical-align: middle;
-                    margin: 0 10px;
-                    position: relative;
-                    overflow: hidden;
-                    cursor: pointer;
-
-                    svg {
-                        stop-color: white;
-                        width: 34px;
-                        height: 34px;
-                        position: absolute;
-                        top: 3px;
-                        left: 3px;
-                    }
-
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                    }
-                }
-
-                .search-button {
-                    cursor: pointer;
-                }
-
-                .login-button,
                 .shop-button {
-                    &:not(.button) {
-                        color: colors.$accent;
-                        text-decoration: none;
-                        font-weight: bold;
-                        margin: 10px;
-                        font-size: 0.9em;
-                    }
-
                     @media (max-width: 700px) {
                         display: none;
                     }
@@ -293,10 +152,6 @@ body {
                     display: none;
                     width: 24px;
                     height: 24px;
-                    padding: 0;
-                    border: 0;
-                    background: none;
-                    cursor: pointer;
 
                     @media (max-width: 700px) {
                         display: inline-flex;
@@ -309,7 +164,7 @@ body {
                     left: 0;
                     right: 0;
                     bottom: 0;
-                    overflow: scroll;
+                    overflow-y: auto;
                     background-color: colors.$background;
                     z-index: 20;
                     display: none;
@@ -360,83 +215,9 @@ body {
                                     color: colors.$background;
                                     font-size: 0.9rem;
                                 }
-
-                                &[data-members-signout] {
-                                    color: #ff424d;
-                                }
-                            }
-
-                            &.reminder {
-                                color: #bfbfbf;
-                                text-overflow: ellipsis;
-                                overflow: hidden;
-                                text-align: center;
                             }
 
                             &.nav-current a {
-                                color: colors.$accent;
-                            }
-                        }
-                    }
-                }
-
-                .profile-menu {
-                    $color: colors.$neutral;
-                    position: absolute;
-                    background-color: colors.$background;
-                    border-radius: 12px;
-                    right: 0;
-                    z-index: 4;
-                    margin: 10px 0;
-                    width: 200px;
-                    display: none;
-                    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.1);
-
-                    &.menu-open {
-                        display: block;
-
-                        @media (max-width: 700px) {
-                            display: none;
-                        }
-                    }
-
-                    &::before {
-                        content: '';
-                        display: inline-block;
-                        border-bottom: 10px solid $color;
-                        border-left: 10px solid transparent;
-                        border-right: 10px solid transparent;
-                        position: absolute;
-                        top: -10px;
-                        right: 19px;
-                    }
-
-                    ul {
-                        list-style: none;
-                        padding: 0;
-                        margin: 0;
-
-                        li {
-                            padding: 10px;
-                            font-size: 0.85rem;
-
-                            &.reminder {
-                                border-bottom: 1px solid $color;
-                                color: #bfbfbf;
-                                text-overflow: ellipsis;
-                                overflow: hidden;
-                            }
-
-                            &:not(.reminder) {
-                                padding: 15px 10px;
-
-                                & + li:not(.reminder) {
-                                    padding-top: 0;
-                                }
-                            }
-
-                            a {
-                                text-decoration: none;
                                 color: colors.$accent;
                             }
                         }
@@ -611,8 +392,15 @@ body {
         appearance: none;
     }
 
+    // Hidden but still focusable (display: none would take them out of the
+    // tab order): the label's ::before draws the box, and keyboard focus shows
+    // on it.
     input[type='checkbox'] {
-        display: none;
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: 0;
+        opacity: 0;
 
         & + label::before {
             content: '';
@@ -633,29 +421,10 @@ body {
         &:checked + label::before {
             content: '\2713';
         }
-    }
 
-    div.cookie-consent {
-        display: none;
-        width: calc(100% - 60px);
-        position: fixed;
-        bottom: 10px;
-        left: 10px;
-        border-radius: 12px;
-        background-color: colors.$background;
-        padding: 10px 20px;
-        font-family: var(--gh-font-body, fonts.$sans);
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
-        z-index: 2;
-
-        @media (max-width: 400px) {
-            flex-direction: column;
-        }
-
-        &.active {
-            display: flex;
+        &:focus-visible + label::before {
+            outline: 2px solid colors.$accent;
+            outline-offset: 2px;
         }
     }
 }

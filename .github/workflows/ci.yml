@@ -85,12 +85,13 @@ jobs:
         name: Build and check the Ghost theme
         run: |
           set -euo pipefail
-          pnpm --filter mindsers-it build
-          pnpm --filter mindsers-it test:ci
+          # --fail-if-no-match: a filter that matches no package exits 0
+          pnpm --filter mindsers-it --fail-if-no-match build
+          pnpm --filter mindsers-it --fail-if-no-match test:ci
       - if: steps.scope.outputs.shopify == 'true'
         name: Build and check the Shopify theme
         run: |
           set -euo pipefail
-          pnpm --filter @mindsers/shopify-theme build
-          npm install -g @shopify/cli@4.9.4
-          shopify theme check --path themes/shopify --fail-level error
+          pnpm --filter @mindsers/shopify-theme --fail-if-no-match build
+          # the CLI is a devDependency of the theme: locked and cached by pnpm
+          pnpm --filter @mindsers/shopify-theme --fail-if-no-match check

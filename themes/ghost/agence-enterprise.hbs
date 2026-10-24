@@ -1,7 +1,5 @@
 {{!< default}}
 
-{{#contentFor 'htmlLang'}}{{@site.locale}}{{/contentFor}}
-
 {{#contentFor 'activityClass'}}mds-shopify{{/contentFor}}
 
 {{#contentFor 'styles'}}
@@ -21,19 +19,10 @@
                 <p>
                     Votre croissance exige une infrastructure technique robuste ? On conçoit des plateformes e-commerce haute performance : Shopify headless, intégrations ERP complexes, multimarket.
                 </p>
-                {{#if @custom.global_cta_url}}
-                <div class="mds-cta">
-                    <p>
-                        <a href="{{@custom.global_cta_url}}" class="button primary">Étudier votre architecture</a>
-                    </p>
-                    <p class='rate'>
-                        <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
-                        <span>
-                            +{{@custom.amount_of_ecommerce_websites_done }} plateformes enterprise développées !
-                        </span>
-                    </p>
-                </div>
-                {{/if}}
+                {{> "ui/hero-cta"
+                    cta_label="Étudier votre architecture"
+                    counter=@custom.amount_of_ecommerce_websites_done
+                    counter_label="plateformes enterprise développées !"}}
             </div>
         </div>
     </header>
@@ -91,28 +80,28 @@
 
             <ul class="key-points">
                 <li>
-                    {{> "images/techno"}}
+                    <img src="{{asset "images/illustrations/techno.svg"}}" alt="" width="88" height="88" loading="lazy" />
                     <h3>Architecture headless haute performance</h3>
                     <p>
                         Shopify Plus en headless avec frontend React/Next.js. Performance maximale, flexibilité totale, expérience utilisateur sur-mesure.
                     </p>
                 </li>
                 <li>
-                    {{> "images/data"}}
+                    <img src="{{asset "images/illustrations/data.svg"}}" alt="" width="88" height="88" loading="lazy" />
                     <h3>Intégrations ERP et systèmes complexes</h3>
                     <p>
                         Synchronisation temps réel avec SAP, Oracle, NetSuite. Workflows automatisés, données cohérentes, zéro ressaisie.
                     </p>
                 </li>
                 <li>
-                    {{> "images/solution"}}
+                    <img src="{{asset "images/illustrations/solution.svg"}}" alt="" width="88" height="88" loading="lazy" />
                     <h3>Plateforme multimarket et multilingue</h3>
                     <p>
                         Architecture technique pour gérer plusieurs pays, devises, catalogues, réglementations depuis une seule interface.
                     </p>
                 </li>
                 <li>
-                    {{> "images/delivery"}}
+                    <img src="{{asset "images/illustrations/delivery.svg"}}" alt="" width="88" height="88" loading="lazy" />
                     <h3>Optimisation performance et monitoring</h3>
                     <p>
                         CDN global, cache intelligent, monitoring temps réel. Votre site reste rapide même sur les pics de trafic.
@@ -123,11 +112,13 @@
             <p>
                 <strong>Résultat :</strong> Une infrastructure qui grandit avec vous et transforme la complexité en efficacité opérationnelle.
             </p>
+            {{#if @custom.global_cta_url}}
             <p>
                 <a href="{{@custom.global_cta_url}}" class="button primary">
                     Auditer votre infrastructure
                 </a>
             </p>
+            {{/if}}
         </div>
     </section>
 
@@ -217,7 +208,7 @@
                         <p class="price-mentions">Budget adapté à la complexité et aux intégrations</p>
                         <hr>
                         <div>
-                            <h4 class="text-sm uppercase font-semibold mb-2">Fonctionnalités enterprise incluses :</h4>
+                            <h4>Fonctionnalités enterprise incluses :</h4>
                             <ul>
                                 <li><strong>Architecture technique :</strong></li>
                                 <ul>
@@ -261,7 +252,9 @@
                             </ul>
                         </div>
                     </div>
+                    {{#if @custom.global_cta_url}}
                     <a href="{{@custom.global_cta_url}}" class="button primary">Planifier un audit</a>
+                    {{/if}}
                 </div>
             </div>
 
@@ -278,85 +271,75 @@
             </h2>
 
             <div class="faq-items">
-                <div class="faq-item">
-                    <input type="checkbox" id="faq1" class="faq-toggle" />
-                    <h3><label for="faq1">À partir de quel volume d'activité une architecture enterprise se justifie-t-elle ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>À partir de quel volume d'activité une architecture enterprise se justifie-t-elle ?</h3></summary>
                     <p>
                        Généralement à partir de 500k€ de CA annuel, ou si vous gérez plus de 1000 références, plusieurs marchés, ou avez des intégrations ERP complexes. L'audit initial on permet de valider la pertinence.
                     </p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq2" class="faq-toggle" />
-                    <h3><label for="faq2">Qu'apporte l'architecture headless par rapport à un Shopify classique ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Qu'apporte l'architecture headless par rapport à un Shopify classique ?</h3></summary>
                     <p>
                         Performance supérieure, expérience utilisateur sur-mesure, flexibilité totale sur le front-end, possibilité d'alimenter plusieurs canaux (site, app mobile, bornes...) depuis la même base.
                     </p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq3" class="faq-toggle" />
-                    <h3><label for="faq3">Quels ERP pouvez-vous intégrer ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Quels ERP pouvez-vous intégrer ?</h3></summary>
                     <p>
                         SAP, Oracle NetSuite, Microsoft Dynamics, Sage X3, Odoo, et de nombreux autres. On crée des connecteurs sur-mesure si nécessaire. L'important est la qualité des APIs disponibles.
                     </p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq4" class="faq-toggle" />
-                    <h3><label for="faq4">Comment gérez-vous la migration depuis notre plateforme actuelle ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Comment gérez-vous la migration depuis notre plateforme actuelle ?</h3></summary>
                     <p>
                         Migration progressive sans interruption de service. Synchronisation des données, tests en parallèle, bascule maîtrisée. On a l'expérience de migrations depuis Magento, SAP Commerce, solutions custom...
                     </p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq5" class="faq-toggle" />
-                    <h3><label for="faq5">Quel niveau de performance peut-on atteindre ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Quel niveau de performance peut-on atteindre ?</h3></summary>
                     <p>
                         Temps de chargement < 2s même sur gros catalogues, gestion de milliers de visiteurs simultanés, disponibilité 99.9%. On optimise chaque composant pour la performance.
                     </p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq6" class="faq-toggle" />
-                    <h3><label for="faq6">Comment assurez-vous la sécurité enterprise ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Comment assurez-vous la sécurité enterprise ?</h3></summary>
                     <p>
                         Chiffrement end-to-end, authentification multi-facteurs, audit de sécurité, conformité RGPD/PCI-DSS, monitoring des vulnérabilités, sauvegardes redondantes.
                     </p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq7" class="faq-toggle" />
-                    <h3><label for="faq7">Nos équipes techniques peuvent-elles maintenir la solution ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Nos équipes techniques peuvent-elles maintenir la solution ?</h3></summary>
                     <p>
                         Absolument. Documentation complète, formation des équipes, stack technologique standard. On reste disponibles pour le support niveau 3 et les évolutions complexes.
                     </p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq8" class="faq-toggle" />
-                    <h3><label for="faq8">Combien de temps prend un projet enterprise ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Combien de temps prend un projet enterprise ?</h3></summary>
                     <p>
                         Entre 3 et 6 mois selon la complexité. Projets livrés en phases : MVP fonctionnel rapidement, puis enrichissement progressif des fonctionnalités.
                     </p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq9" class="faq-toggle" />
-                    <h3><label for="faq9">Proposez-vous un accompagnement post-lancement ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Proposez-vous un accompagnement post-lancement ?</h3></summary>
                     <p>
                         Oui : monitoring 24/7, support technique dédié, maintenance evolutive, optimisation continue des performances. Forfaits adaptés aux besoins enterprise.
                     </p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq10" class="faq-toggle" />
-                    <h3><label for="faq10">Comment validez-vous la faisabilité technique avant de démarrer ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Comment validez-vous la faisabilité technique avant de démarrer ?</h3></summary>
                     <p>
                         Audit technique approfondi (2-3 jours), POC sur les points critiques, validation avec vos équipes IT. On ne démarre qu'avec la certitude de réussir.
                     </p>
-                </div>
+                </details>
             </div>
         </div>
     </section>
@@ -366,38 +349,23 @@
             <div class="section-type">Voir aussi</div>
             <h2 class="section-title">Nos autres offres Shopify</h2>
             <div class="persona-cards">
-                <div class="persona-card">
-                    <h3>Boutique Basique</h3>
-                    <p>Vous démarrez ? Une boutique Shopify clé en main, professionnelle et prête à vendre en 3 semaines.</p>
-                    <a href="/agence-shopify/basic/" class="button primary">Découvrir l'offre Basique</a>
-                </div>
-                <div class="persona-card">
-                    <h3>Solution Personnalisée</h3>
-                    <p>Fonctionnalités sur-mesure, intégrations tierces et multilingue pour un e-commerce adapté à votre business.</p>
-                    <a href="/agence-shopify/personnalise/" class="button primary">Découvrir l'offre Personnalisée</a>
-                </div>
+                {{> "ui/offer-card"
+                    heading="Boutique Basique"
+                    intro="Vous démarrez ? Une boutique Shopify clé en main, professionnelle et prête à vendre en 3 semaines."
+                    href="/agence-shopify/basic/"
+                    cta_label="Découvrir l'offre Basique"}}
+                {{> "ui/offer-card"
+                    heading="Solution Personnalisée"
+                    intro="Fonctionnalités sur-mesure, intégrations tierces et multilingue pour un e-commerce adapté à votre business."
+                    href="/agence-shopify/personnalise/"
+                    cta_label="Découvrir l'offre Personnalisée"}}
             </div>
         </div>
     </section>
 
-    <section class="mds-cta-end">
-        {{#if @custom.global_cta_url}}
-        <div class="mds-cta">
-            <h2>Votre infrastructure e-commerce à la hauteur de vos ambitions.</h2>
-            <p>
-                Planifions ensemble l'architecture technique qui soutiendra<br/>
-                votre croissance nationale et internationale.
-            </p>
-            <p>
-                <a href="{{@custom.global_cta_url}}" class="button primary">{{@custom.global_cta_text}}</a>
-            </p>
-            <p class='rate'>
-                <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
-                <span>
-                    +{{@custom.amount_of_ecommerce_websites_done }} architectures enterprise développées !
-                </span>
-            </p>
-        </div>
-        {{/if}}
-    </section>
+    {{> "ui/cta-end"
+        heading="Votre infrastructure e-commerce à la hauteur de vos ambitions."
+        intro="Planifions ensemble l'architecture technique qui soutiendra<br/> votre croissance nationale et internationale."
+        counter=@custom.amount_of_ecommerce_websites_done
+        counter_label="architectures enterprise développées !"}}
 </div>

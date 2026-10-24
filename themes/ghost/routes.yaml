@@ -20,9 +20,8 @@ routes:
     /talent-freelance/:
         template: home-talent
 
-
-
+# No blog: posts get no URL, and tags no archive page (they would render the
+# empty index.hbs).
 collections:
 
 taxonomies:
-    tag: /topic/{slug}/

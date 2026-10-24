@@ -62,7 +62,7 @@ follow, and they would matter the day the repository goes private.
    #8).
    - **Why it is safe:** nothing `ci` runs reads them. Biome 2.0.5 has no
      Markdown support and processes no `.md` file. The Ghost build reads
-     `styles/`, `scripts/` and the design system; gscan and `shopify theme
+     `styles/` and the design system; gscan and `shopify theme
      check` check templates, assets and settings.
    - **What reads one:** `gh-release.yml` reads `CHANGELOG.md`, on a tag, not
      in `ci`. The Ghost zip packs every file under `themes/ghost`, a `.md` in

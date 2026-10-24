@@ -1,7 +1,5 @@
 {{!< default}}
 
-{{#contentFor 'htmlLang'}}{{@site.locale}}{{/contentFor}}
-
 {{#contentFor 'styles'}}
 <link rel="stylesheet" type="text/css" href="{{asset "css/pages.css"}}" />
 {{/contentFor}}
@@ -11,7 +9,9 @@
 {{#post}}
 <div class="mds-page">
     <div class="mds-canvas">
+        {{#match @page.show_title_and_feature_image}}
         <h1>{{title}}</h1>
+        {{/match}}
         <div class="mds-content">
             {{content}}
         </div>

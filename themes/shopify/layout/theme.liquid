@@ -5,14 +5,7 @@
 <!doctype html>
 <html lang="{{ request.locale.iso_code }}">
   <head>
-    {% render 'meta-tags' %}
-
-    {{ 'theme.css' | asset_url | stylesheet_tag }}
-    {% style %}
-      :root {
-        --ghost-accent-color: {{ settings.accent_color }};
-      }
-    {% endstyle %}
+    {% render 'head' %}
 
     {{ content_for_header }}
   </head>
@@ -33,7 +26,12 @@
     {% render 'search-dialog' %}
 
     {%- if settings.cart_type == 'drawer' -%}
-      <dialog id="CartDrawer" class="mds-dialog cart-drawer" aria-labelledby="CartDrawerTitle">
+      <dialog
+        id="CartDrawer"
+        class="mds-dialog cart-drawer"
+        aria-labelledby="CartDrawerTitle"
+        data-error="{{ 'cart.error' | t }}"
+      >
         {% section 'cart-drawer' %}
       </dialog>
     {%- endif -%}

@@ -8,6 +8,8 @@ import {
   parseVersion,
   releaseChangelog,
   setVersion,
+  THEME_SCHEMA,
+  themeVersionOf,
   versionOf,
 } from './release.mjs'
 
@@ -53,6 +55,32 @@ test('the version field changes and nothing else', () => {
   assert.equal(out, json.replace('"version": "2.1.0"', '"version": "2.2.0"'))
   assert.equal(versionOf(out), '2.2.0')
   assert.throws(() => setVersion('{}', '2.2.0'))
+})
+
+test('the theme_version field changes and nothing else', () => {
+  // decoys: a "version" key and another field holding the same value
+  const json =
+    '[\n  {\n    "name": "theme_info",\n    "theme_version": "2.1.0",\n' +
+    '    "version": "2.1.0"\n  },\n  { "name": "x", "default": "2.1.0" }\n]\n'
+  const out = setVersion(json, '2.2.0', 'theme_version')
+  assert.equal(
+    out,
+    json.replace('"theme_version": "2.1.0"', '"theme_version": "2.2.0"'),
+  )
+  assert.equal(themeVersionOf(out), '2.2.0')
+  assert.throws(() => setVersion('[]', '2.2.0', 'theme_version'))
+  assert.equal(themeVersionOf('[]'), undefined)
+  assert.equal(themeVersionOf('{}'), undefined)
+})
+
+test("the Shopify theme schema has a theme_version, the packages' version", () => {
+  const read = path =>
+    readFileSync(new URL(`../${path}`, import.meta.url), 'utf8')
+  const schema = read(THEME_SCHEMA)
+  const shopify = PACKAGES.find(path => path.startsWith('themes/shopify/'))
+  assert.equal(themeVersionOf(schema), versionOf(read(shopify)))
+  const out = setVersion(schema, '9.9.9', 'theme_version')
+  assert.equal(themeVersionOf(out), '9.9.9')
 })
 
 test("the repository's three packages have a version field", () => {

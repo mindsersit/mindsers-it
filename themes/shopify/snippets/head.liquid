@@ -1,0 +1,13 @@
+{%- doc -%}
+  The <head> content shared by layout/theme.liquid, layout/password.liquid and
+  templates/gift_card.liquid: meta tags, the stylesheet and the accent colour.
+  Each of them still outputs {{ content_for_header }} itself.
+{%- enddoc -%}
+{% render 'meta-tags' %}
+
+{{ 'theme.css' | asset_url | stylesheet_tag }}
+{% style %}
+  :root {
+    --ghost-accent-color: {{ settings.accent_color }};
+  }
+{% endstyle %}
