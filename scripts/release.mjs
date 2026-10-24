@@ -10,8 +10,9 @@
  *     pull request. CI checks it like any other.
  *
  *   node scripts/release.mjs tag X.Y.Z
- *     Once that pull request is merged: checks that main's last commit is it,
- *     then tags it vX.Y.Z and pushes the tag. gh-release.yml publishes the
+ *     Once that pull request is merged: checks that main's last commit is it
+ *     and that its versions and CHANGELOG.md match X.Y.Z, then tags it vX.Y.Z
+ *     and pushes the tag. gh-release.yml publishes the
  *     GitHub Release and deploys, as before.
  *
  * A pull request opened from Actions with GITHUB_TOKEN would start no CI run,
@@ -28,7 +29,8 @@ export const PACKAGES = [
   'themes/shopify/package.json',
 ]
 
-// The Shopify theme's version, as the theme editor shows it (`theme_info`)
+// The file holding the Shopify theme's version (`theme_info.theme_version`,
+// shown in the theme editor)
 export const THEME_SCHEMA = 'themes/shopify/config/settings_schema.json'
 
 const SEMVER = /^(\d+)\.(\d+)\.(\d+)(?:-([0-9A-Za-z.-]+))?$/
@@ -68,8 +70,9 @@ export function versionOf(json) {
 }
 
 export function themeVersionOf(json) {
-  return JSON.parse(json).find(group => group.name === 'theme_info')
-    ?.theme_version
+  const groups = JSON.parse(json)
+  if (!Array.isArray(groups)) return undefined
+  return groups.find(group => group.name === 'theme_info')?.theme_version
 }
 
 /**
@@ -139,14 +142,25 @@ function prepare(version) {
   if (!isAfter(version, current)) fail(`${version} is not after ${current}`)
   if (tagExists(`v${version}`)) fail(`v${version} already exists`)
 
+  // Every file is computed, which checks it, before any is written: a
+  // failure leaves main untouched
   const date = new Date().toISOString().slice(0, 10)
-  const changelog = readFileSync('CHANGELOG.md', 'utf8')
-  writeFileSync('CHANGELOG.md', releaseChangelog(changelog, version, date))
-  for (const path of PACKAGES) {
-    writeFileSync(path, setVersion(readFileSync(path, 'utf8'), version))
+  const bump = (path, key) =>
+    setVersion(readFileSync(path, 'utf8'), version, key)
+  let updates
+  try {
+    updates = [
+      [
+        'CHANGELOG.md',
+        releaseChangelog(readFileSync('CHANGELOG.md', 'utf8'), version, date),
+      ],
+      ...PACKAGES.map(path => [path, bump(path)]),
+      [THEME_SCHEMA, bump(THEME_SCHEMA, 'theme_version')],
+    ]
+  } catch (error) {
+    fail(error.message)
   }
-  const schema = readFileSync(THEME_SCHEMA, 'utf8')
-  writeFileSync(THEME_SCHEMA, setVersion(schema, version, 'theme_version'))
+  for (const [path, content] of updates) writeFileSync(path, content)
 
   const branch = `release/${version}`
   const title = `chore(release): ${version}`

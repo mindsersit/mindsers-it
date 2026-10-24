@@ -38,8 +38,10 @@ jobs:
       - id: install
         run: pnpm install --frozen-lockfile
 
+      # --fail-if-no-match everywhere: a filter that matches no package (a
+      # renamed theme) otherwise exits 0, and the deploy would pass empty
       - if: inputs.target != 'shopify'
-        run: pnpm --filter mindsers-it build
+        run: pnpm --filter mindsers-it --fail-if-no-match build
       - name: Deploy Ghost theme
         if: inputs.target != 'shopify'
         uses: TryGhost/action-deploy-theme@a0ee1147d15641db25681e54549c4db9a53c2629 # v1.6.6
@@ -53,7 +55,7 @@ jobs:
         if: >-
           !cancelled() && steps.install.outcome == 'success'
           && inputs.target != 'ghost' && vars.SHOPIFY_ENABLED == 'true'
-        run: pnpm --filter @mindsers/shopify-theme build
+        run: pnpm --filter @mindsers/shopify-theme --fail-if-no-match build
       # settings_data.json holds the theme editor's global settings and is never pushed,
       # so the live values stay. Everything else is mirrored from git: editor changes to
       # templates/*.json, sections/*.json and locales/*.json are overwritten, and files
@@ -64,7 +66,7 @@ jobs:
         # the CLI is the theme's devDependency, installed above; exec runs in
         # themes/shopify
         run: >
-          pnpm --filter @mindsers/shopify-theme exec
+          pnpm --filter @mindsers/shopify-theme --fail-if-no-match exec
           shopify theme push --path .
           --theme "$SHOPIFY_THEME_ID"
           --ignore config/settings_data.json
