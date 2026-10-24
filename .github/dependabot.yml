@@ -1,0 +1,17 @@
+# Version updates of the pnpm workspace, monthly and grouped (docs/ops/ci.md,
+# after the fleet's standard): one pull request a month for the minor and patch
+# bumps of every package, majors on their own, each a change to read. Every
+# such pull request is a CI run. pnpm-lock.yaml at the root covers the three
+# packages.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: build
+      include: scope
+    groups:
+      npm:
+        update-types: [minor, patch]

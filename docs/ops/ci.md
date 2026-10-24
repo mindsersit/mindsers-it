@@ -19,15 +19,21 @@ follow, and they would matter the day the repository goes private.
 | Workflow         | On                                      | Jobs                            |
 | ---------------- | --------------------------------------- | ------------------------------- |
 | `ci.yml`         | a pull request that is not a draft      | 1 (`verify`)                    |
-| `gh-release.yml` | a `v*` tag                              | 1, then `deploy.yml` (2)        |
-| `deploy.yml`     | called by `gh-release.yml`, or by hand  | `ghost`, `shopify` (if enabled) |
+| `gh-release.yml` | a `v*` tag                              | 1, then `deploy.yml` (1)        |
+| `deploy.yml`     | called by `gh-release.yml`, or by hand  | 1 (`deploy`)                    |
 
 ## The rules that apply
 
 1. **One job per workflow run.** `ci.yml` was four jobs (`changes`, `lint`,
    `ghost`, `shopify`), each under 40 s and each billed a whole minute. It is
-   now one: what changed, `pnpm install` once, Biome, then each theme's build
-   and check when it is concerned.
+   now one: what changed, `pnpm install` once, Biome, the release script's
+   tests, then each theme's build and check when it is concerned.
+   - **`deploy.yml`** was one job per theme; it is one job. The Shopify steps
+     still run when the Ghost ones failed, as the separate job did.
+   - **A release stays two jobs**, `release` and `deploy`. Creating the GitHub
+     Release needs `contents: write`; the deploy runs the theme builds'
+     dependencies beside the Ghost and Shopify secrets, and keeps the
+     read-only token it always had.
 2. **`ci` runs on pull requests only.** A newer push to the same pull request
    cancels the run it replaces (`concurrency`), and a draft runs nothing:
    `ready_for_review` starts the gate when the pull request leaves draft.
@@ -38,17 +44,22 @@ follow, and they would matter the day the repository goes private.
    beside `CI`, not after it (run 39985360624 started 3 s before release
    39985367720). The deploy builds both themes from the tagged commit, so a
    build that breaks stops it.
-   - **What is no longer checked:** the `chore(release): X.Y.Z` commits, pushed
-     to `main` without a pull request (4 of October's 11 commits). They change
-     `CHANGELOG.md` and the three `version` fields. Biome and gscan used to run
-     on them after the fact; nothing does now. See
-     [What the owner decides](#what-the-owner-decides).
+   - **The release commit goes through a pull request too.** In October the
+     `chore(release): X.Y.Z` commits were pushed straight to `main` (4 of its
+     11 commits), and Biome and gscan ran on them only beside the deploy.
+     `pnpm release:prepare X.Y.Z` now opens that pull request, and
+     `pnpm release:tag X.Y.Z` tags it once merged, only if it is still
+     `main`'s last commit (README.md, "Release checklist"). The tree that ships
+     is the one its pull request's run checked.
    - token-market's `verified-tree-<tree>` artifact and release `plan` don't
      fit: nothing builds on a push to `main` here, so there is no second
      verification to skip.
 4. **A change to documentation only runs nothing.** That is every path a `.md`
    file or under `docs/` (`paths-ignore` in `ci.yml`). GitHub skips the run
-   only when every path the pull request changes matches.
+   only when every path the whole pull request changes matches, compared with
+   its base, not the last push: a documentation commit pushed to a pull
+   request that also changes code runs the gate again (run 40107539312, on
+   #8).
    - **Why it is safe:** nothing `ci` runs reads them. Biome 2.0.5 has no
      Markdown support and processes no `.md` file. The Ghost build reads
      `styles/`, `scripts/` and the design system; gscan and `shopify theme
@@ -65,7 +76,11 @@ follow, and they would matter the day the repository goes private.
    `themes/shopify/` changes. Both run when the design system, the lockfile,
    the root's `package.json`, `pnpm-workspace.yaml`, `.node-version` or
    `.github/` change: each theme is built from them. Anything else (`biome.json`,
-   `.gitignore`, `.editorconfig`) runs Biome only.
+   `.gitignore`, `.editorconfig`, `scripts/`) runs Biome and the script tests
+   only.
+6. **Dependency updates are grouped** (rule 9). npm's arrive monthly, the minor
+   and patch bumps of the whole workspace in one pull request, majors on their
+   own (`.github/dependabot.yml`). Each is one CI run.
 
 ## The rules that don't fit
 
@@ -76,9 +91,6 @@ follow, and they would matter the day the repository goes private.
 - **`RUN pnpm fetch` in every Dockerfile:** no Dockerfile.
 - **10. A test pays only for what it checks:** no test suite of its own, only
   gscan and theme check, each a whole theme job under 40 s in October.
-- **9. Dependabot grouped:** the repository has no `.github/dependabot.yml` and
-  no Dependabot pull request ran in October. Adding one would add runs, not
-  group them: proposed, not done.
 
 ## What it saved
 
@@ -91,19 +103,8 @@ took under a minute and was billed one. "After" comes from real runs only.
 | `CI`, pull request        | 8 runs, 25 jobs, 25 min          | 1 job, 31 s, both themes: 1 min    | 40107449349 |
 | `CI`, draft pull request  | ran like any other               | job skipped: 0 min                 | 40107435961 |
 | `CI`, push to `main`      | 12 runs, 40 jobs, 40 min         | no longer runs                     |             |
-| `CI`, documentation only  | none in October                  | no run (PR #8's last commit)       |             |
-| `GitHub Release` + deploy | 4 runs, 10 jobs, 10 min          | not changed                        |             |
-| `Deploy`, by hand         | 1 run, 2 jobs, 2 min             | not changed                        |             |
+| `CI`, documentation only  | none in October                  | not yet run                        |             |
+| `CI`, docs pushed to a PR changing code | ran like any other | 1 job, 31 s: 1 min          | 40107539312 |
+| `GitHub Release` + deploy | 4 runs, 10 jobs, 10 min          | not yet run (2 jobs)               |             |
+| `Deploy`, by hand         | 1 run, 2 jobs, 2 min             | not yet run (1 job)                |             |
 | **Total**                 | **25 runs, 77 min, $0 (public)** |                                    |             |
-
-## What the owner decides
-
-- **Checking the release commit.** Either open the `chore(release)` commit as a
-  pull request like any other change, or have `deploy.yml`'s `ghost` job run
-  `pnpm --filter mindsers-it test:ci` before it uploads the zip, so the commit
-  that ships is checked before it ships rather than beside it.
-- **`deploy.yml` and `gh-release.yml` are unchanged.** Not one job per run (a
-  release is 3 jobs, 3 minutes), their actions are pinned by tag rather than by
-  commit SHA, and neither declares top-level `permissions:`. Each fix changes
-  the deploy, which can only be tested by deploying.
-- **Dependabot**, as above.
