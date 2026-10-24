@@ -1,7 +1,5 @@
 {{!< default}}
 
-{{#contentFor 'htmlLang'}}{{@site.locale}}{{/contentFor}}
-
 {{#contentFor 'styles'}}
 <link rel="stylesheet" type="text/css" href="{{asset "css/landing.css"}}" />
 {{/contentFor}}
@@ -18,19 +16,10 @@
                     Idéal pour les fondateurs post-validation : on conçoit et développe une première version de votre SaaS avec UX claire, fonctionnalité clé, Stripe intégré, et tracking.<br/>
                     Assez léger pour aller vite, assez solide pour prouver que ça peut marcher.
                 </p>
-                {{#if @custom.global_cta_url}}
-                <div class="mds-cta">
-                    <p>
-                        <a href="{{@custom.global_cta_url}}" class="button primary">Parlez-nous de votre projet</a>
-                    </p>
-                    <p class='rate'>
-                        <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
-                        <span>
-                            +{{@custom.amount_of_project_done }} MVP SaaS livrés avec succès !
-                        </span>
-                    </p>
-                </div>
-                {{/if}}
+                {{> "ui/hero-cta"
+                    cta_label="Parlez-nous de votre projet"
+                    counter=@custom.amount_of_project_done
+                    counter_label="MVP SaaS livrés avec succès !"}}
             </div>
         </div>
     </header>
@@ -94,21 +83,21 @@
 
             <ul class="key-points">
                 <li>
-                    {{> "images/solution"}}
+                    <img src="{{asset "images/illustrations/solution.svg"}}" alt="" width="88" height="88" loading="lazy" />
                     <h3>Co-conception ciblée</h3>
                     <p>
                         On vous aide à prioriser les bonnes fonctionnalités et cadrer un MVP utile, testable, lançable. Pas une démo jetable.
                     </p>
                 </li>
                 <li>
-                    {{> "images/techno"}}
+                    <img src="{{asset "images/illustrations/techno.svg"}}" alt="" width="88" height="88" loading="lazy" />
                     <h3>Développement fonctionnel</h3>
                     <p>
                         Stack moderne, clean code, déploiement rapide. Vous repartez avec un produit exploitable en ligne.
                     </p>
                 </li>
                 <li>
-                    {{> "images/data"}}
+                    <img src="{{asset "images/illustrations/data.svg"}}" alt="" width="88" height="88" loading="lazy" />
                     <h3>Prêt à tester le marché</h3>
                     <p>
                         On intègre Stripe et les analytics. Objectif : savoir si les gens s’inscrivent, testent… ou paient.
@@ -122,11 +111,13 @@
             <p>
                 Délai moyen : 4 semaines. Tarif fixe. Pas de surprises.
             </p>
+            {{#if @custom.global_cta_url}}
             <p>
                 <a href="{{@custom.global_cta_url}}" class="button primary">
                     Discutons de votre MVP
                 </a>
             </p>
+            {{/if}}
         </div>
     </section>
 
@@ -201,7 +192,7 @@
                         <p class="price-mentions">Livré en 30 jours. Maintenance incluse.</p>
                         <hr>
                         <div>
-                            <h4 class="text-sm uppercase font-semibold mb-2">Ce que l’offre inclut :</h4>
+                            <h4>Ce que l’offre inclut :</h4>
                             <ul>
                                 <li>Ateliers UX pour identifier et cadrer la fonctionnalité clé</li>
                                 <li>Maquettes UI/UX simples mais claires (Figma)</li>
@@ -213,7 +204,9 @@
                             </ul>
                         </div>
                     </div>
+                    {{#if @custom.global_cta_url}}
                     <a href="{{@custom.global_cta_url}}" class="button primary">Je veux tester mon idée</a>
+                    {{/if}}
                 </div>
             </div>
             <p>
@@ -234,77 +227,70 @@
 
             <div class="faq-items">
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq1" class="faq-toggle" />
-                    <h3><label for="faq1">Est-ce qu’un MVP en 1 mois, c’est réaliste ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Est-ce qu’un MVP en 1 mois, c’est réaliste ?</h3></summary>
                     <p>
                         Oui — si on se concentre sur la fonctionnalité clé.
                         On travaille avec vous pour cadrer un périmètre viable, testable, et utile dès le départ.
                     </p>
                     <p>Pas de fluff, juste l’essentiel pour valider votre idée rapidement.</p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq2" class="faq-toggle" />
-                    <h3><label for="faq2">Est-ce que mon MVP sera vraiment utilisable ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Est-ce que mon MVP sera vraiment utilisable ?</h3></summary>
                     <p>
                         Oui. Il est hébergé, sécurisé, et accessible sur votre domaine.
                         Auth, paiement, analytics : tout est en place pour tester avec de vrais utilisateurs.
                     </p>
                     <p>Ce n’est pas un prototype, c’est un produit minimal viable.</p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq3" class="faq-toggle" />
-                    <h3><label for="faq3">Pourquoi vous plutôt qu’un freelance ou une agence ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Pourquoi vous plutôt qu’un freelance ou une agence ?</h3></summary>
                     <p>
                         Un freelance code vite. Une agence vend un cahier des charges.
                     </p>
                     <p>
                         Nous, on agit comme une <strong>équipe produit externalisée</strong> : cadrage, design, dev, go-to-market — tout est pensé pour tester votre idée sans perte de temps ni budget.
                     </p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq4" class="faq-toggle" />
-                    <h3><label for="faq4">Est-ce que je peux vous parler de mon idée avant de m’engager ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Est-ce que je peux vous parler de mon idée avant de m’engager ?</h3></summary>
                     <p>
                         Bien sûr. On propose un call gratuit pour évaluer votre projet,
                         vérifier qu’il rentre dans notre périmètre MVP, et valider qu’on est un bon match.
                     </p>
                     <p>C’est sans engagement.</p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq5" class="faq-toggle" />
-                    <h3><label for="faq5">Et après le MVP ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Et après le MVP ?</h3></summary>
                     <p>
                         Si votre MVP fonctionne, on peut enchaîner avec l’offre <strong>SaaS complet</strong> :
                         ajout de features, refonte design, stratégie d’acquisition.
                     </p>
-                    <p>Tu capitalises sur ce qu’on a déjà construit.</p>
-                </div>
+                    <p>Vous capitalisez sur ce qu’on a déjà construit.</p>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq6" class="faq-toggle" />
-                    <h3><label for="faq6">Quels outils et technos utilisez-vous ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Quels outils et technos utilisez-vous ?</h3></summary>
                     <p>
                         Pour le produit : Figma, Notion, Linear. <br />
                         Pour le dev : React, Remix, NestJS, PostgreSQL, Prisma, Docker, GitHub Actions.<br />
                         Pour l’analytics : PostHog, Plausible.
                     </p>
                     <p>Une stack moderne, documentée et scalable.</p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq7" class="faq-toggle" />
-                    <h3><label for="faq7">Et si je n’ai pas encore une idée très précise ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Et si je n’ai pas encore une idée très précise ?</h3></summary>
                     <p>
                         Le pack MVP est fait pour les projets déjà cadrés.
                         Si vous êtes encore en phase d’exploration, notre offre “Validation” sera plus adaptée.
                     </p>
                     <p>On vous aide à tester l’intérêt du marché avant d’écrire une seule ligne de code.</p>
-                </div>
+                </details>
 
             </div>
         </div>
@@ -315,34 +301,22 @@
             <div class="section-type">Voir aussi</div>
             <h2 class="section-title">Nos autres offres SaaS</h2>
             <div class="persona-cards">
-                <div class="persona-card">
-                    <h3>Pack "Validation"</h3>
-                    <p>Pas encore sûr de votre idée ? Testez l'intérêt du marché en 2 semaines avec une landing page optimisée.</p>
-                    <a href="/studio-saas/landing-page/" class="button primary">Découvrir le pack Validation</a>
-                </div>
-                <div class="persona-card">
-                    <h3>SaaS clé-en-main</h3>
-                    <p>Prêt à aller plus loin ? On lance votre SaaS complet avec design, dev et go-to-market.</p>
-                    <a href="/studio-saas/saas/" class="button primary">Découvrir l'offre SaaS</a>
-                </div>
+                {{> "ui/offer-card"
+                    heading='Pack "Validation"'
+                    intro="Pas encore sûr de votre idée ? Testez l'intérêt du marché en 2 semaines avec une landing page optimisée."
+                    href="/studio-saas/landing-page/"
+                    cta_label="Découvrir le pack Validation"}}
+                {{> "ui/offer-card"
+                    heading="SaaS clé-en-main"
+                    intro="Prêt à aller plus loin ? On lance votre SaaS complet avec design, dev et go-to-market."
+                    href="/studio-saas/saas/"
+                    cta_label="Découvrir l'offre SaaS"}}
             </div>
         </div>
     </section>
 
-    <section class="mds-cta-end">
-        {{#if @custom.global_cta_url}}
-        <div class="mds-cta">
-            <h2>Parlez-nous de votre projet en 15 min</h2>
-            <p>
-                <a href="{{@custom.global_cta_url}}" class="button primary">{{@custom.global_cta_text}}</a>
-            </p>
-            <p class='rate'>
-                <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
-                <span>
-                    +{{@custom.amount_of_project_done }} MVP SaaS livrés avec succès !
-                </span>
-            </p>
-        </div>
-        {{/if}}
-    </section>
+    {{> "ui/cta-end"
+        heading="Parlez-nous de votre projet en 15 min"
+        counter=@custom.amount_of_project_done
+        counter_label="MVP SaaS livrés avec succès !"}}
 </div>

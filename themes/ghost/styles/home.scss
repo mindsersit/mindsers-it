@@ -32,7 +32,7 @@
             > p {
                 max-width: 640px;
                 margin: 0;
-                color: #c9cfd6;
+                color: tokens.$text-soft;
                 font-size: 1.15rem;
                 line-height: 1.65;
             }
@@ -113,26 +113,30 @@
         box-sizing: border-box;
         mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
 
+        // Three identical sets of logos (customer-logos.hbs). Each logo
+        // carries its own spacing (a gap would leave one less gap than logos),
+        // so moving by a third of the strip lands exactly on the next set.
         .logos {
             display: flex;
             justify-content: flex-start;
             width: fit-content;
             align-items: center;
-            gap: 56px;
-            animation: scroll 40s linear infinite;
+            animation: logos-scroll 40s linear infinite;
+
+            @media (prefers-reduced-motion: reduce) {
+                animation: none;
+            }
 
             img {
+                margin-right: 56px;
                 filter: grayscale(1);
                 opacity: 0.7;
             }
         }
 
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translatex(-51%);
+        @keyframes logos-scroll {
+            to {
+                transform: translateX(calc(-100% / 3));
             }
         }
     }
@@ -177,7 +181,7 @@
 
             p {
                 margin: 0 0 12px;
-                color: #c9cfd6;
+                color: tokens.$text-soft;
                 line-height: 1.6;
             }
 
@@ -192,7 +196,7 @@
         @include tokens.card(true);
 
         &:hover {
-            border-color: rgba(#121922, 0.3);
+            border-color: rgba(colors.$ink, 0.3);
         }
 
         p {
@@ -217,7 +221,7 @@
             text-align: left;
             line-height: 1.6;
 
-            svg {
+            img {
                 width: 88px;
                 height: 88px;
             }
@@ -230,7 +234,7 @@
 
             p {
                 margin: 0;
-                color: #c9cfd6;
+                color: tokens.$text-soft;
             }
         }
     }
@@ -347,7 +351,7 @@
 
             p {
                 margin: 0;
-                color: #c9cfd6;
+                color: tokens.$text-soft;
                 font-size: 1.1rem;
                 line-height: 1.65;
             }
@@ -467,7 +471,7 @@
 
             p {
                 margin: 0;
-                color: #c9cfd6;
+                color: tokens.$text-soft;
                 line-height: 1.6;
             }
 
@@ -579,26 +583,8 @@
 
                 .bio {
                     margin-top: 12px;
-                    color: #c9cfd6;
+                    color: tokens.$text-soft;
                     line-height: 1.6;
-                }
-
-                &.disabled {
-                    opacity: 0.5;
-                    filter: grayscale(100%);
-
-                    .img-placeholder {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        width: 128px;
-                        height: 128px;
-                        margin-bottom: 16px;
-                        border-radius: 50%;
-                        background: colors.$neutral;
-                        font-size: 1.5rem;
-                        font-weight: bold;
-                    }
                 }
             }
         }
@@ -631,20 +617,6 @@
             text-align: center;
         }
 
-        form,
-        label {
-            display: flex;
-            flex-direction: column;
-            max-width: 500px;
-            margin: auto;
-        }
-
-        label {
-            margin: 10px 0;
-            text-align: left;
-            font-weight: 600;
-        }
-
         .pricing-options {
             display: flex;
             flex-wrap: wrap;
@@ -663,7 +635,7 @@
                 padding: 32px;
                 border-radius: tokens.$radius;
                 background-color: white;
-                color: #121922;
+                color: colors.$ink;
                 text-align: left;
                 box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
 
@@ -688,7 +660,7 @@
                 hr {
                     margin: 24px 0;
                     border: 0;
-                    border-top: 1px solid rgba(#121922, 0.12);
+                    border-top: 1px solid rgba(colors.$ink, 0.12);
                 }
 
                 ul {
@@ -739,57 +711,14 @@
                 .button {
                     display: block;
                     text-align: center;
-                    background: #121922;
+                    background: colors.$ink;
                     color: colors.$foreground;
-                    animation: none;
-                }
-
-                .more-link {
-                    color: #121922;
-                    font-size: 0.85rem;
-                    text-align: center;
-                }
-
-                &.featured {
-                    flex-direction: row;
-                    justify-content: space-around;
-                    align-items: center;
-
-                    @media (max-width: 550px) {
-                        flex-direction: column;
-                    }
-
-                    .cta {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        gap: 10px;
-                        margin: 20px 0;
-
-                        .price {
-                            margin: 0;
-                        }
-                    }
                 }
             }
 
             &.detailed .pricing-option {
                 max-width: 640px;
             }
-        }
-    }
-
-    // Generic method grid (unused cards keep a sane look) ------------------
-
-    .method-section .mds-grid {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 24px;
-
-        .card {
-            @include tokens.card;
-            text-align: center;
         }
     }
 
@@ -804,53 +733,55 @@
             max-width: 820px;
             margin: 0 auto;
 
+            // <details class="faq-item"><summary><h3>…</h3></summary>…
             .faq-item {
                 @include tokens.card;
                 padding: 4px 24px;
 
-                h3 {
+                summary {
                     position: relative;
+                    display: block;
                     margin: 16px 0;
                     padding-right: 32px;
-                    font-size: 1.05rem;
+                    list-style: none;
+                    cursor: pointer;
 
-                    label {
-                        display: block;
-                        cursor: pointer;
-
-                        &::after {
-                            content: '+';
-                            position: absolute;
-                            right: 0;
-                            top: 50%;
-                            transform: translateY(-50%);
-                            font-size: 1.4em;
-                            font-weight: 300;
-                            line-height: 1;
-                            opacity: 0.6;
-                        }
+                    &::-webkit-details-marker {
+                        display: none;
                     }
+
+                    &::after {
+                        content: '+';
+                        position: absolute;
+                        right: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        font-size: 1.4em;
+                        line-height: 1;
+                        opacity: 0.6;
+                    }
+
+                    &:focus-visible {
+                        outline: 2px solid colors.$accent;
+                        outline-offset: 4px;
+                        border-radius: 4px;
+                    }
+                }
+
+                &[open] summary::after {
+                    content: '−';
+                }
+
+                h3 {
+                    margin: 0;
+                    font-size: 1.05rem;
                 }
 
                 p,
                 ul {
-                    display: none;
                     margin: 0 0 16px;
                     line-height: 1.6;
                     opacity: 0.85;
-                }
-
-                input[type='checkbox'] {
-                    display: none;
-                }
-
-                input[type='checkbox']:checked ~ h3 label::after {
-                    content: '−';
-                }
-
-                input[type='checkbox']:checked ~ p,
-                input[type='checkbox']:checked ~ ul {
-                    display: block;
                 }
             }
         }
@@ -865,8 +796,8 @@
 
         // dark cards on the accent colour keep the questions readable
         &.accent .faq-item {
-            background: #121922;
-            border-color: #121922;
+            background: colors.$ink;
+            border-color: colors.$ink;
             color: colors.$foreground;
         }
     }

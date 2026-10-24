@@ -1,7 +1,5 @@
 {{!< default}}
 
-{{#contentFor 'htmlLang'}}{{@site.locale}}{{/contentFor}}
-
 {{#contentFor 'styles'}}
 <link rel="stylesheet" type="text/css" href="{{asset "css/home.css"}}" />
 {{/contentFor}}
@@ -17,17 +15,11 @@
                     Landing page de validation, MVP ou produit complet : on intervient à chaque étape, comme une vraie équipe produit externalisée.
                 </p>
 
-                <div class="mds-cta">
-                    <p>
-                        <a href="#offres" class="button primary">Découvrir nos offres</a>
-                    </p>
-                    <p class='rate'>
-                        <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
-                        <span>
-                            +{{@custom.amount_of_project_done }} projets SaaS accompagnés !
-                        </span>
-                    </p>
-                </div>
+                {{> "ui/hero-cta"
+                    href="#offres"
+                    cta_label="Découvrir nos offres"
+                    counter=@custom.amount_of_project_done
+                    counter_label="projets SaaS accompagnés !"}}
 
                 <div class="offer-links">
                     <a href="/studio-saas/landing-page/" class="offer-link">→ Valider une idée</a>
@@ -49,23 +41,23 @@
             </h2>
 
             <div class="persona-cards">
-                <div class="persona-card">
-                    <h3>J’ai une idée, mais pas encore de produit</h3>
-                    <p>Vous voulez tester l’intérêt du marché sans tout développer ? On vous aide à valider votre idée en 2 semaines avec une landing page optimisée.</p>
-                    <a href="/studio-saas/landing-page/" class="button primary">Voir l’offre Validation</a>
-                </div>
+                {{> "ui/offer-card"
+                    heading="J’ai une idée, mais pas encore de produit"
+                    intro="Vous voulez tester l’intérêt du marché sans tout développer ? On vous aide à valider votre idée en 2 semaines avec une landing page optimisée."
+                    href="/studio-saas/landing-page/"
+                    cta_label="Voir l’offre Validation"}}
 
-                <div class="persona-card">
-                    <h3>Mon idée est validée, je veux un MVP rapide</h3>
-                    <p>Vous avez parlé à des users, défini votre feature clé et souhaitez confronter l’idée à la réalité terrain ? On construit votre MVP, prêt à vendre, en 1 mois.</p>
-                    <a href="/studio-saas/mvp/" class="button primary">Voir l’offre MVP</a>
-                </div>
+                {{> "ui/offer-card"
+                    heading="Mon idée est validée, je veux un MVP rapide"
+                    intro="Vous avez parlé à des users, défini votre feature clé et souhaitez confronter l’idée à la réalité terrain ? On construit votre MVP, prêt à vendre, en 1 mois."
+                    href="/studio-saas/mvp/"
+                    cta_label="Voir l’offre MVP"}}
 
-                <div class="persona-card">
-                    <h3>J’ai une vision claire, je veux lancer mon SaaS</h3>
-                    <p>Vous avez besoin d’une équipe complète pour designer, coder, marketer et lancer votre SaaS clé-en-main ? On s’occupe de tout.</p>
-                    <a href="/studio-saas/saas/" class="button primary">Voir l’offre SaaS complet</a>
-                </div>
+                {{> "ui/offer-card"
+                    heading="J’ai une vision claire, je veux lancer mon SaaS"
+                    intro="Vous avez besoin d’une équipe complète pour designer, coder, marketer et lancer votre SaaS clé-en-main ? On s’occupe de tout."
+                    href="/studio-saas/saas/"
+                    cta_label="Voir l’offre SaaS complet"}}
             </div>
         </div>
     </section>
@@ -104,13 +96,15 @@
                     <a href="/studio-saas/saas/" class="button primary">Voir en détail</a>
                 </div>
             </div>
+            {{#if @custom.global_cta_url}}
             <p>Vous ne trouvez pas le pack qui vous correspond ? <a href="{{@custom.global_cta_url}}">Contactez-nous</a> pour une solution sur mesure adaptée à vos besoins spécifiques.</p>
+            {{/if}}
         </div>
     </section>
 
     {{> "ui/method"}}
 
-    {{> "ui/testimonial" dark="true"}}
+    {{> "ui/testimonial"}}
 
     {{> "ui/team"}}
 
@@ -122,58 +116,37 @@
             </h2>
 
             <div class="faq-items">
-                <div class="faq-item">
-                    <input type="checkbox" id="faq1" class="faq-toggle" />
-                    <h3><label for="faq1">Quelle est la différence entre vos trois offres ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Quelle est la différence entre vos trois offres ?</h3></summary>
                     <p>Notre offre "Validation" vous aide à tester une idée. L’offre "MVP" permet de créer un premier produit vendable. L’offre "SaaS complet" est idéale si vous êtes prêt à passer à l’échelle avec un vrai produit complet.</p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq2" class="faq-toggle" />
-                    <h3><label for="faq2">Comment savoir si je suis prêt à vous confier mon projet ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Comment savoir si je suis prêt à vous confier mon projet ?</h3></summary>
                     <p>Si vous avez une idée claire et un minimum de retours utilisateurs, c’est suffisant. Le reste, on vous aide à le structurer.</p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq3" class="faq-toggle" />
-                    <h3><label for="faq3">Est-ce que vous pouvez m’aider à lever des fonds ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Est-ce que vous pouvez m’aider à lever des fonds ?</h3></summary>
                     <p>On ne fait pas de levée, mais on vous aide à construire un produit ou MVP qui impressionne investisseurs ou banquiers. Plusieurs projets accompagnés ont levé après livraison.</p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq4" class="faq-toggle" />
-                    <h3><label for="faq4">Est-ce que vous travaillez aussi avec des freelances ou agences ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Est-ce que vous travaillez aussi avec des freelances ou agences ?</h3></summary>
                     <p>Oui, régulièrement. On intervient comme extension produit / tech pour des agences débordées ou des freelances non techniques.</p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq5" class="faq-toggle" />
-                    <h3><label for="faq5">Et si je ne suis pas satisfait du résultat ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Et si je ne suis pas satisfait du résultat ?</h3></summary>
                     <p>On livre par itérations avec retours constants. Vous validez chaque étape. Pas de surprise, pas de livrable “jeté en prod sans votre accord”.</p>
-                </div>
+                </details>
             </div>
         </div>
     </section>
 
-    <section class="mds-cta-end">
-        {{#if @custom.global_cta_url}}
-        <div class="mds-cta">
-            <h2>On transforme votre idée en produit réel.<br/>
-      Prêt à commencer ?</h2>
-            <p>
-                Que vous soyez au stade de l’idée ou prêt à scaler,<br />
-                on a une offre pensée pour vous.
-            </p>
-            <p>
-                <a href="{{@custom.global_cta_url}}" class="button primary">{{@custom.global_cta_text}}</a>
-            </p>
-            <p class='rate'>
-                <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
-                <span>
-                    +{{@custom.amount_of_project_done }} SaaS réalisés avec succès !
-                </span>
-            </p>
-        </div>
-        {{/if}}
-    </section>
+    {{> "ui/cta-end"
+        heading="On transforme votre idée en produit réel.<br/> Prêt à commencer ?"
+        intro="Que vous soyez au stade de l’idée ou prêt à scaler,<br /> on a une offre pensée pour vous."
+        counter=@custom.amount_of_project_done
+        counter_label="SaaS réalisés avec succès !"}}
 </div>

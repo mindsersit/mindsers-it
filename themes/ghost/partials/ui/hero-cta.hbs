@@ -1,0 +1,15 @@
+{{!-- The hero's button and counter. `href` and `cta_label` default to the
+      site's call to action (global_cta_url, global_cta_text); without either,
+      only the counter shows. Params: href, cta_label, counter, counter_label. --}}
+<div class="mds-cta">
+    {{#if href}}
+    <p>
+        <a href="{{href}}" class="button primary">{{cta_label}}</a>
+    </p>
+    {{else if @custom.global_cta_url}}
+    <p>
+        <a href="{{@custom.global_cta_url}}" class="button primary">{{#if cta_label}}{{cta_label}}{{else}}{{@custom.global_cta_text}}{{/if}}</a>
+    </p>
+    {{/if}}
+    {{> "ui/rate" counter=counter counter_label=counter_label}}
+</div>

@@ -1,7 +1,5 @@
 {{!< default}}
 
-{{#contentFor 'htmlLang'}}{{@site.locale}}{{/contentFor}}
-
 {{#contentFor 'styles'}}
 <link rel="stylesheet" type="text/css" href="{{asset "css/home.css"}}" />
 {{/contentFor}}
@@ -17,17 +15,9 @@
                     MindsersIT est un studio tech indépendant, spécialisé dans la conception et le développement de produits SaaS et e-commerce Shopify. On a commencé par construire les nôtres. Aujourd'hui, on met cette exigence au service de vos projets.
                 </p>
 
-                <div class="mds-cta">
-                    <p>
-                        <a href="{{@custom.global_cta_url}}" class="button primary">{{@custom.global_cta_text}}</a>
-                    </p>
-                    <p class='rate'>
-                        <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
-                        <span>
-                            +{{@custom.amount_of_project_done }} produits livrés avec succès !
-                        </span>
-                    </p>
-                </div>
+                {{> "ui/hero-cta"
+                    counter=@custom.amount_of_project_done
+                    counter_label="produits livrés avec succès !"}}
 
                 <div class="offer-links">
                     <a href="/studio-saas/" class="offer-link">&rarr; Studio SaaS</a>
@@ -137,17 +127,17 @@
             </h2>
 
             <div class="persona-cards">
-                <div class="persona-card">
-                    <h3>SaaS Software</h3>
-                    <p>De l'idée à la mise en marché : on conçoit, développe et lance des produits SaaS comme si c'étaient les nôtres. Parce que souvent, ils l'ont été.</p>
-                    <a href="/studio-saas/" class="button primary">Découvrir le studio SaaS</a>
-                </div>
+                {{> "ui/offer-card"
+                    heading="SaaS Software"
+                    intro="De l'idée à la mise en marché : on conçoit, développe et lance des produits SaaS comme si c'étaient les nôtres. Parce que souvent, ils l'ont été."
+                    href="/studio-saas/"
+                    cta_label="Découvrir le studio SaaS"}}
 
-                <div class="persona-card">
-                    <h3>E-commerce Shopify</h3>
-                    <p>Boutique clé en main, solution sur-mesure ou architecture headless : on construit des e-commerces pensés pour vendre, durer et scaler.</p>
-                    <a href="/agence-shopify/" class="button primary">Découvrir l'expertise Shopify</a>
-                </div>
+                {{> "ui/offer-card"
+                    heading="E-commerce Shopify"
+                    intro="Boutique clé en main, solution sur-mesure ou architecture headless : on construit des e-commerces pensés pour vendre, durer et scaler."
+                    href="/agence-shopify/"
+                    cta_label="Découvrir l'expertise Shopify"}}
             </div>
         </div>
     </section>
@@ -160,47 +150,32 @@
             </h2>
             <ul class="key-points">
                 <li>
-                    {{> "images/experts"}}
+                    <img src="{{asset "images/illustrations/experts.svg"}}" alt="" width="88" height="88" loading="lazy" />
                     Vous parlez directement aux experts qui construisent votre produit. Pas de commercial, pas d'intermédiaire.
                 </li>
                 <li>
-                    {{> "images/startups"}}
+                    <img src="{{asset "images/illustrations/startups.svg"}}" alt="" width="88" height="88" loading="lazy" />
                     On pense comme des fondateurs, pas comme des prestataires. Chaque décision est prise pour le produit, pas pour la facture.
                 </li>
                 <li>
-                    {{> "images/techno"}}
+                    <img src="{{asset "images/illustrations/techno.svg"}}" alt="" width="88" height="88" loading="lazy" />
                     Stack moderne, maintenable et évolutive. React, Nest, Shopify, Kubernetes : on choisit ce qui sert le produit.
                 </li>
                 <li>
-                    {{> "images/time"}}
+                    <img src="{{asset "images/illustrations/time.svg"}}" alt="" width="88" height="88" loading="lazy" />
                     On s'engage sur des délais et on les tient. Pas de surprise, pas de rallonge, pas d'excuse.
                 </li>
             </ul>
         </div>
     </section>
 
-    {{> "ui/testimonial" dark="true"}}
+    {{> "ui/testimonial"}}
 
     {{> "ui/team"}}
 
-    <section class="mds-cta-end">
-        {{#if @custom.global_cta_url}}
-        <div class="mds-cta">
-            <h2>Envie d'en parler ?</h2>
-            <p>
-                On ne fait pas de devis en 5 minutes. On prend le temps de comprendre<br />
-                votre projet pour vous proposer la bonne approche.
-            </p>
-            <p>
-                <a href="{{@custom.global_cta_url}}" class="button primary">{{@custom.global_cta_text}}</a>
-            </p>
-            <p class='rate'>
-                <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
-                <span>
-                    +{{@custom.amount_of_project_done }} produits livrés avec succès !
-                </span>
-            </p>
-        </div>
-        {{/if}}
-    </section>
+    {{> "ui/cta-end"
+        heading="Envie d'en parler ?"
+        intro="On ne fait pas de devis en 5 minutes. On prend le temps de comprendre<br /> votre projet pour vous proposer la bonne approche."
+        counter=@custom.amount_of_project_done
+        counter_label="produits livrés avec succès !"}}
 </div>

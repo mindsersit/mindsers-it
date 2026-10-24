@@ -1,0 +1,19 @@
+{{!-- The closing call to action of a landing page, shown when the site has
+      one (global_cta_url). `heading` and `intro` may hold HTML (<br />);
+      `intro` is optional. Params: heading, intro, counter, counter_label. --}}
+<section class="mds-cta-end">
+    {{#if @custom.global_cta_url}}
+    <div class="mds-cta">
+        <h2>{{{heading}}}</h2>
+        {{#if intro}}
+        <p>
+            {{{intro}}}
+        </p>
+        {{/if}}
+        <p>
+            <a href="{{@custom.global_cta_url}}" class="button primary">{{@custom.global_cta_text}}</a>
+        </p>
+        {{> "ui/rate" counter=counter counter_label=counter_label}}
+    </div>
+    {{/if}}
+</section>

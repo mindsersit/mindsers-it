@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<html lang='{{{block 'htmlLang'}}}'>
+<html lang='{{@site.locale}}'>
 
 <head>
     <meta charset='utf-8' />
-    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
-    <meta name='monetization' content='$ilp.uphold.com/Apm7DzrByBYN' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
 
-    {{{block 'meta'}}}
     <title>{{{block 'title'}}}</title>
     {{{block 'styles'}}}
 
@@ -20,20 +17,13 @@
         }
     </style>
 
-    <link rel="preconnect" href="https://www.facebook.com" crossorigin="anonymous" />
-    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous" />
-    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin="anonymous" />
-    <link rel="preconnect" href="https://connect.facebook.net" crossorigin="anonymous" />
-
-    <link rel="preload" as="script" href="https://cdn.jsdelivr.net/ghost/portal@~2.25/umd/portal.min.js" crossorigin />
-
     {{ghost_head}}
 </head>
 
 <body class='{{body_class}} {{{block 'activityClass'}}}'>
     <div class='mds-viewport'>
         <header id='mds-head' class='mds-head'>
-            <nav class='mds-head-inner mds-container' role='navigation' aria-label='Main Navigation'>
+            <div class='mds-head-inner mds-container'>
                 <div class='mds-head-brand'>
                     <a class='mds-head-logo' href='{{@site.url}}'>
                         {{#if @site.logo}}
@@ -47,7 +37,7 @@
                 <div class='mds-head-placeholder'></div>
                 {{/match}}
                 <div class='mds-head-menu'>
-                    <nav class="mds-main-menu">
+                    <nav class="mds-main-menu" aria-label="Navigation principale">
                         {{navigation}}
                     </nav>
                 </div>
@@ -56,8 +46,8 @@
                 {{/match}}
                 <div class='mds-head-actions'>
                     {{#if @custom.enable_search}}
-                    <a class="search-button" data-ghost-search aria-label="Recherche">{{> "icons/search"}}
-                    </a>
+                    <button type="button" class="search-button" data-ghost-search aria-label="Recherche"
+                        aria-haspopup="dialog">{{> "icons/search"}}</button>
                     {{/if}}
 
                     {{#if @custom.global_cta_url}}
@@ -95,12 +85,12 @@
                                     href="{{@custom.global_cta_url}}">{{@custom.global_cta_text}}</a></li>
                             {{/if}}
                             {{#if @custom.enable_search}}
-                            <li><a class="" href="#/search">Recherche</a></li>
+                            <li><a href="#/search">Recherche</a></li>
                             {{/if}}
                         </ul>
                     </div>
                 </div>
-            </nav>
+            </div>
         </header>
 
         <main class='mds-main'>
@@ -157,7 +147,7 @@
                 <div class='mds-foot-bottom'>
                     <p class='mds-foot-meta'>
                         Développé avec amour par <a href='https://nathanaelcherrier.dev/'>Nathanaël Cherrier</a>.
-                        &copy;{{date format='YYYY'}} <a href='https://mindsers.it/'>MindsersIT</a>. Tous droits réservés.
+                        &copy;{{date format='YYYY'}} <a href='{{@site.url}}/'>MindsersIT</a>. Tous droits réservés.
                     </p>
                     <ul class='mds-foot-legal'>
                         <li><a href='{{@site.url}}/legal-notices/'>Mentions légales</a></li>
@@ -169,7 +159,6 @@
 
     {{! <foot> }}
     <script type="module" src="{{asset 'js/menu.js'}}"></script>
-    {{{block 'scripts'}}}
     {{ghost_foot}}
 </body>
 
