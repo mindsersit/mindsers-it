@@ -48,7 +48,10 @@ follow, and they would matter the day the repository goes private.
      verification to skip.
 4. **A change to documentation only runs nothing.** That is every path a `.md`
    file or under `docs/` (`paths-ignore` in `ci.yml`). GitHub skips the run
-   only when every path the pull request changes matches.
+   only when every path the whole pull request changes matches, compared with
+   its base, not the last push: a documentation commit pushed to a pull
+   request that also changes code runs the gate again (run 40107539312, on
+   #8).
    - **Why it is safe:** nothing `ci` runs reads them. Biome 2.0.5 has no
      Markdown support and processes no `.md` file. The Ghost build reads
      `styles/`, `scripts/` and the design system; gscan and `shopify theme
@@ -91,7 +94,8 @@ took under a minute and was billed one. "After" comes from real runs only.
 | `CI`, pull request        | 8 runs, 25 jobs, 25 min          | 1 job, 31 s, both themes: 1 min    | 40107449349 |
 | `CI`, draft pull request  | ran like any other               | job skipped: 0 min                 | 40107435961 |
 | `CI`, push to `main`      | 12 runs, 40 jobs, 40 min         | no longer runs                     |             |
-| `CI`, documentation only  | none in October                  | no run (PR #8's last commit)       |             |
+| `CI`, documentation only  | none in October                  | not yet run                        |             |
+| `CI`, docs pushed to a PR changing code | ran like any other | 1 job, 31 s: 1 min          | 40107539312 |
 | `GitHub Release` + deploy | 4 runs, 10 jobs, 10 min          | not changed                        |             |
 | `Deploy`, by hand         | 1 run, 2 jobs, 2 min             | not changed                        |             |
 | **Total**                 | **25 runs, 77 min, $0 (public)** |                                    |             |
