@@ -1,11 +1,22 @@
 name: GitHub Release
 
+# The tag is pushed by `pnpm release:tag X.Y.Z`, once the release's pull
+# request is merged (README.md, "Release checklist").
+
 on:
   push:
     tags:
       - 'v*'
 
+# Read-only by default: only the release job writes, and the deploy it calls
+# never holds a token that can.
+permissions:
+  contents: read
+
 jobs:
+  # Two jobs, not one: creating the release needs `contents: write`, and the
+  # deploy runs third-party code (the theme builds' dependencies) next to the
+  # Ghost and Shopify secrets. It gets a read-only token, as it always had.
   release:
     runs-on: ubuntu-latest
     outputs:
@@ -16,10 +27,10 @@ jobs:
       - name: Get version from tag
         id: tag_name
         run: echo "current_version=${GITHUB_REF#refs/tags/v}" >> "$GITHUB_OUTPUT"
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
       - name: Get Changelog Entry
         id: changelog_reader
-        uses: mindsers/changelog-reader-action@v2
+        uses: mindsers/changelog-reader-action@1faaf50aa09d5793d9a100819973df801febfb31 # v2.4.0
         with:
           version: ${{ steps.tag_name.outputs.current_version }}
           path: ./CHANGELOG.md

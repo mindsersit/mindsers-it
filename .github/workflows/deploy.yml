@@ -1,5 +1,9 @@
 name: Deploy
 
+# One job, not one per theme: GitHub bills every job rounded up to the minute
+# (docs/ops/ci.md). The Shopify steps run even when the Ghost ones failed, as
+# the two jobs did, but only after their own build succeeded.
+
 on:
   # called by gh-release.yml once the release is created
   workflow_call:
@@ -15,46 +19,51 @@ on:
         options: [both, ghost, shopify]
         default: both
 
+# Reads the repository; the deploys use their own secrets, not GITHUB_TOKEN.
+permissions:
+  contents: read
+
 jobs:
-  ghost:
-    if: inputs.target != 'shopify'
+  deploy:
+    # nothing to do when only Shopify is asked for and it is off
+    if: inputs.target != 'shopify' || vars.SHOPIFY_ENABLED == 'true'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4.3.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version-file: .node-version
           cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm --filter mindsers-it build
+      - id: install
+        run: pnpm install --frozen-lockfile
+
+      - if: inputs.target != 'shopify'
+        run: pnpm --filter mindsers-it build
       - name: Deploy Ghost theme
+        if: inputs.target != 'shopify'
         uses: TryGhost/action-deploy-theme@a0ee1147d15641db25681e54549c4db9a53c2629 # v1.6.6
         with:
           api-url: ${{ secrets.GHOST_ADMIN_API_URL }}
           api-key: ${{ secrets.GHOST_ADMIN_API_KEY }}
           file: themes/ghost/dist/mindsers-it.zip
 
-  shopify:
-    # off unless the repo variable SHOPIFY_ENABLED is true
-    if: inputs.target != 'ghost' && vars.SHOPIFY_ENABLED == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: .node-version
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm --filter @mindsers/shopify-theme build
-      - run: npm install -g @shopify/cli@4.9.4
+      # off unless the repo variable SHOPIFY_ENABLED is true
+      - id: shopify-build
+        if: >-
+          !cancelled() && steps.install.outcome == 'success'
+          && inputs.target != 'ghost' && vars.SHOPIFY_ENABLED == 'true'
+        run: pnpm --filter @mindsers/shopify-theme build
+      - id: shopify-cli
+        if: ${{ !cancelled() && steps.shopify-build.outcome == 'success' }}
+        run: npm install -g @shopify/cli@4.9.4
       # settings_data.json holds the theme editor's global settings and is never pushed,
       # so the live values stay. Everything else is mirrored from git: editor changes to
       # templates/*.json, sections/*.json and locales/*.json are overwritten, and files
       # created in the editor are deleted, unless they were pulled into git with
       # `pnpm shop:pull` before releasing.
       - name: Deploy Shopify theme
+        if: ${{ !cancelled() && steps.shopify-cli.outcome == 'success' }}
         run: >
           shopify theme push --path themes/shopify
           --theme "$SHOPIFY_THEME_ID"
