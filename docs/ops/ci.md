@@ -86,14 +86,15 @@ follow, and they would matter the day the repository goes private.
 (`gh run list -R mindsersit/mindsers-it --created '>=2026-10-01'`); every job
 took under a minute and was billed one. "After" comes from real runs only.
 
-| Workflow and event        | Before                           | After          | Run |
-| ------------------------- | -------------------------------- | -------------- | --- |
-| `CI`, pull request        | 8 runs, 25 jobs, 25 min          | not yet run    |     |
-| `CI`, push to `main`      | 12 runs, 40 jobs, 40 min         | no longer runs |     |
-| `CI`, documentation only  | none in October                  | not yet run    |     |
-| `GitHub Release` + deploy | 4 runs, 10 jobs, 10 min          | not changed    |     |
-| `Deploy`, by hand         | 1 run, 2 jobs, 2 min             | not changed    |     |
-| **Total**                 | **25 runs, 77 min, $0 (public)** |                |     |
+| Workflow and event        | Before                           | After                              | Run         |
+| ------------------------- | -------------------------------- | ---------------------------------- | ----------- |
+| `CI`, pull request        | 8 runs, 25 jobs, 25 min          | 1 job, 31 s, both themes: 1 min    | 40107449349 |
+| `CI`, draft pull request  | ran like any other               | job skipped: 0 min                 | 40107435961 |
+| `CI`, push to `main`      | 12 runs, 40 jobs, 40 min         | no longer runs                     |             |
+| `CI`, documentation only  | none in October                  | no run (PR #8's last commit)       |             |
+| `GitHub Release` + deploy | 4 runs, 10 jobs, 10 min          | not changed                        |             |
+| `Deploy`, by hand         | 1 run, 2 jobs, 2 min             | not changed                        |             |
+| **Total**                 | **25 runs, 77 min, $0 (public)** |                                    |             |
 
 ## What the owner decides
 
