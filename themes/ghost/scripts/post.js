@@ -27,7 +27,7 @@ ready(async () => {
   for (const block of codeblocks) {
     const [, language] = Array.from(block.classList)[0].split('-')
 
-    const code = (await highlighter).codeToHtml(block.innerText, language)
+    const code = (await highlighter).codeToHtml(block.textContent, language)
 
     block.parentNode.outerHTML = code
   }
