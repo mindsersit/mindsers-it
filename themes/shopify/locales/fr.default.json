@@ -42,7 +42,8 @@
     "note": "Instructions spéciales pour la commande",
     "quantity_for": "Quantité pour {{ title }}",
     "taxes_included": "Taxes incluses. Frais de port calculés lors du paiement.",
-    "taxes_excluded": "Taxes et frais de port calculés lors du paiement."
+    "taxes_excluded": "Taxes et frais de port calculés lors du paiement.",
+    "error": "Le panier n’a pas pu être mis à jour. Réessayez."
   },
   "collections": {
     "title": "Collections",

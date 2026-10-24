@@ -83,7 +83,12 @@
               <label for="NoscriptQuantity-{{ section.id }}">{{ 'product.quantity' | t }}</label>
               <input id="NoscriptQuantity-{{ section.id }}" type="number" name="quantity" min="1" value="1">
             </div>
-            <button type="submit" class="button primary full">{{ 'product.add_to_cart' | t }}</button>
+            {%- if product.available -%}
+              <button type="submit" class="button primary full">{{ 'product.add_to_cart' | t }}</button>
+            {%- else -%}
+              {%- # every option is disabled: the form would post no id -%}
+              <button type="submit" class="button primary full" disabled>{{ 'product.sold_out' | t }}</button>
+            {%- endif -%}
           {%- endform -%}
         </noscript>
       {%- endunless -%}

@@ -26,7 +26,12 @@
     {% render 'search-dialog' %}
 
     {%- if settings.cart_type == 'drawer' -%}
-      <dialog id="CartDrawer" class="mds-dialog cart-drawer" aria-labelledby="CartDrawerTitle">
+      <dialog
+        id="CartDrawer"
+        class="mds-dialog cart-drawer"
+        aria-labelledby="CartDrawerTitle"
+        data-error="{{ 'cart.error' | t }}"
+      >
         {% section 'cart-drawer' %}
       </dialog>
     {%- endif -%}
