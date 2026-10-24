@@ -133,7 +133,8 @@ machine, with your own git and `gh` login (`scripts/release.mjs`).
      the pull request.
 3. Merge that pull request once CI passes, and merge nothing else before step 4.
 4. Run `pnpm release:tag X.Y.Z`. It checks that `main`'s last commit is that
-   release, tags it `vX.Y.Z` and pushes the tag: the GitHub Release is created
+   release and that its versions and `CHANGELOG.md` match, tags it `vX.Y.Z`
+   and pushes the tag: the GitHub Release is created
    from the changelog (`.github/workflows/gh-release.yml`), then both themes are
    deployed. A version the changelog marks as a prerelease gets a prerelease and
    no deploy.

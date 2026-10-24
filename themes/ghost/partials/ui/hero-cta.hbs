@@ -1,6 +1,7 @@
-{{!-- The hero's button and counter. `href` and `cta_label` default to the
-      site's call to action (global_cta_url, global_cta_text); without either,
-      only the counter shows. Params: href, cta_label, counter, counter_label. --}}
+{{!-- The hero's button and counter. With `href`, the button links there and
+      `cta_label` is required. Without it, the button links to global_cta_url,
+      labelled `cta_label` or global_cta_text, and shows only when the site
+      has a call to action. Params: href, cta_label, counter, counter_label. --}}
 <div class="mds-cta">
     {{#if href}}
     <p>

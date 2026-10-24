@@ -41,7 +41,8 @@ themes/shopify/.shopify/
 # personal editor settings
 .vscode/
 
-# Claude Code: its git worktrees (each holds a biome.json that breaks
-# `pnpm lint`) and personal settings
+# Claude Code: its git worktrees and personal settings. Each worktree holds a
+# biome.json that breaks `pnpm lint`; biome.json excludes .claude as well,
+# since Biome looks for nested configurations in ignored folders too
 .claude/worktrees/
 .claude/settings.local.json
