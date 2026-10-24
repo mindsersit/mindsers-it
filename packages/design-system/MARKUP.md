@@ -42,7 +42,7 @@ URLs below are shown as rendered on production. Ghost outputs them from
 
     <div class="mds-head-placeholder"></div>  <!-- before the menu unless "Menu on the left side" -->
     <div class="mds-head-menu">
-      <nav class="mds-main-menu" aria-label="Navigation principale">  <!-- the one navigation landmark -->
+      <nav class="mds-main-menu" aria-label="Navigation principale">  <!-- the header's only navigation landmark -->
         <!-- NAV LIST, see below -->
       </nav>
     </div>
@@ -154,7 +154,7 @@ page:
 
 | Property | Required | Ghost | Shopify |
 |---|---|---|---|
-| `--ghost-accent-color` | no (falls back to `#f4be7e`) | injected by `{{ghost_head}}`, and overridden on `body.mds-talent` / `body.mds-shopify` in `default.hbs` | set in `layout/theme.liquid` from the `accent_color` theme setting |
+| `--ghost-accent-color` | no (falls back to `#f4be7e`) | injected by `{{ghost_head}}`, and overridden on `body.mds-talent` / `body.mds-shopify` in `default.hbs` | set in `snippets/head.liquid` from the `accent_color` theme setting |
 | `--gh-font-body`, `--gh-font-heading` | no (the shared styles fall back to Fira Sans) | injected by Ghost only when a custom font is chosen in the admin | not set |
 
 ## Sass configuration

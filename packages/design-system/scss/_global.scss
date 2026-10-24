@@ -392,9 +392,9 @@ body {
         appearance: none;
     }
 
-    // Hidden but still focusable: the label's ::before draws the box, and
-    // keyboard focus shows on it. (display: none took them out of the tab
-    // order.)
+    // Hidden but still focusable (display: none would take them out of the
+    // tab order): the label's ::before draws the box, and keyboard focus shows
+    // on it.
     input[type='checkbox'] {
         position: absolute;
         width: 1px;

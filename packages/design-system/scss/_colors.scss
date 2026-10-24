@@ -1,5 +1,6 @@
-// The page background as a Sass colour, for rgba() and the places a custom
-// property can't go
+// The dark base colour: the page background (--background-color), and dark
+// text and surfaces on light or accent sections. A Sass value so rgba() can
+// use it.
 $ink: #121922;
 
 $accent: var(--ghost-accent-color, #f4be7e);
