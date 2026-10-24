@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+-   CI runs one job, on pull requests only: not on drafts, not on a change to
+    Markdown alone, and not again on `main` once merged (`docs/ops/ci.md`)
+
 ## [2.1.0] - 2026-10-23
 
 ### Added

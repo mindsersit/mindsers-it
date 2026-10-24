@@ -1,78 +1,94 @@
+# The gate on pull requests, and only there. One job, not four: GitHub bills
+# every job rounded up to the minute, and each of these took under 40 s. A new
+# push to the same pull request cancels the run it replaces, and a draft runs
+# nothing until it is marked ready. Why each shortcut is safe: docs/ops/ci.md.
+#
+# - Documentation only (Markdown anywhere, or docs/): nothing runs.
+# - Otherwise Biome always runs, and each theme is built and checked when its
+#   files change, or the design system, the lockfile, the root's configuration
+#   or .github/ do.
+#
+# main is not checked again on its merge commit: that tree is the one its pull
+# request's last run verified. The deploy builds both themes from the tag.
 name: CI
 
 on:
   pull_request:
-  push:
-    branches: [main]
+    # `ready_for_review`: leaving draft runs the gate a draft's pushes skipped.
+    types: [opened, synchronize, reopened, ready_for_review]
+    # Nothing that runs reads them: Biome, the builds, gscan and theme check
+    # ignore Markdown. GitHub skips the run only when every path matches.
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/**'
+  # Everything runs: a manual check of a branch, main included.
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
   pull-requests: read # dorny/paths-filter lists PR files through the API
 
 jobs:
-  changes:
+  verify:
+    if: github.event.pull_request.draft != true
     runs-on: ubuntu-latest
-    outputs:
-      ghost: ${{ steps.filter.outputs.ghost }}
-      shopify: ${{ steps.filter.outputs.shopify }}
-      # hashFiles() isn't allowed in job-level `if`, so check here instead
-      shopify_exists: ${{ steps.exists.outputs.shopify }}
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - id: exists
-        run: echo "shopify=$([ -f themes/shopify/package.json ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
-      - uses: dorny/paths-filter@0e4a8c6effa4802afeda77dc8d303f8176d7dfad # v3.0.4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - if: github.event_name == 'pull_request'
+        uses: dorny/paths-filter@0e4a8c6effa4802afeda77dc8d303f8176d7dfad # v3.0.4
         id: filter
         with:
           filters: |
+            shared: &shared
+              - 'packages/design-system/**'
+              - 'pnpm-lock.yaml'
+              - 'pnpm-workspace.yaml'
+              - 'package.json'
+              - '.node-version'
+              - '.github/**'
             ghost:
+              - *shared
               - 'themes/ghost/**'
-              - 'packages/design-system/**'
-              - 'pnpm-lock.yaml'
             shopify:
+              - *shared
               - 'themes/shopify/**'
-              - 'packages/design-system/**'
-              - 'pnpm-lock.yaml'
-
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
+      - name: What runs
+        id: scope
+        env:
+          EVENT: ${{ github.event_name }}
+          GHOST: ${{ steps.filter.outputs.ghost }}
+          SHOPIFY: ${{ steps.filter.outputs.shopify }}
+        run: |
+          set -euo pipefail
+          # A manual run has no base: everything runs.
+          if [ "$EVENT" != pull_request ]; then GHOST=true; SHOPIFY=true; fi
+          # The Shopify theme is checked only while it exists.
+          if [ ! -f themes/shopify/package.json ]; then SHOPIFY=false; fi
+          echo "ghost=$GHOST" >> "$GITHUB_OUTPUT"
+          echo "shopify=$SHOPIFY" >> "$GITHUB_OUTPUT"
+          echo "::notice::ghost=$GHOST shopify=$SHOPIFY"
+      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version-file: .node-version
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
-
-  ghost:
-    needs: changes
-    if: needs.changes.outputs.ghost == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: .node-version
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm --filter mindsers-it build
-      - run: pnpm --filter mindsers-it test:ci
-
-  shopify:
-    needs: changes
-    if: needs.changes.outputs.shopify == 'true' && needs.changes.outputs.shopify_exists == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: .node-version
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm --filter @mindsers/shopify-theme build
-      - run: npm install -g @shopify/cli@4.9.4
-      - run: shopify theme check --path themes/shopify --fail-level error
+      - if: steps.scope.outputs.ghost == 'true'
+        name: Build and check the Ghost theme
+        run: |
+          set -euo pipefail
+          pnpm --filter mindsers-it build
+          pnpm --filter mindsers-it test:ci
+      - if: steps.scope.outputs.shopify == 'true'
+        name: Build and check the Shopify theme
+        run: |
+          set -euo pipefail
+          pnpm --filter @mindsers/shopify-theme build
+          npm install -g @shopify/cli@4.9.4
+          shopify theme check --path themes/shopify --fail-level error
