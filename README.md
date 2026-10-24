@@ -14,7 +14,7 @@ packages/design-system/   shared Sass, fonts and menu script (see MARKUP.md)
 themes/ghost/             Ghost theme for mindsers.it (package "mindsers-it")
 themes/shopify/           Shopify theme for shop.mindsers.it (package "@mindsers/shopify-theme")
 .github/workflows/        CI, GitHub Release and deploys
-docs/ops/ci.md            what CI runs, and why (CI minutes are paid for)
+docs/ops/ci.md            what CI runs, and why
 ```
 
 Both themes compile `packages/design-system` into their own assets. The HTML both
@@ -24,8 +24,9 @@ change one theme, change the other.
 
 ## Getting started
 
-Requirements: Node (see `.node-version`), pnpm 10, and the
-[Shopify CLI](https://shopify.dev/docs/api/shopify-cli) for the shop.
+Requirements: Node (see `.node-version`) and pnpm 10. The
+[Shopify CLI](https://shopify.dev/docs/api/shopify-cli) is a devDependency of
+the Shopify theme: `pnpm install` brings it.
 
 ```sh
 pnpm install
@@ -38,11 +39,12 @@ pnpm test:scripts # the release script's tests
 - `pnpm dev:ghost`: rebuilds the Ghost theme on change, with livereload. Link
   `themes/ghost` into a local Ghost's `content/themes/` and activate it there.
 - `pnpm dev:shop`: rebuilds the Shopify theme on change and runs `shopify theme dev`
-  (log in first with `shopify theme list --store <store>.myshopify.com`).
+  (log in first with
+  `pnpm --filter @mindsers/shopify-theme exec shopify theme list --store <store>.myshopify.com`).
 - `pnpm --filter @mindsers/shopify-theme check`: Shopify theme check.
 
 Built files (`themes/ghost/assets/{css,js,fonts}/`, and the generated files in
-`themes/shopify/assets/`) are not committed: edit `styles/` and `scripts/` in the
+`themes/shopify/assets/`) are not committed: edit `styles/` in the
 Ghost theme, `src/` in the Shopify theme, or the design system.
 
 ## Ghost theme
@@ -57,7 +59,11 @@ Ghost theme, `src/` in the Shopify theme, or the design system.
 | `/agence-shopify/` | `home-shopify.hbs` | `home.css` |
 | `/agence-shopify/basic/`, `/personnalise/`, `/enterprise/` | `agence-basic.hbs`, `agence-personnalise.hbs`, `agence-enterprise.hbs` | `landing.css` |
 | `/talent-freelance/` | `home-talent.hbs` | `landing.css` |
-| pages and posts | `page.hbs`, `post.hbs` | `pages.css` |
+| pages | `page.hbs` | `pages.css` |
+
+There is no blog: `routes.yaml` has no collection, so posts have no URL, and no
+taxonomy, so tags have no archive page. `post.hbs` stays because Ghost requires
+it, styled as a page.
 
 Deploying the theme doesn't apply `routes.yaml` or `redirects.yaml`: when you
 change them, upload them in Ghost Admin's settings.
@@ -121,7 +127,8 @@ machine, with your own git and `gh` login (`scripts/release.mjs`).
    - moves the `[Unreleased]` entries of `CHANGELOG.md` under
      `## [X.Y.Z] - <today>` and updates the compare links at the bottom;
    - bumps `version` in `packages/design-system`, `themes/ghost` and
-     `themes/shopify` (`package.json`);
+     `themes/shopify` (`package.json`), and the Shopify theme's
+     `theme_version` (`config/settings_schema.json`);
    - commits `chore(release): X.Y.Z` on `release/X.Y.Z`, pushes it and opens
      the pull request.
 3. Merge that pull request once CI passes, and merge nothing else before step 4.
@@ -144,10 +151,10 @@ cover the following, which keep their own terms:
   trademarks of their owners, not licensed for reuse;
 - the websites' content (texts, team photos, product screenshots): not licensed
   for reuse;
-- the illustrations in `themes/ghost/partials/images/`: most come from
+- the illustrations in `themes/ghost/assets/images/illustrations/`: most come from
   [unDraw](https://undraw.co/license) and are under its license;
-- the fonts in `packages/design-system/fonts/` (Fira Sans, Fira Code,
-  Merriweather): SIL Open Font License 1.1, embedded in each file.
+- the fonts in `packages/design-system/fonts/` (Fira Sans, Fira Code, converted
+  to WOFF2): SIL Open Font License 1.1, embedded in each file.
 
 `themes/shopify` also contains Shopify's theme license
 ([`themes/shopify/LICENSE.md`](themes/shopify/LICENSE.md)).

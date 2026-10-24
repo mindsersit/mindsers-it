@@ -16,6 +16,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   The deploy runs one job for both themes; every action is pinned by commit
     SHA and every workflow declares its token's permissions
 -   Dependabot opens one grouped pull request a month for npm updates
+-   Fonts are served as WOFF2 (2.6 MB of TTF down to 644 KB), and the team
+    photos and client logos are resized to their display size (1.1 MB less)
+-   Illustrations are cached images instead of SVG inlined in every landing
+    page (60 to 190 KB of HTML per page)
+-   The Ghost theme no longer preloads an outdated Portal script nor opens
+    connections to Facebook and Google on every page
+-   Landing pages share partials for their calls to action and offer cards
+-   Node 24 LTS; the Shopify CLI is a devDependency of the Shopify theme, so
+    CI, the deploy and local commands use the version in the lockfile
+-   A release also bumps the Shopify theme's `theme_version`, which now
+    matches the packages
+
+### Removed
+
+-   Styles, illustrations, icons, scripts and dependencies nothing used, the
+    Merriweather font, and tag archive pages (upload `routes.yaml` in Ghost
+    Admin)
+
+### Fixed
+
+-   Bold text (headings, `<strong>`) rendered in Fira Sans Black
+-   Typographic characters (’ — … € →) fell back to the system font
+-   The FAQs, the shop's filters and the Ghost search button can be used with
+    the keyboard
+-   Client logos, team and testimonial photos have a text alternative
+-   Ghost pages honour "Show title and feature image"
+-   Two quick clicks on a cart drawer's "+" added one item, not two: a change
+    now waits for the previous one
+-   Without JavaScript, the product page adds the variant chosen
+-   The client logo strip loops without a jump, and stays still for visitors
+    who reduce motion
+-   Copy: "vous" throughout the MVP page, a doubled "!" on the SaaS page
 
 ## [2.1.0] - 2026-10-23
 
