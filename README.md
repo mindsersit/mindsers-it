@@ -14,6 +14,7 @@ packages/design-system/   shared Sass, fonts and menu script (see MARKUP.md)
 themes/ghost/             Ghost theme for mindsers.it (package "mindsers-it")
 themes/shopify/           Shopify theme for shop.mindsers.it (package "@mindsers/shopify-theme")
 .github/workflows/        CI, GitHub Release and deploys
+docs/ops/ci.md            what CI runs, and why (CI minutes are paid for)
 ```
 
 Both themes compile `packages/design-system` into their own assets. The HTML both
@@ -85,10 +86,13 @@ releasing (see below).
 
 ## CI
 
-Every pull request and every push to `main` runs `pnpm lint`. When their files
-change (or the design system, or the lockfile), the Ghost theme is built and
-checked with `gscan --fatal`, and the Shopify theme is built and checked with
-`shopify theme check`.
+Every pull request that is not a draft runs one job: `pnpm lint`, then, when
+their files change (or the design system, the lockfile, the root's
+configuration or `.github/`), the Ghost theme is built and checked with
+`gscan --fatal`, and the Shopify theme is built and checked with
+`shopify theme check`. A pull request that changes only Markdown runs nothing,
+and `main` is not checked again once merged. Why, and what it saves:
+[`docs/ops/ci.md`](docs/ops/ci.md), after the fleet's standard.
 
 ## Deploying
 
