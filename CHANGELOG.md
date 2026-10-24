@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   CI runs one job, on pull requests only: not on drafts, not on a change to
     Markdown alone, and not again on `main` once merged (`docs/ops/ci.md`)
+-   A release goes through a pull request: `pnpm release:prepare X.Y.Z` opens
+    it, `pnpm release:tag X.Y.Z` tags it once merged and deploys
+-   The deploy runs one job for both themes; every action is pinned by commit
+    SHA and every workflow declares its token's permissions
+-   Dependabot opens one grouped pull request a month for npm updates
 
 ## [2.1.0] - 2026-10-23
 
