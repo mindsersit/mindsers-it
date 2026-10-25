@@ -10,6 +10,7 @@
     "ignoreUnknown": false,
     "includes": [
       "**",
+      "!.claude",
       "!themes/shopify/config/settings_data.json",
       "!themes/shopify/templates/*.json",
       "!themes/shopify/sections/*.json",

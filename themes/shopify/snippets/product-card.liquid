@@ -30,7 +30,7 @@
     </div>
     {% render 'product-badges', variant: variant %}
     <div class="product-card__info">
-      <h3 class="product-card__title">{{ product.title }}</h3>
+      <h3 class="product-card__title">{{ product.title | escape }}</h3>
       {% render 'price', variant: variant, product: product %}
     </div>
   </a>

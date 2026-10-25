@@ -1,7 +1,6 @@
 @use 'colors';
 @use 'fonts';
 
-.mds-article,
 .mds-page {
     font-family: fonts.$sans;
 
@@ -12,7 +11,6 @@
     }
 
     .mds-content {
-        font-family: var(--gh-font-body, fonts.$serif);
         margin-top: 40px;
 
         h1,
@@ -288,23 +286,6 @@
                 }
             }
 
-            &.kg-embed-card {
-                position: relative;
-                &.kg-embed-video {
-                    height: 0;
-                    padding-bottom: 56.25%;
-                    overflow: hidden;
-
-                    iframe[src*='youtube'] {
-                        position: absolute;
-                        height: 100% !important;
-                        width: 100% !important;
-                        left: 0;
-                        top: 0;
-                    }
-                }
-            }
-
             figcaption {
                 font-family: var(--gh-font-body, fonts.$sans);
                 font-size: 0.8rem;
@@ -324,101 +305,6 @@
             &::after {
                 content: '❞';
             }
-        }
-
-        .post-restricted-content {
-            line-height: 1.6;
-            background-image: linear-gradient(
-                180deg,
-                colors.$foreground,
-                colors.$background
-            );
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            -moz-background-clip: text;
-            -moz-text-fill-color: transparent;
-        }
-
-        .member-cta,
-        .upgrade-cta {
-            text-align: center;
-            background: colors.$default_gradient;
-            border-radius: 16px;
-            padding: 50px;
-            margin: 40px 0;
-            color: white;
-            font-family: var(--gh-font-body, fonts.$sans);
-
-            @media (max-width: 700px) {
-                padding: 30px;
-            }
-
-            @media (max-width: 400px) {
-                padding: 20px;
-            }
-
-            h2 {
-                font-size: 2.5rem;
-                @media (max-width: 700px) {
-                    font-size: 2rem;
-                }
-                @media (max-width: 400px) {
-                    font-size: 1.8rem;
-                }
-            }
-
-            form,
-            label {
-                display: flex;
-                flex-direction: column;
-                max-width: 500px;
-                margin: auto;
-            }
-
-            label {
-                margin: 10px 0;
-                text-align: left;
-                font-weight: 600;
-            }
-        }
-
-        .upgrade-cta {
-            .button {
-                background: var(--foreground-color);
-                border: 1px solid var(--foreground-color);
-                color: var(--background-color);
-                text-decoration: none;
-                font-size: 1em;
-                transition: all 0.4s ease-in-out;
-            }
-
-            .plan-link {
-                display: inline-block;
-                margin-right: 20px;
-                font-size: 0.9em;
-            }
-
-            p {
-                margin: 30px 80px;
-
-                @media (max-width: 700px) {
-                    margin: 30px;
-                }
-
-                @media (max-width: 400px) {
-                    margin: 30px 0;
-                }
-            }
-
-            a {
-                color: white;
-                text-decoration: underline;
-            }
-        }
-
-        .thanks-cta {
-            font-style: italic;
         }
     }
 }

@@ -10,9 +10,7 @@ const sass = require('gulp-sass')(require('sass'))
 
 // postcss plugins
 const autoprefixer = require('autoprefixer')
-const colorFunction = require('postcss-color-mod-function')
 const cssnano = require('cssnano')
-const easyimport = require('postcss-easy-import')
 
 // shared styles, scripts and fonts (also used by the Shopify theme)
 const DS = '../../packages/design-system'
@@ -40,7 +38,7 @@ function templates(done) {
 }
 
 function styles(done) {
-  const processors = [easyimport, colorFunction(), autoprefixer(), cssnano()]
+  const processors = [autoprefixer(), cssnano()]
   const compile = sass({ outputStyle: 'compressed', loadPaths: [`${DS}/scss`] })
 
   pump(
@@ -58,7 +56,7 @@ function styles(done) {
 function scripts(done) {
   pump(
     [
-      src(['scripts/*.js', `${DS}/js/*.js`], { sourcemaps: true }),
+      src(`${DS}/js/*.js`, { sourcemaps: true }),
       uglify(),
       dest('assets/js/', { sourcemaps: '.' }),
       livereload(),
@@ -92,7 +90,7 @@ function zipper(done) {
 }
 
 const stylesWatcher = () => watch(['styles/**', `${DS}/scss/**`], styles)
-const scriptsWatcher = () => watch(['scripts/**', `${DS}/js/**`], scripts)
+const scriptsWatcher = () => watch(`${DS}/js/**`, scripts)
 const templatesWatcher = () =>
   watch(['*.hbs', '**/**/*.hbs', '!node_modules/**/*.hbs'], templates)
 const watcher = parallel(scriptsWatcher, stylesWatcher, templatesWatcher)

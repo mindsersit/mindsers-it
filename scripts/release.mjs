@@ -5,12 +5,14 @@
  *   node scripts/release.mjs prepare X.Y.Z
  *     From an up-to-date main: moves the [Unreleased] entries of CHANGELOG.md
  *     under `## [X.Y.Z] - <today>`, updates the compare links, bumps the three
- *     `version` fields, commits `chore(release): X.Y.Z` on `release/X.Y.Z`,
- *     pushes it and opens the pull request. CI checks it like any other.
+ *     `version` fields and the Shopify theme's `theme_version`, commits
+ *     `chore(release): X.Y.Z` on `release/X.Y.Z`, pushes it and opens the
+ *     pull request. CI checks it like any other.
  *
  *   node scripts/release.mjs tag X.Y.Z
- *     Once that pull request is merged: checks that main's last commit is it,
- *     then tags it vX.Y.Z and pushes the tag. gh-release.yml publishes the
+ *     Once that pull request is merged: checks that main's last commit is it
+ *     and that its versions and CHANGELOG.md match X.Y.Z, then tags it vX.Y.Z
+ *     and pushes the tag. gh-release.yml publishes the
  *     GitHub Release and deploys, as before.
  *
  * A pull request opened from Actions with GITHUB_TOKEN would start no CI run,
@@ -26,6 +28,10 @@ export const PACKAGES = [
   'themes/ghost/package.json',
   'themes/shopify/package.json',
 ]
+
+// The file holding the Shopify theme's version (`theme_info.theme_version`,
+// shown in the theme editor)
+export const THEME_SCHEMA = 'themes/shopify/config/settings_schema.json'
 
 const SEMVER = /^(\d+)\.(\d+)\.(\d+)(?:-([0-9A-Za-z.-]+))?$/
 
@@ -49,15 +55,24 @@ export function isAfter(next, current) {
   return a[3] > b[3]
 }
 
-/** The `version` field of a package.json, changed in place: formatting stays. */
-export function setVersion(json, version) {
-  const field = /^(\s*"version":\s*")([^"]+)(")/m
-  if (!field.test(json)) throw new Error('no "version" field')
+/**
+ * A version field (`version` in a package.json, `theme_version` in the theme
+ * schema), changed in place: formatting stays.
+ */
+export function setVersion(json, version, key = 'version') {
+  const field = new RegExp(`^(\\s*"${key}":\\s*")([^"]+)(")`, 'm')
+  if (!field.test(json)) throw new Error(`no "${key}" field`)
   return json.replace(field, `$1${version}$3`)
 }
 
 export function versionOf(json) {
   return JSON.parse(json).version
+}
+
+export function themeVersionOf(json) {
+  const groups = JSON.parse(json)
+  if (!Array.isArray(groups)) return undefined
+  return groups.find(group => group.name === 'theme_info')?.theme_version
 }
 
 /**
@@ -127,20 +142,41 @@ function prepare(version) {
   if (!isAfter(version, current)) fail(`${version} is not after ${current}`)
   if (tagExists(`v${version}`)) fail(`v${version} already exists`)
 
+  // Every file is computed, which checks it, before any is written: a
+  // failure leaves main untouched
   const date = new Date().toISOString().slice(0, 10)
-  const changelog = readFileSync('CHANGELOG.md', 'utf8')
-  writeFileSync('CHANGELOG.md', releaseChangelog(changelog, version, date))
-  for (const path of PACKAGES) {
-    writeFileSync(path, setVersion(readFileSync(path, 'utf8'), version))
+  const bump = (path, key) =>
+    setVersion(readFileSync(path, 'utf8'), version, key)
+  let updates
+  try {
+    updates = [
+      [
+        'CHANGELOG.md',
+        releaseChangelog(readFileSync('CHANGELOG.md', 'utf8'), version, date),
+      ],
+      ...PACKAGES.map(path => [path, bump(path)]),
+      [THEME_SCHEMA, bump(THEME_SCHEMA, 'theme_version')],
+    ]
+  } catch (error) {
+    fail(error.message)
   }
+  for (const [path, content] of updates) writeFileSync(path, content)
 
   const branch = `release/${version}`
   const title = `chore(release): ${version}`
   git('switch', '--quiet', '-c', branch)
-  git('commit', '--quiet', '-m', title, 'CHANGELOG.md', ...PACKAGES)
+  git(
+    'commit',
+    '--quiet',
+    '-m',
+    title,
+    'CHANGELOG.md',
+    ...PACKAGES,
+    THEME_SCHEMA,
+  )
   git('push', '--quiet', '-u', 'origin', branch)
   const body = [
-    `Release ${version}: CHANGELOG.md and the three \`version\` fields.`,
+    `Release ${version}: CHANGELOG.md, the three \`version\` fields and the Shopify \`theme_version\`.`,
     '',
     `After the merge: \`pnpm release:tag ${version}\` tags it and deploys.`,
   ].join('\n')
@@ -171,6 +207,10 @@ function tag(version) {
   for (const path of PACKAGES) {
     const found = versionOf(git('show', `origin/main:${path}`))
     if (found !== version) fail(`${path} is ${found} on main, not ${version}`)
+  }
+  const theme = themeVersionOf(git('show', `origin/main:${THEME_SCHEMA}`))
+  if (theme !== version) {
+    fail(`${THEME_SCHEMA} is ${theme} on main, not ${version}`)
   }
   if (!git('show', 'origin/main:CHANGELOG.md').includes(`## [${version}]`)) {
     fail(`CHANGELOG.md on main has no ${version}`)

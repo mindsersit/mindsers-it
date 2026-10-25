@@ -16,7 +16,8 @@
       "other": "Panier ({{ count }} articles)"
     },
     "menu": "Menu",
-    "close_menu": "Fermer le menu"
+    "close_menu": "Fermer le menu",
+    "main_navigation": "Navigation principale"
   },
   "footer": {
     "country": "Pays / devise",
@@ -41,7 +42,8 @@
     "note": "Instructions spéciales pour la commande",
     "quantity_for": "Quantité pour {{ title }}",
     "taxes_included": "Taxes incluses. Frais de port calculés lors du paiement.",
-    "taxes_excluded": "Taxes et frais de port calculés lors du paiement."
+    "taxes_excluded": "Taxes et frais de port calculés lors du paiement.",
+    "error": "Le panier n’a pas pu être mis à jour. Réessayez."
   },
   "collections": {
     "title": "Collections",
@@ -65,7 +67,8 @@
     "digital": "Numérique",
     "unavailable": "Indisponible",
     "decrease": "Diminuer la quantité",
-    "increase": "Augmenter la quantité"
+    "increase": "Augmenter la quantité",
+    "variant": "Variante"
   },
   "gift_card": {
     "add_to_apple_wallet": "Ajouter à Apple Wallet",

@@ -52,6 +52,47 @@
       <h1>{{ product.title | escape }}</h1>
       <div data-price>{% render 'price', variant: current_variant %}</div>
 
+      {%- unless product.has_only_default_variant -%}
+        {%- comment -%}
+          Without JavaScript the option buttons can't pick a variant (product.js
+          does), so this form, with a plain select of the variants, replaces
+          the one below.
+        {%- endcomment -%}
+        <noscript>
+          <style>#{{ form_id }} { display: none; }</style>
+          {%- form 'product', product, class: 'product-form' -%}
+            <div class="field">
+              <label for="Variant-{{ section.id }}">{{ 'product.variant' | t }}</label>
+              <select id="Variant-{{ section.id }}" name="id">
+                {%- for variant in product.variants -%}
+                  <option
+                    value="{{ variant.id }}"
+                    {% if variant.id == current_variant.id %}
+                      selected
+                    {% endif %}
+                    {% unless variant.available %}
+                      disabled
+                    {% endunless %}
+                  >
+                    {{ variant.title | escape }} – {{ variant.price | money | strip_html }}
+                  </option>
+                {%- endfor -%}
+              </select>
+            </div>
+            <div class="field">
+              <label for="NoscriptQuantity-{{ section.id }}">{{ 'product.quantity' | t }}</label>
+              <input id="NoscriptQuantity-{{ section.id }}" type="number" name="quantity" min="1" value="1">
+            </div>
+            {%- if product.available -%}
+              <button type="submit" class="button primary full">{{ 'product.add_to_cart' | t }}</button>
+            {%- else -%}
+              {%- # every option is disabled: the form would post no id -%}
+              <button type="submit" class="button primary full" disabled>{{ 'product.sold_out' | t }}</button>
+            {%- endif -%}
+          {%- endform -%}
+        </noscript>
+      {%- endunless -%}
+
       {%- form 'product', product, id: form_id, class: 'product-form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
         <input type="hidden" name="id" value="{{ current_variant.id }}" data-variant-id>
 

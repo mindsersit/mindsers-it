@@ -33,7 +33,7 @@ URLs below are shown as rendered on production. Ghost outputs them from
 
 ```html
 <header id="mds-head" class="mds-head">
-  <nav class="mds-head-inner mds-container" role="navigation" aria-label="Main Navigation">
+  <div class="mds-head-inner mds-container">
     <div class="mds-head-brand">
       <a class="mds-head-logo" href="https://mindsers.it">
         <img src="…" alt="MindsersIT - Back to home page" />   <!-- or the site title as text -->
@@ -42,15 +42,17 @@ URLs below are shown as rendered on production. Ghost outputs them from
 
     <div class="mds-head-placeholder"></div>  <!-- before the menu unless "Menu on the left side" -->
     <div class="mds-head-menu">
-      <nav class="mds-main-menu">
+      <nav class="mds-main-menu" aria-label="Navigation principale">  <!-- the header's only navigation landmark -->
         <!-- NAV LIST, see below -->
       </nav>
     </div>
     <div class="mds-head-placeholder"></div>  <!-- after the menu unless "Menu on the right side" -->
 
     <div class="mds-head-actions">
-      <!-- optional: only when search is enabled -->
-      <a class="search-button" aria-label="Recherche" …><svg …/></a>
+      <!-- optional: only when search is enabled. Ghost has no search page:
+           <button type="button" class="search-button" data-ghost-search …>.
+           Shopify links to its search page and search.js opens a dialog. -->
+      <a class="search-button" aria-label="Recherche" href="/search" …><svg …/></a>
       <!-- theme-specific action icons go here (Shopify: account, cart).
            Icons are 20×20 outline SVGs with a 1.5 stroke, so they all match. -->
       <!-- optional: only when a CTA URL is configured; always the last action -->
@@ -75,7 +77,7 @@ URLs below are shown as rendered on production. Ghost outputs them from
         </ul>
       </div>
     </div>
-  </nav>
+  </div>
 </header>
 ```
 
@@ -152,7 +154,7 @@ page:
 
 | Property | Required | Ghost | Shopify |
 |---|---|---|---|
-| `--ghost-accent-color` | no (falls back to `#f4be7e`) | injected by `{{ghost_head}}`, and overridden on `body.mds-talent` / `body.mds-shopify` in `default.hbs` | set in `layout/theme.liquid` from the `accent_color` theme setting |
+| `--ghost-accent-color` | no (falls back to `#f4be7e`) | injected by `{{ghost_head}}`, and overridden on `body.mds-talent` / `body.mds-shopify` in `default.hbs` | set in `snippets/head.liquid` from the `accent_color` theme setting |
 | `--gh-font-body`, `--gh-font-heading` | no (the shared styles fall back to Fira Sans) | injected by Ghost only when a custom font is chosen in the admin | not set |
 
 ## Sass configuration
@@ -167,14 +169,10 @@ Configure it in the entry file, before any other design-system module:
 
 ## JS hooks (`js/menu.js`)
 
-- Clicking any `.more-button-small-screen`, `.close-button` or
-  `.profile-button` opens or closes **every** `.more-menu` and `.profile-menu`
-  together (class `.menu-open`), and sets `.no-scroll-small-screen` on
-  `<body>`. A page should contain only one of the two menus.
-  `.profile-button` / `.profile-menu` are optional hooks: `_global.scss`
-  styles them, but the Ghost theme doesn't use them.
-- The open/closed state is read from the first `.more-menu` / `.profile-menu`
-  in the document.
+- Clicking any `.more-button-small-screen` or `.close-button` opens or closes
+  the `.more-menu` (class `.menu-open`), and sets `.no-scroll-small-screen` on
+  `<body>`.
+- The open/closed state is read from the first `.more-menu` in the document.
 - `Escape` closes the menu. Opening it moves focus to its `.close-button`;
   closing it moves focus back to the first `.more-button-small-screen`.
 - `aria-expanded` on every `.more-button-small-screen` follows that state.

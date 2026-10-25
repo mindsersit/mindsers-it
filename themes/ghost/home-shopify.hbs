@@ -1,6 +1,4 @@
 {{!< default}}
-{{#contentFor 'htmlLang'}}{{@site.locale}}{{/contentFor}}
-
 {{#contentFor 'activityClass'}}mds-shopify{{/contentFor}}
 
 {{#contentFor 'styles'}}
@@ -18,17 +16,11 @@
                     De la boutique clé en main à l'architecture enterprise headless : on conçoit, développe et optimise votre e-commerce Shopify pour maximiser vos ventes.
                 </p>
 
-                <div class="mds-cta">
-                    <p>
-                        <a href="#offres" class="button primary">Découvrir nos solutions</a>
-                    </p>
-                    <p class='rate'>
-                        <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
-                        <span>
-                            +{{@custom.amount_of_ecommerce_websites_done }} boutiques e-commerce réalisées !
-                        </span>
-                    </p>
-                </div>
+                {{> "ui/hero-cta"
+                    href="#offres"
+                    cta_label="Découvrir nos solutions"
+                    counter=@custom.amount_of_ecommerce_websites_done
+                    counter_label="boutiques e-commerce réalisées !"}}
 
                 <div class="offer-links">
                     <a href="/agence-shopify/basic/" class="offer-link">→ Boutique basique (4-7k€)</a>
@@ -50,23 +42,23 @@
             </h2>
 
             <div class="persona-cards">
-                <div class="persona-card">
-                    <h3>Je lance ma première boutique e-commerce</h3>
-                    <p>Vous avez des produits à vendre et voulez démarrer rapidement avec une boutique professionnelle ? On crée votre site Shopify opérationnel en quelques semaines.</p>
-                    <a href="/agence-shopify/basic/" class="button primary">Voir l'offre Basique</a>
-                </div>
+                {{> "ui/offer-card"
+                    heading="Je lance ma première boutique e-commerce"
+                    intro="Vous avez des produits à vendre et voulez démarrer rapidement avec une boutique professionnelle ? On crée votre site Shopify opérationnel en quelques semaines."
+                    href="/agence-shopify/basic/"
+                    cta_label="Voir l'offre Basique"}}
 
-                <div class="persona-card">
-                    <h3>Je veux personnaliser et optimiser ma boutique</h3>
-                    <p>Votre business décolle et vous avez besoin de fonctionnalités spécifiques ? On développe des solutions sur-mesure adaptées à vos processus.</p>
-                    <a href="/agence-shopify/personnalise/" class="button primary">Voir l'offre Personnalisée</a>
-                </div>
+                {{> "ui/offer-card"
+                    heading="Je veux personnaliser et optimiser ma boutique"
+                    intro="Votre business décolle et vous avez besoin de fonctionnalités spécifiques ? On développe des solutions sur-mesure adaptées à vos processus."
+                    href="/agence-shopify/personnalise/"
+                    cta_label="Voir l'offre Personnalisée"}}
 
-                <div class="persona-card">
-                    <h3>J'ai besoin d'une architecture enterprise</h3>
-                    <p>Vous gérez un volume important et souhaitez intégrer ERP, logistique, ou passer en headless ? On conçoit l'infrastructure qui scale.</p>
-                    <a href="/agence-shopify/enterprise/" class="button primary">Voir l'offre Enterprise</a>
-                </div>
+                {{> "ui/offer-card"
+                    heading="J'ai besoin d'une architecture enterprise"
+                    intro="Vous gérez un volume important et souhaitez intégrer ERP, logistique, ou passer en headless ? On conçoit l'infrastructure qui scale."
+                    href="/agence-shopify/enterprise/"
+                    cta_label="Voir l'offre Enterprise"}}
             </div>
         </div>
     </section>
@@ -104,13 +96,15 @@
                     <a href="/agence-shopify/enterprise/" class="button primary">Voir en détail</a>
                 </div>
             </div>
+            {{#if @custom.global_cta_url}}
             <p>Vous ne trouvez pas la solution qui vous correspond ? <a href="{{@custom.global_cta_url}}">Contactez-nous</a> pour un devis personnalisé adapté à votre projet e-commerce.</p>
+            {{/if}}
         </div>
     </section>
 
     {{> "ui/method" activity="shopify"}}
 
-    {{> "ui/testimonial" dark="true"}}
+    {{> "ui/testimonial"}}
 
     {{> "ui/team"}}
 
@@ -122,57 +116,37 @@
             </h2>
 
             <div class="faq-items">
-                <div class="faq-item">
-                    <input type="checkbox" id="faq1" class="faq-toggle" />
-                    <h3><label for="faq1">Pourquoi choisir Shopify plutôt qu'une autre solution e-commerce ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Pourquoi choisir Shopify plutôt qu'une autre solution e-commerce ?</h3></summary>
                     <p>Shopify combine simplicité d'utilisation, robustesse technique et écosystème riche. C'est la plateforme qui grandit avec votre business, du premier euro aux millions de chiffre d'affaires, avec des fonctionnalités natives pour l'international.</p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq2" class="faq-toggle" />
-                    <h3><label for="faq2">Combien de temps faut-il pour lancer ma boutique ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Combien de temps faut-il pour lancer ma boutique ?</h3></summary>
                     <p>Cela dépend de la complexité : 2-4 semaines pour une boutique basique, 1-3 mois pour du personnalisé, 3-6 mois pour de l'enterprise. On travaille en mode agile pour livrer une première version rapidement.</p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq3" class="faq-toggle" />
-                    <h3><label for="faq3">Proposez-vous la maintenance et le support après livraison ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Proposez-vous la maintenance et le support après livraison ?</h3></summary>
                     <p>Oui ! On propose deux formules : Maintenance basique (100€/mois) pour les mises à jour et bugs, et Support technique (1 100-1 500€/mois) pour 15h d'accompagnement mensuel et optimisations continues.</p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq4" class="faq-toggle" />
-                    <h3><label for="faq4">Pouvez-vous migrer ma boutique existante vers Shopify ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Pouvez-vous migrer ma boutique existante vers Shopify ?</h3></summary>
                     <p>Absolument. On gère la migration complète de votre catalogue, clients, commandes et SEO depuis n'importe quelle plateforme (WooCommerce, Prestashop, Magento, etc.) avec zéro interruption de service.</p>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <input type="checkbox" id="faq5" class="faq-toggle" />
-                    <h3><label for="faq5">Est-ce que vous gérez aussi le marketing et l'acquisition ?</label></h3>
+                <details class="faq-item">
+                    <summary><h3>Est-ce que vous gérez aussi le marketing et l'acquisition ?</h3></summary>
                     <p>Notre expertise se concentre sur la partie technique et UX de votre e-commerce. Pour le marketing, on travaille en partenariat avec des spécialistes qu'on peut vous recommander.</p>
-                </div>
+                </details>
             </div>
         </div>
     </section>
 
-    <section class="mds-cta-end">
-        {{#if @custom.global_cta_url}}
-        <div class="mds-cta">
-            <h2>Prêt à lancer votre e-commerce Shopify ?</h2>
-            <p>
-                On prend 15 minutes pour comprendre votre projet<br />
-                et vous orienter vers la bonne solution.
-            </p>
-            <p>
-                <a href="{{@custom.global_cta_url}}" class="button primary">{{@custom.global_cta_text}}</a>
-            </p>
-            <p class='rate'>
-                <span class='stars'>&starf;&starf;&starf;&starf;&starf;</span>
-                <span>
-                    +{{@custom.amount_of_ecommerce_websites_done }} e-commerces Shopify réalisés avec succès !
-                </span>
-            </p>
-        </div>
-        {{/if}}
-    </section>
+    {{> "ui/cta-end"
+        heading="Prêt à lancer votre e-commerce Shopify ?"
+        intro="On prend 15 minutes pour comprendre votre projet<br /> et vous orienter vers la bonne solution."
+        counter=@custom.amount_of_ecommerce_websites_done
+        counter_label="e-commerces Shopify réalisés avec succès !"}}
 </div>

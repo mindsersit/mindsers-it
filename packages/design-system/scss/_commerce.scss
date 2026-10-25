@@ -476,7 +476,8 @@ select option {
         }
     }
 
-    // option pills; the global stylesheet hides checkbox inputs only
+    // option pills: the radios are hidden like the global stylesheet's
+    // checkboxes, so they stay focusable
     .option-values {
         display: flex;
         flex-wrap: wrap;

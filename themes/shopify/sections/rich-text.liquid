@@ -2,10 +2,10 @@
 <section class="mds-section{% if section.settings.accent %} accent{% endif %}">
   <div class="mds-container">
     {%- if section.settings.eyebrow != blank -%}
-      <div class="section-type">{{ section.settings.eyebrow }}</div>
+      <div class="section-type">{{ section.settings.eyebrow | escape }}</div>
     {%- endif -%}
     {%- if section.settings.title != blank -%}
-      <h2 class="section-title">{{ section.settings.title }}</h2>
+      <h2 class="section-title">{{ section.settings.title | escape }}</h2>
     {%- endif -%}
     {{ section.settings.text }}
   </div>
