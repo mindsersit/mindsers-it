@@ -18,7 +18,7 @@
     "email": "nathanael@mindsers.it"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.6.2"
+    "@biomejs/biome": "2.6.4"
   },
   "packageManager": "pnpm@10.34.7"
 }
