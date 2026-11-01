@@ -56,8 +56,8 @@ importers:
   themes/shopify:
     devDependencies:
       '@shopify/cli':
-        specifier: 4.9.4
-        version: 4.9.4
+        specifier: 5.0.0
+        version: 5.0.0
       autoprefixer:
         specifier: 10.6.1
         version: 10.6.1(postcss@8.5.31)
@@ -475,8 +475,8 @@ packages:
   '@sec-ant/readable-stream@0.4.1':
     resolution: {integrity: sha512-831qok9r2t8AlxLko40y2ebgSDhenenCatLVeW/uBtnHPyhHOvG0C7TvfgecV+wHzIm5KUICgzmVpWS+IMEAeg==}
 
-  '@shopify/cli@4.9.4':
-    resolution: {integrity: sha512-Zisisi5gbpzD8OVTav+k6FPqoA6jp7sgaM0sr5DSze2oJ7KSAKaP+8dPcSIy5h4Oe+19EVYJGard9cqBKNmfbA==}
+  '@shopify/cli@5.0.0':
+    resolution: {integrity: sha512-RdXZOQiWDZjXu71UOwJMnSRSAwdNAJTxq7berHbQKTgD7yB53YUdvZbWLaflhJOO5Jdw50KKP8jchmJTBDp2hA==}
     engines: {node: '>=22.12.0'}
     os: [darwin, linux, win32]
     hasBin: true
@@ -2127,7 +2127,7 @@ snapshots:
 
   '@sec-ant/readable-stream@0.4.1': {}
 
-  '@shopify/cli@4.9.4':
+  '@shopify/cli@5.0.0':
     dependencies:
       '@ast-grep/napi': 0.43.0
       clipboardy: 4.0.0
